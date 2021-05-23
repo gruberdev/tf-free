@@ -1,0 +1,26 @@
+formatter: markdown
+
+sections:
+  show:
+    - providers
+    - inputs
+    - outputs
+    # - modules
+
+output:
+  file: README.md
+  mode: inject
+
+sort:
+  enabled: true
+  by: name
+
+settings:
+  anchor: false
+  indent: 3
+  color: true
+  escape: true
+  default: true
+  required: false
+  type: true
+  sensitive: true

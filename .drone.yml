@@ -1,0 +1,18 @@
+---
+kind: pipeline
+type: docker
+name: tests
+workspace:
+  - path: src/github.com/gruberdev/tf-free
+    base: /go
+steps:
+  - name: gcp single region test
+    image: golang:1.16.4
+    commands:
+      - go build
+      - go test -v TestSshAccessToComputeInstance
+    when:
+      event:
+        - push
+        - pull_request
+        - rollback
