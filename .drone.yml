@@ -2,6 +2,9 @@
 kind: pipeline
 type: docker
 name: tests
+workspace:
+  base: /go
+  path: src/github.com/gruberdev/tf-free
 steps:
   - name: gcp single region test
     image: golang:1.16.4
