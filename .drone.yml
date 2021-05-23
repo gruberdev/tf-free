@@ -11,7 +11,7 @@ steps:
     commands:
       - go mod tidy
       - cd test
-      - go test -v TestSshAccessToComputeInstance
+      - go test -v TestTerraformGcpHelloWorldExample
     when:
       event:
         - push
