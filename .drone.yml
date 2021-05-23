@@ -6,7 +6,12 @@ steps:
   - name: gcp single region test
     image: golang:1.16.4
     commands:
-      - go mod tidy
+      - export GOPATH=$(pwd)
+      - export PATH=$PATH:$GOPATH/bin
+      - go get -u github.com/golang/dep/cmd/dep
+      - go get github.com/gruntwork-io/terratest/modules/aws
+      - go get github.com/gruntwork-io/terratest/modules/terraform
+      - go get github.com/stretchr/testify/assert
       - cd test
       - go test -v TestTerraformGcpHelloWorldExample
     when:
