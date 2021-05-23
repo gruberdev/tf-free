@@ -14,3 +14,6 @@ steps:
         - push
         - pull_request
         - rollback
+    environment:
+      TF_VAR_gcp_project_id:
+        from_secret: gcp_project_id
