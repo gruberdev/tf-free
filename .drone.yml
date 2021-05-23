@@ -4,7 +4,7 @@ type: docker
 name: tests
 workspace:
   - path: src/github.com/gruberdev/tf-free
-    base: /go
+  - base: /go
 steps:
   - name: gcp single region test
     image: golang:1.16.4
