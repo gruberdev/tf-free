@@ -9,7 +9,8 @@ steps:
   - name: gcp single region test
     image: golang:1.16.4
     commands:
-      - go build
+      - go get
+      - cd test
       - go test -v TestSshAccessToComputeInstance
     when:
       event:
