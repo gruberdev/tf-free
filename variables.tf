@@ -2,6 +2,7 @@
 variable "gcp_project_id" {
   type        = string
   default     = ""
+  sensitive   = true
   description = "Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format)"
   validation {
     condition     = can(regex("[a-z]([-a-z0-9]*[a-z0-9])?", var.gcp_project_id))
