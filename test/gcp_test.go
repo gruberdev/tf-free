@@ -37,7 +37,7 @@ func TestEndtoEndGCP(t *testing.T) {
 	})
 	defer terraform.Destroy(t, terraformOptions)
 	terraform.InitAndApply(t, terraformOptions)
-	publicIp := terraform.Output(t, terraformOptions, "public_ip")
+	publicIp := terraform.Output(t, terraformOptions, ".public_ip")
 	instance := gcp.FetchInstance(t, projectId, randomValidGcpName)
 	sampleText := "Hello World"
 	sshUsername := "terratest"
