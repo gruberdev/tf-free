@@ -16,7 +16,7 @@ import (
 )
 
 // Create a Compute Instance, and attempt to SSH in and run a command.
-func TestSshAccessToComputeInstance(t *testing.T) {
+func EndtoEndGCP(t *testing.T) {
 	t.Parallel()
 
 	exampleDir := test_structure.CopyTerraformFolderToTemp(t, "../../../", "examples/gcp/e2e")
