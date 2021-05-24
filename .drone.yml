@@ -9,8 +9,6 @@ steps:
       - rm gcp.json || true
       - echo $GCP_SERVICE_ACCOUNT > gcp.json
       - cd test
-      - export GOPATH=$(pwd)
-      - export PATH=$PATH:$GOPATH/bin
       - go mod init "github.com/gruberdev/tf-free"
       - go mod tidy
       - go test -v TestTerraformGcpHelloWorldExample
