@@ -19,33 +19,34 @@ import (
 func TestSshAccessToComputeInstance(t *testing.T) {
 	t.Parallel()
 
-	exampleDir := test_structure.CopyTerraformFolderToTemp(t, "../../", "examples/terraform-gcp-example")
+	exampleDir := test_structure.CopyTerraformFolderToTemp(t, "../../../", "examples/gcp/e2e")
 
-	// Setup values for our Terraform apply
-	projectID := gcp.GetGoogleProjectIDFromEnvVar(t)
+	region := gcp.GetRandomRegion(t, projectId, []string{"us-west1", "us-central1", "us-east1"}, nil)
+	
 	randomValidGcpName := gcp.RandomValidGcpName()
-	// On October 22, 2018, GCP launched the asia-east2 region, which promptly failed all our tests, so blacklist asia-east2.
-	zone := gcp.GetRandomZone(t, projectID, nil, nil, []string{"asia-east2"})
-
-	terraformOptions := &terraform.Options{
+	
+			// Variables to pass to our Terraform code using -var options
+	EnvVars: map[string]string{
+			"GCP_PROJECT_ID": projectId,
+			},
+		})
+	
+		terraformOptions := &terraform.Options{
 		// The path to where our Terraform code is located
 		TerraformDir: exampleDir,
-
-		// Variables to pass to our Terraform code using -var options
 		Vars: map[string]interface{}{
-			"gcp_project_id": projectID,
-			"instance_name":  randomValidGcpName,
-			"bucket_name":    randomValidGcpName,
-			"zone":           zone,
+			"gcp_project_id": projectId,
+			"gcp_region":     region,
+			"instance_name":   randomValidGcpName,
 		},
-	}
+	})
 
 	// At the end of the test, run `terraform destroy` to clean up any resources that were created
 	defer terraform.Destroy(t, terraformOptions)
 
 	// This will run `terraform init` and `terraform apply` and fail the test if there are any errors
 	terraform.InitAndApply(t, terraformOptions)
-
+	
 	// Run `terraform output` to get the value of an output variable
 	publicIp := terraform.Output(t, terraformOptions, "public_ip")
 
