@@ -1,19 +1,89 @@
 ---
 kind: pipeline
 type: docker
-name: tests
+name: Testing Google Cloud Provider (GCP)
 steps:
-  - name: testing GCP provider E2E
+  - name: unit_compute
+    image: golang:1.16.4
+    commands:
+      - cd examples/gcp/unit/compute
+      - rm gcp.json || true
+      - echo $GCP_SERVICE_ACCOUNT > gcp.json
+      - cd ../../../../../
+      - cd test
+      - go mod init "github.com/gruberdev/tf-free"
+      - go mod tidy
+      - go test -v -run UnitCompute
+    when:
+      event:
+        - push
+        - pull_request
+        - rollback
+    environment:
+      TF_VAR_gcp_project_id:
+        from_secret: gcp_project_id
+      GCP_SERVICE_ACCOUNT:
+        from_secret: gcp_project_key
+
+  - name: unit_firewall
+    image: golang:1.16.4
+    commands:
+      - cd examples/gcp/unit/firewall
+      - rm gcp.json || true
+      - echo $GCP_SERVICE_ACCOUNT > gcp.json
+      - cd ../../../../../
+      - cd test
+      - go mod init "github.com/gruberdev/tf-free"
+      - go mod tidy
+      - go test -v -run UnitFirewall
+    when:
+      event:
+        - push
+        - pull_request
+        - rollback
+    environment:
+      TF_VAR_gcp_project_id:
+        from_secret: gcp_project_id
+      GCP_SERVICE_ACCOUNT:
+        from_secret: gcp_project_key
+
+  - name: unit_vpc
+    image: golang:1.16.4
+    commands:
+      - cd examples/gcp/unit/vpc
+      - rm gcp.json || true
+      - echo $GCP_SERVICE_ACCOUNT > gcp.json
+      - cd ../../../../../
+      - cd test
+      - go mod init "github.com/gruberdev/tf-free"
+      - go mod tidy
+      - go test -v -run UnitVPC
+    when:
+      event:
+        - push
+        - pull_request
+        - rollback
+    environment:
+      TF_VAR_gcp_project_id:
+        from_secret: gcp_project_id
+      GCP_SERVICE_ACCOUNT:
+        from_secret: gcp_project_key
+
+  - name: e2e
     image: golang:1.16.4
     commands:
       - cd examples/gcp/e2e
       - rm gcp.json || true
       - echo $GCP_SERVICE_ACCOUNT > gcp.json
-      - cd ../../../
+      - cd ../../../../../
       - cd test
       - go mod init "github.com/gruberdev/tf-free"
       - go mod tidy
       - go test -v -run EndtoEndGCP
+    depends_on:
+      - unit_compute
+      - unit_firewall
+      - unit_vpc
     when:
       event:
         - push
