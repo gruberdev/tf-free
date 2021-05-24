@@ -2,10 +2,9 @@ formatter: markdown
 
 sections:
   show:
-    - providers
     - inputs
     - outputs
-    # - modules
+    - modules
 
 output:
   file: README.md
