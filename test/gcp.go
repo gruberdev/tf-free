@@ -16,20 +16,18 @@ import (
 )
 
 func EndtoEndGCP(t *testing.T) {
-	t.Parallel()
+	//t.Parallel()
 
 	projectId := gcp.GetGoogleProjectIDFromEnvVar(t)
 	exampleDir := test_structure.CopyTerraformFolderToTemp(t, "../../../", "examples/gcp")
 	region := gcp.GetRandomRegion(t, projectId, []string{"us-west1", "us-central1", "us-east1"}, nil)
-	randomValidGcpName := gcp.RandomValidGcpName()
 
 	// Variables to pass to our Terraform code using -var options
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
 		// The path to where our Terraform code is located
 		TerraformDir: exampleDir,
 		Vars: map[string]interface{}{
-			"gcp_region":    region,
-			"instance_name": randomValidGcpName,
+			"gcp_project_region": region,
 		},
 		EnvVars: map[string]string{
 			"GCP_PROJECT_ID": projectId,
@@ -65,18 +63,16 @@ func EndtoEndGCP(t *testing.T) {
 }
 
 func UnitCompute(t *testing.T) {
-	t.Parallel()
+	//t.Parallel()s
 
 	projectId := gcp.GetGoogleProjectIDFromEnvVar(t)
 	exampleDir := test_structure.CopyTerraformFolderToTemp(t, "../../../../modules/gcp/compute", "examples/gcp/unit/compute")
 	region := gcp.GetRandomRegion(t, projectId, []string{"us-west1", "us-central1", "us-east1"}, nil)
-	randomValidGcpName := gcp.RandomValidGcpName()
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
 		// The path to where our Terraform code is located
 		TerraformDir: exampleDir,
 		Vars: map[string]interface{}{
-			"gcp_region":    region,
-			"instance_name": randomValidGcpName,
+			"gcp_instance_region": region,
 		},
 		EnvVars: map[string]string{
 			"GCP_PROJECT_ID": projectId,
