@@ -19,38 +19,38 @@ import (
 func EndtoEndGCP(t *testing.T) {
 	t.Parallel()
 
+	projectId := gcp.GetGoogleProjectIDFromEnvVar(t)
+
 	exampleDir := test_structure.CopyTerraformFolderToTemp(t, "../../../", "examples/gcp/e2e")
 
 	region := gcp.GetRandomRegion(t, projectId, []string{"us-west1", "us-central1", "us-east1"}, nil)
-	
-	randomValidGcpName := gcp.RandomValidGcpName()
-	
-			// Variables to pass to our Terraform code using -var options
 
-	
-		terraformOptions := &terraform.Options{
+	randomValidGcpName := gcp.RandomValidGcpName()
+
+	// Variables to pass to our Terraform code using -var options
+
+	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
 		// The path to where our Terraform code is located
 		TerraformDir: exampleDir,
 		Vars: map[string]interface{}{
-			"gcp_region":     region,
-			"instance_name":   randomValidGcpName,
+			"gcp_region":    region,
+			"instance_name": randomValidGcpName,
 		},
-		
 		EnvVars: map[string]string{
 			"GCP_PROJECT_ID": projectId,
-		}
-
+		},
+	})
 	// At the end of the test, run `terraform destroy` to clean up any resources that were created
 	defer terraform.Destroy(t, terraformOptions)
 
 	// This will run `terraform init` and `terraform apply` and fail the test if there are any errors
 	terraform.InitAndApply(t, terraformOptions)
-	
+
 	// Run `terraform output` to get the value of an output variable
 	publicIp := terraform.Output(t, terraformOptions, "public_ip")
 
 	// Attempt to SSH and execute the command
-	instance := gcp.FetchInstance(t, projectID, randomValidGcpName)
+	instance := gcp.FetchInstance(t, projectId, randomValidGcpName)
 
 	sampleText := "Hello World"
 	sshUsername := "terratest"
