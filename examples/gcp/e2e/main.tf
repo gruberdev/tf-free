@@ -3,3 +3,4 @@ module "gcp_machine" {
   project_region = var.gcp_project_region
   instance_name  = var.gcp_instance_name
 }
+

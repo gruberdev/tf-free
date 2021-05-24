@@ -1,16 +1,15 @@
 
 module "gcp_vpc" {
-  source = "./vpc"
-
+  source = "github.com/gruberdev/tf-free/modules/vpc"
 }
 
 module "gcp_firewall" {
-  source       = "./firewall"
+  source       = "github.com/gruberdev/tf-free/modules/firewall"
   network_name = module.gcp_vpc.network_name
 }
 
 module "gcp_instance" {
-  source       = "./compute"
+  source       = "github.com/gruberdev/tf-free/modules/gcp/compute"
   name         = var.instance_name
   region       = var.project_region
   network_name = module.gcp_vpc.network_name
