@@ -16,3 +16,4 @@ module "gcp_instance" {
   ip_addr      = module.gcp_vpc.ipv4_addr
 }
 
+machine_ip_addr = module.gcp_instance.external_ip
