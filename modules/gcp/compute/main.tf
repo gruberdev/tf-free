@@ -1,7 +1,7 @@
 resource "google_compute_instance" "gcp_example" {
   name         = var.name
   machine_type = var.type
-  zone         = "${var.region}-a"
+  zone         = "${var.region}-b"
 
   allow_stopping_for_update = true
 

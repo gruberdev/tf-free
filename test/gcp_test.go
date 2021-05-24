@@ -15,7 +15,7 @@ import (
 	test_structure "github.com/gruntwork-io/terratest/modules/test-structure"
 )
 
-func TestEndtoEndGCP(t *testing.T) {
+func TestIntegrationGCP(t *testing.T) {
 	t.Parallel()
 
 	projectId := gcp.GetGoogleProjectIDFromEnvVar(t)
@@ -33,7 +33,8 @@ func TestEndtoEndGCP(t *testing.T) {
 			"google_project":     projectId,
 		},
 		EnvVars: map[string]string{
-			"GOOGLE_PROJECT": projectId,
+			"GOOGLE_PROJECT":                 projectId,
+			"GOOGLE_APPLICATION_CREDENTIALS": "/home/gruber/projects/tf-free/gcp.json",
 		},
 	})
 	defer terraform.Destroy(t, terraformOptions)
@@ -41,7 +42,7 @@ func TestEndtoEndGCP(t *testing.T) {
 	publicIp := terraform.Output(t, terraformOptions, "gcp_public_ip")
 	instance := gcp.FetchInstance(t, projectId, randomValidGcpName)
 	sampleText := "Hello World"
-	sshUsername := "terratest"
+	sshUsername := "root"
 	keyPair := ssh.GenerateRSAKeyPair(t, 2048)
 	instance.AddSshKey(t, sshUsername, keyPair.PublicKey)
 	host := ssh.Host{
