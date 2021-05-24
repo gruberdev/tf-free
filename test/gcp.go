@@ -68,7 +68,7 @@ func UnitCompute(t *testing.T) {
 	t.Parallel()
 
 	projectId := gcp.GetGoogleProjectIDFromEnvVar(t)
-	exampleDir := test_structure.CopyTerraformFolderToTemp(t, "../../../../../modules/compute", "examples/gcp/unit/compute")
+	exampleDir := test_structure.CopyTerraformFolderToTemp(t, "../../../../modules/gcp/compute", "examples/gcp/unit/compute")
 	region := gcp.GetRandomRegion(t, projectId, []string{"us-west1", "us-central1", "us-east1"}, nil)
 	randomValidGcpName := gcp.RandomValidGcpName()
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{

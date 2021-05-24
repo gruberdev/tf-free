@@ -69,7 +69,7 @@ steps:
       GCP_SERVICE_ACCOUNT:
         from_secret: gcp_project_key
 
-  - name: e2e
+  - name: gcp_integration
     image: golang:1.16.4
     commands:
       - cd examples/gcp/e2e
