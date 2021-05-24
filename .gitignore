@@ -31,3 +31,6 @@ override.tf.json
 **/.terraform.lock.hcl/*
 .terraform.lock.hcl
 *tfplan*
+gcp.json
+terraform.tfvars
+**/gcp.json/*
