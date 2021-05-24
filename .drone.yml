@@ -13,7 +13,7 @@ steps:
       - cd test
       - go mod init "github.com/gruberdev/tf-free"
       - go mod tidy
-      - go test -v -run UnitCompute
+      - go test -v -timeout 5m -run UnitCompute
     when:
       event:
         - push
@@ -35,7 +35,7 @@ steps:
       - cd test
       - go mod init "github.com/gruberdev/tf-free"
       - go mod tidy
-      - go test -v -run UnitFirewall
+      - go test -v -timeout 5m -run UnitFirewall
     when:
       event:
         - push
@@ -57,7 +57,7 @@ steps:
       - cd test
       - go mod init "github.com/gruberdev/tf-free"
       - go mod tidy
-      - go test -v -run UnitVPC
+      - go test -v -timeout 5m -run UnitVPC
     when:
       event:
         - push
@@ -79,7 +79,7 @@ steps:
       - cd test
       - go mod init "github.com/gruberdev/tf-free"
       - go mod tidy
-      - go test -v -run EndtoEndGCP
+      - go test -v -timeout 10m -run EndtoEndGCP
     depends_on:
       - unit_compute
       - unit_firewall
