@@ -11,7 +11,7 @@ steps:
       - cd test
       - go mod init "github.com/gruberdev/tf-free"
       - go mod tidy
-      - go test -v TestTerraformGcpHelloWorldExample
+      - go test -v -run SimpleTerraformGCPExample
     when:
       event:
         - push

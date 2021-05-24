@@ -12,7 +12,7 @@ import (
 	"github.com/gruntwork-io/terratest/modules/terraform"
 )
 
-func TestTerraformGcpHelloWorldExample(t *testing.T) {
+func SimpleTerraformGCPExample(t *testing.T) {
 	t.Parallel()
 
 	// website::tag::1:: Get the Project Id to use
