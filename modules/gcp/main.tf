@@ -15,5 +15,3 @@ module "gcp_instance" {
   network_name = module.gcp_vpc.network_name
   ip_addr      = module.gcp_vpc.ipv4_addr
 }
-
-machine_ip_addr = module.gcp_instance.external_ip

@@ -23,7 +23,7 @@ provider "aws" {
 }
 
 provider "google" {
-  project     = var.gcp_project_id
+  project     = var.google_project
   region      = var.gcp_project_region
   credentials = file("gcp.json")
 }
