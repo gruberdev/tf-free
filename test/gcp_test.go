@@ -15,11 +15,11 @@ import (
 	test_structure "github.com/gruntwork-io/terratest/modules/test-structure"
 )
 
-func EndtoEndGCP(t *testing.T) {
+func TestEndtoEndGCP(t *testing.T) {
 	t.Parallel()
 
 	projectId := gcp.GetGoogleProjectIDFromEnvVar(t)
-	exampleDir := test_structure.CopyTerraformFolderToTemp(t, "../../../", "examples/gcp")
+	exampleDir := test_structure.CopyTerraformFolderToTemp(t, "../", "examples/gcp")
 	region := gcp.GetRandomRegion(t, projectId, []string{"us-west1", "us-central1", "us-east1"}, nil)
 	randomValidGcpName := gcp.RandomValidGcpName()
 
@@ -28,11 +28,11 @@ func EndtoEndGCP(t *testing.T) {
 		// The path to where our Terraform code is located
 		TerraformDir: exampleDir,
 		Vars: map[string]interface{}{
-			"gcp_region":    region,
-			"instance_name": randomValidGcpName,
+			"gcp_project_region": region,
+			"instance_name":      randomValidGcpName,
 		},
 		EnvVars: map[string]string{
-			"GCP_PROJECT_ID": projectId,
+			"GOOGLE_PROJECT": projectId,
 		},
 	})
 	defer terraform.Destroy(t, terraformOptions)
@@ -64,7 +64,7 @@ func EndtoEndGCP(t *testing.T) {
 	})
 }
 
-func UnitCompute(t *testing.T) {
+func TestUnitCompute(t *testing.T) {
 	t.Parallel()
 
 	projectId := gcp.GetGoogleProjectIDFromEnvVar(t)
