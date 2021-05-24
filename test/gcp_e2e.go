@@ -26,20 +26,19 @@ func EndtoEndGCP(t *testing.T) {
 	randomValidGcpName := gcp.RandomValidGcpName()
 	
 			// Variables to pass to our Terraform code using -var options
-	EnvVars: map[string]string{
-			"GCP_PROJECT_ID": projectId,
-			},
-		})
+
 	
 		terraformOptions := &terraform.Options{
 		// The path to where our Terraform code is located
 		TerraformDir: exampleDir,
 		Vars: map[string]interface{}{
-			"gcp_project_id": projectId,
 			"gcp_region":     region,
 			"instance_name":   randomValidGcpName,
 		},
-	})
+		
+		EnvVars: map[string]string{
+			"GCP_PROJECT_ID": projectId,
+		}
 
 	// At the end of the test, run `terraform destroy` to clean up any resources that were created
 	defer terraform.Destroy(t, terraformOptions)
