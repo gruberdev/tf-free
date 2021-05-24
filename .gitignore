@@ -34,3 +34,6 @@ override.tf.json
 gcp.json
 terraform.tfvars
 **/gcp.json/*
+
+go.sum
+go.mod

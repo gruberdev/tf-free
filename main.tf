@@ -1,3 +1,3 @@
 module "gcp" {
-  source = "./modules/gcp/compute"
+  source = "./modules/gcp"
 }
