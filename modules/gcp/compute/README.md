@@ -20,7 +20,7 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| instance\_external\_ip | n/a |
+| external\_ip | n/a |
 | instance\_id | n/a |
-| instance\_internal\_ip | n/a |
+| internal\_ip | n/a |
 <!-- END_TF_DOCS -->
