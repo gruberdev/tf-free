@@ -3,12 +3,9 @@
 package test
 
 import (
-	"fmt"
-	"strings"
 	"testing"
 
 	"github.com/gruntwork-io/terratest/modules/gcp"
-	"github.com/gruntwork-io/terratest/modules/random"
 	"github.com/gruntwork-io/terratest/modules/terraform"
 )
 
@@ -17,9 +14,6 @@ func SimpleTerraformGCPExample(t *testing.T) {
 
 	// website::tag::1:: Get the Project Id to use
 	projectId := gcp.GetGoogleProjectIDFromEnvVar(t)
-
-	// website::tag::2:: Give the example instance a unique name
-	instanceName := fmt.Sprintf("gcp-hello-world-example-%s", strings.ToLower(random.UniqueId()))
 
 	// website::tag::6:: Construct the terraform options with default retryable errors to handle the most common
 	// retryable errors in terraform testing.
