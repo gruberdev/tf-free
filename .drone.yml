@@ -3,16 +3,15 @@ kind: pipeline
 type: docker
 name: tests
 steps:
-  - name: gcp single region test
+  - name: gcp simple unit test
     image: golang:1.16.4
     commands:
+      - (rm gcp.json || true ) && echo $GCP_SERVICE_ACCOUNT > gcp.json
+      - cd test
       - export GOPATH=$(pwd)
       - export PATH=$PATH:$GOPATH/bin
-      - go get -u github.com/golang/dep/cmd/dep
-      - go get github.com/gruntwork-io/terratest/modules/aws
-      - go get github.com/gruntwork-io/terratest/modules/terraform
-      - go get github.com/stretchr/testify/assert
-      - cd test
+      - go mod init "github.com/gruberdev/tf-free"
+      - go mod tidy
       - go test -v TestTerraformGcpHelloWorldExample
     when:
       event:
@@ -22,3 +21,5 @@ steps:
     environment:
       TF_VAR_gcp_project_id:
         from_secret: gcp_project_id
+      GCP_SERVICE_ACCOUNT:
+        from_secret: gcp_project_key
