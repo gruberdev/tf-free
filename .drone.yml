@@ -6,7 +6,8 @@ steps:
   - name: gcp simple unit test
     image: golang:1.16.4
     commands:
-      - (rm gcp.json || true ) && echo $GCP_SERVICE_ACCOUNT > gcp.json
+      - rm gcp.json || true
+      - echo $GCP_SERVICE_ACCOUNT > gcp.json
       - cd test
       - export GOPATH=$(pwd)
       - export PATH=$PATH:$GOPATH/bin
