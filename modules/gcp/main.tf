@@ -1,6 +1,7 @@
 
 module "gcp_vpc" {
-  source = "github.com/gruberdev/tf-free/modules/gcp/vpc"
+  source         = "github.com/gruberdev/tf-free/modules/gcp/vpc"
+  google_project = var.google_project
 }
 
 module "gcp_firewall" {

@@ -30,6 +30,7 @@ func TestEndtoEndGCP(t *testing.T) {
 		Vars: map[string]interface{}{
 			"gcp_project_region": region,
 			"gcp_instance_name":  randomValidGcpName,
+			"google_project":     projectId,
 		},
 		EnvVars: map[string]string{
 			"GOOGLE_PROJECT": projectId,
