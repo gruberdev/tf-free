@@ -32,6 +32,14 @@ resource "google_project_service" "management_api" {
 }
 
 module "gcp_machine" {
+  depends_on = [
+    google_project_service.network_api,
+    google_project_service.enable_billing_api,
+    google_project_service.enable_admin_api,
+    google_project_service.enable_api,
+    google_project_service.control_api,
+    google_project_service.management_api,
+  ]
   source         = "./modules/gcp"
   project_region = var.gcp_project_region
   instance_name  = var.gcp_instance_name

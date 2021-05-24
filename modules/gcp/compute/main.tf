@@ -1,4 +1,5 @@
 resource "google_compute_instance" "gcp_example" {
+  provider     = google-beta
   name         = var.name
   machine_type = var.type
   zone         = "${var.region}-b"

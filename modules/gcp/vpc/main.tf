@@ -1,11 +1,11 @@
 resource "google_compute_network" "default" {
+  provider                = google-beta
   name                    = var.vpc_name
   auto_create_subnetworks = "true"
-  project                 = var.google_project
 }
 
 resource "google_compute_address" "static" {
-  name    = var.static_ip_name
-  project = var.google_project
+  provider = google-beta
+  name     = var.static_ip_name
 }
 
