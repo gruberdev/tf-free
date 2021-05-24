@@ -48,6 +48,10 @@ variable "name" {
   type        = string
   default     = "private"
   description = "A name for the project's GCE Instance. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format)"
+  validation {
+    condition     = can(regex("[a-z]([-a-z0-9]*[a-z0-9])?", var.name))
+    error_message = "Error: Your instance name is invalid, adjust it to GCP's resources naming convention."
+  }
 }
 
 variable "type" {
@@ -104,17 +108,6 @@ variable "network_name" {
 
 variable "ip_addr" {
   type        = string
-  default     = null
+  default     = ""
   description = "The IP address that will be 1:1 mapped to the instance's network ip. If not given, one will be generated. [Docs Ref.](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance#access_config)"
 }
-
-variable "instance_name" {
-  type        = string
-  description = "GCP Network Name. [Oficial GCP Documentation](https://cloud.google.com/compute/docs/machine-types) - [Terraform provider Documentation](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance#machine_type)"
-}
-
-variable "project_region" {
-  type        = string
-  description = "The IP address that will be 1:1 mapped to the instance's network ip. If not given, one will be generated. [Docs Ref.](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance#access_config)"
-}
-
