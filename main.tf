@@ -31,7 +31,7 @@ resource "google_project_service" "management_api" {
   disable_dependent_services = true
 }
 
-module "gcp_machine" {
+module "google_cloud" {
   depends_on = [
     google_project_service.network_api,
     google_project_service.enable_billing_api,
