@@ -3,7 +3,7 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| gcp | ./modules/gcp |  |
+| gcp\_machine | ./modules/gcp |  |
 
 ### Inputs
 
@@ -15,5 +15,7 @@
 
 ### Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| gcp\_public\_ip | n/a |
 <!-- END_TF_DOCS -->
