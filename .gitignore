@@ -33,3 +33,4 @@ override.tf.json
 *tfplan*
 gcp.json
 terraform.tfvars
+**/gcp.json/*
