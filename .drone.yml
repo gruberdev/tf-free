@@ -60,7 +60,7 @@ steps:
       - cd ../../../../
       - cd examples/gcp/e2e
       - echo $GCP_SERVICE_ACCOUNT > gcp.json
-      - ../../../
+      - cd ../../../
       - cd test
       - go mod init "github.com/gruberdev/tf-free"
       - go mod tidy
