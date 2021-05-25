@@ -69,7 +69,7 @@ func TestUnitCompute(t *testing.T) {
 	t.Parallel()
 
 	projectId := gcp.GetGoogleProjectIDFromEnvVar(t)
-	exampleDir := test_structure.CopyTerraformFolderToTemp(t, "../../../../modules/gcp/compute", "examples/gcp/unit/compute")
+	exampleDir := test_structure.CopyTerraformFolderToTemp(t, "../", "examples/gcp/unit/compute")
 	region := gcp.GetRandomRegion(t, projectId, []string{"us-west1", "us-central1", "us-east1"}, nil)
 	randomValidGcpName := gcp.RandomValidGcpName()
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
@@ -77,10 +77,11 @@ func TestUnitCompute(t *testing.T) {
 		TerraformDir: exampleDir,
 		Vars: map[string]interface{}{
 			"gcp_project_region": region,
-			"instance_name":      randomValidGcpName,
+			"gcp_instance_name":  randomValidGcpName,
+			"google_project":     projectId,
 		},
 		EnvVars: map[string]string{
-			"GCP_PROJECT_ID": projectId,
+			"GOOGLE_PROJECT": projectId,
 		},
 	})
 	defer terraform.Destroy(t, terraformOptions)

@@ -20,7 +20,7 @@ steps:
         - pull_request
         - rollback
     environment:
-      TF_VAR_google_project:
+      GOOGLE_PROJECT:
         from_secret: gcp_project_id
       GCP_SERVICE_ACCOUNT:
         from_secret: gcp_project_key
@@ -42,10 +42,10 @@ steps:
         - pull_request
         - rollback
     environment:
-      TF_VAR_google_project:
+      GOOGLE_PROJECT:
         from_secret: gcp_project_id
       GCP_SERVICE_ACCOUNT:
-        from_secret: gcp_project_key
+        from_secret: gcp_project_keyy
 
   - name: unit_vpc
     image: golang:1.16.4
@@ -64,7 +64,7 @@ steps:
         - pull_request
         - rollback
     environment:
-      TF_VAR_google_project:
+      GOOGLE_PROJECT:
         from_secret: gcp_project_id
       GCP_SERVICE_ACCOUNT:
         from_secret: gcp_project_key
@@ -90,7 +90,7 @@ steps:
         - pull_request
         - rollback
     environment:
-      TF_VAR_google_project:
+      GOOGLE_PROJECT:
         from_secret: gcp_project_id
       GCP_SERVICE_ACCOUNT:
         from_secret: gcp_project_key
