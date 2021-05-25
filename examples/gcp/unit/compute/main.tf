@@ -14,9 +14,8 @@ provider "google-beta" {
   credentials = file("gcp.json")
 }
 
-resource "google_compute_address" "emph_ip" {
-  provider = google-beta
-  name     = var.ip_random
+resource "google_compute_address" "emph" {
+  name = var.ip_random
 }
 
 module "gcp_instance" {
@@ -24,5 +23,5 @@ module "gcp_instance" {
   name         = var.instance_name
   region       = var.project_region
   network_name = var.network_name
-  ip_addr      = google_compute_address.emph_ip.nat_ip
+  ip_addr      = google_compute_instance.emph.network_interface.0.access_config.0.nat_ip
 }
