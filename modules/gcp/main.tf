@@ -9,7 +9,7 @@ module "gcp_firewall" {
   depends_on = [
     module.gcp_vpc.network_name
   ]
-  source       = "./firewall"
+  source       = "github.com/gruberdev/module/gcp/compute/firewall"
   network_name = module.gcp_vpc.network_name
 }
 
@@ -18,7 +18,7 @@ module "gcp_instance" {
     module.gcp_vpc.network_name,
     module.gcp_vpc.ipv4_add
   ]
-  source       = "./compute"
+  source       = "github.com/gruberdev/module/gcp/compute"
   name         = var.instance_name
   region       = var.project_region
   network_name = module.gcp_vpc.network_name
