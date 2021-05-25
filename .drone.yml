@@ -82,7 +82,6 @@ steps:
       - apk add build-base
       - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
       - cd examples/gcp/e2e
-      - rm gcp.json || truew
       - echo $GCP_SERVICE_ACCOUNT > gcp.json
       - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
       - cd ../../../../
