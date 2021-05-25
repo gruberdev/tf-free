@@ -109,9 +109,6 @@ steps:
       - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
       - terraform init
       - terraform plan | tfnotify plan
-    depends_on:
-      - unit_compute
-      - provider_integration
     when:
       event:
         - push
