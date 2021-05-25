@@ -23,5 +23,5 @@ module "gcp_instance" {
   name         = var.instance_name
   region       = var.project_region
   network_name = var.network_name
-  ip_addr      = google_compute_instance.emph.network_interface.0.access_config.0.nat_ip
+  ip_addr      = google_compute_address.emph.address
 }
