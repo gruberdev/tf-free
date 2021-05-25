@@ -1,5 +1,4 @@
 resource "google_compute_network" "default" {
-  provider                = google-beta
   name                    = var.vpc_name
   auto_create_subnetworks = "true"
 }

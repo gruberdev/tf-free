@@ -1,7 +1,6 @@
 resource "google_compute_firewall" "allow_web" {
-  provider = google-beta
-  name     = var.firewall_web_name
-  network  = var.network_name
+  name    = var.firewall_web_name
+  network = var.network_name
 
 
   allow {
@@ -14,9 +13,8 @@ resource "google_compute_firewall" "allow_web" {
 }
 
 resource "google_compute_firewall" "allow_ssh" {
-  provider = google-beta
-  name     = var.firewall_ssh_name
-  network  = var.network_name
+  name    = var.firewall_ssh_name
+  network = var.network_name
 
   allow {
     protocol = "tcp"
@@ -26,4 +24,3 @@ resource "google_compute_firewall" "allow_ssh" {
   source_ranges = ["0.0.0.0/0"]
   target_tags   = ["ssh"]
 }
-            

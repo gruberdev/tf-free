@@ -8,7 +8,7 @@ terraform {
   }
 }
 
-provider "google" {
+provider "google-beta" {
   project     = var.google_project
   region      = var.gcp_project_region
   credentials = file("gcp.json")
