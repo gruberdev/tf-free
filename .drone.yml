@@ -9,8 +9,8 @@ steps:
       - apk add build-base
       - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
       - cd examples/gcp/unit/compute
-      - rm gcp.json || true
       - echo $GCP_SERVICE_ACCOUNT > gcp.json
+      - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
       - cd ../../../../
       - cd test
       - go mod init "github.com/gruberdev/tf-free"
