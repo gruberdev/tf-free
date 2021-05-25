@@ -6,7 +6,7 @@ steps:
   - name: plan
     image: golang:1.16.4-alpine
     commands:
-      - apk add build-base
+      - apk add build-base git curl
       - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
       - echo $GCP_SERVICE_ACCOUNT > gcp.json
       - terraform init
