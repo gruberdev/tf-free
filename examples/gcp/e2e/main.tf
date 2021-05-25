@@ -1,4 +1,4 @@
 module "gcp_machine" {
-  source = "../../../"
+  source = "github.com/gruberdev/tf-free"
 }
 
