@@ -20,4 +20,9 @@ resource "google_compute_instance" "gcp_example" {
       nat_ip = var.ip_addr
     }
   }
+
+  tags = [
+    "web",
+    "ssh"
+  ]
 }
