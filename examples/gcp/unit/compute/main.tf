@@ -14,9 +14,15 @@ provider "google-beta" {
   credentials = file("gcp.json")
 }
 
+resource "google_compute_address" "emph_ip" {
+  provider = google-beta
+  name     = var.static_ip_name
+}
+
 module "gcp_instance" {
   source       = "github.com/gruberdev/tf-free/modules/gcp/compute"
   name         = var.instance_name
   region       = var.project_region
   network_name = var.network_name
+  ip_addr      = google_compute_address.emph_ip.nat_ip
 }
