@@ -3,7 +3,7 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| gcp\_machine | ./modules/gcp |  |
+| gcp\_machine | github.com/gruberdev/tf-free/modules/gcp |  |
 
 ### Inputs
 
