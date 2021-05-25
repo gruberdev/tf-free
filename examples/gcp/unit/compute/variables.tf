@@ -18,3 +18,6 @@ variable "google_project" {
 variable "network_name" {
   type = string
 }
+variable "ip_random" {
+  type = string
+}

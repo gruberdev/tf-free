@@ -16,7 +16,7 @@ provider "google-beta" {
 
 resource "google_compute_address" "emph_ip" {
   provider = google-beta
-  name     = var.static_ip_name
+  name     = var.ip_random
 }
 
 module "gcp_instance" {

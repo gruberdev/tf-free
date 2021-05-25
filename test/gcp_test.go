@@ -73,6 +73,7 @@ func TestUnitCompute(t *testing.T) {
 	region := gcp.GetRandomRegion(t, projectId, []string{"us-west1", "us-central1", "us-east1"}, nil)
 	randomValidNetworkGcpName := gcp.RandomValidGcpName()
 	randomValidInstanceGcpName := gcp.RandomValidGcpName()
+	randomValidIPGcpName := gcp.RandomValidGcpName()
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
 		// The path to where our Terraform code is located
 		TerraformDir: exampleDir,
@@ -80,6 +81,7 @@ func TestUnitCompute(t *testing.T) {
 			"project_region": region,
 			"instance_name":  randomValidNetworkGcpName,
 			"network_name":   randomValidInstanceGcpName,
+			"ip_random":      randomValidIPGcpName,
 			"google_project": projectId,
 		},
 		EnvVars: map[string]string{
