@@ -40,7 +40,7 @@ module "gcp_machine" {
     google_project_service.control_api,
     google_project_service.management_api,
   ]
-  source         = "github.com/gruberdev/module/gcp"
+  source         = "./modules/gcp"
   project_region = var.gcp_project_region
   instance_name  = var.gcp_instance_name
 }

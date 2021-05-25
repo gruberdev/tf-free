@@ -3,7 +3,7 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| gcp\_machine | github.com/gruberdev/module/gcp |  |
+| gcp\_machine | ./modules/gcp |  |
 
 ### Inputs
 
