@@ -84,7 +84,7 @@ steps:
       - cd examples/gcp/e2e
       - echo $GCP_SERVICE_ACCOUNT > gcp.json
       - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
-      - cd ../../../../
+      - cd ../../../
       - cd test
       - go mod init "github.com/gruberdev/tf-free"
       - go mod tidy
