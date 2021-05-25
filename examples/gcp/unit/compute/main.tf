@@ -15,7 +15,8 @@ provider "google-beta" {
 }
 
 resource "google_compute_address" "emph" {
-  name = var.ip_random
+  name   = var.ip_random
+  region = var.project_region
 }
 
 module "gcp_instance" {
