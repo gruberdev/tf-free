@@ -1,5 +1,3 @@
-
-
 variable "gcp_instance_name" {
   type        = string
   default     = "example-machine"

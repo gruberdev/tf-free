@@ -33,8 +33,7 @@ func TestIntegrationGCP(t *testing.T) {
 			"google_project":     projectId,
 		},
 		EnvVars: map[string]string{
-			"GOOGLE_PROJECT":                 projectId,
-			"GOOGLE_APPLICATION_CREDENTIALS": "/home/gruber/projects/tf-free/gcp.json",
+			"GOOGLE_PROJECT": projectId,
 		},
 	})
 	defer terraform.Destroy(t, terraformOptions)

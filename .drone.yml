@@ -13,14 +13,14 @@ steps:
       - cd test
       - go mod init "github.com/gruberdev/tf-free"
       - go mod tidy
-      - go test -v -timeout 5m -run UnitCompute
+      - go test -v -timeout 5m -run TestUnitCompute
     when:
       event:
         - push
         - pull_request
         - rollback
     environment:
-      TF_VAR_gcp_project_id:
+      TF_VAR_google_project:
         from_secret: gcp_project_id
       GCP_SERVICE_ACCOUNT:
         from_secret: gcp_project_key
@@ -35,14 +35,14 @@ steps:
       - cd test
       - go mod init "github.com/gruberdev/tf-free"
       - go mod tidy
-      - go test -v -timeout 5m -run UnitFirewall
+      - go test -v -timeout 5m -run TestUnitFirewall
     when:
       event:
         - push
         - pull_request
         - rollback
     environment:
-      TF_VAR_gcp_project_id:
+      TF_VAR_google_project:
         from_secret: gcp_project_id
       GCP_SERVICE_ACCOUNT:
         from_secret: gcp_project_key
@@ -57,19 +57,19 @@ steps:
       - cd test
       - go mod init "github.com/gruberdev/tf-free"
       - go mod tidy
-      - go test -v -timeout 5m -run UnitVPC
+      - go test -v -timeout 5m -run TestUnitVPC
     when:
       event:
         - push
         - pull_request
         - rollback
     environment:
-      TF_VAR_gcp_project_id:
+      TF_VAR_google_project:
         from_secret: gcp_project_id
       GCP_SERVICE_ACCOUNT:
         from_secret: gcp_project_key
 
-  - name: gcp_integration
+  - name: provider_integration
     image: golang:1.16.4
     commands:
       - cd examples/gcp/e2e
@@ -79,7 +79,7 @@ steps:
       - cd test
       - go mod init "github.com/gruberdev/tf-free"
       - go mod tidy
-      - go test -v -timeout 10m -run EndtoEndGCP
+      - go test -v -timeout 10m -run TestIntegrationGCP
     depends_on:
       - unit_compute
       - unit_firewall
@@ -90,7 +90,7 @@ steps:
         - pull_request
         - rollback
     environment:
-      TF_VAR_gcp_project_id:
+      TF_VAR_google_project:
         from_secret: gcp_project_id
       GCP_SERVICE_ACCOUNT:
         from_secret: gcp_project_key
