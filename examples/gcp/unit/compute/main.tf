@@ -14,15 +14,22 @@ provider "google-beta" {
   credentials = file("gcp.json")
 }
 
-resource "google_compute_address" "emph" {
-  name   = var.ip_random
-  region = var.project_region
-}
-
-module "gcp_instance" {
-  source       = "github.com/gruberdev/tf-free/modules/gcp/compute"
+resource "google_compute_instance" "gcp_example" {
   name         = var.instance_name
-  region       = var.project_region
-  network_name = var.network_name
-  ip_addr      = google_compute_address.emph.address
+  machine_type = "f1-micro"
+  zone         = "${var.project_region}-b"
+
+  boot_disk {
+    initialize_params {
+      image = "debian-cloud/debian-10"
+      size  = 30
+      type  = "pd-standard"
+    }
+  }
+
+  network_interface {
+    network = "default"
+    access_config {
+    }
+  }
 }

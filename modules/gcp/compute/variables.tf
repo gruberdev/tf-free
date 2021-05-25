@@ -58,6 +58,6 @@ variable "network_name" {
 
 variable "ip_addr" {
   type        = string
-  default     = ""
+  default     = null
   description = "The IP address that will be 1:1 mapped to the instance's network ip. If not given, one will be generated. [Docs Ref.](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance#access_config)"
 }

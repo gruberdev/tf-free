@@ -71,17 +71,13 @@ func TestUnitCompute(t *testing.T) {
 	projectId := gcp.GetGoogleProjectIDFromEnvVar(t)
 	exampleDir := test_structure.CopyTerraformFolderToTemp(t, "../", "examples/gcp/unit/compute")
 	region := gcp.GetRandomRegion(t, projectId, []string{"us-west1", "us-central1", "us-east1"}, nil)
-	randomValidNetworkGcpName := gcp.RandomValidGcpName()
 	randomValidInstanceGcpName := gcp.RandomValidGcpName()
-	randomValidIPGcpName := gcp.RandomValidGcpName()
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
 		// The path to where our Terraform code is located
 		TerraformDir: exampleDir,
 		Vars: map[string]interface{}{
 			"project_region": region,
-			"instance_name":  randomValidNetworkGcpName,
-			"network_name":   randomValidInstanceGcpName,
-			"ip_random":      randomValidIPGcpName,
+			"instance_name":  randomValidInstanceGcpName,
 			"google_project": projectId,
 		},
 		EnvVars: map[string]string{
