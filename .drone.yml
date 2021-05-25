@@ -6,6 +6,7 @@ steps:
   - name: unit_compute
     image: golang:1.16.4-alpine
     commands:
+      - apk add build-base
       - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
       - cd examples/gcp/unit/compute
       - rm gcp.json || true
