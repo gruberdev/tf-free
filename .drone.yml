@@ -52,19 +52,18 @@ kind: pipeline
 type: docker
 name: Testing Google Cloud Provider (GCP)
 steps:
-  - name: unit_compute
+  - name: setup
     image: golang:1.16.4-alpine
     commands:
-      - apk add build-base
-      - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
       - cd examples/gcp/unit/compute
       - echo $GCP_SERVICE_ACCOUNT > gcp.json
-      - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
       - cd ../../../../
+      - cd examples/gcp/e2e
+      - echo $GCP_SERVICE_ACCOUNT > gcp.json
+      - ../../../
       - cd test
       - go mod init "github.com/gruberdev/tf-free"
       - go mod tidy
-      - go test -v -timeout 5m -run TestUnitCompute
     when:
       event:
         - push
@@ -76,28 +75,44 @@ steps:
       GCP_SERVICE_ACCOUNT:
         from_secret: gcp_project_key
 
+  - name: unit_compute
+    image: golang:1.16.4-alpine
+    commands:
+      - apk add build-base
+      - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
+      - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/examples/gcp/unit/compute
+      - cd test
+      - go mod tidy
+      - go test -v -timeout 5m -run TestUnitCompute
+    depends_on:
+      - setup
+    when:
+      event:
+        - push
+        - pull_request
+        - rollback
+    environment:
+      GOOGLE_PROJECT:
+        from_secret: gcp_project_id
+
   - name: provider_integration
     image: golang:1.16.4-alpine
     commands:
       - apk add build-base
       - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
-      - cd examples/gcp/e2e
-      - echo $GCP_SERVICE_ACCOUNT > gcp.json
-      - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
-      - cd ../../../
+      - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/examples/gcp/e2e/gcp.json
       - cd test
-      - go mod init "github.com/gruberdev/tf-free"
       - go mod tidy
       - go test -v -timeout 10m -run TestIntegrationGCP
     when:
       event:
         - push
         - pull_request
+    depends_on:
+      - setup
     environment:
       GOOGLE_PROJECT:
         from_secret: gcp_project_id
-      GCP_SERVICE_ACCOUNT:
-        from_secret: gcp_project_key
 
   - name: tf-notify
     image: golang:1.16.4-alpine
@@ -109,6 +124,9 @@ steps:
       - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
       - terraform init
       - terraform plan | tfnotify plan
+    depends_on:
+      - unit_compute
+      - provider_integration
     when:
       event:
         - push
