@@ -105,9 +105,10 @@ func TestUnitVPC(t *testing.T) {
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
 		TerraformDir: exampleDir,
 		Vars: map[string]interface{}{
-			"project_region":    region,
-			"network_name": randomValidNetworkGcpName,
-			"google_project":    projectId,
+			"project_region":     region,
+			"gcp_project_region": region,
+			"main_network_name":  randomValidNetworkGcpName,
+			"google_project":     projectId,
 		},
 		EnvVars: map[string]string{
 			"GOOGLE_PROJECT": projectId,

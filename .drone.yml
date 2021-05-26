@@ -78,7 +78,7 @@ steps:
       GCP_SERVICE_ACCOUNT:
         from_secret: gcp_project_key
 
-  - name: test_unit_compute
+  - name: Unit Compute
     image: golang:1.16.4-alpine
     commands:
       - apk add build-base git curl
@@ -98,7 +98,7 @@ steps:
       GOOGLE_PROJECT:
         from_secret: gcp_project_id
 
-  - name: test_unit_networking
+  - name: Unit Networking
     image: golang:1.16.4-alpine
     commands:
       - apk add build-base git curl
@@ -118,7 +118,7 @@ steps:
       GOOGLE_PROJECT:
         from_secret: gcp_project_id
 
-  - name: test_provider_integration
+  - name: Integration Core Provider
     image: golang:1.16.4-alpine
     commands:
       - apk add build-base git curl
