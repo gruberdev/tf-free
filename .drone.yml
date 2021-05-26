@@ -133,6 +133,7 @@ steps:
         - pull_request
     depends_on:
       - setup
+      - Unit Networking
     environment:
       GOOGLE_PROJECT:
         from_secret: gcp_project_id
