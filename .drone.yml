@@ -143,7 +143,7 @@ type: docker
 name: Documentation
 steps:
   - name: build_static
-    image: node:14.4
+    image: node:16.2
     commands:
       - npm install -g @codedoc/cli
       - codedoc install
