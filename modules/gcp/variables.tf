@@ -18,5 +18,5 @@ variable "google_project" {
 
 variable "network_name" {
   type    = string
-  default = ""
+  default = "gcp-core-network"
 }

@@ -5,14 +5,16 @@ variable "gcp_instance_name" {
 }
 
 variable "gcp_project_region" {
-  type        = string
-  default     = "us-west1"
-  description = "GCP Network Name. [Oficial GCP Documentation](https://cloud.google.com/compute/docs/machine-types) - [Terraform provider Documentation](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance#machine_type)"
+  type = string
 }
 
 variable "google_project" {
-  type        = string
-  default     = ""
-  description = "GCP Network Name. [Oficial GCP Documentation](https://cloud.google.com/compute/docs/machine-types) - [Terraform provider Documentation](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance#machine_type)"
+  type    = string
+  default = ""
 }
+variable "main_network_name" {
+  type    = string
+  default = ""
+}
+
 
