@@ -12,6 +12,7 @@ override.tf.json
 *tfplan*
 gcp.json
 terraform.tfvars
+<<<<<<< HEAD
 **/gcp.json/*
 graph.json
 graph.svg
@@ -68,3 +69,6 @@ dist
 .fusebox/
 .dynamodb/
 .tern-port
+=======
+**/gcp.json/*
+>>>>>>> 3669843321b51909c6d86377eaa20433d19a7140
