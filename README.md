@@ -1,21 +1,17 @@
 # tf-free
 
 <a href='https://drone.gruber.dev.br/gruberdev/tf-free' target='_blank'>![drone-img]</a>
-<a href='https://drone.gruber.dev.br/gruberdev/tf-free' target='_blank'>![docs-img]</a>
+<a href='https://free.terraform.gruber.dev.br' target='_blank'>![docs-img]</a>
 
 ## Motivation
 
-A repository allowing you to create a simple and straightforward way to learn the basics of HCL's and Terraform's basics
-setup, how to manage modules, deal with variable validation and provide multi-cloud resources while simultaneonsly
-costing nothing, given the limits of each free tier in their respective cloud providers is withing the specified limits.
+Every major cloud provider offers a free tier that allows for the creation of all kind of resources for every user, albeit both guides and documentation to crate and manage these resources is limited, these services have been used for the community for many useful purposes, from learning how to use each provider from hosting your own small web-server.
 
-The objective oft his repository is to allow for more practical setup and minimal configuration, but being able to
-scale to full-out Terraform projects without much of any structural change if any major update arrive in he menanhile.
+The objective of this repository is to allow the automation on creation and management of these resources using Terraform as the central tool. It also aims to provide resources for learning and improving your skills as a Terraform user. There's also a CLI tool provided for those who want a simplified approach.
 
-## Main-Objective and Motivation
+## Objective
 
-> **Learning a tool like Teraform can be overwhelming without access to easier practical-examples, at least
-> its basics functioning, but asw although unrealistic for Production environments, it still should provide useful to teach you all the minor details that do make a difference when provisioning your infrastructure on any major cloud.**
+> **Documenting all the available free-tiers and creating a Terraform tool for provisioning every possible free resource in all major cloud provider.**
 
 ## Getting started
 
@@ -23,12 +19,22 @@ scale to full-out Terraform projects without much of any structural change if an
 curl -s free.terraform.gruber.dev.br/setup.sh | bash
 ```
 
-### Root Module Documentation
-
 <details>
   <summary>
-   Click to expand
+  Module Documentation
   </summary>
+
+### Running tests
+
+- Tests are available in `test` directory
+
+- In the test directory, run the below command
+
+```sh
+go test
+```
+
+---
 
 <!-- BEGIN_TF_DOCS -->
 
@@ -54,21 +60,9 @@ curl -s free.terraform.gruber.dev.br/setup.sh | bash
 
 <!-- END_TF_DOCS -->
 
-### Running tests
-
-- Tests are available in `test` directory
-
-- In the test directory, run the below command
-
-```sh
-go test
-```
-
 </details>
 
-## List of free resources by cloud provider
-
-<br>
+## List of free resources per cloud provider
 
 <details>
 
@@ -87,23 +81,9 @@ go test
 
 ### More information
 
-- [Free resources homepage](https://cloud.google.com/free/docs/gcp-free-tier)
+- [Free resources homepage](h)
 
 ---
-
-## Privisoned Resources
-
-### Compute Engine
-
-test
-
-### Firewall
-
-test
-
-### VPC
-
-test
 
 </details>
 
@@ -124,8 +104,10 @@ test
 
 ### More information
 
-- [Free resources homepage](https://aws.amazon.com/free/?all-free-tier)
-- [Free resources homepage](https://aws.amazon.com/free/?all-free-tier)
+- [Free resources homepage]()
+- [Free resources homepage]()
+
+---
 
 </details>
 <details>
@@ -145,39 +127,32 @@ test
 
 ### More information
 
-- [Free resources homepage](https://azure.microsoft.com/en-us/free/free-account-faq/)
+- [Free resources homepage]()
 
-## Privisoned Resources
-
-### Azure VMs
-
-test
-
-### Firewall
-
-test
-
-### VPC
-
-test
+---
 
 </details>
 
-## Contribution
-
-N/A
-
 ## License
 
-Licensed under the MIT License.
+The MIT license grant is not for Hashicorp's trademarks, which include the logo designs. [Hashicorp reserves all trademark and copyright rights in and to all Hashicorp trademarks](disclaimer).
 
-<!-- BADGE IMAGES URLs -->
+Terraform®, Vault®, Hashicorp's logos are Hasicorp's Trademarks or registered Trademarks. When using Hashicorp's logos, be sure to follow the [community](guidelines) and [brand usage](brand) guidelines.
+
+<!-- Images URLs -->
 
 [drone-img]: https://img.shields.io/drone/build/gruberdev/tf-free?label=Pipeline%20Status&color=46bac0&labelColor=1F1F1F&logo=Drone&style=flat-square&server=https%3A%2F%2Fdrone.gruber.dev.br
-[docs-img]: https://img.shields.io/badge/project%20documentation-online?style=flat-square&logo=zeit&color=black
+[docs-img]: https://img.shields.io/badge/read%20documentation-online?style=flat-square&logo=zeit&color=black
 
-<!-- PROJECT BADGE HYPERLINKS -->
+<!-- Repository links -->
 
-[pipeline-url]: https://drone.gruber.dev.br/gruberdev/infrastructure-fivem
-[quality-url]: https://www.codefactor.io/repository/github/gruberdev/infrastructure-fivem
-[documentation-url]: https://documentation.roleplay.gruber.dev.br
+[brand]: https://www.hashicorp.com/brand
+[disclaimer]: https://www.hashicorp.com/trademark-policy
+[guidelines]: https://www.hashicorp.com/community-guidelines
+[free-aws]: https://aws.amazon.com/free/?all-free-tier
+[free-gcp]: https://cloud.google.com/free
+[free-docs-gcp]: https://cloud.google.com/free/docs/gcp-free-tier
+[free-azure]: https://azure.microsoft.com/en-us/free/
+[azure-faq]: https://azure.microsoft.com/en-us/free/free-account-faq/
+[azure-full-terms]: https://azure.microsoft.com/en-us/offers/ms-azr-0044p/
+[aws-faq]: https://aws.amazon.com/free/free-tier-faqs/
