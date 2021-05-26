@@ -8,3 +8,7 @@ variable "gcp_project_region" {
 variable "project_region" {
   type = string
 }
+variable "main_network_name" {
+  type    = string
+  default = ""
+}

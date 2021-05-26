@@ -7,6 +7,7 @@ provider "google-beta" {
 }
 
 module "gcp_vpc" {
+  vpc_name       = var.main_network_name
   source         = "github.com/gruberdev/tf-free/modules/gcp/vpc"
   google_project = var.google_project
 }

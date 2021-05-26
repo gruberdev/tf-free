@@ -7,3 +7,4 @@ output "resulting_name" {
 output "resulting_type" {
   value = google_compute_instance.gcp_example.machine_type
 }
+ 

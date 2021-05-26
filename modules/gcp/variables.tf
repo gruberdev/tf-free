@@ -15,3 +15,8 @@ variable "google_project" {
   type    = string
   default = ""
 }
+
+variable "network_name" {
+  type    = string
+  default = ""
+}
