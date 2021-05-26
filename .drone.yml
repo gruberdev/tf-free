@@ -1,7 +1,7 @@
 ---
 kind: pipeline
 type: docker
-name: Code Analysis CI
+name: Static Code Analysis
 steps:
   - name: plan
     image: golang:1.16.4-alpine
@@ -58,6 +58,9 @@ steps:
       - cd examples/gcp/unit/compute
       - echo $GCP_SERVICE_ACCOUNT > gcp.json
       - cd ../../../../
+      - cd examples/gcp/unit/vpc
+      - echo $GCP_SERVICE_ACCOUNT > gcp.json
+      - cd ../../../../
       - cd examples/gcp/e2e
       - echo $GCP_SERVICE_ACCOUNT > gcp.json
       - cd ../../../
@@ -84,6 +87,26 @@ steps:
       - cd test
       - go mod tidy
       - go test -v -timeout 5m -run TestUnitCompute
+    depends_on:
+      - setup
+    when:
+      event:
+        - push
+        - pull_request
+        - rollback
+    environment:
+      GOOGLE_PROJECT:
+        from_secret: gcp_project_id
+
+  - name: test_unit_networking
+    image: golang:1.16.4-alpine
+    commands:
+      - apk add build-base git curl
+      - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
+      - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/examples/gcp/unit/vpc/gcp.json
+      - cd test
+      - go mod tidy
+      - go test -v -timeout 5m -run TestUnitVPC
     depends_on:
       - setup
     when:

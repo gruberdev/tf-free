@@ -23,4 +23,6 @@ No modules.
 | external\_ip | n/a |
 | instance\_id | n/a |
 | internal\_ip | n/a |
+| resulting\_name | n/a |
+| resulting\_type | n/a |
 <!-- END_TF_DOCS -->
