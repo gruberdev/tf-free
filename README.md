@@ -3,25 +3,26 @@
 <a href='https://drone.gruber.dev.br/gruberdev/tf-free' target='_blank'>![drone-img]</a>
 <a href='https://free.terraform.gruber.dev.br' target='_blank'>![docs-img]</a>
 
+## Objective
+
+> **The creation of all resources avaialble in free-tier plans offered by major cloud providers. Terraform is as the main tool used for creating, managing and providing access to these resources in a simplified and centralized manner.**
+
 ## Motivation
 
 Every major cloud provider offers a free tier that allows for the creation of all kind of resources for every user, albeit both guides and documentation to crate and manage these resources is limited, these services have been used for the community for many useful purposes, from learning how to use each provider from hosting your own small web-server.
 
-The objective of this repository is to allow the automation on creation and management of these resources using Terraform as the central tool. It also aims to provide resources for learning and improving your skills as a Terraform user. There's also a CLI tool provided for those who want a simplified approach.
-
-## Objective
-
-> **Documenting all the available free-tiers and creating a Terraform tool for provisioning every possible free resource in all major cloud provider.**
+The objective of this repository is to allow the automation on creation and management of these resources using Terraform as the central tool. It also aims to provide resources for learning and improv
+ing your skills as a Terraform user. There's also a CLI tool provided for those who want a simplified approach.
 
 ## Getting started
 
 ```sh
-curl -s free.terraform.gruber.dev.br/setup.sh | bash
+curl -s https://free.terraform.gruber.dev.br/setup.sh | bash
 ```
 
 <details>
   <summary>
-  Module Documentation
+  Module documentation
   </summary>
 
 ### Running tests
