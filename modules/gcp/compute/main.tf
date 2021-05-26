@@ -20,5 +20,7 @@ resource "google_compute_instance" "gcp_example" {
     }
   }
   tags = [
+    "web",
+    "ssh"
   ]
 }

@@ -50,7 +50,7 @@ steps:
 ---
 kind: pipeline
 type: docker
-name: Testing Google Cloud Provider (GCP)
+name: Google Cloud Provider (GCP)
 steps:
   - name: setup
     image: golang:1.16.4-alpine
@@ -75,7 +75,7 @@ steps:
       GCP_SERVICE_ACCOUNT:
         from_secret: gcp_project_key
 
-  - name: unit_compute
+  - name: test_unit_compute
     image: golang:1.16.4-alpine
     commands:
       - apk add build-base git curl
@@ -95,7 +95,7 @@ steps:
       GOOGLE_PROJECT:
         from_secret: gcp_project_id
 
-  - name: provider_integration
+  - name: test_provider_integration
     image: golang:1.16.4-alpine
     commands:
       - apk add build-base git curl
@@ -117,7 +117,7 @@ steps:
 ---
 kind: pipeline
 type: docker
-name: Post-tests
+name: Documentation
 steps:
   - name: build_static
     image: node:14.4
