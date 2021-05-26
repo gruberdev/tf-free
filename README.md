@@ -142,8 +142,8 @@ Terraform®, Vault®, Hashicorp's logos are Hasicorp's Trademarks or registered 
 
 <!-- Images URLs -->
 
-[drone-img]: https://img.shields.io/drone/build/gruberdev/tf-free?label=Pipeline%20Status&color=46bac0&labelColor=1F1F1F&logo=Drone&style=for-the-badge&server=https%3A%2F%2Fdrone.gruber.dev.br
-[docs-img]: https://img.shields.io/badge/read%20documentation-online?style=for-the-badge&logo=zeit&color=black
+[drone-img]: https://img.shields.io/drone/build/gruberdev/tf-free?label=Pipeline%20Status&color=46bac0&labelColor=1F1F1F&logo=Drone&style=flat-square&server=https%3A%2F%2Fdrone.gruber.dev.br
+[docs-img]: https://img.shields.io/badge/read%20documentation-online?style=flat-square&logo=zeit&color=black
 
 <!-- Repository links -->
 
