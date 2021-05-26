@@ -38,27 +38,25 @@ go test
 ---
 
 <!-- BEGIN_TF_DOCS -->
-
 ### Modules
 
-| Name         | Source                                   | Version |
-| ------------ | ---------------------------------------- | ------- |
-| google_cloud | github.com/gruberdev/tf-free/modules/gcp |         |
+| Name | Source | Version |
+|------|--------|---------|
+| google\_cloud | github.com/gruberdev/tf-free/modules/gcp |  |
 
 ### Inputs
 
-| Name               | Description                                                                                                                                                                  | Type     | Default         |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | --------------- |
-| gcp_instance_name  | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"gcp-machine"` |
-| gcp_project_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-west1"`    |
-| google_project     | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `""`            |
+| Name | Description | Type | Default |
+|------|-------------|------|---------|
+| gcp\_instance\_name | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"gcp-machine"` |
+| gcp\_project\_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-west1"` |
+| google\_project | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `""` |
 
 ### Outputs
 
-| Name          | Description |
-| ------------- | ----------- |
-| gcp_public_ip | n/a         |
-
+| Name | Description |
+|------|-------------|
+| gcp\_public\_ip | n/a |
 <!-- END_TF_DOCS -->
 
 </details>
