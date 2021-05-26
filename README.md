@@ -5,7 +5,7 @@
 
 ## Objective
 
-> **The creation of all resources avaialble in free-tier plans offered by major cloud providers. Terraform is as the main tool used for creating, managing and providing access to these resources in a simplified and centralized manner.**
+> **Creating and managing all avaialble resources offered by major cloud providers in free-tier plans. Terraform is as the main tool used for creating, managing and providing access to these resources in a simplified and centralized manner.**
 
 ## Motivation
 
