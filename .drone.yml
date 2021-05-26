@@ -114,27 +114,19 @@ steps:
       GOOGLE_PROJECT:
         from_secret: gcp_project_id
 
-  - name: tf-notify
-    image: golang:1.16.4-alpine
+---
+kind: pipeline
+type: docker
+name: Post-tests
+steps:
+  - name: build_static
+    image: node:14.4
     commands:
-      - apk add build-base git curl
-      - go get -u github.com/mercari/tfnotify
-      - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
-      - echo $GCP_SERVICE_ACCOUNT > gcp.json
-      - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
-      - terraform init
-      - terraform plan | tfnotify plan
-    depends_on:
-      - unit_compute
-      - provider_integration
+      - npm install -g @codedoc/cli
+      - codedoc install
+      - codedoc build
     when:
+      branch:
+        - master
       event:
         - push
-        - pull_request
-    environment:
-      GOOGLE_PROJECT:
-        from_secret: gcp_project_id
-      GCP_SERVICE_ACCOUNT:
-        from_secret: gcp_project_key
-      GITHUB_TOKEN:
-        from_secret: github_token
