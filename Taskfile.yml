@@ -15,6 +15,8 @@ tasks:
   docker-init:
     desc: Create and cache your Docker container
     cmds:
+      - docker volume rm cache_terraform || true
+      - docker volume rm repository_results || true
       - docker volume create cache_terraform || true
       - docker volume create repository_results || true
 
@@ -22,7 +24,17 @@ tasks:
     desc: Create and cache your Docker container
     cmds:
       - docker build -t tf-free:latest .
-      - docker run -it --rm -v cache_terraform:/project -v repository_results:/root/.ssh tf-free:latest
+      - docker run -it --rm --name tf-free -e GOOGLE_PROJECT=${GOOGLE_PROJECT} -v cache_terraform:/project -v repository_results:/root/.ssh tf-free:latest task docker-test
+
+  docker-test:
+    desc: Run tests from inside your container
+    cmds:
+      - gcloud auth login
+      - cd test && go mod init "github.com/gruberdev/tf-free" || true
+      - cd test && go mod tidy
+      - cd test && go test -v -timeout 5m -run TestUnitCompute
+      - cd test && go test -v -timeout 5m -run TestUnitVPC
+      - cd test && go test -v -timeout 10m -run TestIntegrationGCP
 
   build-all:
     desc: Build executable binary with GoReleaser.
