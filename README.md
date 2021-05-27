@@ -5,7 +5,7 @@
 
 ## Objective
 
-> **Creating and managing all avaialble resources offered by major cloud providers in free-tier plans. Terraform is as the main tool used for creating, managing and providing access to these resources in a simplified and centralized manner.**
+> **Creating and managing all available resources offered by major cloud providers in free-tier plans. Terraform is as the main tool used for creating, managing and providing access to these resources in a simplified and centralized manner.**
 
 ## Motivation
 
@@ -22,7 +22,7 @@ curl -s https://free.terraform.gruber.dev.br/setup.sh | bash
 
 <details>
   <summary>
-  Module documentation
+  CLI Tool Documentation
   </summary>
 
 ### Running tests
@@ -35,28 +35,50 @@ curl -s https://free.terraform.gruber.dev.br/setup.sh | bash
 go test
 ```
 
+### Main Libraries used
+
+- [fatih/color](go-color-url)
+- [goreleaser/goreleaser](go-releaser-url)
+- [spf13/cobra](go-cobra-url)
+- [kdabir/has](shell-has-url)
+- [c-bata/go-prompt](go-prompt-url)
+- [go-task/task](go-task-url)
+- [hashicorp/terraform-exec](go-tfexec-url)
+- [CONNECT-platform/codedoc](docs-repo-url)
+
+---
+
+</details>
+
+<details>
+  <summary>
+  Terraform module documentation
+  </summary>
+
 ---
 
 <!-- BEGIN_TF_DOCS -->
+
 ### Modules
 
-| Name | Source | Version |
-|------|--------|---------|
-| google\_cloud | github.com/gruberdev/tf-free/modules/gcp |  |
+| Name         | Source                                   | Version |
+| ------------ | ---------------------------------------- | ------- |
+| google_cloud | github.com/gruberdev/tf-free/modules/gcp |         |
 
 ### Inputs
 
-| Name | Description | Type | Default |
-|------|-------------|------|---------|
-| gcp\_instance\_name | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"gcp-machine"` |
-| gcp\_project\_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-west1"` |
-| google\_project | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `""` |
+| Name               | Description                                                                                                                                                                  | Type     | Default         |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | --------------- |
+| gcp_instance_name  | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"gcp-machine"` |
+| gcp_project_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-west1"`    |
+| google_project     | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `""`            |
 
 ### Outputs
 
-| Name | Description |
-|------|-------------|
-| gcp\_public\_ip | n/a |
+| Name          | Description |
+| ------------- | ----------- |
+| gcp_public_ip | n/a         |
+
 <!-- END_TF_DOCS -->
 
 </details>
@@ -155,3 +177,11 @@ Terraform®, Vault®, Hashicorp's logos are Hasicorp's Trademarks or registered 
 [azure-faq]: https://azure.microsoft.com/en-us/free/free-account-faq/
 [azure-full-terms]: https://azure.microsoft.com/en-us/offers/ms-azr-0044p/
 [aws-faq]: https://aws.amazon.com/free/free-tier-faqs/
+[go-color-url]: https://github.com/fatih/color
+[go-releaser-url]: https://github.com/goreleaser/goreleaser
+[go-cobra-url]: https://github.com/spf13/cobra
+[shell-has-url]: https://github.com/kdabir/has
+[go-prompt-url]: https://github.com/c-bata/go-prompt
+[go-task-url]: https://github.com/go-task/task
+[go-tfexec-url]: https://github.com/hashicorp/terraform-exec
+[docs-repo-url]: https://github.com/CONNECT-platform/codedoc
