@@ -1,24 +1,157 @@
 ---
 kind: pipeline
 type: docker
-name: tests
+name: Static Code Analysis
 steps:
-  - name: gcp simple unit test
-    image: golang:1.16.4
+  - name: plan
+    image: golang:1.16.4-alpine
     commands:
-      - rm gcp.json || true
+      - apk add build-base git curl
+      - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
       - echo $GCP_SERVICE_ACCOUNT > gcp.json
-      - cd test
-      - go mod init "github.com/gruberdev/tf-free"
-      - go mod tidy
-      - go test -v -run SimpleTerraformGCPExample
+      - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
+      - terraform init
+      - terraform plan
+    when:
+      event:
+        - push
+        - pull_request
+    environment:
+      GOOGLE_PROJECT:
+        from_secret: gcp_project_id
+      GCP_SERVICE_ACCOUNT:
+        from_secret: gcp_project_key
+
+  - name: tfsec
+    image: tfsec/tfsec
+    commands:
+      - tfsec . -e GCP003,AWS044,GEN003
+    when:
+      event:
+        - push
+        - pull_request
+    environment:
+      GOOGLE_PROJECT:
+        from_secret: gcp_project_id
+
+  - name: terrascan
+    image: accurics/terrascan
+    commands:
+      - terrascan scan
     when:
       event:
         - push
         - pull_request
         - rollback
     environment:
-      TF_VAR_gcp_project_id:
+      GOOGLE_PROJECT:
+        from_secret: gcp_project_id
+
+---
+kind: pipeline
+type: docker
+name: Google Cloud Provider (GCP)
+steps:
+  - name: setup
+    image: golang:1.16.4-alpine
+    commands:
+      - cd examples/gcp/unit/compute
+      - echo $GCP_SERVICE_ACCOUNT > gcp.json
+      - cd ../../../../
+      - cd examples/gcp/unit/vpc
+      - echo $GCP_SERVICE_ACCOUNT > gcp.json
+      - cd ../../../../
+      - cd examples/gcp/e2e
+      - echo $GCP_SERVICE_ACCOUNT > gcp.json
+      - cd ../../../
+      - cd test
+      - go mod init "github.com/gruberdev/tf-free"
+      - go mod tidy
+    when:
+      branch:
+        - master
+      event:
+        - push
+    environment:
+      GOOGLE_PROJECT:
         from_secret: gcp_project_id
       GCP_SERVICE_ACCOUNT:
         from_secret: gcp_project_key
+
+  - name: Unit Compute
+    image: golang:1.16.4-alpine
+    commands:
+      - apk add build-base git curl
+      - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
+      - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/examples/gcp/unit/compute/gcp.json
+      - cd test
+      - go mod tidy
+      - go test -v -timeout 5m -run TestUnitCompute
+    depends_on:
+      - setup
+    when:
+      branch:
+        - master
+      event:
+        - push
+    environment:
+      GOOGLE_PROJECT:
+        from_secret: gcp_project_id
+
+  - name: Unit Networking
+    image: golang:1.16.4-alpine
+    commands:
+      - apk add build-base git curl
+      - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
+      - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/examples/gcp/unit/vpc/gcp.json
+      - cd test
+      - go mod tidy
+      - go test -v -timeout 5m -run TestUnitVPC
+    depends_on:
+      - setup
+    when:
+      branch:
+        - master
+      event:
+        - push
+    environment:
+      GOOGLE_PROJECT:
+        from_secret: gcp_project_id
+
+  - name: Integration Core Provider
+    image: golang:1.16.4-alpine
+    commands:
+      - apk add build-base git curl
+      - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
+      - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/examples/gcp/e2e/gcp.json
+      - cd test
+      - go mod tidy
+      - go test -v -timeout 10m -run TestIntegrationGCP
+    when:
+      branch:
+        - master
+      event:
+        - push
+    depends_on:
+      - setup
+      - Unit Networking
+    environment:
+      GOOGLE_PROJECT:
+        from_secret: gcp_project_id
+
+---
+kind: pipeline
+type: docker
+name: Documentation
+steps:
+  - name: build_static
+    image: node:14.4
+    commands:
+      - npm install -g @codedoc/cli
+      - codedoc install
+      - codedoc build
+    when:
+      branch:
+        - master
+      event:
+        - push

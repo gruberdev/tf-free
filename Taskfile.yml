@@ -1,0 +1,109 @@
+version: "3"
+
+tasks:
+  default:
+    cmds:
+      - task: clean
+      - task: tf-clean
+      - task: generate
+      - task: vet
+      - task: fmt
+      - task: lint
+      - task: test
+      - task: mod
+
+  docker-init:
+    desc: Create and cache your Docker container
+    cmds:
+      - docker volume create cache_terraform || true
+      - docker volume create repository_results || true
+
+  docker:
+    desc: Create and cache your Docker container
+    cmds:
+      - docker build -t tf-free:latest .
+      - docker run -it --rm -v cache_terraform:/project -v repository_results:/root/.ssh tf-free:latest
+
+  build-all:
+    desc: Build executable binary with GoReleaser.
+    cmds:
+      - goreleaser --snapshot --skip-publish --rm-dist
+
+  generate:
+    desc: Initialize test fakes
+    cmds:
+      - go generate ./...
+
+  vet:
+    desc: Initialize module and build cache, and remake go.sum file.
+    cmds:
+      - go vet ./...
+
+  fmt:
+    desc: Format Go files
+    cmds:
+      - go fmt ./...
+
+  mod:
+    desc: Initialize module and build cache, and remake go.sum file on root directory.
+    cmds:
+      - go mod tidy
+      - cd tools && go mod tidy
+
+  test:
+    desc: Test and print out code coverage as html.
+    cmds:
+      - go test -race -covermode=atomic -coverprofile=coverage.out ./...
+      - go tool cover -html=coverage.out -o coverage.html
+
+  lint:
+    desc: Linter built on Docker.
+    cmds:
+      - go mod verify
+      - docker run --rm -v $(pwd):/app -w /app golangci/golangci-lint:v1.40.1 golangci-lint run --enable gosec --timeout 3m0s ./...
+    sources:
+      - ./go.mod
+      - "**/*.go"
+
+  clean:
+    desc: Clean cache on root module.
+    cmds:
+      - rm -f ./go.sum
+      - go clean -cache || true
+      - go clean -modcache || true
+
+  tf-test-clean:
+    desc: Clean cache on Terraform test cache.
+    cmds:
+      - cd test && rm ./go.sum && ./go.mod
+      - go clean -cache || true
+      - go clean -modcache || true
+
+  tf-test:
+    desc: Terraform testing (all modules)
+    cmds:
+      - cd test && mod tidy
+      - go test -v -timeout 5m -run TestUnitCompute
+      - go test -v -timeout 5m -run TestUnitVPC
+      - go test -v -timeout 10m -run TestIntegrationGCP
+
+  tf-init:
+    desc: Terraform standard initialization
+    cmds:
+      - terraform init -upgrade
+      - cd modules && cd gcp && terraform init -upgrade
+      - cd modules && cd gcp && cd vpc && terraform init -upgrade && cd ..
+      - cd modules && cd gcp && cd compute && terraform init -upgrade && cd ..
+      - cd modules && cd gcp && cd firewall && terraform init -upgrade
+
+  tf-clean:
+    desc: Terraform standard initialization
+    cmds:
+      - rm -rf ./.terraform
+      - rm terraform.tfstate
+      - rm terraform.tfstate.backup
+      - rm ./.terraform.lock.hcl
+      - cd modules && cd gcp && rm -rf ./.terraform && rm ./.terraform.lock.hcl
+      - cd modules && cd gcp && cd vpc && rm -rf ./.terraform && rm ./.terraform.lock.hcl
+      - cd modules && cd gcp && cd firewall && rm -rf ./.terraform && rm ./.terraform.lock.hcl
+      - cd modules && cd gcp && cd compute && rm -rf ./.terraform && rm ./.terraform.lock.hcl

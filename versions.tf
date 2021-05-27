@@ -1,9 +1,9 @@
 terraform {
   required_version = ">= 0.13"
   required_providers {
-    google = {
-      source  = "hashicorp/google"
-      version = "3.68.0"
+    google-beta = {
+      source  = "hashicorp/google-beta"
+      version = "3.69.0"
     }
     aws = {
       source  = "hashicorp/aws"
@@ -11,7 +11,7 @@ terraform {
     }
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "2.60.0"
+      version = "2.61.0"
     }
   }
 }
@@ -22,8 +22,8 @@ provider "aws" {
   secret_key = "example"
 }
 
-provider "google" {
-  project     = var.gcp_project_id
+provider "google-beta" {
+  project     = var.google_project
   region      = var.gcp_project_region
   credentials = file("gcp.json")
 }

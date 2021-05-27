@@ -1,17 +1,7 @@
-module "gcp_firewall" {
-  source       = "../firewall"
-  network_name = module.gcp_vpc.network_name
-}
-
-module "gcp_vpc" {
-  source = "../vpc"
-}
-
 resource "google_compute_instance" "gcp_example" {
-
   name         = var.name
   machine_type = var.type
-  zone         = "${var.region}-a"
+  zone         = "${var.region}-b"
 
   allow_stopping_for_update = true
 
@@ -24,9 +14,13 @@ resource "google_compute_instance" "gcp_example" {
   }
 
   network_interface {
-    network = module.gcp_vpc.network_name
+    network = var.network_name
     access_config {
-      nat_ip = module.gcp_vpc.ipv4_addr
+      nat_ip = var.ip_addr
     }
   }
+  tags = [
+    "web",
+    "ssh"
+  ]
 }
