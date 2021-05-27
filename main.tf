@@ -1,46 +1,12 @@
-
-resource "google_project_service" "network_api" {
-  project                    = var.google_project
-  disable_dependent_services = true
-  service                    = "networkmanagement.googleapis.com"
-}
-resource "google_project_service" "enable_billing_api" {
-  project                    = var.google_project
-  service                    = "cloudbilling.googleapis.com"
-  disable_dependent_services = true
-}
-resource "google_project_service" "enable_admin_api" {
-  project                    = var.google_project
-  service                    = "admin.googleapis.com"
-  disable_dependent_services = true
-}
-
-resource "google_project_service" "enable_api" {
-  project                    = var.google_project
-  service                    = "iam.googleapis.com"
-  disable_dependent_services = true
-}
-resource "google_project_service" "control_api" {
-  project                    = var.google_project
-  service                    = "servicecontrol.googleapis.com"
-  disable_dependent_services = true
-}
-resource "google_project_service" "management_api" {
-  project                    = var.google_project
-  service                    = "servicemanagement.googleapis.com"
-  disable_dependent_services = true
-}
-
 module "google_cloud" {
-  depends_on = [
-    google_project_service.network_api,
-    google_project_service.enable_billing_api,
-    google_project_service.enable_admin_api,
-    google_project_service.enable_api,
-    google_project_service.control_api,
-    google_project_service.management_api,
-  ]
+
   source         = "github.com/gruberdev/tf-free/modules/gcp"
   project_region = var.gcp_project_region
   instance_name  = var.gcp_instance_name
+}
+
+module "amazon_aws" {
+  source      = "./modules/aws"
+  account_id  = var.aws_account_id
+  account_key = var.aws_account_key
 }

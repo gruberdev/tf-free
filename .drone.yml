@@ -69,7 +69,9 @@ steps:
       - go mod tidy
     when:
       branch:
-        - master
+        include:
+          - master
+          - feature/gcp_*
       event:
         - push
     environment:
@@ -91,7 +93,9 @@ steps:
       - setup
     when:
       branch:
-        - master
+        include:
+          - master
+          - feature/gcp_*
       event:
         - push
     environment:
@@ -111,7 +115,9 @@ steps:
       - setup
     when:
       branch:
-        - master
+        include:
+          - master
+          - feature/gcp_*
       event:
         - push
     environment:

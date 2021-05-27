@@ -1,5 +1,3 @@
-
-
 module "gcp_vpc" {
   vpc_name       = var.network_name
   source         = "github.com/gruberdev/tf-free/modules/gcp/vpc"

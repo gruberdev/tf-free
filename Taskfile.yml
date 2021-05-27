@@ -79,13 +79,14 @@ tasks:
       - go clean -cache || true
       - go clean -modcache || true
 
-  tf-test:
-    desc: Terraform testing (all modules)
+  tf-gcp:
+    desc: Terraform testing GCP Module
     cmds:
-      - cd test && mod tidy
-      - go test -v -timeout 5m -run TestUnitCompute
-      - go test -v -timeout 5m -run TestUnitVPC
-      - go test -v -timeout 10m -run TestIntegrationGCP
+      - cd test && go mod init "github.com/gruberdev/tf-free" || true
+      - cd test && go mod tidy
+      - cd test && go test -v -timeout 5m -run TestUnitCompute
+      - cd test && go test -v -timeout 5m -run TestUnitVPC
+      - cd test && go test -v -timeout 10m -run TestIntegrationGCP
 
   tf-init:
     desc: Terraform standard initialization

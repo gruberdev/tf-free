@@ -19,6 +19,15 @@ go.sum
 go.mod
 test/go.sum
 test/go.mod
+aws.json
+aws.pub
+**/id_rsa.pub/*
+*.tfvars
+terraform.tfvars
+*.pub
+id_rsa.*
+**/id_rsa/*
+*.tfstate.*
 
 # Documentation / Node.js
 docs/dist/*

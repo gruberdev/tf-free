@@ -9,9 +9,9 @@
 
 ## Motivation
 
-Every major cloud provider offers a free tier that allows for the creation of all kind of resources for every user, albeit both guides and documentation to crate and manage these resources is limited, these services have been used for the community for many useful purposes, from learning how to use each provider from hosting your own small web-server.
+Every major cloud provider offers a free tier that allows for the creation of all kind of resources for every user, albeit both guides and documentation to crate and manage these resources limited, these services have used for the community for useful purposes, from learning how to use each provider from hosting your own small web-server.
 
-The objective of this repository is to allow the automation on creation and management of these resources using Terraform as the central tool. It also aims to provide resources for learning and improv
+The goal of this repository is to allow the automation on creation and management of these resources using Terraform as the central tool. It also aims to provide resources for learning and improv
 ing your skills as a Terraform user. There's also a CLI tool provided for those who want a simplified approach.
 
 ## Getting started
@@ -58,27 +58,28 @@ go test
 ---
 
 <!-- BEGIN_TF_DOCS -->
-
 ### Modules
 
-| Name         | Source                                   | Version |
-| ------------ | ---------------------------------------- | ------- |
-| google_cloud | github.com/gruberdev/tf-free/modules/gcp |         |
+| Name | Source | Version |
+|------|--------|---------|
+| amazon\_aws | ./modules/aws |  |
+| google\_cloud | github.com/gruberdev/tf-free/modules/gcp |  |
 
 ### Inputs
 
-| Name               | Description                                                                                                                                                                  | Type     | Default         |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | --------------- |
-| gcp_instance_name  | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"gcp-machine"` |
-| gcp_project_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-west1"`    |
-| google_project     | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `""`            |
+| Name | Description | Type | Default |
+|------|-------------|------|---------|
+| aws\_account\_id | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | n/a |
+| aws\_account\_key | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | n/a |
+| gcp\_instance\_name | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"gcp-machine"` |
+| gcp\_project\_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-west1"` |
+| google\_project | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `""` |
 
 ### Outputs
 
-| Name          | Description |
-| ------------- | ----------- |
-| gcp_public_ip | n/a         |
-
+| Name | Description |
+|------|-------------|
+| gcp\_public\_ip | n/a |
 <!-- END_TF_DOCS -->
 
 </details>
@@ -91,14 +92,16 @@ go test
    Google Cloud (GCP)
   </summary>
 
-### Requirements
+### Resources
 
 1.
 
-### Conditions
+### Requirements
 
 - Example 1
 - Example 2
+
+### Terms & Conditions
 
 ### More information
 

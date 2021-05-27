@@ -19,3 +19,13 @@ variable "gcp_instance_name" {
   default     = "gcp-machine"
   description = "Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format)"
 }
+
+variable "aws_account_id" {
+  type        = string
+  description = "Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format)"
+}
+
+variable "aws_account_key" {
+  type        = string
+  description = "Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format)"
+}
