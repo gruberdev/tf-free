@@ -166,7 +166,10 @@ steps:
       - mkdir .public
       - cp -r docs/build/* .public
       - mv .public public
-      - ls && cd public && ls
+      - git config --global url.'https://${GITHUB_USER}:${GITHUB_PW}@github.com'.insteadOf 'https://github.com'
+      - git clone $DOCS_REPO_URL cd  >/dev/null 2>&1
+      - mv public $DOCS_REPO/public
+      - git add . && git commit -a -m "updated docs" && git push
     when:
       branch:
         - master
