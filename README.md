@@ -58,28 +58,30 @@ go test
 ---
 
 <!-- BEGIN_TF_DOCS -->
+
 ### Modules
 
-| Name | Source | Version |
-|------|--------|---------|
-| amazon\_aws | ./modules/aws |  |
-| google\_cloud | github.com/gruberdev/tf-free/modules/gcp |  |
+| Name         | Source                                   | Version |
+| ------------ | ---------------------------------------- | ------- |
+| amazon_aws   | ./modules/aws                            |         |
+| google_cloud | github.com/gruberdev/tf-free/modules/gcp |         |
 
 ### Inputs
 
-| Name | Description | Type | Default |
-|------|-------------|------|---------|
-| aws\_account\_id | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | n/a |
-| aws\_account\_key | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | n/a |
-| gcp\_instance\_name | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"gcp-machine"` |
-| gcp\_project\_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-west1"` |
-| google\_project | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `""` |
+| Name               | Description                                                                                                                                                                  | Type     | Default         |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | --------------- |
+| aws_account_id     | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | n/a             |
+| aws_account_key    | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | n/a             |
+| gcp_instance_name  | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"gcp-machine"` |
+| gcp_project_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-west1"`    |
+| google_project     | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `""`            |
 
 ### Outputs
 
-| Name | Description |
-|------|-------------|
-| gcp\_public\_ip | n/a |
+| Name          | Description |
+| ------------- | ----------- |
+| gcp_public_ip | n/a         |
+
 <!-- END_TF_DOCS -->
 
 </details>
@@ -117,19 +119,34 @@ go test
    Amazon AWS
   </summary>
 
+### Available Resources
+
+- 1x [Virtual Private Cloud (VPC)](aws-vpc-info)
+  - 1x [Sub-network](aws-sub-info) attached to the VPC
+  - 1x [Internet Gateway (IGW)](aws-igw-info) to provide access to the VPC
+- 1x [Route Table](aws-route-info) integrating all `VPC`, `Subnet` and the `Internet Gateway (IGW)`
+- 1x [EC2 Instance](aws-ec2-info) attached to the `Subnet`
+- 1x [Relational Database (RDS)](aws-rds-info) of your choice (e.g. MySQL, PostgreSQL)
+- 1x [S3 Storage-Bucket](aws-s3-info) inside `Subnet`
+
 ### Requirements
 
-1.
+- **An active account on AWS** | See: _[Getting started on AWS](aws-account-create)_
+- **[Valid Access keys to AWS Account](aws-keys-info)** | See: _[Generating your access keys](aws-keys-create)_
 
-### Conditions
+### Terms & Conditions
 
-- Example 1
-- Example 2
+- Some resources are **only valid for 12 months** and not forever. Please [check the list of resources](aws-sorted-list) to verify each resource maximum usage within the Free-Tier plan.
+- EC2 Machines and RDS Databases are limited to `t3.micro` and `db.t2.micro` types respectively.
+- AWS provides the free-tier resource usage for all their [global regions](aws-regions) except China (Beijing).
 
 ### More information
 
-- [Free resources homepage]()
-- [Free resources homepage]()
+- [AWS Free-Tier Homepage](free-aws)
+- [AWS Free-Tier FAQ](aws-faq)
+- [How to set alarms for your Free-Tier account](aws-alarms-free)
+- [How to prevent charges on your Free-Tier account][aws-prevent-charges]
+- [Extended terms and conditions](aws-terms)
 
 ---
 
@@ -140,14 +157,16 @@ go test
    Microsoft Azure
   </summary>
 
-### Requirements
+### Resources
 
 1.
 
-### Conditions
+### Requirements
 
 - Example 1
 - Example 2
+
+### Terms & Conditions
 
 ### More information
 
@@ -188,3 +207,19 @@ Terraform®, Vault®, Hashicorp's logos are Hasicorp's Trademarks or registered 
 [go-task-url]: https://github.com/go-task/task
 [go-tfexec-url]: https://github.com/hashicorp/terraform-exec
 [docs-repo-url]: https://github.com/CONNECT-platform/codedoc
+[aws-key-info]: https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys
+[aws-key-create]: https://aws.amazon.com/premiumsupport/knowledge-center/create-access-key/
+[aws-account-create]: https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/
+[aws-vpc-info]: https://aws.amazon.com/vpc/?vpc-blogs.sort-by=item.additionalFields.createdDate&vpc-blogs.sort-order=desc
+[aws-igw-info]: https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html
+[aws-ec2-info]: https://aws.amazon.com/ec2/
+[aws-s3-info]: https://aws.amazon.com/s3/
+[aws-rds-info]: https://aws.amazon.com/rds/
+[aws-route-info]: https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html
+[aws-sub-info]: https://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html
+[aws-tf-provider]: https://registry.terraform.io/providers/hashicorp/aws/latest/
+[aws-regions]: https://aws.amazon.com/about-aws/global-infrastructure/
+[aws-terms]: https://aws.amazon.com/free/terms/
+[aws-prevent-charges]: https://aws.amazon.com/premiumsupport/knowledge-center/free-tier-charges/
+[aws-alarms-free]: https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/tracking-free-tier-usage.html#free-budget
+[aws-sorted-list]: https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc&awsf.Free%20Tier%20Types=tier%23always-free%7Ctier%2312monthsfree&awsf.Free%20Tier%20Categories=*all
