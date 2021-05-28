@@ -1,0 +1,16 @@
+image: node:14.4
+pages:
+  stage: deploy
+  script:
+    - npm install -g @codedoc/cli
+    - codedoc check
+    - codedoc install
+    - codedoc build
+    - mkdir .public
+    - cp -r * .public
+    - mv .public public
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

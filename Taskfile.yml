@@ -62,6 +62,13 @@ tasks:
       - go mod tidy
       - cd tools && go mod tidy
 
+  docs:
+    desc: Initialize module and build cache, and remake go.sum file on root directory.
+    cmds:
+      - cd docs && docker-compose down || true
+      - cd docs && docker build -t tf-free:docs .
+      - cd docs && docker-compose up --build -d
+
   test:
     desc: Test and print out code coverage as html.
     cmds:
