@@ -28,6 +28,9 @@ terraform.tfvars
 id_rsa.*
 **/id_rsa/*
 *.tfstate.*
+graph.png
+plan.json
+plan.out
 
 # Documentation / Node.js
 docs/dist/*
