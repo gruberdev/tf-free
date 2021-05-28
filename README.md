@@ -45,6 +45,7 @@ go test
 - [go-task/task](go-task-url)
 - [hashicorp/terraform-exec](go-tfexec-url)
 - [CONNECT-platform/codedoc](docs-repo-url)
+- [cloudposse/terraform-aws-tfstate-backend](remote-tfstate-url)
 
 ---
 
@@ -58,30 +59,28 @@ go test
 ---
 
 <!-- BEGIN_TF_DOCS -->
-
 ### Modules
 
-| Name         | Source                                   | Version |
-| ------------ | ---------------------------------------- | ------- |
-| amazon_aws   | ./modules/aws                            |         |
-| google_cloud | github.com/gruberdev/tf-free/modules/gcp |         |
+| Name | Source | Version |
+|------|--------|---------|
+| amazon\_aws | ./modules/aws |  |
+| google\_cloud | github.com/gruberdev/tf-free/modules/gcp |  |
 
 ### Inputs
 
-| Name               | Description                                                                                                                                                                  | Type     | Default         |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | --------------- |
-| aws_account_id     | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | n/a             |
-| aws_account_key    | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | n/a             |
-| gcp_instance_name  | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"gcp-machine"` |
-| gcp_project_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-west1"`    |
-| google_project     | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `""`            |
+| Name | Description | Type | Default |
+|------|-------------|------|---------|
+| aws\_account\_id | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | n/a |
+| aws\_account\_key | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | n/a |
+| gcp\_instance\_name | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"gcp-machine"` |
+| gcp\_project\_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-west1"` |
+| google\_project | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `""` |
 
 ### Outputs
 
-| Name          | Description |
-| ------------- | ----------- |
-| gcp_public_ip | n/a         |
-
+| Name | Description |
+|------|-------------|
+| gcp\_public\_ip | n/a |
 <!-- END_TF_DOCS -->
 
 </details>
@@ -94,20 +93,23 @@ go test
    Google Cloud (GCP)
   </summary>
 
-### Resources
+---
 
-1.
+### Available Resources
+
+- 1x Compute Instance
 
 ### Requirements
 
-- Example 1
-- Example 2
+-
 
 ### Terms & Conditions
 
+-
+
 ### More information
 
-- [Free resources homepage](h)
+- [Home]()
 
 ---
 
@@ -119,6 +121,8 @@ go test
    Amazon AWS
   </summary>
 
+---
+
 ### Available Resources
 
 - 1x [Virtual Private Cloud (VPC)](aws-vpc-info)
@@ -127,7 +131,8 @@ go test
 - 1x [Route Table](aws-route-info) integrating all `VPC`, `Subnet` and the `Internet Gateway (IGW)`
 - 1x [EC2 Instance](aws-ec2-info) attached to the `Subnet`
 - 1x [Relational Database (RDS)](aws-rds-info) of your choice (e.g. MySQL, PostgreSQL)
-- 1x [S3 Storage-Bucket](aws-s3-info) inside `Subnet`
+- 1x [S3 Storage-Bucket](aws-s3-info) inside `Subnet`, configured to store the Terraform's backend state
+- 1x [DynamoDB Database](aws-dynamodb-info), mainly used for preventing that running multiple instances of this Terraform chart corrupt each other.
 
 ### Requirements
 
@@ -142,9 +147,10 @@ go test
 
 ### More information
 
-- [AWS Free-Tier Homepage](free-aws)
 - [AWS Free-Tier FAQ](aws-faq)
+- [AWS Free-Tier Homepage](free-aws)
 - [How to set alarms for your Free-Tier account](aws-alarms-free)
+- [Terraform AWS Official Provider Documentation][aws-tf-provider]
 - [How to prevent charges on your Free-Tier account][aws-prevent-charges]
 - [Extended terms and conditions](aws-terms)
 
@@ -157,7 +163,9 @@ go test
    Microsoft Azure
   </summary>
 
-### Resources
+---
+
+### Available Resources
 
 1.
 
@@ -223,3 +231,5 @@ Terraform®, Vault®, Hashicorp's logos are Hasicorp's Trademarks or registered 
 [aws-prevent-charges]: https://aws.amazon.com/premiumsupport/knowledge-center/free-tier-charges/
 [aws-alarms-free]: https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/tracking-free-tier-usage.html#free-budget
 [aws-sorted-list]: https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc&awsf.Free%20Tier%20Types=tier%23always-free%7Ctier%2312monthsfree&awsf.Free%20Tier%20Categories=*all
+[aws-dynamodb-info]: https://aws.amazon.com/dynamodb/
+[remote-tfstate-url]: https://github.com/cloudposse/terraform-aws-tfstate-backend
