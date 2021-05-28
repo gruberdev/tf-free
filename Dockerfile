@@ -78,3 +78,6 @@ RUN git config --global url.'https://${GITHUB_USER}:${GITHUB_KEY}@github.com'.in
 RUN echo 'export PATH="/go/bin:/usr/local/go/bin:${PATH}"' >> "${HOME}/.bashrc"
 
 CMD /bin/bash
+
+- config --global url.'https://${GITHUB_USER}:${GITHUB_PW}@github.com'.insteadOf 'https://github.com'
+- git clone $DOCS_REPO_URL cd  >/dev/null 2>&1 && cd $DOCS_REPO  >/dev/null 2>&1
