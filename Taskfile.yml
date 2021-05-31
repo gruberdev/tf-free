@@ -102,6 +102,37 @@ tasks:
     cmds:
       - terraform init -upgrade
 
+  apply:
+    desc: Terraform standard initialization
+    cmds:
+      - terraform apply -auto-approve
+
+  apply-aws:
+    desc: Terraform standard initialization
+    cmds:
+      - cd modules/aws && terraform apply -auto-approve
+
+  apply-gcp:
+    desc: Terraform standard initialization
+    cmds:
+      - cd modules/gcp && terraform apply -auto-approve
+
+  destroy-gcp:
+    desc: Terraform standard initialization
+    cmds:
+      - cd modules/gcp && terraform destroy -auto-approve
+
+  destroy-aws:
+    desc: Terraform standard initialization
+    cmds:
+      - cd modules/aws && terraform destroy -auto-approve
+
+  restart-aws:
+    desc: Terraform standard initialization
+    cmds:
+      - cd modules/aws && terraform destroy -auto-approve
+      - cd modules/aws && terraform apply -auto-approve
+
   tf-clean:
     desc: Terraform standard initialization
     cmds:
