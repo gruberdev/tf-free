@@ -110,8 +110,7 @@ steps:
       - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/examples/gcp/unit/vpc/gcp.json
       - cd test
       - go mod tidy
-      - go test -v -timeout 5m -run TestUnitVPC
-    depends_on:
+ww    depends_on:
       - setup
     when:
       branch:
