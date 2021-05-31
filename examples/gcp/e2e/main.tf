@@ -1,11 +1,11 @@
 provider "google-beta" {
   project     = var.gcp_project_id
   region      = var.gcp_project_region
-  credentials = file("/gcp.json")
+  credentials = file("gcp.json")
 }
 
 module "google_cloud" {
-  source             = "../../../modules/gcp/"
+  source             = "../../../modules/gcp"
   project_region     = var.gcp_project_region
   instance_name      = var.gcp_instance_name
   google_project     = var.gcp_project_id

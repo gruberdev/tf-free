@@ -180,12 +180,13 @@ tasks:
     cmds:
       - apk add build-base git
       - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
-      - export GOOGLE_APPLICATION_CREDENTIALS=/gcp.json
 
   drone-gcp:
     desc: Terraform standard initialization
     cmds:
-      - echo $GCP_SERVICE_ACCOUNT > /gcp.json
+      - echo $GCP_SERVICE_ACCOUNT > examples/gcp/e2e/gcp.json
+      - echo $GCP_SERVICE_ACCOUNT > examples/gcp/unit/compute/gcp.json
+      - echo $GCP_SERVICE_ACCOUNT > examples/gcp/unit/vpc/gcp.json
       - cd test/gcp && go mod init "github.com/gruberdev/tf-free" || true
       - cd test/gcp && go mod tidy
 

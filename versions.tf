@@ -25,7 +25,7 @@ provider "aws" {
 provider "google-beta" {
   project     = var.gcp_project_id
   region      = var.gcp_project_region
-  credentials = file("/gcp.json")
+  credentials = file("gcp.json")
 }
 
 provider "azurerm" {
