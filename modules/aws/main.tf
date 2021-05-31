@@ -34,8 +34,8 @@ module "ec2" {
   vpc_id           = module.vpc.id
   public_subnet_id = module.public_subnet.id
 
-  ssh_key_name        = var.ec2_ssh_key_name
-  ssh_public_key_path = var.ec2_ssh_public_key_pathd
+  ssh_name   = var.ec2_ssh_name
+  ssh_public = var.ec2_ssh_public
 }
 
 module "rds" {

@@ -13,27 +13,28 @@ import (
 	"github.com/gruntwork-io/terratest/modules/ssh"
 	"github.com/gruntwork-io/terratest/modules/terraform"
 	test_structure "github.com/gruntwork-io/terratest/modules/test-structure"
-	"github.com/stretchr/testify/assert"
 )
 
-func TestIntegration(t *testing.T) {
+func TestIntegrationGCP(t *testing.T) {
 	t.Parallel()
 
 	projectId := gcp.GetGoogleProjectIDFromEnvVar(t)
-	exampleDir := test_structure.CopyTerraformFolderToTemp(t, "../", "examples/gcp/e2e")
+	exampleDir := test_structure.CopyTerraformFolderToTemp(t, "../../", "examples/gcp/e2e")
 	region := gcp.GetRandomRegion(t, projectId, []string{"us-west1", "us-central1", "us-east1"}, nil)
 	randomValidGcpName := gcp.RandomValidGcpName()
+	randomValidIPGcpName := gcp.RandomValidGcpName()
 	randomValidNetworkGcpName := gcp.RandomValidGcpName()
 
 	// Variables to pass to our Terraform code using -var options
-	terraformOptions := terraform.WithDefwwaultRetryableErrors(t, &terraform.Options{
+	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
 		// The path to where our Terraform code is located
 		TerraformDir: exampleDir,
 		Vars: map[string]interface{}{
 			"gcp_project_region": region,
 			"gcp_instance_name":  randomValidGcpName,
-			"main_network_name":  randomValidNetworkGcpName,
-			"google_project":     projectId,
+			"gcp_network_name":   randomValidNetworkGcpName,
+			"gcp_project_id":     projectId,
+			"gcp_ipv4_name":      randomValidIPGcpName,
 		},
 		EnvVars: map[string]string{
 			"GOOGLE_PROJECT": projectId,

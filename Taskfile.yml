@@ -63,7 +63,7 @@ tasks:
       - cd tools && go mod tidy
 
   docs:
-    desc: Initialize module and build cache, and remake go.sum file on root directory.
+    desc: Build documentation using Terraform-docs and the task command
     cmds:
       - terraform-docs markdown . --output-file README.md
       - cd modules/aws && terraform-docs markdown . --output-file README.md
@@ -116,6 +116,8 @@ tasks:
   gcp-test:
     desc: Terraform testing (GCP modules)
     cmds:
+      - cd test/gcp && rm go.mod || true
+      - cd test/gcp && rm go.sum || true
       - cd test/gcp && go mod init "github.com/gruberdev/tf-free" && go mod tidy
       - cd test/gcp && go test -v -timeout 10m -run TestIntegrationGCP
 

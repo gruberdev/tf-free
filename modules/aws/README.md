@@ -28,8 +28,8 @@ No resources.
 |------|-------------|------|---------|:--------:|
 | <a name="input_account_id"></a> [account\_id](#input\_account\_id) | Region for AWS resources | `string` | n/a | yes |
 | <a name="input_account_key"></a> [account\_key](#input\_account\_key) | Region for AWS resources | `string` | n/a | yes |
-| <a name="input_ec2_ssh_key_name"></a> [ec2\_ssh\_key\_name](#input\_ec2\_ssh\_key\_name) | The SSH Key Name | `string` | `"free-tier-ec2-key"` | no |
-| <a name="input_ec2_ssh_public_key_path"></a> [ec2\_ssh\_public\_key\_path](#input\_ec2\_ssh\_public\_key\_path) | The local path to the SSH Public Key | `string` | `"aws.pub"` | no |
+| <a name="input_ec2_ssh_name"></a> [ec2\_ssh\_name](#input\_ec2\_ssh\_name) | The SSH Key Name | `string` | `"free-tier-ec2-key"` | no |
+| <a name="input_ec2_ssh_public"></a> [ec2\_ssh\_public](#input\_ec2\_ssh\_public) | The local path to the SSH Public Key | `string` | `"aws.pub"` | no |
 | <a name="input_profile"></a> [profile](#input\_profile) | AWS Profile | `string` | `"terraform"` | no |
 | <a name="input_region"></a> [region](#input\_region) | Region for AWS resources | `string` | `"us-east-1"` | no |
 
