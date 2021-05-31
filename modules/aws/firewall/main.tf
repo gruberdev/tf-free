@@ -1,5 +1,5 @@
 resource "aws_route_table" "route_table" {
-  count  = var.route_table_should_be_created ? 1 : 0
+  count  = var.should_be_created ? 1 : 0
   vpc_id = var.vpc_id
 
   route {
@@ -8,7 +8,7 @@ resource "aws_route_table" "route_table" {
   }
 
   tags = {
-    Name = var.route_table_name
+    Name = var.name
   }
 }
 

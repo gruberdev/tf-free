@@ -1,4 +1,4 @@
-resource "aws_security_group" "db_instance" {
+resource "aws_security_group" "security_group" {
   name   = "terratest-example"
   vpc_id = data.aws_vpc.default.id
 
@@ -13,7 +13,7 @@ resource "aws_security_group_rule" "allow_db_access" {
   cidr_blocks       = ["0.0.0.0/0"]
 }
 
-resource "aws_db_instance" "example" {
+resource "aws_db_instance" "rds" {
   identifier             = "terratest-example"
   engine                 = "mysql"
   engine_version         = "8.0.23"
