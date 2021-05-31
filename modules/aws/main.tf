@@ -35,7 +35,7 @@ module "ec2" {
   public_subnet_id = module.public_subnet.id
 
   ssh_key_name        = var.ec2_ssh_key_name
-  ssh_public_key_path = var.ec2_ssh_public_key_path
+  ssh_public_key_path = var.ec2_ssh_public_key_pathd
 }
 
 module "rds" {

@@ -16,7 +16,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestIntegrationGCP(t *testing.T) {
+func TestIntegration(t *testing.T) {
 	t.Parallel()
 
 	projectId := gcp.GetGoogleProjectIDFromEnvVar(t)
@@ -26,7 +26,7 @@ func TestIntegrationGCP(t *testing.T) {
 	randomValidNetworkGcpName := gcp.RandomValidGcpName()
 
 	// Variables to pass to our Terraform code using -var options
-	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
+	terraformOptions := terraform.WithDefwwaultRetryableErrors(t, &terraform.Options{
 		// The path to where our Terraform code is located
 		TerraformDir: exampleDir,
 		Vars: map[string]interface{}{
@@ -66,57 +66,4 @@ func TestIntegrationGCP(t *testing.T) {
 
 		return "", nil
 	})
-}
-
-func TestUnitCompute(t *testing.T) {
-	t.Parallel()
-
-	projectId := gcp.GetGoogleProjectIDFromEnvVar(t)
-	exampleDir := test_structure.CopyTerraformFolderToTemp(t, "../", "examples/gcp/unit/compute")
-	region := gcp.GetRandomRegion(t, projectId, []string{"us-west1", "us-central1", "us-east1"}, nil)
-	randomValidInstanceGcpName := gcp.RandomValidGcpName()
-
-	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
-		TerraformDir: exampleDir,
-		Vars: map[string]interface{}{
-			"project_region": region,
-			"instance_name":  randomValidInstanceGcpName,
-			"google_project": projectId,
-		},
-		EnvVars: map[string]string{
-			"GOOGLE_PROJECT": projectId,
-		},
-	})
-
-	defer terraform.Destroy(t, terraformOptions)
-
-	terraform.InitAndApply(t, terraformOptions)
-
-	resultingInstanceName := terraform.OutputRequired(t, terraformOptions, "resulting_name")
-	resultingInstanceType := terraform.OutputRequired(t, terraformOptions, "resulting_type")
-	assert.Equal(t, randomValidInstanceGcpName, resultingInstanceName)
-	assert.Equal(t, "f1-micro", resultingInstanceType)
-}
-
-func TestUnitVPC(t *testing.T) {
-	t.Parallel()
-	randomValidNetworkGcpName := gcp.RandomValidGcpName()
-	projectId := gcp.GetGoogleProjectIDFromEnvVar(t)
-	exampleDir := test_structure.CopyTerraformFolderToTemp(t, "../", "examples/gcp/unit/vpc")
-	region := gcp.GetRandomRegion(t, projectId, []string{"us-west1", "us-central1", "us-east1"}, nil)
-	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
-		TerraformDir: exampleDir,
-		Vars: map[string]interface{}{
-			"project_region":     region,
-			"gcp_project_region": region,
-			"main_network_name":  randomValidNetworkGcpName,
-			"google_project":     projectId,
-		},
-		EnvVars: map[string]string{
-			"GOOGLE_PROJECT": projectId,
-		},
-	})
-
-	defer terraform.Destroy(t, terraformOptions)
-	terraform.InitAndApply(t, terraformOptions)
 }

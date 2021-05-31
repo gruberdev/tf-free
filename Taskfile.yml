@@ -62,6 +62,22 @@ tasks:
       - go mod tidy
       - cd tools && go mod tidy
 
+  docs:
+    desc: Initialize module and build cache, and remake go.sum file on root directory.
+    cmds:
+      - terraform-docs markdown . --output-file README.md
+      - cd modules/aws && terraform-docs markdown . --output-file README.md
+      - cd modules/aws/ec2 && terraform-docs markdown . --output-file README.md
+      - cd modules/aws/firewall && terraform-docs markdown . --output-file README.md
+      - cd modules/aws/vpc && terraform-docs markdown . --output-file README.md
+      - cd modules/aws/subnet && terraform-docs markdown . --output-file README.md
+      - cd modules/aws/gateway && terraform-docs markdown . --output-file README.md
+      - cd modules/aws/rds && terraform-docs markdown . --output-file README.md
+      - cd modules/gcp && terraform-docs markdown . --output-file README.md
+      - cd modules/gcp/compute && terraform-docs markdown . --output-file README.md
+      - cd modules/gcp/firewall && terraform-docs markdown . --output-file README.md
+      - cd modules/gcp/vpc && terraform-docs markdown . --output-file README.md
+
   test:
     desc: Test and print out code coverage as html.
     cmds:
@@ -97,11 +113,17 @@ tasks:
       - go clean -cache || true
       - go clean -modcache || true
 
-  tf-test:
-    desc: Terraform testing (all modules)
+  gcp-test:
+    desc: Terraform testing (GCP modules)
     cmds:
-      - cd test && go mod init "github.com/gruberdev/tf-free" && go mod tidy
-      - cd test && go test -v -timeout 10m -run TestIntegrationGCP
+      - cd test/gcp && go mod init "github.com/gruberdev/tf-free" && go mod tidy
+      - cd test/gcp && go test -v -timeout 10m -run TestIntegrationGCP
+
+  aws-test:
+    desc: Terraform testing (AWS modules)
+    cmds:
+      - cd test/aws && go mod init "github.com/gruberdev/tf-free" && go mod tidy
+      - cd test/aws && go test -v -timeout 5m -run TestUnitEC2
 
   tf-init:
     desc: Terraform standard initialization

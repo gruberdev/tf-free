@@ -46,7 +46,7 @@ resource "aws_instance" "ec2" {
   subnet_id                   = var.public_subnet_id
   vpc_security_group_ids      = [aws_security_group.security_group.id]
   associate_public_ip_address = true
-
+  user_data                   = var.seed_data
 
   tags = {
     Name = var.name
@@ -55,6 +55,6 @@ resource "aws_instance" "ec2" {
 
 
 resource "aws_key_pair" "ec2_key_pair" {
-  key_name   = var.ssh_key_name
-  public_key = file(var.ssh_public_key_path)
+  key_name   = var.ssh_name
+  public_key = var.ssh_public
 }

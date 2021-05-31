@@ -44,13 +44,18 @@ variable "public_subnet_id" {
   type        = string
 }
 
-variable "ssh_key_name" {
+variable "ssh_name" {
   description = "The SSH Key Name"
   type        = string
   default     = "free-tier-ec2-key"
 }
 
-variable "ssh_public_key_path" {
+variable "ssh_public" {
   description = "The local path to the SSH Public Key"
+  type        = string
+}
+variable "seed_data" {
+  description = "The local path to the SSH Public Key"
+  default     = ""
   type        = string
 }
