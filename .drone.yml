@@ -52,45 +52,14 @@ kind: pipeline
 type: docker
 name: Google Cloud Provider (GCP)
 steps:
-  - name: setup
-    image: golang:1.16.4-alpine
-    commands:
-      - cd examples/gcp/unit/compute
-      - echo $GCP_SERVICE_ACCOUNT > gcp.json
-      - cd ../../../../
-      - cd examples/gcp/unit/vpc
-      - echo $GCP_SERVICE_ACCOUNT > gcp.json
-      - cd ../../../../
-      - cd examples/gcp/e2e
-      - echo $GCP_SERVICE_ACCOUNT > gcp.json
-      - cd ../../../
-      - cd test
-      - go mod init "github.com/gruberdev/tf-free"
-      - go mod tidy
-    when:
-      branch:
-        include:
-          - master
-          - feature/gcp_*
-      event:
-        - push
-    environment:
-      GOOGLE_PROJECT:
-        from_secret: gcp_project_id
-      GCP_SERVICE_ACCOUNT:
-        from_secret: gcp_project_key
-
   - name: Unit Compute
     image: golang:1.16.4-alpine
     commands:
-      - apk add build-base git curl
-      - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
-      - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/examples/gcp/unit/compute/gcp.json
-      - cd test
-      - go mod tidy
-      - go test -v -timeout 5m -run TestUnitCompute
-    depends_on:
-      - setup
+      - apk add curl
+      - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
+      - task init-drone
+      - task drone-gcp
+      - task unit-compute-gcp
     when:
       branch:
         include:
@@ -105,14 +74,11 @@ steps:
   - name: Unit Networking
     image: golang:1.16.4-alpine
     commands:
-      - apk add build-base git curl
-      - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
-      - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/examples/gcp/unit/vpc/gcp.json
-      - cd test
-      - go mod tidy
-      - go test -v -timeout 5m -run TestUnitVPC
-    depends_on:
-      - setup
+      - apk add curl
+      - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
+      - task init-drone
+      - task drone-gcp
+      - tasp unit-network-gcp
     when:
       branch:
         include:
@@ -127,19 +93,19 @@ steps:
   - name: Integration Core Provider
     image: golang:1.16.4-alpine
     commands:
-      - apk add build-base git curl
-      - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
-      - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/examples/gcp/e2e/gcp.json
-      - cd test
-      - go mod tidy
-      - go test -v -timeout 10m -run TestIntegrationGCP
+      - apk add curl
+      - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
+      - task init-drone
+      - task drone-gcp
+      - task integration-gcp
     when:
       branch:
-        - master
+        include:
+          - master
+          - feature/gcp_*
       event:
         - push
     depends_on:
-      - setup
       - Unit Networking
     environment:
       GOOGLE_PROJECT:
