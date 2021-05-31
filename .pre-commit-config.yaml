@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/terraform-docs/terraform-docs
-    rev: v0.13.0
+    rev: v0.14.0
     hooks:
       - id: terraform-docs-go
         args: ["--output-file", "README.md", "."]
