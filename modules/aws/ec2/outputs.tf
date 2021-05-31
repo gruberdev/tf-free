@@ -41,3 +41,8 @@ output "names" {
   description = "List of key names of instances"
   value       = aws_instance.ec2.*.key_name
 }
+
+output "security_group_id" {
+  description = "List of key names of instances"
+  value       = aws_security_group.security_group.id
+}

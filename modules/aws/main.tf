@@ -37,3 +37,12 @@ module "ec2" {
   ssh_key_name        = var.ec2_ssh_key_name
   ssh_public_key_path = var.ec2_ssh_public_key_path
 }
+
+module "rds" {
+  source = "./rds"
+
+  security_group_id = module.ec2.security_group_id
+  db_user           = "testing"
+  db_password       = "omgbtfoufucker2332"
+  vpc_group_id      = module.vpc.id
+}
