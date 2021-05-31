@@ -6,13 +6,13 @@ variable "security_group_id" {
 variable "name" {
   description = "Region for AWS resources"
   type        = string
-  default     = "tf-free-database"
+  default     = "databasetf"
 }
 
 variable "engine_version" {
   description = "The SSH Key Name"
   type        = string
-  default     = "13.2"
+  default     = "12.6"
 }
 
 variable "db_engine" {
@@ -41,7 +41,7 @@ variable "vpc_group_id" {
 
 variable "license" {
   description = "Region for AWS resources"
-  default     = "general-public-license"
+  default     = "postgresql-license"
   type        = string
 }
 
