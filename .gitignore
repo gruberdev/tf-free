@@ -15,8 +15,6 @@ terraform.tfvars
 **/gcp.json/*
 graph.json
 graph.svg
-go.sum
-go.mod
 test/go.sum
 test/go.mod
 aws.json
@@ -28,12 +26,20 @@ terraform.tfvars
 id_rsa.*
 **/id_rsa/*
 *.tfstate.*
+graph.png
+plan.json
+plan.out
 
 # Documentation / Node.js
 docs/dist/*
 docs/*.html
+*/*.html
+*.html
 logs
 *.log
+*.js
+*.meta.json
+*.css
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
