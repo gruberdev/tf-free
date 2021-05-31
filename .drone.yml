@@ -6,21 +6,23 @@ steps:
   - name: plan
     image: golang:1.16.4-alpine
     commands:
-      - apk add build-base git curl
-      - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
-      - echo $GCP_SERVICE_ACCOUNT > gcp.json
-      - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
+      - apk add curl
+      - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
+      - task init-drone
       - terraform init
       - terraform plan
     when:
       event:
         - push
         - pull_request
-    environment:
       GOOGLE_PROJECT:
         from_secret: gcp_project_id
-      GCP_SERVICE_ACCOUNT:
-        from_secret: gcp_project_key
+      AWS_DEFAULT_REGION:
+        from_secret: aws_region
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: aws_key
+      AWS_ACCESS_KEY_ID:
+        from_secret: aws_id
 
   - name: tfsec
     image: tfsec/tfsec
@@ -70,7 +72,12 @@ steps:
     environment:
       GOOGLE_PROJECT:
         from_secret: gcp_project_id
-
+      AWS_DEFAULT_REGION:
+        from_secret: aws_region
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: aws_key
+      AWS_ACCESS_KEY_ID:
+        from_secret: aws_id
   - name: Unit Networking
     image: golang:1.16.4-alpine
     commands:
@@ -89,6 +96,12 @@ steps:
     environment:
       GOOGLE_PROJECT:
         from_secret: gcp_project_id
+      AWS_DEFAULT_REGION:
+        from_secret: aws_region
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: aws_key
+      AWS_ACCESS_KEY_ID:
+        from_secret: aws_id
 
   - name: Integration Core Provider
     image: golang:1.16.4-alpine
@@ -110,6 +123,12 @@ steps:
     environment:
       GOOGLE_PROJECT:
         from_secret: gcp_project_id
+      AWS_DEFAULT_REGION:
+        from_secret: aws_region
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: aws_key
+      AWS_ACCESS_KEY_ID:
+        from_secret: aws_id
 
 ---
 kind: pipeline
