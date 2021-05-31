@@ -43,6 +43,6 @@ module "rds" {
 
   security_group_id = module.ec2.security_group_id
   db_user           = "testing"
-  db_password       = "omgbtfoufucker2332"
+  db_password       = "testingpassword123"
   vpc_group_id      = module.vpc.id
 }
