@@ -27,7 +27,3 @@ output "aws_ec2_password_data" {
   sensitive   = true
 }
 
-output "aws_ec2_names" {
-  description = "List of key names of instances"
-  value       = module.aws.ec2_names
-}

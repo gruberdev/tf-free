@@ -21,5 +21,6 @@ variable "network_name" {
   default = "gcp-core-network"
 }
 variable "instance_ipv4_name" {
-  type = string
+  type    = string
+  default = "ipv4-instance-gcp"
 }
