@@ -27,3 +27,4 @@ variable "enable_dns_support" {
   type        = bool
   default     = true
 }
+

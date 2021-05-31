@@ -39,10 +39,7 @@ module "ec2" {
 }
 
 module "rds" {
-  source = "./rds"
-
-  security_group_id = module.ec2.security_group_id
-  db_user           = "testing"
-  db_password       = "testingpassword123"
-  vpc_group_id      = module.vpc.id
+  source      = "./rds"
+  db_user     = "testing"
+  db_password = "testingpassword123"
 }

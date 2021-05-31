@@ -29,6 +29,8 @@ id_rsa.*
 graph.png
 plan.json
 plan.out
+graph.html
+index.html
 
 # Documentation / Node.js
 docs/dist/*

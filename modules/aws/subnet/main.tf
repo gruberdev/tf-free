@@ -9,3 +9,4 @@ resource "aws_subnet" "public_subnet" {
     Name = var.name
   }
 }
+

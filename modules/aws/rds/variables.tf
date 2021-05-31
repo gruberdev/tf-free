@@ -1,8 +1,3 @@
-variable "security_group_id" {
-  description = "AWS Profile"
-  type        = string
-}
-
 variable "name" {
   description = "Region for AWS resources"
   type        = string
@@ -33,11 +28,6 @@ variable "db_password" {
   type        = string
 }
 
-variable "vpc_group_id" {
-  description = "Region for AWS resources"
-  default     = ""
-  type        = string
-}
 
 variable "license" {
   description = "Region for AWS resources"
@@ -49,4 +39,17 @@ variable "db_instance_type" {
   description = "Instance type for database"
   type        = string
   default     = "db.t2.micro"
+}
+
+variable "subnet_group_name" {
+  description = "Instance type for database"
+  type        = string
+  default     = "subnet-db"
+}
+
+
+variable "db_security_group_name" {
+  description = "Instance type for database"
+  type        = string
+  default     = "seucrity-db"
 }

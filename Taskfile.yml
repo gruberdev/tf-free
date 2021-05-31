@@ -84,6 +84,12 @@ tasks:
       - go clean -cache || true
       - go clean -modcache || true
 
+  graph:
+    desc: Create beautiful Terraform Graphs
+    cmds:
+      - go get github.com/pcasteran/terraform-graph-beautifier
+      - terraform graph | terraform-graph-beautifier --exclude="module.root.provider" --output-type=cyto-html > graph.html
+
   tf-test-clean:
     desc: Clean cache on Terraform test cache.
     cmds:
