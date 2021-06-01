@@ -6,7 +6,8 @@ steps:
   - name: plan
     image: golang:1.16.4-alpine
     commands:
-      - apk add curl
+      - apk add curl bash
+      - bash
       - mkdir -p /root/keys && echo $GOOGLE_KEY >> /root/keys/application_default_credentials.json
       - export GOOGLE_APPLICATION_CREDENTIALS=/root/keys/application_default_credentials.json
       - TF_VAR_aws_default_region=$(echo $AWS_DEFAULT_REGION  | sed -e 's/\r//g')
@@ -85,7 +86,8 @@ steps:
   - name: Setup
     image: golang:1.16.4-alpine
     commands:
-      - apk add curl
+      - apk add curl bash
+      - bash
       - mkdir -p /root/keys && echo $GOOGLE_KEY >> /root/keys/application_default_credentials.json
       - export GOOGLE_APPLICATION_CREDENTIALS=/root/keys/application_default_credentials.json
       - TF_VAR_aws_default_region=$(echo $AWS_DEFAULT_REGION  | sed -e 's/\r//g')
@@ -116,7 +118,8 @@ steps:
   - name: Unit Compute
     image: golang:1.16.4-alpine
     commands:
-      - apk add curl
+      - apk add curl bash
+      - bash
       - mkdir -p /root/keys && echo $GOOGLE_KEY > /root/keys/application_default_credentials.json
       - export GOOGLE_APPLICATION_CREDENTIALS=/root/keys/application_default_credentials.json
       - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
@@ -147,7 +150,8 @@ steps:
   - name: Unit Networking
     image: golang:1.16.4-alpine
     commands:
-      - apk add curl
+      - apk add curl bash
+      - bash
       - mkdir -p /root/keys && echo $GOOGLE_KEY > /root/keys/application_default_credentials.json
       - export GOOGLE_APPLICATION_CREDENTIALS=/root/keys/application_default_credentials.json
       - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
@@ -178,7 +182,8 @@ steps:
   - name: Integration Core Provider
     image: golang:1.16.4-alpine
     commands:
-      - apk add curl
+      - apk add curl bash
+      - bash
       - mkdir -p /root/keys && echo $GOOGLE_KEY > /root/keys/application_default_credentials.json
       - export GOOGLE_APPLICATION_CREDENTIALS=/root/keys/application_default_credentials.json
       - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
