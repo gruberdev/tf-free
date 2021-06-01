@@ -65,6 +65,7 @@ steps:
     commands:
       - apk add curl
       - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
+      - task get-keys
       - task init-drone
       - task drone-gcp
       - task unit-compute-gcp
@@ -89,6 +90,7 @@ steps:
     commands:
       - apk add curl
       - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
+      - task get-keys
       - task init-drone
       - task drone-gcp
       - tasp unit-network-gcp
@@ -114,6 +116,7 @@ steps:
     commands:
       - apk add curl
       - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
+      - task get-keys
       - task init-drone
       - task drone-gcp
       - task integration-gcp
