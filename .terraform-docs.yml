@@ -1,7 +1,5 @@
 formatter: markdown
 
-header-from: "header.md"
-
 sections:
   show:
     - inputs
@@ -21,7 +19,7 @@ sort:
 
 settings:
   anchor: false
-  indent: 1
+  indent: 3
   color: true
   html: true
   escape: true
