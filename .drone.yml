@@ -91,7 +91,7 @@ steps:
     commands:
       - apk add curl bash dos2unix grep
       - rm -rf /root/keys && mkdir -p /root/keys && echo $GOOGLE_KEY >> /root/keys/application_default_credentials_tmp.json
-      - dos2unix /root/keys/application_default_credentials_tmp.json && grep -Ev "^#|^$" /root/keys/application_default_credentials_tmp.json >> /root/keys/application_default_credentials.json &&
+      - dos2unix /root/keys/application_default_credentials_tmp.json && grep -Ev "^#|^$" /root/keys/application_default_credentials_tmp.json >> /root/keys/application_default_credentials.json
       - export GOOGLE_APPLICATION_CREDENTIALS=/root/keys/application_default_credentials.json
       - echo $AWS_DEFAULT_REGION >> /root/keys/aws_region_2
       - echo $AWS_SECRET_ACCESS_KEY >> /root/keys/aws_secret_key_id_2
