@@ -10,7 +10,8 @@ steps:
       - rm -rf /root/keys && mkdir -p /root/keys && echo $GOOGLE_KEY >> /root/keys/application_default_credentials_tmp.json
       - dos2unix /root/keys/application_default_credentials_tmp.json && grep -Ev "^#|^$" /root/keys/application_default_credentials_tmp.json >> /root/keys/application_default_credentials.json &
       - echo $AWS_SECRET_ACCESS_KEY >> /root/keys/aws_secret_key_id_2
-      - echo $AWS_ACCESS_KEY_ID >> /root/keys/aws_key_id_2
+      - echo $AWS_ACCESS_KEY_ID >> /root/keys/
+      - echo $AWS_DEFAULT_REGION >> /root/keys/aws_region_2
       - dos2unix /root/keys/aws_key_id_2 && grep -Ev "^#|^$" /root/keys/aws_key_id_2 >> /root/keys/aws_key_id && TF_VAR_aws_account_id=$(cat /root/keys/aws_key_id)
       - dos2unix /root/keys/aws_secret_key_id_2 && grep -Ev "^#|^$" /root/keys/aws_secret_key_id_2 >> /root/keys/aws_secret_key && TF_VAR_aws_account_key=$(cat /root/keys/aws_secret_key_id)
       - dos2unix /root/keys/aws_region_2 && grep -Ev "^#|^$" /root/keys/aws_region_2 >> /root/keys/aws_region && TF_VAR_aws_default_region=$(cat /root/keys/aws_region)
