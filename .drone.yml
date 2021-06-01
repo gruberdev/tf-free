@@ -29,6 +29,9 @@ steps:
     commands:
       - tfsec . -e GCP003,AWS044,GEN003
     when:
+      status:
+        - success
+        - failure
       event:
         - push
         - pull_request
@@ -41,6 +44,9 @@ steps:
     commands:
       - terrascan scan
     when:
+      status:
+        - success
+        - failure
       event:
         - push
         - pull_request

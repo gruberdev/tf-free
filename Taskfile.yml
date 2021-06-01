@@ -187,6 +187,11 @@ tasks:
       - echo $GCP_SERVICE_ACCOUNT > examples/gcp/e2e/gcp.json
       - echo $GCP_SERVICE_ACCOUNT > examples/gcp/unit/compute/gcp.json
       - echo $GCP_SERVICE_ACCOUNT > examples/gcp/unit/vpc/gcp.json
+      - echo $GCP_SERVICE_ACCOUNT > gcp.json
+      - echo $GCP_SERVICE_ACCOUNT > modules/gcp/compute/gcp.json
+      - echo $GCP_SERVICE_ACCOUNT > modules/gcp/vpc/gcp.json
+      - echo $GCP_SERVICE_ACCOUNT > modules/gcp/firewall/gcp.json
+      - echo $GCP_SERVICE_ACCOUNT > modules/gcp/gcp.json
       - cd test/gcp && go mod init "github.com/gruberdev/tf-free" || true
       - cd test/gcp && go mod tidy
 
