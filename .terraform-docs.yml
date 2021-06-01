@@ -1,14 +1,19 @@
 formatter: markdown
 
+header-from: "header.md"
+
 sections:
   show:
     - inputs
     - outputs
     - modules
-
 output:
   file: README.md
   mode: inject
+  template: |-
+    <!-- BEGIN_TF_DOCS -->
+    {{ .Content }}
+    <!-- END_TF_DOCS -->
 
 sort:
   enabled: true
@@ -16,8 +21,9 @@ sort:
 
 settings:
   anchor: false
-  indent: 3
+  indent: 1
   color: true
+  html: true
   escape: true
   default: true
   required: false

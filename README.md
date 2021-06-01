@@ -58,16 +58,14 @@ go test
 ---
 
 <!-- BEGIN_TF_DOCS -->
+# Modules
 
-### Modules
+| Name | Source | Version |
+|------|--------|---------|
+| amazon\_aws | ./modules/aws |  |
+| google\_cloud | github.com/gruberdev/tf-free/modules/gcp |  |
 
-| Name         | Source                                   | Version |
-| ------------ | ---------------------------------------- | ------- |
-| amazon_aws   | ./modules/aws                            |         |
-| google_cloud | github.com/gruberdev/tf-free/modules/gcp |         |
-
-### Inputs
-
+# Inputs
 
 | Name | Description | Type | Default |
 |------|-------------|------|---------|
@@ -78,7 +76,7 @@ go test
 | gcp\_project\_id | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `""` |
 | gcp\_project\_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-west1"` |
 
-### Outputs
+# Outputs
 
 | Name | Description |
 |------|-------------|
@@ -88,20 +86,6 @@ go test
 | aws\_ec2\_private\_ip | List of private IP addresses assigned to the instances |
 | aws\_ec2\_public\_ip | List of public IP addresses assigned to the instances, if applicable |
 | gcp\_public\_ip | n/a |
-=======
-| Name               | Description                                                                                                                                                                  | Type     | Default         |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | --------------- |
-| aws_account_id     | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | n/a             |
-| aws_account_key    | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | n/a             |
-| gcp_instance_name  | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"gcp-machine"` |
-| gcp_project_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-west1"`    |
-| google_project     | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `""`            |
-
-### Outputs
-
-| Name          | Description |
-| ------------- | ----------- |
-| gcp_public_ip | n/a         |
 <!-- END_TF_DOCS -->
 
 </details>
