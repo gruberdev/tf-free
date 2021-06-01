@@ -9,9 +9,9 @@ steps:
       - apk add curl
       - mkdir -p /root/keys && echo $GOOGLE_KEY >> /root/keys/application_default_credentials.json
       - export GOOGLE_APPLICATION_CREDENTIALS=/root/keys/application_default_credentials.json
-      - export TF_VAR_aws_default_region="$( sed 's/\\n//g' <<<"$AWS_DEFAULT_REGION" )"
-      - export TF_VAR_aws_account_id="$( sed 's/\\n//g' <<<"$AWS_ACCESS_KEY_ID" )"
-      - export TF_VAR_aws_account_key="$( sed 's/\\n//g' <<<"$AWS_SECRET_ACCESS_KEY" )"
+      - TF_VAR_aws_default_region=$(echo $AWS_DEFAULT_REGION  | sed -e 's/\r//g')
+      - TF_VAR_aws_account_id=$(echo $AWS_ACCESS_KEY_ID  | sed -e 's/\r//g')      -
+      - TF_VAR_aws_account_key=$(echo $AWS_SECRET_ACCESS_KEY_ID  | sed -e 's/\r//g')
       - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
       - task init-drone
       - task tf-init
@@ -86,11 +86,11 @@ steps:
     image: golang:1.16.4-alpine
     commands:
       - apk add curl
-      - mkdir -p /root/keys && echo $GOOGLE_KEY > /root/keys/application_default_credentials.json
+      - mkdir -p /root/keys && echo $GOOGLE_KEY >> /root/keys/application_default_credentials.json
       - export GOOGLE_APPLICATION_CREDENTIALS=/root/keys/application_default_credentials.json
-      - export TF_VAR_aws_default_region="$( sed 's/\\n//g' <<<"$AWS_DEFAULT_REGION" )"
-      - export TF_VAR_aws_account_id="$( sed 's/\\n//g' <<<"$AWS_ACCESS_KEY_ID" )"
-      - export TF_VAR_aws_account_key="$( sed 's/\\n//g' <<<"$AWS_SECRET_ACCESS_KEY" )"
+      - TF_VAR_aws_default_region=$(echo $AWS_DEFAULT_REGION  | sed -e 's/\r//g')
+      - TF_VAR_aws_account_id=$(echo $AWS_ACCESS_KEY_ID  | sed -e 's/\r//g')      -
+      - TF_VAR_aws_account_key=$(echo $AWS_SECRET_ACCESS_KEY_ID  | sed -e 's/\r//g')
       - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
       - task init-drone
       - task drone-gcp
