@@ -18,6 +18,10 @@ steps:
         - pull_request
       GOOGLE_PROJECT:
         from_secret: gcp_project_id
+      GOOGLE_APPLICATION_CREDENTIALS:
+        from_secret: gcp_key_path
+      GOOGLE_KEY:
+        from_secret: gcp_default
       AWS_DEFAULT_REGION:
         from_secret: aws_region
       AWS_SECRET_ACCESS_KEY:
@@ -39,6 +43,10 @@ steps:
     environment:
       GOOGLE_PROJECT:
         from_secret: gcp_project_id
+      GOOGLE_APPLICATION_CREDENTIALS:
+        from_secret: gcp_key_path
+      GOOGLE_KEY:
+        from_secret: gcp_default
 
   - name: terrascan
     image: accurics/terrascan
@@ -55,7 +63,10 @@ steps:
     environment:
       GOOGLE_PROJECT:
         from_secret: gcp_project_id
-
+      GOOGLE_APPLICATION_CREDENTIALS:
+        from_secret: gcp_key_path
+      GOOGLE_KEY:
+        from_secret: gcp_default
 ---
 kind: pipeline
 type: docker
@@ -80,12 +91,17 @@ steps:
     environment:
       GOOGLE_PROJECT:
         from_secret: gcp_project_id
+      GOOGLE_APPLICATION_CREDENTIALS:
+        from_secret: gcp_key_path
+      GOOGLE_KEY:
+        from_secret: gcp_default
       AWS_DEFAULT_REGION:
         from_secret: aws_region
       AWS_SECRET_ACCESS_KEY:
         from_secret: aws_key
       AWS_ACCESS_KEY_ID:
         from_secret: aws_id
+
   - name: Unit Networking
     image: golang:1.16.4-alpine
     commands:
@@ -105,6 +121,10 @@ steps:
     environment:
       GOOGLE_PROJECT:
         from_secret: gcp_project_id
+      GOOGLE_APPLICATION_CREDENTIALS:
+        from_secret: gcp_key_path
+      GOOGLE_KEY:
+        from_secret: gcp_default
       AWS_DEFAULT_REGION:
         from_secret: aws_region
       AWS_SECRET_ACCESS_KEY:
@@ -133,6 +153,10 @@ steps:
     environment:
       GOOGLE_PROJECT:
         from_secret: gcp_project_id
+      GOOGLE_APPLICATION_CREDENTIALS:
+        from_secret: gcp_key_path
+      GOOGLE_KEY:
+        from_secret: gcp_default
       AWS_DEFAULT_REGION:
         from_secret: aws_region
       AWS_SECRET_ACCESS_KEY:

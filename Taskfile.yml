@@ -184,14 +184,16 @@ tasks:
   get-keys:
     desc: Get GCP keys
     cmds:
-      - echo $GCP_SERVICE_ACCOUNT > gcp.json
-      - echo $GCP_SERVICE_ACCOUNT > examples/gcp/e2e/gcp.json
-      - echo $GCP_SERVICE_ACCOUNT > examples/gcp/unit/compute/gcp.json
-      - echo $GCP_SERVICE_ACCOUNT > examples/gcp/unit/vpc/gcp.json
-      - echo $GCP_SERVICE_ACCOUNT > modules/gcp/compute/gcp.json
-      - echo $GCP_SERVICE_ACCOUNT > modules/gcp/vpc/gcp.json
-      - echo $GCP_SERVICE_ACCOUNT > modules/gcp/firewall/gcp.json
-      - echo $GCP_SERVICE_ACCOUNT > modules/gcp/gcp.json
+      - echo $GOOGLE_KEY > gcp.json
+      - rm -rf /root/keys && mkdir -p /root/keys && echo $GOOGLE_KEY > $GOOGLE_APPLICATION_CREDENTIALS
+      - export $GOOGLE_APPLICATION_CREDENTIALS=$GOOGLE_APPLICATION_CREDENTIALS
+      - echo $GOOGLE_KEY > examples/gcp/e2e/gcp.json
+      - echo $GOOGLE_KEY > examples/gcp/unit/compute/gcp.json
+      - echo $GOOGLE_KEY > examples/gcp/unit/vpc/gcp.json
+      - echo $GOOGLE_KEY > modules/gcp/compute/gcp.json
+      - echo $GOOGLE_KEY > modules/gcp/vpc/gcp.json
+      - echo $GOOGLE_KEY > modules/gcp/firewall/gcp.json
+      - echo $GOOGLE_KEY > modules/gcp/gcp.json
 
   drone-gcp:
     desc: Terraform standard initialization
