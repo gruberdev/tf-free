@@ -62,7 +62,7 @@ tasks:
       - go mod tidy
       - cd tools && go mod tidy
 
-  docs:
+  docs-gen:
     desc: Build documentation using Terraform-docs and the task command
     cmds:
       - terraform-docs markdown . --output-file README.md
@@ -77,6 +77,14 @@ tasks:
       - cd modules/gcp/compute && terraform-docs markdown . --output-file README.md
       - cd modules/gcp/firewall && terraform-docs markdown . --output-file README.md
       - cd modules/gcp/vpc && terraform-docs markdown . --output-file README.md
+  
+  docs:
+    desc: Initialize module and build cache, and remake go.sum file on root directory.
+    cmds:
+      - cd docs && docker-compose down || true
+      - cd docs && docker build -t tf-free:docs .
+      - cd docs && docker-compose up --build -d
+
 
   test:
     desc: Test and print out code coverage as html.

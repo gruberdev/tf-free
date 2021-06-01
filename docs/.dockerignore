@@ -9,49 +9,22 @@ override.tf.json
 *_override.tf.json
 **/.terraform.lock.hcl/*
 .terraform.lock.hcl
-.terraform
 *tfplan*
 gcp.json
 terraform.tfvars
 **/gcp.json/*
 graph.json
 graph.svg
-test/*/go.sum
-test/*/go.mod
-test/gcp/go.mod
-test/gcp/go.sum
-test/aws/go.sum
-test/aws/go.mod
-test/go.mod
+go.sum
+go.mod
 test/go.sum
-aws.json
-aws.pub
-**/id_rsa.pub/*
-*.tfvars
-terraform.tfvars
-terraform.env.tfvars
-*.pub
-id_rsa.*
-**/id_rsa/*
-*.tfstate.*
-graph.png
-plan.json
-plan.out
-graph.html
-index.html
-
-
+test/go.mod
 
 # Documentation / Node.js
 docs/dist/*
 docs/*.html
-*/*.html
-*.html
 logs
 *.log
-*.js
-*.meta.json
-*.css
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -100,3 +73,4 @@ dist
 
 # .vscode
 .vscode
+renovate.json
