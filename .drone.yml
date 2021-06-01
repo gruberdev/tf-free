@@ -8,7 +8,7 @@ steps:
     commands:
       - apk add build-base git curl
       - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
-      - echo $GCP_SERVICE_ACCOUNT > gcp.json
+      - echo $GOOGLE_KEY > gcp.json
       - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
       - terraform init
       - terraform plan -var="aws_account_id=$AWS_ACCOUNT_ID" -var="aws_account_key=$AWS_SECRET_ACCESS_KEY"  -var="aws_default_region=$AWS_DEFAULT_REGION"
@@ -82,13 +82,13 @@ steps:
     image: golang:1.16.4-alpine
     commands:
       - cd examples/gcp/unit/compute
-      - echo $GCP_DEFAULT > gcp.json
+      - echo $GOOGLE_KEY > gcp.json
       - cd ../../../../
       - cd examples/gcp/unit/vpc
-      - echo $GCP_DEFAULT` > gcp.json
+      - echo $GOOGLE_KEY > gcp.json
       - cd ../../../../
       - cd examples/gcp/e2e
-      - echo $GCP_DEFAULT > gcp.json
+      - echo $GOOGLE_KEY > gcp.json
       - cd ../../../
       - cd test/gcp
       - go mod init "github.com/gruberdev/tf-free"
