@@ -13,16 +13,16 @@ import (
 	"github.com/gruntwork-io/terratest/modules/ssh"
 	"github.com/gruntwork-io/terratest/modules/terraform"
 	test_structure "github.com/gruntwork-io/terratest/modules/test-structure"
-	"github.com/stretchr/testify/assert"
 )
 
 func TestIntegrationGCP(t *testing.T) {
 	t.Parallel()
 
 	projectId := gcp.GetGoogleProjectIDFromEnvVar(t)
-	exampleDir := test_structure.CopyTerraformFolderToTemp(t, "../", "examples/gcp/e2e")
+	exampleDir := test_structure.CopyTerraformFolderToTemp(t, "../../", "examples/gcp/e2e")
 	region := gcp.GetRandomRegion(t, projectId, []string{"us-west1", "us-central1", "us-east1"}, nil)
 	randomValidGcpName := gcp.RandomValidGcpName()
+	randomValidIPGcpName := gcp.RandomValidGcpName()
 	randomValidNetworkGcpName := gcp.RandomValidGcpName()
 
 	// Variables to pass to our Terraform code using -var options
@@ -32,8 +32,9 @@ func TestIntegrationGCP(t *testing.T) {
 		Vars: map[string]interface{}{
 			"gcp_project_region": region,
 			"gcp_instance_name":  randomValidGcpName,
-			"main_network_name":  randomValidNetworkGcpName,
-			"google_project":     projectId,
+			"gcp_network_name":   randomValidNetworkGcpName,
+			"gcp_project_id":     projectId,
+			"gcp_ipv4_name":      randomValidIPGcpName,
 		},
 		EnvVars: map[string]string{
 			"GOOGLE_PROJECT": projectId,
@@ -66,57 +67,4 @@ func TestIntegrationGCP(t *testing.T) {
 
 		return "", nil
 	})
-}
-
-func TestUnitCompute(t *testing.T) {
-	t.Parallel()
-
-	projectId := gcp.GetGoogleProjectIDFromEnvVar(t)
-	exampleDir := test_structure.CopyTerraformFolderToTemp(t, "../", "examples/gcp/unit/compute")
-	region := gcp.GetRandomRegion(t, projectId, []string{"us-west1", "us-central1", "us-east1"}, nil)
-	randomValidInstanceGcpName := gcp.RandomValidGcpName()
-
-	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
-		TerraformDir: exampleDir,
-		Vars: map[string]interface{}{
-			"project_region": region,
-			"instance_name":  randomValidInstanceGcpName,
-			"google_project": projectId,
-		},
-		EnvVars: map[string]string{
-			"GOOGLE_PROJECT": projectId,
-		},
-	})
-
-	defer terraform.Destroy(t, terraformOptions)
-
-	terraform.InitAndApply(t, terraformOptions)
-
-	resultingInstanceName := terraform.OutputRequired(t, terraformOptions, "resulting_name")
-	resultingInstanceType := terraform.OutputRequired(t, terraformOptions, "resulting_type")
-	assert.Equal(t, randomValidInstanceGcpName, resultingInstanceName)
-	assert.Equal(t, "f1-micro", resultingInstanceType)
-}
-
-func TestUnitVPC(t *testing.T) {
-	t.Parallel()
-	randomValidNetworkGcpName := gcp.RandomValidGcpName()
-	projectId := gcp.GetGoogleProjectIDFromEnvVar(t)
-	exampleDir := test_structure.CopyTerraformFolderToTemp(t, "../", "examples/gcp/unit/vpc")
-	region := gcp.GetRandomRegion(t, projectId, []string{"us-west1", "us-central1", "us-east1"}, nil)
-	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
-		TerraformDir: exampleDir,
-		Vars: map[string]interface{}{
-			"project_region":     region,
-			"gcp_project_region": region,
-			"main_network_name":  randomValidNetworkGcpName,
-			"google_project":     projectId,
-		},
-		EnvVars: map[string]string{
-			"GOOGLE_PROJECT": projectId,
-		},
-	})
-
-	defer terraform.Destroy(t, terraformOptions)
-	terraform.InitAndApply(t, terraformOptions)
 }

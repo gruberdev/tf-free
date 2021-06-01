@@ -62,12 +62,29 @@ tasks:
       - go mod tidy
       - cd tools && go mod tidy
 
+  docs-gen:
+    desc: Build documentation using Terraform-docs and the task command
+    cmds:
+      - terraform-docs markdown . --output-file README.md
+      - cd modules/aws && terraform-docs markdown . --output-file README.md
+      - cd modules/aws/ec2 && terraform-docs markdown . --output-file README.md
+      - cd modules/aws/firewall && terraform-docs markdown . --output-file README.md
+      - cd modules/aws/vpc && terraform-docs markdown . --output-file README.md
+      - cd modules/aws/subnet && terraform-docs markdown . --output-file README.md
+      - cd modules/aws/gateway && terraform-docs markdown . --output-file README.md
+      - cd modules/aws/rds && terraform-docs markdown . --output-file README.md
+      - cd modules/gcp && terraform-docs markdown . --output-file README.md
+      - cd modules/gcp/compute && terraform-docs markdown . --output-file README.md
+      - cd modules/gcp/firewall && terraform-docs markdown . --output-file README.md
+      - cd modules/gcp/vpc && terraform-docs markdown . --output-file README.md
+  
   docs:
     desc: Initialize module and build cache, and remake go.sum file on root directory.
     cmds:
       - cd docs && docker-compose down || true
       - cd docs && docker build -t tf-free:docs .
       - cd docs && docker-compose up --build -d
+
 
   test:
     desc: Test and print out code coverage as html.
@@ -91,6 +108,12 @@ tasks:
       - go clean -cache || true
       - go clean -modcache || true
 
+  graph:
+    desc: Create beautiful Terraform Graphs
+    cmds:
+      - go get github.com/pcasteran/terraform-graph-beautifier
+      - terraform graph | terraform-graph-beautifier --exclude="module.root.provider" --output-type=cyto-html > graph.html
+
   tf-test-clean:
     desc: Clean cache on Terraform test cache.
     cmds:
@@ -98,16 +121,55 @@ tasks:
       - go clean -cache || true
       - go clean -modcache || true
 
-  tf-test:
-    desc: Terraform testing (all modules)
+  gcp-test:
+    desc: Terraform testing (GCP modules)
     cmds:
-      - cd test && go mod init "github.com/gruberdev/tf-free" && go mod tidy
-      - cd test && go test -v -timeout 10m -run TestIntegrationGCP
+      - cd test/gcp && rm go.mod || true
+      - cd test/gcp && rm go.sum || true
+      - cd test/gcp && go mod init "github.com/gruberdev/tf-free" && go mod tidy
+      - cd test/gcp && go test -v -timeout 10m -run TestIntegrationGCP
+
+  aws-test:
+    desc: Terraform testing (AWS modules)
+    cmds:
+      - cd test/aws && go mod init "github.com/gruberdev/tf-free" && go mod tidy
+      - cd test/aws && go test -v -timeout 5m -run TestUnitEC2
 
   tf-init:
     desc: Terraform standard initialization
     cmds:
       - terraform init -upgrade
+
+  apply:
+    desc: Terraform standard initialization
+    cmds:
+      - terraform apply -auto-approve
+
+  apply-aws:
+    desc: Terraform standard initialization
+    cmds:
+      - cd modules/aws && terraform apply -auto-approve
+
+  apply-gcp:
+    desc: Terraform standard initialization
+    cmds:
+      - cd modules/gcp && terraform apply -auto-approve
+
+  destroy-gcp:
+    desc: Terraform standard initialization
+    cmds:
+      - cd modules/gcp && terraform destroy -auto-approve
+
+  destroy-aws:
+    desc: Terraform standard initialization
+    cmds:
+      - cd modules/aws && terraform destroy -auto-approve
+
+  restart-aws:
+    desc: Terraform standard initialization
+    cmds:
+      - cd modules/aws && terraform destroy -auto-approve
+      - cd modules/aws && terraform apply -auto-approve
 
   tf-clean:
     desc: Terraform standard initialization

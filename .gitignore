@@ -15,10 +15,14 @@ terraform.tfvars
 **/gcp.json/*
 graph.json
 graph.svg
-go.sum
-go.mod
-test/go.sum
+test/*/go.sum
+test/*/go.mod
+test/gcp/go.mod
+test/gcp/go.sum
+test/aws/go.sum
+test/aws/go.mod
 test/go.mod
+test/go.sum
 aws.json
 aws.pub
 **/id_rsa.pub/*
@@ -31,6 +35,10 @@ id_rsa.*
 graph.png
 plan.json
 plan.out
+graph.html
+index.html
+
+
 
 # Documentation / Node.js
 docs/dist/*

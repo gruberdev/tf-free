@@ -25,14 +25,14 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_internet_gateway_id"></a> [internet\_gateway\_id](#input\_internet\_gateway\_id) | The ID of the Internet Gateway | `string` | n/a | yes |
+| <a name="input_name"></a> [name](#input\_name) | The Name of the Route Table | `string` | `"Free Tier Route Table"` | no |
 | <a name="input_public_subnet_id"></a> [public\_subnet\_id](#input\_public\_subnet\_id) | The ID of the Public Subnet | `string` | n/a | yes |
-| <a name="input_route_table_name"></a> [route\_table\_name](#input\_route\_table\_name) | The Name of the Route Table | `string` | `"Free Tier Route Table"` | no |
-| <a name="input_route_table_should_be_created"></a> [route\_table\_should\_be\_created](#input\_route\_table\_should\_be\_created) | Should the Route Table be created? | `bool` | `true` | no |
+| <a name="input_should_be_created"></a> [should\_be\_created](#input\_should\_be\_created) | Should the Route Table be created? | `bool` | `true` | no |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | The ID of the VPC | `string` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_route_table_id"></a> [route\_table\_id](#output\_route\_table\_id) | The ID of the Route Table |
+| <a name="output_id"></a> [id](#output\_id) | The ID of the Route Table |
 <!-- END_TF_DOCS -->

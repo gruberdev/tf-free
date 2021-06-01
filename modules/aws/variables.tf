@@ -10,13 +10,13 @@ variable "region" {
   default     = "us-east-1"
 }
 
-variable "ec2_ssh_key_name" {
+variable "ec2_ssh_name" {
   description = "The SSH Key Name"
   type        = string
   default     = "free-tier-ec2-key"
 }
 
-variable "ec2_ssh_public_key_path" {
+variable "ec2_ssh_public" {
   description = "The local path to the SSH Public Key"
   type        = string
   default     = "aws.pub"

@@ -68,6 +68,27 @@ go test
 
 ### Inputs
 
+
+| Name | Description | Type | Default |
+|------|-------------|------|---------|
+| aws\_account\_id | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | n/a |
+| aws\_account\_key | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | n/a |
+| aws\_default\_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-west-2"` |
+| gcp\_instance\_name | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"gcp-machine"` |
+| gcp\_project\_id | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `""` |
+| gcp\_project\_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-west1"` |
+
+### Outputs
+
+| Name | Description |
+|------|-------------|
+| aws\_ec2\_ipv6\_addresses | List of assigned IPv6 addresses of instances |
+| aws\_ec2\_names | List of key names of instances |
+| aws\_ec2\_password\_data | List of Base-64 encoded encrypted password data for the instance |
+| aws\_ec2\_private\_ip | List of private IP addresses assigned to the instances |
+| aws\_ec2\_public\_ip | List of public IP addresses assigned to the instances, if applicable |
+| gcp\_public\_ip | n/a |
+=======
 | Name               | Description                                                                                                                                                                  | Type     | Default         |
 | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | --------------- |
 | aws_account_id     | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | n/a             |
@@ -81,7 +102,6 @@ go test
 | Name          | Description |
 | ------------- | ----------- |
 | gcp_public_ip | n/a         |
-
 <!-- END_TF_DOCS -->
 
 </details>

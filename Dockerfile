@@ -58,8 +58,6 @@ RUN apk add --update --no-cache \
  && python3 -m ensurepip \
  && pip3 install --no-cache --upgrade pip setuptools pre-commit
 
-RUN 
-
 RUN curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin \
  && golangci-lint --version
 

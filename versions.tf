@@ -17,13 +17,13 @@ terraform {
 }
 
 provider "aws" {
-  region     = "us-west-2"
-  access_key = "example"
-  secret_key = "example"
+  region     = var.aws_default_region
+  access_key = var.aws_account_id
+  secret_key = var.aws_account_key
 }
 
 provider "google-beta" {
-  project     = var.google_project
+  project     = var.gcp_project_id
   region      = var.gcp_project_region
   credentials = file("gcp.json")
 }
