@@ -1,9 +1,9 @@
 <!-- BEGIN_TF_DOCS -->
-# Modules
+### Modules
 
 No modules.
 
-# Inputs
+### Inputs
 
 | Name | Description | Type | Default |
 |------|-------------|------|---------|
@@ -19,7 +19,7 @@ No modules.
 | ssh\_public | The local path to the SSH Public Key | `string` | n/a |
 | vpc\_id | The ID of the VPC | `string` | n/a |
 
-# Outputs
+### Outputs
 
 | Name | Description |
 |------|-------------|

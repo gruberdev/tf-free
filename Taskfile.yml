@@ -65,18 +65,18 @@ tasks:
   docs-gen:
     desc: Build documentation using Terraform-docs and the task command
     cmds:
-      - terraform-docs markdown . --output-file README.md
-      - terraform-docs markdown -c .terraform-docs.yml  ./modules/aws --output-file README.md --header-from "header.md"
+      - terraform-docs markdown -c .terraform-docs.yml . --output-file README.md
+      - terraform-docs markdown -c .terraform-docs.yml ./modules/aws --output-file README.md --header-from "header.md"
       - terraform-docs markdown -c .terraform-docs.yml ./modules/aws/ec2 --output-file README.md
-      - cd modules/aws/firewall && terraform-docs markdown . --output-file README.md
-      - cd modules/aws/vpc && terraform-docs markdown . --output-file README.md
-      - cd modules/aws/subnet && terraform-docs markdown . --output-file README.md
-      - cd modules/aws/gateway && terraform-docs markdown . --output-file README.md
-      - cd modules/aws/rds && terraform-docs markdown . --output-file README.md
-      - cd modules/gcp && terraform-docs markdown . --output-file README.md
-      - cd modules/gcp/compute && terraform-docs markdown . --output-file README.md
-      - cd modules/gcp/firewall && terraform-docs markdown . --output-file README.md
-      - cd modules/gcp/vpc && terraform-docs markdown . --output-file README.md
+      - terraform-docs markdown -c .terraform-docs.yml ./modules/aws/firewall  --output-file README.md
+      - terraform-docs markdown -c .terraform-docs.yml ./modules/aws/vpc  --output-file README.md
+      - terraform-docs markdown -c .terraform-docs.yml ./modules/aws/subnet  --output-file README.md
+      - terraform-docs markdown -c .terraform-docs.yml ./modules/aws/gateway  --output-file README.md
+      - terraform-docs markdown -c .terraform-docs.yml ./modules/aws/rds  --output-file README.md
+      - terraform-docs markdown -c .terraform-docs.yml ./modules/gcp  --output-file README.md
+      - terraform-docs markdown -c .terraform-docs.yml ./modules/gcp/compute --output-file README.md
+      - terraform-docs markdown -c .terraform-docs.yml ./modules/gcp/firewall --output-file README.md
+      - terraform-docs markdown -c .terraform-docs.yml ./modules/gcp/vpc --output-file README.md
 
   docs:
     desc: Initialize module and build cache, and remake go.sum file on root directory.

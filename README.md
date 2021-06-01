@@ -58,14 +58,14 @@ go test
 ---
 
 <!-- BEGIN_TF_DOCS -->
-# Modules
+### Modules
 
 | Name | Source | Version |
 |------|--------|---------|
 | amazon\_aws | ./modules/aws |  |
 | google\_cloud | github.com/gruberdev/tf-free/modules/gcp |  |
 
-# Inputs
+### Inputs
 
 | Name | Description | Type | Default |
 |------|-------------|------|---------|
@@ -76,7 +76,7 @@ go test
 | gcp\_project\_id | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `""` |
 | gcp\_project\_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-west1"` |
 
-# Outputs
+### Outputs
 
 | Name | Description |
 |------|-------------|
