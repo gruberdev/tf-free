@@ -187,6 +187,7 @@ tasks:
       - echo $GOOGLE_KEY > gcp.json
       - export $GOOGLE_APPLICATION_CREDENTIALS=$GOOGLE_APPLICATION_CREDENTIALS
       - echo $GOOGLE_KEY > examples/gcp/e2e/gcp.json
+      - echo "test"
       - echo $GOOGLE_KEY > examples/gcp/unit/compute/gcp.json
       - echo $GOOGLE_KEY > examples/gcp/unit/vpc/gcp.json
       - echo $GOOGLE_KEY > modules/gcp/compute/gcp.json
