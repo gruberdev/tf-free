@@ -8,6 +8,7 @@ steps:
     commands:
       - apk add curl
       - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
+      - task get-keys
       - task init-drone
       - terraform init
       - terraform plan
@@ -93,7 +94,7 @@ steps:
       - task get-keys
       - task init-drone
       - task drone-gcp
-      - tasp unit-network-gcp
+      - task unit-network-gcp
     when:
       branch:
         include:
