@@ -74,12 +74,12 @@ kind: pipeline
 type: docker
 name: Google Cloud Provider (GCP)
 steps:
-  - name: Unit Compute
+  - name: Setup
     image: golang:1.16.4-alpine
     commands:
       - apk add curl
-      - rm -rf /root/keys && mkdir -p /root/keys && echo $GOOGLE_KEY > $GOOGLE_APPLICATION_CREDENTIALS/application_default_credentials.json
-      - export GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_APPLICATION_CREDENTIALS}/application_default_credentials.json
+      - rm -rf /root/keys && mkdir -p /root/keys && echo $GOOGLE_KEY > /home/keys/application_default_credentials.json
+      - export GOOGLE_APPLICATION_CREDENTIALS=/home/keys/application_default_credentials.json
       - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
       - task get-keys
       - task init-drone
@@ -106,12 +106,44 @@ steps:
       AWS_ACCESS_KEY_ID:
         from_secret: aws_id
 
+  - name: Unit Compute
+    image: golang:1.16.4-alpine
+    commands:
+      - apk add curl
+      - export GOOGLE_APPLICATION_CREDENTIALS=/root/keys/application_default_credentials.json
+      - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
+      - task get-keys
+      - task init-drone
+      - task drone-gcp
+      - task unit-compute-gcp
+    when:
+      branch:
+        include:
+          - master
+          - feature/gcp_*
+      event:
+        - push
+    depends_on:
+      - Setup
+    environment:
+      GOOGLE_PROJECT:
+        from_secret: gcp_project_id
+      GOOGLE_APPLICATION_CREDENTIALS:
+        from_secret: gcp_key_path
+      GOOGLE_KEY:
+        from_secret: gcp_default
+      AWS_DEFAULT_REGION:
+        from_secret: aws_region
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: aws_key
+      AWS_ACCESS_KEY_ID:
+        from_secret: aws_id
+
   - name: Unit Networking
     image: golang:1.16.4-alpine
     commands:
       - apk add curl
-      - rm -rf /root/keys && mkdir -p /root/keys && echo $GOOGLE_KEY > $GOOGLE_APPLICATION_CREDENTIALS/application_default_credentials.json
-      - export GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_APPLICATION_CREDENTIALS}/application_default_credentials.json
+      - export GOOGLE_APPLICATION_CREDENTIALS=/root/keys/application_default_credentials.json
       - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
       - task get-keys
       - task init-drone
@@ -124,6 +156,8 @@ steps:
           - feature/gcp_*
       event:
         - push
+    depends_on:
+      - Setup
     environment:
       GOOGLE_PROJECT:
         from_secret: gcp_project_id
@@ -142,8 +176,7 @@ steps:
     image: golang:1.16.4-alpine
     commands:
       - apk add curl
-      - rm -rf /root/keys && mkdir -p /root/keys && echo $GOOGLE_KEY > $GOOGLE_APPLICATION_CREDENTIALS/application_default_credentials.json
-      - export GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_APPLICATION_CREDENTIALS}/application_default_credentials.json
+      - export GOOGLE_APPLICATION_CREDENTIALS=/root/keys/application_default_credentials.json
       - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
       - task get-keys
       - task init-drone
@@ -158,6 +191,7 @@ steps:
         - push
     depends_on:
       - Unit Networking
+      - Setup
     environment:
       GOOGLE_PROJECT:
         from_secret: gcp_project_id
