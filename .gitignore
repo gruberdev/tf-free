@@ -28,6 +28,7 @@ aws.pub
 **/id_rsa.pub/*
 *.tfvars
 terraform.tfvars
+terraform.env.tfvars
 *.pub
 id_rsa.*
 **/id_rsa/*
