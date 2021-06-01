@@ -8,37 +8,56 @@ steps:
     commands:
       - apk add build-base git curl
       - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
-      - echo $GCP_SERVICE_ACCOUNT > gcp.json
+      - echo $GOOGLE_KEY > gcp.json
       - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
       - terraform init
-      - terraform plan
+      - terraform plan -var="aws_account_id=$AWS_ACCOUNT_ID" -var="aws_account_key=$AWS_SECRET_ACCESS_KEY"  -var="aws_default_region=$AWS_DEFAULT_REGION"
     when:
       event:
         - push
         - pull_request
-    environment:
       GOOGLE_PROJECT:
         from_secret: gcp_project_id
-      GCP_SERVICE_ACCOUNT:
-        from_secret: gcp_project_key
+      GOOGLE_KEY:
+        from_secret: gcp_default
+      AWS_DEFAULT_REGION:
+        from_secret: aws_region
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: aws_key
+      AWS_ACCESS_KEY_ID:
+        from_secret: aws_id
 
   - name: tfsec
     image: tfsec/tfsec
     commands:
       - tfsec . -e GCP003,AWS044,GEN003
     when:
+      status:
+        - success
+        - failure
       event:
         - push
         - pull_request
     environment:
       GOOGLE_PROJECT:
         from_secret: gcp_project_id
+      GOOGLE_KEY:
+        from_secret: gcp_default
+      AWS_DEFAULT_REGION:
+        from_secret: aws_region
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: aws_key
+      AWS_ACCESS_KEY_ID:
+        from_secret: aws_id
 
   - name: terrascan
     image: accurics/terrascan
     commands:
       - terrascan scan
     when:
+      status:
+        - success
+        - failure
       event:
         - push
         - pull_request
@@ -46,25 +65,32 @@ steps:
     environment:
       GOOGLE_PROJECT:
         from_secret: gcp_project_id
-
+      GOOGLE_KEY:
+        from_secret: gcp_default
+      AWS_DEFAULT_REGION:
+        from_secret: aws_region
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: aws_key
+      AWS_ACCESS_KEY_ID:
+        from_secret: aws_id
 ---
 kind: pipeline
 type: docker
 name: Google Cloud Provider (GCP)
 steps:
-  - name: setup
+  - name: Setup
     image: golang:1.16.4-alpine
     commands:
       - cd examples/gcp/unit/compute
-      - echo $GCP_SERVICE_ACCOUNT > gcp.json
+      - echo $GOOGLE_KEY > gcp.json
       - cd ../../../../
       - cd examples/gcp/unit/vpc
-      - echo $GCP_SERVICE_ACCOUNT > gcp.json
+      - echo $GOOGLE_KEY > gcp.json
       - cd ../../../../
       - cd examples/gcp/e2e
-      - echo $GCP_SERVICE_ACCOUNT > gcp.json
+      - echo $GOOGLE_KEY > gcp.json
       - cd ../../../
-      - cd test
+      - cd test/gcp
       - go mod init "github.com/gruberdev/tf-free"
       - go mod tidy
     when:
@@ -77,8 +103,14 @@ steps:
     environment:
       GOOGLE_PROJECT:
         from_secret: gcp_project_id
-      GCP_SERVICE_ACCOUNT:
-        from_secret: gcp_project_key
+      GOOGLE_KEY:
+        from_secret: gcp_default
+      AWS_DEFAULT_REGION:
+        from_secret: aws_region
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: aws_key
+      AWS_ACCESS_KEY_ID:
+        from_secret: aws_id
 
   - name: Unit Compute
     image: golang:1.16.4-alpine
@@ -86,11 +118,9 @@ steps:
       - apk add build-base git curl
       - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
       - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/examples/gcp/unit/compute/gcp.json
-      - cd test
+      - cd test/gcp
       - go mod tidy
       - go test -v -timeout 5m -run TestUnitCompute
-    depends_on:
-      - setup
     when:
       branch:
         include:
@@ -98,9 +128,19 @@ steps:
           - feature/gcp_*
       event:
         - push
+    depends_on:
+      - Setup
     environment:
       GOOGLE_PROJECT:
         from_secret: gcp_project_id
+      GOOGLE_KEY:
+        from_secret: gcp_default
+      AWS_DEFAULT_REGION:
+        from_secret: aws_region
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: aws_key
+      AWS_ACCESS_KEY_ID:
+        from_secret: aws_id
 
   - name: Unit Networking
     image: golang:1.16.4-alpine
@@ -108,11 +148,9 @@ steps:
       - apk add build-base git curl
       - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
       - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/examples/gcp/unit/vpc/gcp.json
-      - cd test
+      - cd test/gcp
       - go mod tidy
       - go test -v -timeout 5m -run TestUnitVPC
-    depends_on:
-      - setup
     when:
       branch:
         include:
@@ -120,9 +158,19 @@ steps:
           - feature/gcp_*
       event:
         - push
+    depends_on:
+      - Setup
     environment:
       GOOGLE_PROJECT:
         from_secret: gcp_project_id
+      GOOGLE_KEY:
+        from_secret: gcp_default
+      AWS_DEFAULT_REGION:
+        from_secret: aws_region
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: aws_key
+      AWS_ACCESS_KEY_ID:
+        from_secret: aws_id
 
   - name: Integration Core Provider
     image: golang:1.16.4-alpine
@@ -130,20 +178,30 @@ steps:
       - apk add build-base git curl
       - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
       - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/examples/gcp/e2e/gcp.json
-      - cd test
+      - cd test/gcp
       - go mod tidy
       - go test -v -timeout 10m -run TestIntegrationGCP
     when:
       branch:
-        - master
+        include:
+          - master
+          - feature/gcp_*
       event:
         - push
     depends_on:
-      - setup
       - Unit Networking
+      - Setup
     environment:
       GOOGLE_PROJECT:
         from_secret: gcp_project_id
+      GOOGLE_KEY:
+        from_secret: gcp_default
+      AWS_DEFAULT_REGION:
+        from_secret: aws_region
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: aws_key
+      AWS_ACCESS_KEY_ID:
+        from_secret: aws_id
 
 ---
 kind: pipeline

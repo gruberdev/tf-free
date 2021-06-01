@@ -61,11 +61,6 @@ go test
 
 ### Modules
 
-| Name         | Source                                   | Version |
-| ------------ | ---------------------------------------- | ------- |
-| amazon_aws   | ./modules/aws                            |         |
-| google_cloud | github.com/gruberdev/tf-free/modules/gcp |         |
-
 ### Inputs
 
 
@@ -83,7 +78,6 @@ go test
 | Name | Description |
 |------|-------------|
 | aws\_ec2\_ipv6\_addresses | List of assigned IPv6 addresses of instances |
-| aws\_ec2\_names | List of key names of instances |
 | aws\_ec2\_password\_data | List of Base-64 encoded encrypted password data for the instance |
 | aws\_ec2\_private\_ip | List of private IP addresses assigned to the instances |
 | aws\_ec2\_public\_ip | List of public IP addresses assigned to the instances, if applicable |

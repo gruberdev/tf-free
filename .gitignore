@@ -9,6 +9,7 @@ override.tf.json
 *_override.tf.json
 **/.terraform.lock.hcl/*
 .terraform.lock.hcl
+.terraform
 *tfplan*
 gcp.json
 terraform.tfvars
@@ -28,6 +29,7 @@ aws.pub
 **/id_rsa.pub/*
 *.tfvars
 terraform.tfvars
+terraform.env.tfvars
 *.pub
 id_rsa.*
 **/id_rsa/*
