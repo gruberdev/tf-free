@@ -6,7 +6,7 @@ steps:
   - name: plan
     image: golang:1.16.4-alpine
     commands:
-      - apk add
+      - apk add curl
       - rm -rf /root/keys && mkdir -p /root/keys && echo $GOOGLE_KEY > $GOOGLE_APPLICATION_CREDENTIALS/application_default_credentials.json
       - export GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_APPLICATION_CREDENTIALS}/application_default_credentials.json
       - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
