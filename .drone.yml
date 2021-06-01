@@ -6,18 +6,11 @@ steps:
   - name: plan
     image: golang:1.16.4-alpine
     commands:
-      - apk add curl bash dos2unix grep
-      - rm -rf /root/keys && mkdir -p /root/keys && echo $GOOGLE_KEY >> /root/keys/application_default_credentials_tmp.json
-      - dos2unix /root/keys/application_default_credentials_tmp.json && grep -Ev "^#|^$" /root/keys/application_default_credentials_tmp.json >> /root/keys/application_default_credentials.json &
-      - echo $AWS_SECRET_ACCESS_KEY >> /root/keys/aws_secret_key_id_2
-      - echo $AWS_ACCESS_KEY_ID >> /root/keys/
-      - echo $AWS_DEFAULT_REGION >> /root/keys/aws_region_2
-      - dos2unix /root/keys/aws_key_id_2 && grep -Ev "^#|^$" /root/keys/aws_key_id_2 >> /root/keys/aws_key_id && TF_VAR_aws_account_id=$(cat /root/keys/aws_key_id)
-      - dos2unix /root/keys/aws_secret_key_id_2 && grep -Ev "^#|^$" /root/keys/aws_secret_key_id_2 >> /root/keys/aws_secret_key && TF_VAR_aws_account_key=$(cat /root/keys/aws_secret_key_id)
-      - dos2unix /root/keys/aws_region_2 && grep -Ev "^#|^$" /root/keys/aws_region_2 >> /root/keys/aws_region && TF_VAR_aws_default_region=$(cat /root/keys/aws_region)
-      - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
-      - task init-drone
-      - task tf-init
+      - apk add build-base git curl
+      - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
+      - echo $GCP_SERVICE_ACCOUNT > gcp.json
+      - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
+      - terraform init
       - terraform plan
     when:
       event:
@@ -29,8 +22,14 @@ steps:
         from_secret: gcp_default
       AWS_DEFAULT_REGION:
         from_secret: aws_region
+      TF_VAR_aws_default_region:
+        from_secret: aws_region
+      TF_VAR_aws_account_key:
+        from_secret: aws_key
       AWS_SECRET_ACCESS_KEY:
         from_secret: aws_key
+      TF_VAR_aws_account_id:
+        from_secret: aws_id
       AWS_ACCESS_KEY_ID:
         from_secret: aws_id
 
@@ -88,19 +87,18 @@ steps:
   - name: Setup
     image: golang:1.16.4-alpine
     commands:
-      - apk add curl bash dos2unix grep
-      - rm -rf /root/keys && mkdir -p /root/keys && echo $GOOGLE_KEY >> /root/keys/application_default_credentials_tmp.json
-      - dos2unix /root/keys/application_default_credentials_tmp.json && grep -Ev "^#|^$" /root/keys/application_default_credentials_tmp.json >> /root/keys/application_default_credentials.json
-      - export GOOGLE_APPLICATION_CREDENTIALS=/root/keys/application_default_credentials.json
-      - echo $AWS_DEFAULT_REGION >> /root/keys/aws_region_2
-      - echo $AWS_SECRET_ACCESS_KEY >> /root/keys/aws_secret_key_id_2
-      - echo $AWS_ACCESS_KEY_ID >> /root/keys/aws_key_id_2
-      - dos2unix /root/keys/aws_key_id_2 && grep -Ev "^#|^$" /root/keys/aws_key_id_2 >> /root/keys/aws_key_id && TF_VAR_aws_account_id=$(cat /root/keys/aws_key_id)
-      - dos2unix /root/keys/aws_secret_key_id_2 && grep -Ev "^#|^$" /root/keys/aws_secret_key_id_2 >> /root/keys/aws_secret_key && TF_VAR_aws_account_key=$(cat /root/keys/aws_secret_key_id)
-      - dos2unix /root/keys/aws_region_2 && grep -Ev "^#|^$" /root/keys/aws_region_2 >> /root/keys/aws_region && TF_VAR_aws_default_region=$(cat /root/keys/aws_region)
-      - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
-      - task init-drone
-      - task drone-gcp
+      - cd examples/gcp/unit/compute
+      - echo $GCP_DEFAULT > gcp.json
+      - cd ../../../../
+      - cd examples/gcp/unit/vpc
+      - echo $GCP_DEFAULT` > gcp.json
+      - cd ../../../../
+      - cd examples/gcp/e2e
+      - echo $GCP_DEFAULT > gcp.json
+      - cd ../../../
+      - cd test/gcp
+      - go mod init "github.com/gruberdev/tf-free"
+      - go mod tidy
     when:
       branch:
         include:
@@ -123,14 +121,12 @@ steps:
   - name: Unit Compute
     image: golang:1.16.4-alpine
     commands:
-      - apk add curl bash dos2unix grep
-      - rm -rf /root/keys && mkdir -p /root/keys && echo $GOOGLE_KEY >> /root/keys/application_default_credentials_tmp.json
-      - dos2unix /root/keys/application_default_credentials_tmp.json && grep -Ev "^#|^$" /root/keys/application_default_credentials_tmp.json >> /root/keys/application_default_credentials.json
-      - export GOOGLE_APPLICATION_CREDENTIALS=/root/keys/application_default_credentials.json
-      - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
-      - task init-drone
-      - task drone-gcp
-      - task unit-compute-gcp
+      - apk add build-base git curl
+      - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
+      - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/examples/gcp/unit/compute/gcp.json
+      - cd test/gcp
+      - go mod tidy
+      - go test -v -timeout 5m -run TestUnitCompute
     when:
       branch:
         include:
@@ -155,14 +151,12 @@ steps:
   - name: Unit Networking
     image: golang:1.16.4-alpine
     commands:
-      - apk add curl bash
-      - bash
-      - mkdir -p /root/keys && echo $GOOGLE_KEY > /root/keys/application_default_credentials.json
-      - export GOOGLE_APPLICATION_CREDENTIALS=/root/keys/application_default_credentials.json
-      - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
-      - task init-drone
-      - task drone-gcp
-      - task unit-network-gcp
+      - apk add build-base git curl
+      - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
+      - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/examples/gcp/unit/vpc/gcp.json
+      - cd test/gcp
+      - go mod tidy
+      - go test -v -timeout 5m -run TestUnitVPC
     when:
       branch:
         include:
@@ -187,14 +181,12 @@ steps:
   - name: Integration Core Provider
     image: golang:1.16.4-alpine
     commands:
-      - apk add curl bash dos2unix grep
-      - rm -rf /root/keys && mkdir -p /root/keys && echo $GOOGLE_KEY >> /root/keys/application_default_credentials_tmp.json
-      - dos2unix /root/keys/application_default_credentials_tmp.json && grep -Ev "^#|^$" /root/keys/application_default_credentials_tmp.json >> /root/keys/application_default_credentials.json
-      - export GOOGLE_APPLICATION_CREDENTIALS=/root/keys/application_default_credentials.json
-      - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
-      - task init-drone
-      - task drone-gcp
-      - task integration-gcp
+      - apk add build-base git curl
+      - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
+      - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/examples/gcp/e2e/gcp.json
+      - cd test/gcp
+      - go mod tidy
+      - go test -v -timeout 10m -run TestIntegrationGCP
     when:
       branch:
         include:
