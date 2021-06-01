@@ -9,10 +9,9 @@
 
 ## Motivation
 
-Every major cloud provider offers a free tier that allows for the creation of all kind of resources for every user, albeit both guides and documentation to crate and manage these resources limited, these services have used for the community for useful purposes, from learning how to use each provider from hosting your own small web-server.
+Every major cloud provider offers a free tier that allows for the creation of all kind of resources free of charge, still, learning every cloud and managing these resources could prove burdensome.
 
-The goal of this repository is to allow the automation on creation and management of these resources using Terraform as the central tool. It also aims to provide resources for learning and improv
-ing your skills as a Terraform user. There's also a CLI tool provided for those who want a simplified approach.
+The goal of this repository is to automate the management of these resources using Terraform as the central tool. It also aims to provide resources for learning and improve your skills as a DevOps Engineer and as a Terraform user. A CLI tool is part of this project for those who want a KIS approach.
 
 ## Getting started
 
@@ -59,14 +58,16 @@ go test
 ---
 
 <!-- BEGIN_TF_DOCS -->
+
 ### Modules
 
-| Name | Source | Version |
-|------|--------|---------|
-| amazon\_aws | ./modules/aws |  |
-| google\_cloud | github.com/gruberdev/tf-free/modules/gcp |  |
+| Name         | Source                                   | Version |
+| ------------ | ---------------------------------------- | ------- |
+| amazon_aws   | ./modules/aws                            |         |
+| google_cloud | github.com/gruberdev/tf-free/modules/gcp |         |
 
 ### Inputs
+
 
 | Name | Description | Type | Default |
 |------|-------------|------|---------|
@@ -87,6 +88,20 @@ go test
 | aws\_ec2\_private\_ip | List of private IP addresses assigned to the instances |
 | aws\_ec2\_public\_ip | List of public IP addresses assigned to the instances, if applicable |
 | gcp\_public\_ip | n/a |
+=======
+| Name               | Description                                                                                                                                                                  | Type     | Default         |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | --------------- |
+| aws_account_id     | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | n/a             |
+| aws_account_key    | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | n/a             |
+| gcp_instance_name  | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"gcp-machine"` |
+| gcp_project_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-west1"`    |
+| google_project     | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `""`            |
+
+### Outputs
+
+| Name          | Description |
+| ------------- | ----------- |
+| gcp_public_ip | n/a         |
 <!-- END_TF_DOCS -->
 
 </details>
@@ -137,7 +152,7 @@ go test
 - 1x [Route Table](aws-route-info) integrating all `VPC`, `Subnet` and the `Internet Gateway (IGW)`
 - 1x [EC2 Instance](aws-ec2-info) attached to the `Subnet`
 - 1x [Relational Database (RDS)](aws-rds-info) of your choice (e.g. MySQL, PostgreSQL)
-- 1x [S3 Storage-Bucket](aws-s3-info) inside `Subnet`, configured to store the Terraform's backend state
+- 1x [S3 Storage Bucket](aws-s3-info) inside `Subnet`, configured to store the Terraform's backend state
 - 1x [DynamoDB Database](aws-dynamodb-info), mainly used for preventing that running multiple instances of this Terraform chart corrupt each other.
 
 ### Requirements

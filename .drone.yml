@@ -153,11 +153,37 @@ steps:
   - name: build_static
     image: node:14.4
     commands:
+      - mkdir -p ~/.ssh
+      - chmod 700 ~/.ssh
+      - echo -e "Host *\n\tStrictHostKeyChecking no\n\tIdentityFile ~/ssh_key\n\n" > ~/.ssh/config
+      - echo -e "$SSH_KEY" > ~/ssh_key
+      - chmod 600 ~/ssh_key
+      - apt-get update && apt-get install -y git openssh-server openssh-client
       - npm install -g @codedoc/cli
+      - codedoc check
       - codedoc install
       - codedoc build
+      - mkdir .public
+      - cp -r docs/build/* .public
+      - mv .public public
+      - git config --global url.'https://${GITHUB_USER}:${GITHUB_PW}@github.com'.insteadOf 'https://github.com'
+      - git clone $DOCS_REPO_URL
+      - cp -r public/* $DOCS_REPO/ && cd $DOCS_REPO
+      - git add . && git commit -a -m "updated docs" && git push
     when:
       branch:
         - master
+        - docs
       event:
         - push
+    environment:
+      SSH_KEY:
+        from_secret: ssh_id
+      DOCS_REPO:
+        from_secret: docs_dir_name
+      DOCS_REPO_URL:
+        from_secret: repository_url
+      GITHUB_USER:
+        from_secret: github_user
+      GITHUB_PW:
+        from_secret: github_token
