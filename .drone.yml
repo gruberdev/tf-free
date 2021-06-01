@@ -76,6 +76,7 @@ steps:
     image: golang:1.16.4-alpine
     commands:
       - apk add curl
+      - rm -rf /root/keys && mkdir -p /root/keys && echo $GOOGLE_KEY > $GOOGLE_APPLICATION_CREDENTIALS
       - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
       - task get-keys
       - task init-drone
@@ -106,6 +107,7 @@ steps:
     image: golang:1.16.4-alpine
     commands:
       - apk add curl
+      - rm -rf /root/keys && mkdir -p /root/keys && echo $GOOGLE_KEY > $GOOGLE_APPLICATION_CREDENTIALS
       - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
       - task get-keys
       - task init-drone
@@ -136,6 +138,7 @@ steps:
     image: golang:1.16.4-alpine
     commands:
       - apk add curl
+      - rm -rf /root/keys && mkdir -p /root/keys && echo $GOOGLE_KEY > $GOOGLE_APPLICATION_CREDENTIALS
       - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
       - task get-keys
       - task init-drone

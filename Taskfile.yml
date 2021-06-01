@@ -185,7 +185,6 @@ tasks:
     desc: Get GCP keys
     cmds:
       - echo $GOOGLE_KEY > gcp.json
-      - rm -rf /root/keys && mkdir -p /root/keys && echo $GOOGLE_KEY > $GOOGLE_APPLICATION_CREDENTIALS
       - export $GOOGLE_APPLICATION_CREDENTIALS=$GOOGLE_APPLICATION_CREDENTIALS
       - echo $GOOGLE_KEY > examples/gcp/e2e/gcp.json
       - echo $GOOGLE_KEY > examples/gcp/unit/compute/gcp.json
