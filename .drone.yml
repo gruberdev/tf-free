@@ -13,9 +13,9 @@ steps:
       - echo $AWS_DEFAULT_REGION >> /root/keys/aws_region_2
       - echo $AWS_SECRET_ACCESS_KEY >> /root/keys/aws_secret_key_id_2
       - echo $AWS_ACCESS_KEY_ID >> /root/keys/aws_key_id_2
-      - dos2unix /root/keys/aws_key_id && grep -Ev "^#|^$" /root/keys/aws_key_id_2 >> /root/keys/aws_key_id && TF_VAR_aws_account_id=$(cat /root/keys/aws_key_id)
-      - dos2unix /root/keys/aws_secret_key_id && grep -Ev "^#|^$" aws_secret_key_id_2 >> /root/keys/aws_secret_key && &&  TF_VAR_aws_account_key=$(cat /root/keys/aws_secret_key_id)
-      - dos2unix /root/keys/aws_region && grep -Ev "^#|^$" /root/keys/aws_region_2 >> /root/keys/aws_region && TF_VAR_aws_default_region=$(cat /root/keys/aws_region)
+      - dos2unix /root/keys/aws_key_id_2 && grep -Ev "^#|^$" /root/keys/aws_key_id_2 >> /root/keys/aws_key_id && TF_VAR_aws_account_id=$(cat /root/keys/aws_key_id)
+      - dos2unix /root/keys/aws_secret_key_id_2 && grep -Ev "^#|^$" aws_secret_key_id_2 >> /root/keys/aws_secret_key && &&  TF_VAR_aws_account_key=$(cat /root/keys/aws_secret_key_id)
+      - dos2unix /root/keys/aws_region_2 && grep -Ev "^#|^$" /root/keys/aws_region_2 >> /root/keys/aws_region && TF_VAR_aws_default_region=$(cat /root/keys/aws_region)
       - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
       - task init-drone
       - task tf-init
@@ -96,9 +96,9 @@ steps:
       - echo $AWS_DEFAULT_REGION >> /root/keys/aws_region_2
       - echo $AWS_SECRET_ACCESS_KEY >> /root/keys/aws_secret_key_id_2
       - echo $AWS_ACCESS_KEY_ID >> /root/keys/aws_key_id_2
-      - dos2unix /root/keys/aws_key_id && grep -Ev "^#|^$" /root/keys/aws_key_id_2 >> /root/keys/aws_key_id && TF_VAR_aws_account_id=$(cat /root/keys/aws_key_id)
-      - dos2unix /root/keys/aws_secret_key_id && grep -Ev "^#|^$" aws_secret_key_id_2 >> /root/keys/aws_secret_key && &&  TF_VAR_aws_account_key=$(cat /root/keys/aws_secret_key_id)
-      - dos2unix /root/keys/aws_region && grep -Ev "^#|^$" /root/keys/aws_region_2 >> /root/keys/aws_region && TF_VAR_aws_default_region=$(cat /root/keys/aws_region)
+      - dos2unix /root/keys/aws_key_id_2 && grep -Ev "^#|^$" /root/keys/aws_key_id_2 >> /root/keys/aws_key_id && TF_VAR_aws_account_id=$(cat /root/keys/aws_key_id)
+      - dos2unix /root/keys/aws_secret_key_id_2 && grep -Ev "^#|^$" aws_secret_key_id_2 >> /root/keys/aws_secret_key && &&  TF_VAR_aws_account_key=$(cat /root/keys/aws_secret_key_id)
+      - dos2unix /root/keys/aws_region_2 && grep -Ev "^#|^$" /root/keys/aws_region_2 >> /root/keys/aws_region && TF_VAR_aws_default_region=$(cat /root/keys/aws_region)
       - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
       - task init-drone
       - task drone-gcp
