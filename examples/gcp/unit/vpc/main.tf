@@ -12,6 +12,7 @@ provider "google-beta" {
 
 module "gcp_vpc" {
   vpc_name       = var.gcp_network_name
+  static_ip_name = var.gcp_ipv4_name
   source         = "../../../../modules/gcp/vpc"
   google_project = var.gcp_project_id
 }
