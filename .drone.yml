@@ -7,12 +7,11 @@ steps:
     image: golang:1.16.4-alpine
     commands:
       - apk add curl
-      - rm -rf /root/keys && mkdir -p /root/keys && echo $GOOGLE_KEY > $GOOGLE_APPLICATION_CREDENTIALS/application_default_credentials.json
-      - export GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_APPLICATION_CREDENTIALS}/application_default_credentials.json
+      - rm -rf /root/keys && mkdir -p /root/keys && echo $GOOGLE_KEY > /root/keys/application_default_credentials.json
+      - export GOOGLE_APPLICATION_CREDENTIALS=/root/keys/application_default_credentials.json
       - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
-      - task get-keys
       - task init-drone
-      - terraform init
+      - task tf-init
       - terraform plan
     when:
       event:
