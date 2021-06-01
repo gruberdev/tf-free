@@ -1,13 +1,13 @@
 provider "google" {
   project     = var.gcp_project_id
   region      = var.gcp_project_region
-  credentials = file("/root/keys/application_default_credentials.json")
+  credentials = file("gcp.json")
 
 }
 provider "google-beta" {
   project     = var.gcp_project_id
   region      = var.gcp_project_region
-  credentials = file("/root/keys/application_default_credentials.json")
+  credentials = file("gcp.json")
 }
 
 module "google_cloud" {
