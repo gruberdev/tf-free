@@ -14,13 +14,42 @@ The goal of this repository is to automate the management of these resources usi
 
 ## Getting started
 
+There are three main ways to bootstrap this project:
+
+1. Use the Terraform's module directly
+2. Use the CLI tool
+3. Use each module manually
+
+The first method is exemplified below:
+
+```hcl | /example/main.tf
+// Create a main.tf file anywhere with Terraform installed and copy-paste this code
+
+module "tf-free" {
+   source = "github.com/gruberdev/tf-free"
+
+/*!*/   free_enable_aws    = true  // @see [enabling AWS provider documentation](http://www.cplusplus.com/doc/tutorial/functions/)
+/*!*/   enable_s3_backend  = true  // @see [using a remote S3 on AWS reference](http://www.cplusplus.com/doc/tutorial/functions/)
+   aws_account_id     = "your-aws-access-id"
+   aws_account_key    = "your-aws-secret-key"
+   aws_default_region = "us-west1"
+
+/*!*/   free_enable_gcp   =  true // @see [enabling GCP provider documentation](http://www.cplusplus.com/doc/tutorial/functions/)
+   gcp_project_id     = "testing-project-1"
+   gcp_project_region = "us-west-1"
+   gcp_instance_name  = "gcp-machine"
+}
 ```
-curl -s https://free.terraform.gruber.dev.br/setup.sh | bash
-```
+
+<br>
+
+If you're unsure what your credentials are for each cloud provider, take a look at [Obtaining credentials]().
 
 > :Buttons
 >
 > > :Button icon=true, label=double_arrow, url=https://github.com
+
+---
 
 <!-- Images URLs -->
 
