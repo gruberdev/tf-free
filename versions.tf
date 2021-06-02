@@ -3,7 +3,7 @@ terraform {
   required_providers {
     google-beta = {
       source  = "hashicorp/google-beta"
-      version = "3.69.0"
+      version = "3.70.0"
     }
     aws = {
       source  = "hashicorp/aws"
