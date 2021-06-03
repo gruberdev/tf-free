@@ -35,7 +35,7 @@ module "ec2" {
   public_subnet_id = module.public_subnet.id
 
   ssh_name   = var.ec2_ssh_name
-  ssh_public = var.ec2_ssh_public
+  ssh_public = file(var.ec2_ssh_public)
 }
 
 module "rds" {

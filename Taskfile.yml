@@ -144,8 +144,16 @@ tasks:
   apply:
     desc: Terraform standard initialization
     cmds:
+      - terraform init
       - terraform apply -auto-approve
       - terraform init -force-copy
+
+  destroy:
+    desc: Terraform standard initialization
+    cmds:
+      - terraform apply -target module.terraform_state_backend -auto-approve
+      - terraform init -force-copy
+      - terraform destroy -auto-approve
 
   apply-aws:
     desc: Terraform standard initialization
@@ -187,14 +195,18 @@ tasks:
   tf-clean:
     desc: Terraform standard initialization
     cmds:
-      - rm -rf ./.terraform
-      - rm terraform.tfstate
-      - rm terraform.tfstate.backup
-      - rm ./.terraform.lock.hcl
-      - cd modules && cd gcp && rm -rf ./.terraform && rm ./.terraform.lock.hcl
-      - cd modules && cd gcp && cd vpc && rm -rf ./.terraform && rm ./.terraform.lock.hcl
-      - cd modules && cd gcp && cd firewall && rm -rf ./.terraform && rm ./.terraform.lock.hcl
-      - cd modules && cd gcp && cd compute && rm -rf ./.terraform && rm ./.terraform.lock.hc
+      - rm -rf ./.terraform || true
+      - rm terraform.tfstate || true
+      - rm terraform.tfstate.backup || true
+      - rm ./.terraform.lock.hcl || true
+      - cd modules && cd gcp && rm -rf ./.terraform && rm ./.terraform.lock.hcl || true
+      - cd modules && cd gcp && cd vpc && rm -rf ./.terraform && rm ./.terraform.lock.hcl || true
+      - cd modules && cd gcp && cd firewall && rm -rf ./.terraform && rm ./.terraform.lock.hcl || true
+      - cd modules && cd gcp && cd compute && rm -rf ./.terraform && rm ./.terraform.lock.hcl || true
+      - cd modules && cd aws && rm -rf ./.terraform && rm ./.terraform.lock.hcl || true
+      - cd modules && cd aws && cd ec2 && rm -rf ./.terraform && rm ./.terraform.lock.hcl || true
+      - cd modules && cd aws && cd vpc && rm -rf ./.terraform && rm ./.terraform.lock.hcl || true
+      - cd modules && cd aws && cd firewall && rm -rf ./.terraform && rm ./.terraform.lock.hcl || true
 
   init-drone:
     desc: Terraform standard initialization
@@ -212,10 +224,12 @@ tasks:
     desc: Terraform standard initialization
     cmds:
       - cd test/gcp && go test -v -timeout 5m -run TestUnitCompute
+
   unit-network-gcp:
     desc: Terraform standard initialization
     cmds:
       - cd test/gcp && go test -v -timeout 5m -run TestUnitVPC
+
   integration-gcp:
     desc: Terraform standard initialization
     cmds:

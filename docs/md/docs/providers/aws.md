@@ -17,6 +17,11 @@
 - EC2 Machines and RDS Databases are limited to `t3.micro` and `db.t2.micro` types respectively.
 - AWS provides the free-tier resource usage for all their [global regions](aws-regions) except China (Beijing).
 
+#### Requirements
+
+- **An active account on AWS** | See: \_[Getting started on AWS](aws-account-create)
+- **[Valid Access keys to AWS Account](aws-keys-info)** | See: _[Generating your access keys](aws-keys-create)_
+
 ## Options
 
 ### Examples
