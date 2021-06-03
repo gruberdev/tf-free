@@ -126,6 +126,8 @@ tasks:
       - cd test/gcp && rm go.mod || true
       - cd test/gcp && rm go.sum || true
       - cd test/gcp && go mod init "github.com/gruberdev/tf-free" && go mod tidy
+      - cd test/gcp && go test -v -timeout 5m -run TestUnitCompute
+      - cd test/gcp && go test -v -timeout 5m -run TestUnitVPC
       - cd test/gcp && go test -v -timeout 10m -run TestIntegrationGCP
 
   aws-test:

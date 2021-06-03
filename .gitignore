@@ -11,11 +11,20 @@ override.tf.json
 .terraform.lock.hcl
 .terraform
 *tfplan*
-gcp.json
 terraform.tfvars
-**/gcp.json/*
 graph.json
 graph.svg
+*.tfvars
+terraform.tfvars
+terraform.env.tfvars
+*.tfstate.*
+graph.png
+plan.json
+plan.out
+graph.html
+index.html
+
+# Go project-related
 test/*/go.sum
 test/*/go.mod
 test/gcp/go.mod
@@ -24,23 +33,16 @@ test/aws/go.sum
 test/aws/go.mod
 test/go.mod
 test/go.sum
+
+# credentials
 aws.json
 aws.pub
-**/id_rsa.pub/*
-*.tfvars
-terraform.tfvars
-terraform.env.tfvars
+**/gcp.json/*
+gcp.json
 *.pub
+**/id_rsa.pub/*
 id_rsa.*
 **/id_rsa/*
-*.tfstate.*
-graph.png
-plan.json
-plan.out
-graph.html
-index.html
-
-
 
 # Documentation / Node.js
 docs/dist/*
