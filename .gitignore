@@ -23,6 +23,7 @@ plan.json
 plan.out
 graph.html
 index.html
+backend.tf
 
 # Terraform Backend
 .terraform.tfstate.lock.info
