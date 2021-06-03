@@ -18,9 +18,9 @@ variable "google_project" {
 
 variable "network_name" {
   type    = string
-  default = "gcp-core-network"
+  default = "gcp-network"
 }
 variable "instance_ipv4_name" {
   type    = string
-  default = "ipv4-instance-gcp"
+  default = "ipv4-instanc-gcp"
 }

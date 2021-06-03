@@ -145,6 +145,7 @@ tasks:
     desc: Terraform standard initialization
     cmds:
       - terraform apply -auto-approve
+      - terraform init -force-copy
 
   apply-aws:
     desc: Terraform standard initialization
@@ -160,6 +161,17 @@ tasks:
     desc: Terraform standard initialization
     cmds:
       - cd modules/gcp && terraform destroy -auto-approve
+
+  backend-enable:
+    desc: How to transfer the backend to S3 (Remote)
+    cmds:
+      - terraform init -force-copy
+
+  backend-disable:
+    desc: How to destroy the backend stored in S3
+    cmds:
+      - terraform apply -target module.terraform_state_backend -auto-approve
+      - terraform init -force-copy
 
   destroy-aws:
     desc: Terraform standard initialization

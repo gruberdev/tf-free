@@ -24,6 +24,9 @@ plan.out
 graph.html
 index.html
 
+# Terraform Backend
+.terraform.tfstate.lock.info
+
 # Go project-related
 test/*/go.sum
 test/*/go.mod

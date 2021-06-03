@@ -20,33 +20,33 @@
 >
 > > :Collapse label=Google Cloud Platform
 > >
-> > [Available Resources](/docs/resources/providers/gcp/resources)
+> > [Available Resources](/docs/resources/providers/gcp#resources)
 > >
-> > [Configuration Options](/docs/resources/providers/gcp/options)
+> > [Configuration Options](/docs/resources/providers/gcp#options)
 > >
-> > [Examples](/docs/resources/providers/gcp/examples)
+> > [Examples](/docs/resources/providers/gcp#examples)
 > >
-> > [References](/docs/resources/providers/gcp/references)
+> > [References](/docs/resources/providers/gcp#references)
 >
 > > :Collapse label=Amazon Web Services
 > >
-> > [Available Resources](/docs/resources/providers/aws/resources)
+> > [Available Resources](/docs/resources/providers/aws#resources)
 > >
-> > [Configuration Options](/docs/resources/providers/aws/options)
+> > [Configuration Options](/docs/resources/providers/aws#options)
 > >
-> > [Examples](/docs/resources/providers/aws/examples)
+> > [Examples](/docs/resources/providers/aws#examples)
 > >
-> > [References](/docs/resources/providers/aws/references)
+> > [References](/docs/resources/providers/aws#references)
 >
 > > :Collapse label=Microsoft Azure Cloud
 > >
-> > [Available Resources](/docs/resources/providers/azure/resources)
+> > [Available Resources](/docs/resources/providers/azure#resources)
 > >
-> > [Configuration Options](/docs/resources/providers/azure/options)
+> > [Configuration Options](/docs/resources/providers/azure#options)
 > >
-> > [Examples](/docs/resources/providers/azure/examples)
+> > [Examples](/docs/resources/providers/azure#examples)
 > >
-> > [References](/docs/resources/providers/azure/references)
+> > [References](/docs/resources/providers/azure#references)
 
 > :Collapse label="About"
 >
