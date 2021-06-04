@@ -100,7 +100,7 @@ tasks:
       - ./go.mod
       - "**/*.go"
 
-  clean:
+  go-clean:
     desc: Clean cache on root module.
     cmds:
       - rm -f ./go.sum
@@ -113,13 +113,6 @@ tasks:
       - go get github.com/pcasteran/terraform-graph-beautifier
       - terraform graph | terraform-graph-beautifier --exclude="module.root.provider" --output-type=cyto-html > graph.html
 
-  tf-test-clean:
-    desc: Clean cache on Terraform test cache.
-    cmds:
-      - cd test && rm ./go.sum && ./go.mod
-      - go clean -cache || true
-      - go clean -modcache || true
-
   gcp-test:
     desc: Terraform testing (GCP modules)
     cmds:
@@ -130,13 +123,38 @@ tasks:
       - cd test/gcp && go test -v -timeout 5m -run TestUnitVPC
       - cd test/gcp && go test -v -timeout 10m -run TestIntegrationGCP
 
+  full-test-local:
+    desc: Terraform testing (GCP modules)
+    cmds:
+      - cd test/gcp && rm go.mod || true
+      - cd test/gcp && rm go.sum || true
+      - cd test/gcp && go mod init "github.com/gruberdev/tf-free" && go mod tidy
+      - cd test/gcp && go test -v -timeout 5m -run TestUnitCompute
+      - cd test/gcp && go test -v -timeout 5m -run TestUnitVPC
+      - cd test/gcp && go test -v -timeout 10m -run TestIntegrationGCP
+      - cd test/aws && rm go.mod || true
+      - cd test/aws && rm go.sum || true
+      - cd test/aws && go mod init "github.com/gruberdev/tf-free" && go mod tidy
+      - cd test/gcp && go test -v -timeout 5m -run TestUnitEC2
+
   aws-test:
     desc: Terraform testing (AWS modules)
     cmds:
       - cd test/aws && go mod init "github.com/gruberdev/tf-free" && go mod tidy
       - cd test/aws && go test -v -timeout 5m -run TestUnitEC2
 
-  tf-init:
+  apply-local:
+    desc: Terraform standard initialization
+    cmds:
+      - terraform init
+      - terraform apply -auto-approve
+
+  destroy-local:
+    desc: Terraform standard initialization
+    cmds:
+      - terraform destroy -auto-approve
+
+  init:
     desc: Terraform standard initialization
     cmds:
       - terraform init -upgrade
@@ -144,7 +162,7 @@ tasks:
   apply:
     desc: Terraform standard initialization
     cmds:
-      - terraform init
+      - terraform init -reconfigure
       - terraform apply -auto-approve
       - terraform init -force-copy
 
@@ -229,6 +247,11 @@ tasks:
     desc: Terraform standard initialization
     cmds:
       - cd test/gcp && go test -v -timeout 5m -run TestUnitVPC
+
+  unit-ec2-aws:
+    desc: Terraform standard initialization
+    cmds:
+      - cd test/aws && go test -v -timeout 5m -run TestUnitEC2
 
   integration-gcp:
     desc: Terraform standard initialization
