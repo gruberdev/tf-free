@@ -27,52 +27,52 @@ steps:
       AWS_ACCESS_KEY_ID:
         from_secret: aws_id
 
-  - name: tfsec
-    image: tfsec/tfsec
-    commands:
-      - tfsec . -e GCP003,AWS044,GEN003
-    when:
-      status:
-        - success
-        - failure
-      event:
-        - push
-        - pull_request
-    environment:
-      GOOGLE_PROJECT:
-        from_secret: gcp_project_id
-      GOOGLE_KEY:
-        from_secret: gcp_default
-      AWS_DEFAULT_REGION:
-        from_secret: aws_region
-      AWS_SECRET_ACCESS_KEY:
-        from_secret: aws_key
-      AWS_ACCESS_KEY_ID:
-        from_secret: aws_id
+  # - name: tfsec
+  #   image: tfsec/tfsec
+  #   commands:
+  #     - tfsec . -e GCP003,AWS044,GEN003
+  #   when:
+  #     status:
+  #       - success
+  #       - failure
+  #     event:
+  #       - push
+  #       - pull_request
+  #   environment:
+  #     GOOGLE_PROJECT:
+  #       from_secret: gcp_project_id
+  #     GOOGLE_KEY:
+  #       from_secret: gcp_default
+  #     AWS_DEFAULT_REGION:
+  #       from_secret: aws_region
+  #     AWS_SECRET_ACCESS_KEY:
+  #       from_secret: aws_key
+  #     AWS_ACCESS_KEY_ID:
+  #       from_secret: aws_id
 
-  - name: terrascan
-    image: accurics/terrascan
-    commands:
-      - terrascan scan
-    when:
-      status:
-        - success
-        - failure
-      event:
-        - push
-        - pull_request
-        - rollback
-    environment:
-      GOOGLE_PROJECT:
-        from_secret: gcp_project_id
-      GOOGLE_KEY:
-        from_secret: gcp_default
-      AWS_DEFAULT_REGION:
-        from_secret: aws_region
-      AWS_SECRET_ACCESS_KEY:
-        from_secret: aws_key
-      AWS_ACCESS_KEY_ID:
-        from_secret: aws_id
+  # - name: terrascan
+  #   image: accurics/terrascan
+  #   commands:
+  #     - terrascan scan
+  #   when:
+  #     status:
+  #       - success
+  #       - failure
+  #     event:
+  #       - push
+  #       - pull_request
+  #       - rollback
+  #   environment:
+  #     GOOGLE_PROJECT:
+  #       from_secret: gcp_project_id
+  #     GOOGLE_KEY:
+  #       from_secret: gcp_default
+  #     AWS_DEFAULT_REGION:
+  #       from_secret: aws_region
+  #     AWS_SECRET_ACCESS_KEY:
+  #       from_secret: aws_key
+  #     AWS_ACCESS_KEY_ID:
+  #       from_secret: aws_id
 ---
 kind: pipeline
 type: docker
