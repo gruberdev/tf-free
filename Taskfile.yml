@@ -169,7 +169,7 @@ tasks:
   destroy:
     desc: Terraform standard initialization
     cmds:
-      - terraform apply -target module.terraform_state_backend -auto-approve
+      - terraform apply -var backend_destroy=true -target module.terraform_state_backend -auto-approve
       - terraform init -force-copy
       - terraform destroy -auto-approve
 
