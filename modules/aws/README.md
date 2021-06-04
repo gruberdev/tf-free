@@ -8,7 +8,6 @@
 | public\_subnet | ./subnet |  |
 | rds | ./rds |  |
 | route\_table | ./firewall |  |
-| terraform\_state\_backend | cloudposse/tfstate-backend/aws |  |
 | vpc | ./vpc |  |
 
 ### Inputs

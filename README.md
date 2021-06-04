@@ -58,35 +58,34 @@ go test
 ---
 
 <!-- BEGIN_TF_DOCS -->
-
 ### Modules
 
-| Name         | Source        | Version |
-| ------------ | ------------- | ------- |
-| aws          | ./modules/aws |         |
-| google_cloud | ./modules/gcp |         |
+| Name | Source | Version |
+|------|--------|---------|
+| aws | ./modules/aws |  |
+| google\_cloud | ./modules/gcp |  |
+| terraform\_state\_backend | cloudposse/tfstate-backend/aws |  |
 
 ### Inputs
 
-| Name               | Description                                                                                                                                                                  | Type     | Default         |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | --------------- |
-| aws_account_id     | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | n/a             |
-| aws_account_key    | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | n/a             |
-| aws_default_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-west-2"`   |
-| gcp_instance_name  | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"gcp-machine"` |
-| gcp_project_id     | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `""`            |
-| gcp_project_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-west1"`    |
+| Name | Description | Type | Default |
+|------|-------------|------|---------|
+| aws\_account\_id | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | n/a |
+| aws\_account\_key | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | n/a |
+| aws\_default\_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-west-2"` |
+| gcp\_instance\_name | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"gcp-machine"` |
+| gcp\_project\_id | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `""` |
+| gcp\_project\_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-west1"` |
 
 ### Outputs
 
-| Name                   | Description                                                          |
-| ---------------------- | -------------------------------------------------------------------- |
-| aws_ec2_ipv6_addresses | List of assigned IPv6 addresses of instances                         |
-| aws_ec2_password_data  | List of Base-64 encoded encrypted password data for the instance     |
-| aws_ec2_private_ip     | List of private IP addresses assigned to the instances               |
-| aws_ec2_public_ip      | List of public IP addresses assigned to the instances, if applicable |
-| gcp_public_ip          | n/a                                                                  |
-
+| Name | Description |
+|------|-------------|
+| aws\_ec2\_ipv6\_addresses | List of assigned IPv6 addresses of instances |
+| aws\_ec2\_password\_data | List of Base-64 encoded encrypted password data for the instance |
+| aws\_ec2\_private\_ip | List of private IP addresses assigned to the instances |
+| aws\_ec2\_public\_ip | List of public IP addresses assigned to the instances, if applicable |
+| gcp\_public\_ip | n/a |
 <!-- END_TF_DOCS -->
 
 </details>
