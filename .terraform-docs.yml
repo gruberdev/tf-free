@@ -5,6 +5,7 @@ sections:
     - inputs
     - outputs
     - modules
+
 output:
   file: README.md
   mode: inject
