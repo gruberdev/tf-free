@@ -1,4 +1,4 @@
-[![Logo Animation](logo-link)](docs-link)
+[![Logo Animation](https://readme-typing-svg.herokuapp.com?font=Major+Mono+Display&color=00E7F7&size=40&vCenter=true&width=800&height=200&lines=tf-free;cloud+for+free.)](https://free.terraform.gruber.dev.br)
 
 <a href='https://drone.gruber.dev.br/gruberdev/tf-free' target='_blank'>![drone-img]</a>
 <a href='https://free.terraform.gruber.dev.br' target='_blank'>![docs-img]</a>
@@ -211,5 +211,4 @@ Terraform®, Vault®, Hashicorp's logos are Hasicorp's Trademarks or registered 
 [aws-sorted-list]: https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc&awsf.Free%20Tier%20Types=tier%23always-free%7Ctier%2312monthsfree&awsf.Free%20Tier%20Categories=*all
 [aws-dynamodb-info]: https://aws.amazon.com/dynamodb/
 [remote-tfstate-url]: https://github.com/cloudposse/terraform-aws-tfstate-backend
-[logo-link]: https://readme-typing-svg.herokuapp.com?font=Major+Mono+Display&color=1CF791&size=40&vCenter=true&width=800&height=200&lines=tf-free;cloud+for+free.
-[docs-link]: https://free.terraform.gruber.dev.br/
+[remote-tfstate-url]: https://github.com/cloudposse/terraform-aws-tfstate-backend
