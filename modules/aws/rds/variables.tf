@@ -51,5 +51,20 @@ variable "subnet_group_name" {
 variable "db_security_group_name" {
   description = "Instance type for database"
   type        = string
-  default     = "seucrity-db"
+  default     = "security-db"
+}
+
+
+variable "vpc_id" {
+  description = "Instance type for database"
+  type        = string
+}
+
+variable "cidr_blocks" {
+  description = "Instance type for database"
+  type        = string
+}
+variable "database_subnets" {
+  description = "Instance type for database"
+  type        = string
 }

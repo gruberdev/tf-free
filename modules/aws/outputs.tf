@@ -26,8 +26,3 @@ output "ec2_key_name" {
   description = "List of key names of instances"
   value       = module.ec2.names
 }
-
-output "rds_ip_address" {
-  description = "Public IP for your RDS Instance"
-  value       = module.rds.public_ip
-}

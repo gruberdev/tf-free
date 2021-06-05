@@ -31,3 +31,15 @@ variable "account_key" {
   description = "Region for AWS resources"
   type        = string
 }
+
+variable "rds_user" {
+  description = "Region for AWS resources"
+  type        = string
+  default     = "testing"
+}
+
+variable "rds_password" {
+  description = "Region for AWS resources"
+  type        = string
+  default     = "testingdatabase89372934279"
+}

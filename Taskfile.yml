@@ -159,19 +159,25 @@ tasks:
     cmds:
       - terraform init -upgrade
 
-  apply:
+  initialapply:
     desc: Terraform standard initialization
     cmds:
       - terraform init -reconfigure
       - terraform apply -auto-approve
       - terraform init -force-copy
 
-  destroy:
+  lastdestroy:
     desc: Terraform standard initialization
     cmds:
       - terraform apply -var backend_destroy=true -target module.terraform_state_backend -auto-approve
       - terraform init -force-copy
+      - terraform destroy -target  module.aws.module.rds.aws_db_instance.rds -auto-approve
       - terraform destroy -auto-approve
+
+  dbdestroy:
+    desc: Terraform standard initialization
+    cmds:
+      - terraform destroy -target module.aws.module.rds.aws_db_instance.rds -auto-approve
 
   apply-aws:
     desc: Terraform standard initialization
@@ -217,6 +223,10 @@ tasks:
       - rm terraform.tfstate || true
       - rm terraform.tfstate.backup || true
       - rm ./.terraform.lock.hcl || true
+      - rm backend.tf || true
+      - rm errored.tfstate || true
+      - rm graph.html || true
+      - rm index.html || true
       - cd modules && cd gcp && rm -rf ./.terraform && rm ./.terraform.lock.hcl || true
       - cd modules && cd gcp && cd vpc && rm -rf ./.terraform && rm ./.terraform.lock.hcl || true
       - cd modules && cd gcp && cd firewall && rm -rf ./.terraform && rm ./.terraform.lock.hcl || true
