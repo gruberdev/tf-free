@@ -5,46 +5,6 @@ provider "aws" {
   region     = var.region
 }
 
-/* module "vpc" {
-  source = "./vpc"
-}
- */
-#module "public_subnet" {
-#  source = "./subnet"
-#  vpc_id = module.vpc.id
-#}
-
-/* module "internet_gateway" {
-  source = "./gateway"
-
-  vpc_id = module.vpc.id
-}
- */
-/* module "subnets" {
-  source = "cloudposse/dynamic-subnets/aws"
-  # Cloud Posse recommends pinning every module to a specific version
-  # version = "x.x.x"
-  namespace          = "eg"
-  stage              = "test"
-  name               = "app"
-  vpc_id             = module.vpc.id
-  igw_id             = module.internet_gateway.id
-  cidr_block         = "10.0.0.0/16"
-  availability_zones = ["us-east-1a", "us-east-1b"]
-}
-/*
-module "route_table" {
-  source = "./firewall"
-
-  vpc_id              = module.vpc.id
-  internet_gateway_id = module.internet_gateway.id
-  public_subnet_id    = module.subnets.public_subnets_ids
-
-  depends_on = [
-    module.subnets.public_subnets_ids
-  ]
-} */
-
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
 
