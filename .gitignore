@@ -106,3 +106,9 @@ dist
 
 # .vscode
 .vscode
+
+# Artifacts docker-slim
+slim.report.json
+Dockerfile.fat 
+creport.jsondiff
+*.report.json
