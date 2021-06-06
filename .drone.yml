@@ -13,10 +13,6 @@ steps:
       - sudo mv terraform /usr/local/bin/terraform
       - echo $GOOGLE_KEY > gcp.json
       - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
-      - cd scripts && chmod +x plan.sh
-      - echo "aws_account_id = ${AWS_ACCOUNT_ID}" >> terraform.tfvars
-      - echo "aws_account_key = ${AWS_SECRET_ACCESS_KEY}" >> terraform.tfvars
-      - echo "aws_default_region = ${AWS_DEAFULT_REGION}" >> terraform.tfvars
       - terraform init
       - terraform plan
     when:
