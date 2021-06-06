@@ -14,7 +14,7 @@ steps:
       - echo $GOOGLE_KEY > gcp.json
       - dos2unix gcp.json
       - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
-      - terraform init
+      - terraform init -reconfigure
       - terraform plan
     when:
       event:
