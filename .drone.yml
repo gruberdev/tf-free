@@ -22,6 +22,7 @@ steps:
     when:
       event:
         - push
+    environment:
       GOOGLE_PROJECT:
         from_secret: gcp_project_id
       GOOGLE_KEY:
