@@ -19,7 +19,7 @@ variable "ec2_ssh_name" {
 variable "ec2_ssh_public" {
   description = "The local path to the SSH Public Key"
   type        = string
-  default     = "aws.pub"
+  default     = "~/.aws.pub"
 }
 
 variable "account_id" {
