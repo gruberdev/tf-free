@@ -6,11 +6,10 @@ steps:
   - name: plan
     image: golang:1.16.4-buster
     commands:
-      - apt-get update && apt-get install -y git curl build-essential gnupg sudo util-linux bash
+      - apt-get update && apt-get install -y git curl build-essential gnupg sudo util-linux bash gnupg software-properties-common
       - bash
-      - curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
-      - sudo apt-add-repository "deb [arch=$(dpkg --print-architecture)] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
-      - sudo apt install -y terraform
+      - sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+      - sudo apt-get update && sudo apt-get install terraform
       - echo $GOOGLE_KEY > gcp.json
       - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
       - cd scripts && chmod +x plan.sh
