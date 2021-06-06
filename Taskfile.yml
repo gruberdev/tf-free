@@ -74,10 +74,6 @@ tasks:
       - terraform-docs markdown -c .terraform-docs.yml . --output-file README.md
       - terraform-docs markdown -c .terraform-docs.yml ./modules/aws --output-file README.md --header-from "header.md"
       - terraform-docs markdown -c .terraform-docs.yml ./modules/aws/ec2 --output-file README.md
-      - terraform-docs markdown -c .terraform-docs.yml ./modules/aws/firewall  --output-file README.md
-      - terraform-docs markdown -c .terraform-docs.yml ./modules/aws/vpc  --output-file README.md
-      - terraform-docs markdown -c .terraform-docs.yml ./modules/aws/subnet  --output-file README.md
-      - terraform-docs markdown -c .terraform-docs.yml ./modules/aws/gateway  --output-file README.md
       - terraform-docs markdown -c .terraform-docs.yml ./modules/aws/rds  --output-file README.md
       - terraform-docs markdown -c .terraform-docs.yml ./modules/gcp  --output-file README.md
       - terraform-docs markdown -c .terraform-docs.yml ./modules/gcp/compute --output-file README.md
@@ -243,8 +239,7 @@ tasks:
       - cd modules && cd gcp && cd compute && rm -rf ./.terraform && rm ./.terraform.lock.hcl || true
       - cd modules && cd aws && rm -rf ./.terraform && rm ./.terraform.lock.hcl || true
       - cd modules && cd aws && cd ec2 && rm -rf ./.terraform && rm ./.terraform.lock.hcl || true
-      - cd modules && cd aws && cd vpc && rm -rf ./.terraform && rm ./.terraform.lock.hcl || true
-      - cd modules && cd aws && cd firewall && rm -rf ./.terraform && rm ./.terraform.lock.hcl || true
+      - cd modules && cd aws && cd rds && rm -rf ./.terraform && rm ./.terraform.lock.hcl || true
 
   init-drone:
     desc: Terraform standard initialization

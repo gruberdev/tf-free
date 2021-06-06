@@ -13,6 +13,7 @@ steps:
       - cd scripts && chmod +x plan.sh
       - bash
       - /bin/bash -s plan.sh
+      - cd ..
       - terraform init
       - terraform plan
     when:

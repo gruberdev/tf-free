@@ -4,11 +4,8 @@
 | Name | Source | Version |
 |------|--------|---------|
 | ec2 | ./ec2 |  |
-| internet\_gateway | ./gateway |  |
-| public\_subnet | ./subnet |  |
 | rds | ./rds |  |
-| route\_table | ./firewall |  |
-| vpc | ./vpc |  |
+| vpc | terraform-aws-modules/vpc/aws |  |
 
 ### Inputs
 
@@ -19,6 +16,8 @@
 | ec2\_ssh\_name | The SSH Key Name | `string` | `"free-tier-ec2-key"` |
 | ec2\_ssh\_public | The local path to the SSH Public Key | `string` | `"aws.pub"` |
 | profile | AWS Profile | `string` | `"terraform"` |
+| rds\_password | Region for AWS resources | `string` | `"testingdatabase89372934279"` |
+| rds\_user | Region for AWS resources | `string` | `"testing"` |
 | region | Region for AWS resources | `string` | `"us-east-1"` |
 
 ### Outputs
@@ -30,7 +29,6 @@
 | ec2\_password\_data | List of Base-64 encoded encrypted password data for the instance |
 | ec2\_private\_ip | List of private IP addresses assigned to the instances |
 | ec2\_public\_ip | List of public IP addresses assigned to the instances, if applicable |
-| rds\_ip\_address | Public IP for your RDS Instance |
 <!-- END_TF_DOCS -->
 
 ## Example
