@@ -18,7 +18,6 @@ steps:
     when:
       event:
         - push
-        - pull_request
       GOOGLE_PROJECT:
         from_secret: gcp_project_id
       GOOGLE_KEY:
