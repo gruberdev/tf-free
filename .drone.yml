@@ -4,12 +4,10 @@ type: docker
 name: Static Code Analysis
 steps:
   - name: plan
-    image: golang:1.16.4-buster
+    image: hashicorp/terraform:0.15.5
     commands:
-      - apt-get update && apt-get install -y git curl build-essential gnupg sudo util-linux bash gnupg software-properties-common
+      - apt-get update && apt-get install -yqq git curl build-essential gnupg sudo util-linux bash gnupg software-properties-common
       - bash
-      - sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
-      - sudo apt-get update && sudo apt-get install terraform
       - echo $GOOGLE_KEY > gcp.json
       - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
       - cd scripts && chmod +x plan.sh
