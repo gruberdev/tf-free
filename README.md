@@ -180,7 +180,7 @@ Terraform®, Vault®, Hashicorp's logos are Hasicorp's Trademarks or registered 
 [remote-tfstate-url]: https://github.com/cloudposse/terraform-aws-tfstate-backend
 [tf-free-docs-cli]: https://free.terraform.gruber.dev.br/docs/setup/installing#cli
 [tf-free-gcp-resources]: https://free.terraform.gruber.dev.br/docs/resources/providers/gcp#resources
-[tf-free-awsresources]: https://free.terraform.gruber.dev.br/docs/resources/providers/aws#resources
+[tf-free-aws-resources]: https://free.terraform.gruber.dev.br/docs/resources/providers/aws#resources
 [guidelines]: https://www.hashicorp.com/community-guidelines
 [free-gcp]: https://cloud.google.com/free
 [free-docs-gcp]: https://cloud.google.com/free/docs/gcp-free-tier
