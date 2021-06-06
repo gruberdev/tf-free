@@ -6,12 +6,13 @@ steps:
   - name: plan
     image: golang:1.16.4-buster
     commands:
-      - apt-get update && apt-get install -yqq git unzip wget curl build-essential gnupg sudo util-linux bash gnupg software-properties-common
+      - apt-get update && apt-get install -yqq git unzip wget curl build-essential gnupg sudo util-linux bash gnupg software-properties-common dos2unix
       - bash
       - wget -O terraform.zip https://releases.hashicorp.com/terraform/0.15.5/terraform_0.15.5_linux_amd64.zip
       - unzip terraform.zip
       - sudo mv terraform /usr/local/bin/terraform
       - echo $GOOGLE_KEY > gcp.json
+      - dos2unix gcp.json
       - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
       - terraform init
       - terraform plan

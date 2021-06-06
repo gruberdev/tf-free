@@ -37,39 +37,41 @@ curl -sSL https://raw.githubusercontent.com/gruberdev/setup/main/install.sh | ba
 ---
 
 <!-- BEGIN_TF_DOCS -->
+
 ### Modules
 
-| Name | Source | Version |
-|------|--------|---------|
-| aws | ./modules/aws |  |
-| google\_cloud | ./modules/gcp |  |
-| terraform\_state\_backend | cloudposse/tfstate-backend/aws | v0.32.1 |
+| Name                    | Source                         | Version |
+| ----------------------- | ------------------------------ | ------- |
+| aws                     | ./modules/aws                  |         |
+| google_cloud            | ./modules/gcp                  |         |
+| terraform_state_backend | cloudposse/tfstate-backend/aws | v0.32.1 |
 
 ### Inputs
 
-| Name | Description | Type | Default |
-|------|-------------|------|---------|
-| aws\_account\_id | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | n/a |
-| aws\_account\_key | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | n/a |
-| aws\_default\_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-east-1"` |
-| backend\_destroy | Allows destroying the backend. | `string` | `"false"` |
-| backend\_stage | Stages possible for Backend. | `string` | `"test"` |
-| gcp\_instance\_name | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"gcp-machine"` |
-| gcp\_project\_id | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `""` |
-| gcp\_project\_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-west1"` |
+| Name               | Description                                                                                                                                                                  | Type     | Default         |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | --------------- |
+| aws_account_id     | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | n/a             |
+| aws_account_key    | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | n/a             |
+| aws_default_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-east-1"`   |
+| backend_destroy    | Allows destroying the backend.                                                                                                                                               | `string` | `"false"`       |
+| backend_stage      | Stages possible for Backend.                                                                                                                                                 | `string` | `"test"`        |
+| gcp_instance_name  | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"gcp-machine"` |
+| gcp_project_id     | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `""`            |
+| gcp_project_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-west1"`    |
 
 ### Outputs
 
-| Name | Description |
-|------|-------------|
-| aws\_ec2\_ipv6\_addresses | AWS EC2 IPv6 Public Address |
-| aws\_ec2\_password\_data | List of Base-64 encoded encrypted password data for AWS EC2 instances |
-| aws\_ec2\_private\_ip | AWS EC2 assigned Private IP |
-| aws\_ec2\_public\_ip | AWS EC2 IPv4 Public Address |
-| db\_backend\_name | Name of the resulting DynamoDB created for locking state files. |
-| gcp\_public\_ip | GCP VM Compute IPv4 Public Address |
-| s3\_backend\_bucket | ID of the resulting S3 bucket created on AWS as part of the backend infrastructure |
-| s3\_backend\_domain | Domain name of the S3 bucket created on AWS as part of the backend infrastructure |
+| Name                   | Description                                                                        |
+| ---------------------- | ---------------------------------------------------------------------------------- |
+| aws_ec2_ipv6_addresses | AWS EC2 IPv6 Public Address                                                        |
+| aws_ec2_password_data  | List of Base-64 encoded encrypted password data for AWS EC2 instances              |
+| aws_ec2_private_ip     | AWS EC2 assigned Private IP                                                        |
+| aws_ec2_public_ip      | AWS EC2 IPv4 Public Address                                                        |
+| db_backend_name        | Name of the resulting DynamoDB created for locking state files.                    |
+| gcp_public_ip          | GCP VM Compute IPv4 Public Address                                                 |
+| s3_backend_bucket      | ID of the resulting S3 bucket created on AWS as part of the backend infrastructure |
+| s3_backend_domain      | Domain name of the S3 bucket created on AWS as part of the backend infrastructure  |
+
 <!-- END_TF_DOCS -->
 
 </details>
@@ -113,7 +115,7 @@ More information at the [provider's documentation page][tf-free-gcp-resources].
   - **2x** [Internet Gateway (IGW)][aws-igw-info] to provide access to the VPC
 - **1x** [Route Table][aws-route-info] integrating all `VPC`, `Subnet` and the `Internet Gateway (IGW)`
 - **1x** [EC2 Instance][aws-ec2-info] attached to the `Subnet`
-- **1x** [Relational Database (RDS)][aws-rds-info] of your choice [e.g. MySQL, PostgreSQL]
+- **1x** [Relational Database (RDS)][aws-rds-info] of your choice (e.g. MySQL, PostgreSQL)
 - **1x** [S3 Storage Bucket][aws-s3-info] inside `Subnet`, configured to store the Terraform's backend state
 - **1x** [DynamoDB Database][aws-dynamodb-info], mainly used for preventing that running multiple instances of this Terraform chart corrupt each other.
 
@@ -132,9 +134,12 @@ More information at the [provider's documentation page][tf-free-aws-resources].
 
 ### Available Resources
 
-1
+- **1x** [Linux Virtual machine, B1S Standard tier][azure-vm-info]
+- **1x** [Windows Virtual machine, B1S Standard tier][azure-vm-info]
+- **1x** [Cloud Storage (LRS File Storage)][azure-storage-info]
+- **1x** [250GB MySQL Managed Database Instance][azure-sql-free-info]
 
-- [Free resources homepage][]
+More information at the [provider's documentation page][tf-free-azure-resources].
 
 ---
 
@@ -184,6 +189,7 @@ Terraform®, Vault®, Hashicorp's logos are Hasicorp's Trademarks or registered 
 [tf-free-docs-cli]: https://free.terraform.gruber.dev.br/docs/setup/installing#cli
 [tf-free-gcp-resources]: https://free.terraform.gruber.dev.br/docs/resources/providers/gcp#resources
 [tf-free-aws-resources]: https://free.terraform.gruber.dev.br/docs/resources/providers/aws#resources
+[tf-free-azure-resources]: https://free.terraform.gruber.dev.br/docs/resources/providers/azure#resources
 [guidelines]: https://www.hashicorp.com/community-guidelines
 [free-gcp]: https://cloud.google.com/free
 [free-docs-gcp]: https://cloud.google.com/free/docs/gcp-free-tier
@@ -243,3 +249,6 @@ Terraform®, Vault®, Hashicorp's logos are Hasicorp's Trademarks or registered 
 [aws-sorted-list]: https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc&awsf.Free%20Tier%20Types=tier%23always-free%7Ctier%2312monthsfree&awsf.Free%20Tier%20Categories=*all
 [aws-dynamodb-info]: https://aws.amazon.com/dynamodb/
 [remote-tfstate-url]: https://github.com/cloudposse/terraform-aws-tfstate-backend
+[azure-sql-free-info]: https://azure.microsoft.com/en-us/products/azure-sql/database/
+[azure-vm-info]: https://azure.microsoft.com/en-us/services/virtual-machines/
+[azure-storage-info]: https://azure.microsoft.com/en-us/services/storage/files/
