@@ -1,4 +1,4 @@
-[![Logo Animation](https://readme-typing-svg.herokuapp.com?font=Major+Mono+Display&color=00E7F7&size=40&vCenter=true&width=800&height=200&lines=tf-free;cloud+for+free.)](https://free.terraform.gruber.dev.br)
+[![Logo Animation][https://readme-typing-svg.herokuapp.com?font=major+mono+display&color=00e7f7&size=40&vcenter=true&width=800&height=200&lines=tf-free;cloud+for+free.]][https://free.terraform.gruber.dev.br]
 
 <a href='https://drone.gruber.dev.br/gruberdev/tf-free' target='_blank'>![drone-img]</a>
 <a href='https://free.terraform.gruber.dev.br' target='_blank'>![docs-img]</a>
@@ -27,7 +27,7 @@ wget https://raw.githubusercontent.com/gruberdev/setup/main/install.sh && cat in
 curl -sSL https://raw.githubusercontent.com/gruberdev/setup/main/install.sh | bash -s terraform-free
 ```
 
-- [CLI Tool Documentation](tf-free-docs-cli)
+- [CLI Tool Documentation][tf-free-docs-cli]
 
 <details>
   <summary>
@@ -50,12 +50,12 @@ curl -sSL https://raw.githubusercontent.com/gruberdev/setup/main/install.sh | ba
 
 | Name               | Description                                                                                                                                                                  | Type     | Default         |
 | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | --------------- |
-| aws_account_id     | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | n/a             |
-| aws_account_key    | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | n/a             |
-| aws_default_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-west-2"`   |
-| gcp_instance_name  | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"gcp-machine"` |
-| gcp_project_id     | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `""`            |
-| gcp_project_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-west1"`    |
+| aws_account_id     | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources][https://cloud.google.com/compute/docs/naming-resources#resource-name-format] | `string` | n/a             |
+| aws_account_key    | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources][https://cloud.google.com/compute/docs/naming-resources#resource-name-format] | `string` | n/a             |
+| aws_default_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources][https://cloud.google.com/compute/docs/naming-resources#resource-name-format] | `string` | `"us-west-2"`   |
+| gcp_instance_name  | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources][https://cloud.google.com/compute/docs/naming-resources#resource-name-format] | `string` | `"gcp-machine"` |
+| gcp_project_id     | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources][https://cloud.google.com/compute/docs/naming-resources#resource-name-format] | `string` | `""`            |
+| gcp_project_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources][https://cloud.google.com/compute/docs/naming-resources#resource-name-format] | `string` | `"us-west1"`    |
 
 ### Outputs
 
@@ -76,20 +76,20 @@ curl -sSL https://raw.githubusercontent.com/gruberdev/setup/main/install.sh | ba
 <details>
 
   <summary>
-   Google Cloud (GCP)
+   Google Cloud Platform
   </summary>
 
 ---
 
 ## GCP Available Resources
 
-- **1x** [Virtual Private Cloud (VPC)](gcp-vpc-info)
-  - **1x** [Firewall](gcp-firewall-info) attached to the VPC
-  - **1x** [Google Compute Engine](gcp-compute-info) `f1-micro` ([1 shared vCPU - 0.2 dedicatd vCPU](gcp-shared-vcpus) - and 0.6GB of Memory) attached to the `VPC`
-- **1x** 5GB of [regional storage](gcp-regional-storage) on [Cloud Storage](gcp-cloud-storage)
-- **1x** 1GB of storage in a [Firestore NoSQL Database](gcp-firestore-storage)
+- **1x** [Virtual Private Cloud [VPC]][gcp-vpc-info]
+  - **1x** [Firewall][gcp-firewall-info] attached to the VPC
+  - **1x** [Google Compute Engine][gcp-compute-info] `f1-micro` [[1 shared vCPU - 0.2 dedicatd vCPU][gcp-shared-vcpus] - and 0.6GB of Memory] attached to the `VPC`
+- **1x** 5GB of [regional storage][gcp-regional-storage] on [Cloud Storage][gcp-cloud-storage]
+- **1x** 1GB of storage in a [Firestore NoSQL Database][gcp-firestore-storage]
 
-More information at the [provider's documentation page](tf-free-gcp-resources).
+More information at the [provider's documentation page][tf-free-gcp-resources].
 
 ---
 
@@ -98,23 +98,23 @@ More information at the [provider's documentation page](tf-free-gcp-resources).
 <details>
 
   <summary>
-   Amazon AWS
+   Amazon Web Services
   </summary>
 
 ---
 
 ### AWS Available Resources
 
-- **2x** [Virtual Private Cloud (VPC)](aws-vpc-info)
-  - **2x** [Sub-network](aws-sub-info) attached to the VPC
-  - **2x** [Internet Gateway (IGW)](aws-igw-info) to provide access to the VPC
-- **1x** [Route Table](aws-route-info) integrating all `VPC`, `Subnet` and the `Internet Gateway (IGW)`
-- **1x** [EC2 Instance](aws-ec2-info) attached to the `Subnet`
-- **1x** [Relational Database (RDS)](aws-rds-info) of your choice (e.g. MySQL, PostgreSQL)
-- **1x** [S3 Storage Bucket](aws-s3-info) inside `Subnet`, configured to store the Terraform's backend state
-- **1x** [DynamoDB Database](aws-dynamodb-info), mainly used for preventing that running multiple instances of this Terraform chart corrupt each other.
+- **2x** [Virtual Private Cloud [VPC]][aws-vpc-info]
+  - **2x** [Sub-network][aws-sub-info] attached to the VPC
+  - **2x** [Internet Gateway [IGW]][aws-igw-info] to provide access to the VPC
+- **1x** [Route Table][aws-route-info]] integrating all `VPC`, `Subnet` and the `Internet Gateway [IGW]`
+- **1x** [EC2 Instance][aws-ec2-info] attached to the `Subnet`
+- **1x** [Relational Database [RDS]][aws-rds-info] of your choice [e.g. MySQL, PostgreSQL]
+- **1x** [S3 Storage Bucket][aws-s3-info] inside `Subnet`, configured to store the Terraform's backend state
+- **1x** [DynamoDB Database][aws-dynamodb-info], mainly used for preventing that running multiple instances of this Terraform chart corrupt each other.
 
-More information at the [provider's documentation page](tf-free-aws-resources).
+More information at the [provider's documentation page][tf-free-aws-resources].
 
 ---
 
@@ -122,7 +122,7 @@ More information at the [provider's documentation page](tf-free-aws-resources).
 <details>
 
   <summary>
-   Microsoft Azure
+   Microsoft Azure Cloud
   </summary>
 
 ---
@@ -131,7 +131,7 @@ More information at the [provider's documentation page](tf-free-aws-resources).
 
 1
 
-- [Free resources homepage]()
+- [Free resources homepage][]
 
 ---
 
@@ -139,9 +139,9 @@ More information at the [provider's documentation page](tf-free-aws-resources).
 
 ## License
 
-The MIT license grant is not for Hashicorp's trademarks, which include the logo designs. [Hashicorp reserves all trademark and copyright rights in and to all Hashicorp trademarks](disclaimer).
+The MIT license grant is not for Hashicorp's trademarks, which include the logo designs. [Hashicorp reserves all trademark and copyright rights in and to all Hashicorp trademarks][disclaimer].
 
-Terraform®, Vault®, Hashicorp's logos are Hasicorp's Trademarks or registered Trademarks. When using Hashicorp's logos, be sure to follow the [community](guidelines) and [brand usage](brand) guidelines.
+Terraform®, Vault®, Hashicorp's logos are Hasicorp's Trademarks or registered Trademarks. When using Hashicorp's logos, be sure to follow the [community][guidelines] and [brand usage][brand] guidelines.
 
 <!-- Images URLs -->
 
@@ -169,7 +169,6 @@ Terraform®, Vault®, Hashicorp's logos are Hasicorp's Trademarks or registered 
 [aws-ec2-info]: https://aws.amazon.com/ec2/
 [aws-s3-info]: https://aws.amazon.com/s3/
 [aws-rds-info]: https://aws.amazon.com/rds/
-[aws-route-info]: https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html
 [aws-sub-info]: https://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html
 [aws-tf-provider]: https://registry.terraform.io/providers/hashicorp/aws/latest/
 [aws-regions]: https://aws.amazon.com/about-aws/global-infrastructure/
