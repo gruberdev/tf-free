@@ -23,7 +23,7 @@ There are three main ways to bootstrap this project:
 
 The first method is exemplified below:
 
-```sh
+```
 # one liner docker-install for debian-based systems
 curl -sSLf https://gruber.dev.br/install | bash -s terraform-free
 ```
@@ -35,7 +35,7 @@ wget https://raw.githubusercontent.com/gruberdev/setup/main/install.sh && cat in
 curl -sSL https://raw.githubusercontent.com/gruberdev/setup/main/install.sh | bash -s terraform-free
 ```
 
-----------------
+---
 
 Now, if you want to explicitly call the core module, write a `main.tf` with this content:
 

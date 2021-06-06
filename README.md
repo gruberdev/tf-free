@@ -15,7 +15,7 @@ The goal of this repository is to automate the management of these resources usi
 
 ## Getting started
 
-```sh
+```
 # one liner docker-install for debian-based systems
 curl -sSLf https://gruber.dev.br/install | bash -s terraform-free
 ```

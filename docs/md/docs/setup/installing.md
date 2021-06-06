@@ -6,7 +6,7 @@
 
 - In the test directory, run the below command
 
-```sh
+```
 go test
 ```
 

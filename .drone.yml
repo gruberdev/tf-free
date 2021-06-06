@@ -10,6 +10,10 @@ steps:
       - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
       - echo $GOOGLE_KEY > gcp.json
       - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
+      - touch terraform.tfvars
+      - echo "aws_default_region = ${AWS_DEFAULT_REGION}" >> terraform.tfvars
+      - echo "aws_account_id = ${AWS_ACCOUNT_ID}" >> terraform.tfvars
+      - echo "aws_account_key = ${AWS_SECRET_ACCESS_KEY}" >> terraform.tfvars
       - terraform init
       - terraform plan
     when:
