@@ -1,4 +1,4 @@
-[![Logo Animation][https://readme-typing-svg.herokuapp.com?font=major+mono+display&color=00e7f7&size=40&vcenter=true&width=800&height=200&lines=tf-free;cloud+for+free.]][https://free.terraform.gruber.dev.br]
+[![Logo Animation](https://readme-typing-svg.herokuapp.com?font=Major+Mono+Display&color=00E7F7&size=40&vCenter=true&width=800&height=200&lines=tf-free;cloud+for+free.)](https://free.terraform.gruber.dev.br)
 
 <a href='https://drone.gruber.dev.br/gruberdev/tf-free' target='_blank'>![drone-img]</a>
 <a href='https://free.terraform.gruber.dev.br' target='_blank'>![docs-img]</a>
