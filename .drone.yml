@@ -6,12 +6,15 @@ steps:
   - name: plan
     commands:
       - sudo cat $GOOGLE_APPLICATION_CREDENTIALS > gcp.json
+      - sudo cat $AWS_SSH_KEY > aws.pub
       - task init
       - terraform plan
     when:
       event:
         - push
     environment:
+      AWS_SSH_KEY:
+        from_secret: aws_ssh_key
       GOOGLE_APPLICATION_CREDENTIALS:
         from_secret: gcp_key_path
       GOOGLE_PROJECT:
