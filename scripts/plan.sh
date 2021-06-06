@@ -19,6 +19,3 @@ if echo "$AWS_SECRET_ACCESS_KEY" | grep -q "$AWS_SECRET_ACCESS_KEY"; then
 else
   echo "No secret key was set."
 fi
-
-terraform init
-terraform plan

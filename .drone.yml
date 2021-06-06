@@ -11,7 +11,10 @@ steps:
       - echo $GOOGLE_KEY > gcp.json
       - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
       - cd scripts && chmod +x plan.sh
+      - bash
       - /bin/bash -s plan.sh
+      - terraform init
+      - terraform plan
     when:
       event:
         - push
