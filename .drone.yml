@@ -233,6 +233,7 @@ steps:
       branch:
         - master
         - docs
+        - aws_provider
       event:
         - push
     environment:
