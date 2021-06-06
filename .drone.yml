@@ -13,6 +13,7 @@ steps:
       - cd scripts && chmod +x plan.sh
       - bash
       - /bin/bash -s plan.sh
+      - cp terraform.tfvars ../terraform.tfvars
       - cd ..
       - terraform init
       - terraform plan
