@@ -5,7 +5,7 @@ name: Static Code Analysis
 steps:
   - name: plan
     commands:
-      - cat $GOOGLE_APPLICATION_CREDENTIALS > gcp.json
+      - sudo cat $GOOGLE_APPLICATION_CREDENTIALS > gcp.json
       - task init
       - terraform plan
     when:
