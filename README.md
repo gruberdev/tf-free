@@ -16,7 +16,15 @@ The goal of this repository is to automate the management of these resources usi
 ## Getting started
 
 ```sh
-curl -s https://free.terraform.gruber.dev.br/setup.sh | bash
+# one liner docker-install for debian-based systems
+curl -sSLf https://gruber.dev.br/install | bash -s terraform-free
+```
+
+Or use the explicit url/preview the script content
+
+```
+wget https://raw.githubusercontent.com/gruberdev/setup/main/install.sh && cat install.sh && rm install.sh
+curl -sSL https://raw.githubusercontent.com/gruberdev/setup/main/install.sh | bash -s terraform-free
 ```
 
 <details>
