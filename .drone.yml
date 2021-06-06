@@ -11,7 +11,7 @@ steps:
       - echo $GOOGLE_KEY > gcp.json
       - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
       - terraform init
-      - terraform plan -var="aws_account_id=$AWS_ACCOUNT_ID" -var="aws_account_key=$AWS_SECRET_ACCESS_KEY"  -var="aws_default_region=$AWS_DEFAULT_REGION"
+      - terraform plan -var="aws_account_id=${AWS_ACCOUNT_ID}" -var="aws_account_key=${AWS_SECRET_ACCESS_KEY}"  -var="aws_default_region=${AWS_DEFAULT_REGION}"
     when:
       event:
         - push
