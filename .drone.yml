@@ -6,7 +6,7 @@ steps:
   - name: plan
     image: golang:1.16.4-buster
     commands:
-      - apt-get update && apt-get install -y git curl build-essential gnupg
+      - apt-get update && apt-get install -y git curl build-essential gnupg sudo
       - curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
       - sudo apt-add-repository "deb [arch=$(dpkg --print-architecture)] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
       - sudo apt install -y terraform
