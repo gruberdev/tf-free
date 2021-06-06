@@ -4,17 +4,18 @@ type: docker
 name: Static Code Analysis
 steps:
   - name: plan
-    image: golang:1.16.4-alpine
+    image: golang:1.16.4-buster
     commands:
-      - apk add build-base git curl bash
-      - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
+      - apt-get update && apt-get install -y git curl build-essential gpg2
+      - curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+      - sudo apt-add-repository "deb [arch=$(dpkg --print-architecture)] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+      - sudo apt install terraform
       - echo $GOOGLE_KEY > gcp.json
       - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
       - cd scripts && chmod +x plan.sh
-      - bash
-      - /bin/bash -s plan.sh
-      - cp terraform.tfvars ../terraform.tfvars
-      - cd ..
+      - echo "aws_account_id = $AWS_ACCOUNT_ID" >> terraform.tfvars
+      - echo "aws_account_key = $AWS_SECRET_ACCESS_KEY" >> terraform.tfvars
+      - echo "aws_default_region = $AWS_DEAFULT_REGION" >> terraform.tfvars
       - terraform init
       - terraform plan
     when:
