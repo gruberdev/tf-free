@@ -1,6 +1,7 @@
-# tf-free
+[![Logo Animation](https://readme-typing-svg.herokuapp.com?font=Major+Mono+Display&color=00E7F7&size=40&vCenter=true&width=800&height=200&lines=tf-free;cloud+for+free.)](https://free.terraform.gruber.dev.br)
 
 <a href='https://drone.gruber.dev.br/gruberdev/tf-free' target='_blank'>![drone-img]</a>
+<a href='https://free.terraform.gruber.dev.br' target='_blank'>![docs-img]</a>
 
 ## Objective
 
@@ -16,11 +17,27 @@ The goal of this repository is to automate the management of these resources usi
 
 There are three main ways to bootstrap this project:
 
-1. Use the Terraform's module directly
-2. Use the CLI tool
-3. Use each module manually
+1. Using the automatic one-line setup script
+2. Using the CLI tool (recommended)
+3. Use Terraform's module directly (advanced)
 
 The first method is exemplified below:
+
+```sh
+# one liner docker-install for debian-based systems
+curl -sSLf https://gruber.dev.br/install | bash -s terraform-free
+```
+
+Or use the explicit url/preview the script content
+
+```
+wget https://raw.githubusercontent.com/gruberdev/setup/main/install.sh && cat install.sh && rm install.sh
+curl -sSL https://raw.githubusercontent.com/gruberdev/setup/main/install.sh | bash -s terraform-free
+```
+
+----------------
+
+Now, if you want to explicitly call the core module, write a `main.tf` with this content:
 
 ```hcl | /example/main.tf
 // Create a main.tf file anywhere with Terraform installed and copy-paste this code

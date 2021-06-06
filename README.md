@@ -27,36 +27,7 @@ wget https://raw.githubusercontent.com/gruberdev/setup/main/install.sh && cat in
 curl -sSL https://raw.githubusercontent.com/gruberdev/setup/main/install.sh | bash -s terraform-free
 ```
 
-<details>
-  <summary>
-  CLI Tool Documentation
-  </summary>
-
-### Running tests
-
-- Tests are available in `test` directory
-
-- In the test directory, run the below command
-
-```sh
-go test
-```
-
-### Main Libraries used
-
-- [fatih/color](go-color-url)
-- [goreleaser/goreleaser](go-releaser-url)
-- [spf13/cobra](go-cobra-url)
-- [kdabir/has](shell-has-url)
-- [c-bata/go-prompt](go-prompt-url)
-- [go-task/task](go-task-url)
-- [hashicorp/terraform-exec](go-tfexec-url)
-- [CONNECT-platform/codedoc](docs-repo-url)
-- [cloudposse/terraform-aws-tfstate-backend](remote-tfstate-url)
-
----
-
-</details>
+- [CLI Tool Documentation](tf-free-docs-cli)
 
 <details>
   <summary>
@@ -110,21 +81,15 @@ go test
 
 ---
 
-### Available Resources
+## GCP Available Resources
 
-- 1x Compute Instance
+- **1x** [Virtual Private Cloud (VPC)](gcp-vpc-info)
+  - **1x** [Firewall](gcp-firewall-info) attached to the VPC
+  - **1x** [Google Compute Engine](gcp-compute-info) `f1-micro` ([1 shared vCPU - 0.2 dedicatd vCPU](gcp-shared-vcpus) - and 0.6GB of Memory) attached to the `VPC`
+- **1x** 5GB of [regional storage](gcp-regional-storage) on [Cloud Storage](gcp-cloud-storage)
+- **1x** 1GB of storage in a [Firestore NoSQL Database](gcp-firestore-storage)
 
-### Requirements
-
--
-
-### Terms & Conditions
-
--
-
-### More information
-
-- [Home]()
+More information at the [provider's documentation page](tf-free-gcp-resources).
 
 ---
 
@@ -138,16 +103,18 @@ go test
 
 ---
 
-### Available Resources
+### AWS Available Resources
 
-- 1x [Virtual Private Cloud (VPC)](aws-vpc-info)
-  - 1x [Sub-network](aws-sub-info) attached to the VPC
-  - 1x [Internet Gateway (IGW)](aws-igw-info) to provide access to the VPC
-- 1x [Route Table](aws-route-info) integrating all `VPC`, `Subnet` and the `Internet Gateway (IGW)`
-- 1x [EC2 Instance](aws-ec2-info) attached to the `Subnet`
-- 1x [Relational Database (RDS)](aws-rds-info) of your choice (e.g. MySQL, PostgreSQL)
-- 1x [S3 Storage Bucket](aws-s3-info) inside `Subnet`, configured to store the Terraform's backend state
-- 1x [DynamoDB Database](aws-dynamodb-info), mainly used for preventing that running multiple instances of this Terraform chart corrupt each other.
+- **2x** [Virtual Private Cloud (VPC)](aws-vpc-info)
+  - **2x** [Sub-network](aws-sub-info) attached to the VPC
+  - **2x** [Internet Gateway (IGW)](aws-igw-info) to provide access to the VPC
+- **1x** [Route Table](aws-route-info) integrating all `VPC`, `Subnet` and the `Internet Gateway (IGW)`
+- **1x** [EC2 Instance](aws-ec2-info) attached to the `Subnet`
+- **1x** [Relational Database (RDS)](aws-rds-info) of your choice (e.g. MySQL, PostgreSQL)
+- **1x** [S3 Storage Bucket](aws-s3-info) inside `Subnet`, configured to store the Terraform's backend state
+- **1x** [DynamoDB Database](aws-dynamodb-info), mainly used for preventing that running multiple instances of this Terraform chart corrupt each other.
+
+More information at the [provider's documentation page](tf-free-aws-resources).
 
 ---
 
@@ -193,13 +160,6 @@ Terraform®, Vault®, Hashicorp's logos are Hasicorp's Trademarks or registered 
 [azure-faq]: https://azure.microsoft.com/en-us/free/free-account-faq/
 [azure-full-terms]: https://azure.microsoft.com/en-us/offers/ms-azr-0044p/
 [aws-faq]: https://aws.amazon.com/free/free-tier-faqs/
-[go-color-url]: https://github.com/fatih/color
-[go-releaser-url]: https://github.com/goreleaser/goreleaser
-[go-cobra-url]: https://github.com/spf13/cobra
-[shell-has-url]: https://github.com/kdabir/has
-[go-prompt-url]: https://github.com/c-bata/go-prompt
-[go-task-url]: https://github.com/go-task/task
-[go-tfexec-url]: https://github.com/hashicorp/terraform-exec
 [docs-repo-url]: https://github.com/CONNECT-platform/codedoc
 [aws-key-info]: https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys
 [aws-key-create]: https://aws.amazon.com/premiumsupport/knowledge-center/create-access-key/
@@ -219,4 +179,6 @@ Terraform®, Vault®, Hashicorp's logos are Hasicorp's Trademarks or registered 
 [aws-sorted-list]: https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc&awsf.Free%20Tier%20Types=tier%23always-free%7Ctier%2312monthsfree&awsf.Free%20Tier%20Categories=*all
 [aws-dynamodb-info]: https://aws.amazon.com/dynamodb/
 [remote-tfstate-url]: https://github.com/cloudposse/terraform-aws-tfstate-backend
-[remote-tfstate-url]: https://github.com/cloudposse/terraform-aws-tfstate-backend
+[tf-free-docs-cli]: https://free.terraform.gruber.dev.br/docs/setup/installing#cli
+[tf-free-gcp-resources]: https://free.terraform.gruber.dev.br/docs/resources/providers/gcp#resources
+[tf-free-awsresources]: https://free.terraform.gruber.dev.br/docs/resources/providers/aws#resources
