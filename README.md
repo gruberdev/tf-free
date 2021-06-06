@@ -83,9 +83,9 @@ curl -sSL https://raw.githubusercontent.com/gruberdev/setup/main/install.sh | ba
 
 ## GCP Available Resources
 
-- **1x** [Virtual Private Cloud [VPC]][gcp-vpc-info]
+- **1x** [Virtual Private Cloud (VPC)][gcp-vpc-info]
   - **1x** [Firewall][gcp-firewall-info] attached to the VPC
-  - **1x** [Google Compute Engine][gcp-compute-info] `f1-micro` [[1 shared vCPU - 0.2 dedicatd vCPU][gcp-shared-vcpus] - and 0.6GB of Memory] attached to the `VPC`
+  - **1x** [Google Compute Engine][gcp-compute-info] `f1-micro` [(1 shared vCPU - 0.2 dedicatd vCPU][gcp-shared-vcpus] - and 0.6GB of Memory) attached to the `VPC`
 - **1x** 5GB of [regional storage][gcp-regional-storage] on [Cloud Storage][gcp-cloud-storage]
 - **1x** 1GB of storage in a [Firestore NoSQL Database][gcp-firestore-storage]
 
@@ -105,12 +105,12 @@ More information at the [provider's documentation page][tf-free-gcp-resources].
 
 ### AWS Available Resources
 
-- **2x** [Virtual Private Cloud [VPC]][aws-vpc-info]
+- **2x** [Virtual Private Cloud (VPC)][aws-vpc-info]
   - **2x** [Sub-network][aws-sub-info] attached to the VPC
-  - **2x** [Internet Gateway [IGW]][aws-igw-info] to provide access to the VPC
-- **1x** [Route Table][aws-route-info]] integrating all `VPC`, `Subnet` and the `Internet Gateway [IGW]`
+  - **2x** [Internet Gateway (IGW)][aws-igw-info] to provide access to the VPC
+- **1x** [Route Table][aws-route-info] integrating all `VPC`, `Subnet` and the `Internet Gateway (IGW)`
 - **1x** [EC2 Instance][aws-ec2-info] attached to the `Subnet`
-- **1x** [Relational Database [RDS]][aws-rds-info] of your choice [e.g. MySQL, PostgreSQL]
+- **1x** [Relational Database (RDS)][aws-rds-info] of your choice [e.g. MySQL, PostgreSQL]
 - **1x** [S3 Storage Bucket][aws-s3-info] inside `Subnet`, configured to store the Terraform's backend state
 - **1x** [DynamoDB Database][aws-dynamodb-info], mainly used for preventing that running multiple instances of this Terraform chart corrupt each other.
 
@@ -199,6 +199,8 @@ Terraform®, Vault®, Hashicorp's logos are Hasicorp's Trademarks or registered 
 [gcp-compute-info]: https://cloud.google.com/compute/docs
 [gcp-shared-vcpus]: https://cloud.google.com/compute/vm-instance-pricing#cpu-bursting
 [gcp-cloud-storage]: https://cloud.google.com/storage
+[gcp-vpc-info]: https://cloud.google.com/storage
+[gcp-firewall-info]: https://cloud.google.com/storage
 [gcp-regional-storage]: https://cloud.google.com/storage/docs/storage-classes#legacy
 [gcp-firestore-storage]: https://cloud.google.com/firestore/docs
 [gcp-regions]: https://cloud.google.com/compute/docs/regions-zones
