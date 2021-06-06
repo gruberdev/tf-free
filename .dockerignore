@@ -92,3 +92,7 @@ dist
 
 # .vscode
 .vscode
+
+# Docker-slim artifcats
+slim.report.json
+slim.*.json

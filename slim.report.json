@@ -1,0 +1,6484 @@
+{
+  "version": "1.0",
+  "engine": "linux|Transformer|1.35.2|186f87fbee28f404a96e2204ea2b51014f32cff4|2021-05-03_02:30:01AM",
+  "containerized": true,
+  "host_distro": {
+    "name": "Debian GNU/Linux",
+    "version": "10",
+    "display_name": "Debian GNU/Linux 10 (buster)"
+  },
+  "type": "xray",
+  "state": "done",
+  "target_reference": "terraformfree",
+  "source_image": {
+    "identity": {
+      "id": "sha256:1fc964c4eefabd13dfe8925808c0f0718f198a658e91ba507477df7b63cfe3d7",
+      "tags": [
+        "latest"
+      ],
+      "names": [
+        "terraformfree:latest"
+      ]
+    },
+    "size": 3262122408,
+    "size_human": "3.3 GB",
+    "create_time": "2021-06-06T11:19:39Z",
+    "docker_version": "",
+    "architecture": "amd64",
+    "distro": {
+      "name": "Alpine Linux",
+      "version": "3.13.5",
+      "display_name": "Alpine Linux v3.13"
+    },
+    "os": "linux",
+    "env_vars": [
+      "PATH=/usr/local/go/bin:/go/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+      "GOLANG_VERSION=1.16.4",
+      "GOPATH=/go",
+      "GITHUB_USER=",
+      "GITHUB_PASSWORD=",
+      "GITHUB_EMAIL=",
+      "GCP_PROJECT_ID=",
+      "AWS_DEFAULT_REGION=",
+      "AWS_ACCESS_KEY_ID=",
+      "AWS_SECRET_ACCESS_KEY=",
+      "TASK_VERSION=3.4.2",
+      "GCLOUD_VERSION=343.0.0",
+      "PYTHON_VERSION_MINOR=3.8",
+      "PYTHON_VERSION_MAJOR=3",
+      "ARCH=amd64",
+      "ARCH_86=x86_64",
+      "OS=linux",
+      "PYTHONUNBUFFERED=1",
+      "LANG=",
+      "LC_ALL=",
+      "GO111MODULE=on",
+      "SHELL=/bin/bash",
+      "HAS_ALLOW_UNSAFE=y"
+    ]
+  },
+  "artifact_location": "/tmp/docker-slim-state/.docker-slim-state/images/1fc964c4eefabd13dfe8925808c0f0718f198a658e91ba507477df7b63cfe3d7/artifacts",
+  "image_stack": [
+    {
+      "is_top_image": true,
+      "id": "sha256:1fc964c4eefabd13dfe8925808c0f0718f198a658e91ba507477df7b63cfe3d7",
+      "full_name": "terraformfree:latest",
+      "repo_name": "terraformfree",
+      "version_tag": "latest",
+      "raw_tags": [
+        "terraformfree:latest"
+      ],
+      "create_time": "2021-06-06T11:19:39Z",
+      "new_size": 3262122408,
+      "new_size_human": "3.3 GB",
+      "instructions": [
+        {
+          "type": "ADD",
+          "time": "2021-04-14T19:19:39Z",
+          "is_nop": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "layer_id": "d09376239d873ace0c02b1b53834f0fe3167a652a8fc436465db0171eb639b61",
+          "layer_fsdiff_id": "sha256:b2d5eeeaba3a22b9b8aa97261957974a6bd65274ebd43e1d81d0a7b8b752b116",
+          "size": 5613158,
+          "size_human": "5.6 MB",
+          "params": "file:8ec69d882e7f29f0652d537557160e638168550f738d0d49f90a7ef96bf31787 in /",
+          "command_snippet": "ADD file:8ec69d882e7f29f0652d537557160e63816...",
+          "command_all": "ADD file:8ec69d882e7f29f0652d537557160e638168550f738d0d49f90a7ef96bf31787 /",
+          "target": "/",
+          "source_type": "file"
+        },
+        {
+          "type": "CMD",
+          "time": "2021-04-14T19:19:39Z",
+          "is_nop": true,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "layer_id": "d09376239d873ace0c02b1b53834f0fe3167a652a8fc436465db0171eb639b61",
+          "layer_fsdiff_id": "sha256:b2d5eeeaba3a22b9b8aa97261957974a6bd65274ebd43e1d81d0a7b8b752b116",
+          "size": 0,
+          "params": "[\"/bin/sh\"]",
+          "command_snippet": "CMD [\"/bin/sh\"]",
+          "command_all": "CMD [\"/bin/sh\"]",
+          "empty_layer": true
+        },
+        {
+          "type": "RUN",
+          "time": "2021-04-14T21:27:12Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 1,
+          "layer_id": "bfc088daa35f68d261e53a2815681eefaa2d41d240fba976a3f0d9d2644b2e70",
+          "layer_fsdiff_id": "sha256:224f6b2e3ad2c652ac21bcffcbb9e263ef9a89ff0124fa1974076ff10d3f1c26",
+          "size": 512345,
+          "size_human": "512 kB",
+          "command_snippet": "RUN apk add --no-cache \t\tca-certificates",
+          "command_all": "RUN apk add --no-cache \t\tca-certificates",
+          "system_commands": [
+            "apk add --no-cache ca-certificates"
+          ]
+        },
+        {
+          "type": "RUN",
+          "time": "2021-04-14T21:27:13Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 2,
+          "layer_id": "3a2bcea58a051b1c8ed2895d03e7fdd69b15b55d804fdfaf7c458fe4e3f27f45",
+          "layer_fsdiff_id": "sha256:a588deb4bef34d005e4c67384ec8df1b2d6a11634a373c04cfdb6c1808c61f7c",
+          "size": 17,
+          "size_human": "17 B",
+          "command_snippet": "RUN [ ! -e /etc/nsswitch.conf ] && \\\n\techo '...",
+          "command_all": "RUN [ ! -e /etc/nsswitch.conf ] && \\\n\techo 'hosts: files dns' > /etc/nsswitch.conf",
+          "system_commands": [
+            "[ ! -e /etc/nsswitch.conf ]",
+            "echo 'hosts: files dns' > /etc/nsswitch.conf"
+          ]
+        },
+        {
+          "type": "ENV",
+          "time": "2021-04-14T21:27:13Z",
+          "is_nop": true,
+          "local_image_exists": false,
+          "layer_index": 2,
+          "layer_id": "3a2bcea58a051b1c8ed2895d03e7fdd69b15b55d804fdfaf7c458fe4e3f27f45",
+          "layer_fsdiff_id": "sha256:a588deb4bef34d005e4c67384ec8df1b2d6a11634a373c04cfdb6c1808c61f7c",
+          "size": 0,
+          "params": "PATH=/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+          "command_snippet": "ENV PATH=/usr/local/go/bin:/usr/local/sbin:/...",
+          "command_all": "ENV PATH=/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+          "empty_layer": true
+        },
+        {
+          "type": "ENV",
+          "time": "2021-05-06T23:18:07Z",
+          "is_nop": true,
+          "local_image_exists": false,
+          "layer_index": 2,
+          "layer_id": "3a2bcea58a051b1c8ed2895d03e7fdd69b15b55d804fdfaf7c458fe4e3f27f45",
+          "layer_fsdiff_id": "sha256:a588deb4bef34d005e4c67384ec8df1b2d6a11634a373c04cfdb6c1808c61f7c",
+          "size": 0,
+          "params": "GOLANG_VERSION=1.16.4",
+          "command_snippet": "ENV GOLANG_VERSION=1.16.4",
+          "command_all": "ENV GOLANG_VERSION=1.16.4",
+          "empty_layer": true
+        },
+        {
+          "type": "RUN",
+          "time": "2021-05-06T23:20:04Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 3,
+          "layer_id": "fc2bc9aa0b71a9bbc02073eee508f5c5e012f1e8b2626174d0838d3a4a4e7bbc",
+          "layer_fsdiff_id": "sha256:dc27f0c2b8639f2b2fdb58e9094573f9d415987c3cf163cdeba131366719774b",
+          "size": 295315281,
+          "size_human": "295 MB",
+          "command_snippet": "RUN set -eux; \tapk add --no-cache --virtual ...",
+          "command_all": "RUN set -eux; \tapk add --no-cache --virtual .build-deps \t\tbash \t\tgcc \t\tgnupg \t\tgo \t\tmusl-dev \t\topenssl \t; \tapkArch=\"$(apk --print-arch)\"; \tcase \"$apkArch\" in \t\t'x86_64') \t\t\texport GOARCH='amd64' GOOS='linux'; \t\t\t;; \t\t'armhf') \t\t\texport GOARCH='arm' GOARM='6' GOOS='linux'; \t\t\t;; \t\t'armv7') \t\t\texport GOARCH='arm' GOARM='7' GOOS='linux'; \t\t\t;; \t\t'aarch64') \t\t\texport GOARCH='arm64' GOOS='linux'; \t\t\t;; \t\t'x86') \t\t\texport GO386='softfloat' GOARCH='386' GOOS='linux'; \t\t\t;; \t\t'ppc64le') \t\t\texport GOARCH='ppc64le' GOOS='linux'; \t\t\t;; \t\t's390x') \t\t\texport GOARCH='s390x' GOOS='linux'; \t\t\t;; \t\t*) echo >&2 \"error: unsupported architecture '$apkArch' (likely packaging update needed)\"; exit 1 ;; \tesac; \t\turl='https://dl.google.com/go/go1.16.4.src.tar.gz'; \tsha256='ae4f6b6e2a1677d31817984655a762074b5356da50fb58722b99104870d43503'; \t\twget -O go.tgz.asc \"$url.asc\"; \twget -O go.tgz \"$url\"; \techo \"$sha256 *go.tgz\" | sha256sum -c -; \t\texport GNUPGHOME=\"$(mktemp -d)\"; \tgpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys 'EB4C 1BFD 4F04 2F6D DDCC EC91 7721 F63B D38B 4796'; \tgpg --batch --verify go.tgz.asc go.tgz; \tgpgconf --kill all; \trm -rf \"$GNUPGHOME\" go.tgz.asc; \t\ttar -C /usr/local -xzf go.tgz; \trm go.tgz; \t\t( \t\tcd /usr/local/go/src; \t\texport GOROOT_BOOTSTRAP=\"$(go env GOROOT)\" GOHOSTOS=\"$GOOS\" GOHOSTARCH=\"$GOARCH\"; \t\tif [ \"${GO386:-}\" = 'softfloat' ]; then \t\t\tGO386= ./bootstrap.bash; \t\t\texport GOROOT_BOOTSTRAP=\"/usr/local/go-$GOOS-$GOARCH-bootstrap\"; \t\t\t\"$GOROOT_BOOTSTRAP/bin/go\" version; \t\tfi; \t\t./make.bash; \t\tif [ \"${GO386:-}\" = 'softfloat' ]; then \t\t\trm -rf \"$GOROOT_BOOTSTRAP\"; \t\tfi; \t); \t\tapk del --no-network .build-deps; \t\tgo install std; \t\trm -rf \t\t/usr/local/go/pkg/*/cmd \t\t/usr/local/go/pkg/bootstrap \t\t/usr/local/go/pkg/obj \t\t/usr/local/go/pkg/tool/*/api \t\t/usr/local/go/pkg/tool/*/go_bootstrap \t\t/usr/local/go/src/cmd/dist/dist \t; \t\tgo version",
+          "system_commands": [
+            "set -eux",
+            "apk add --no-cache --virtual .build-deps bash gcc gnupg go musl-dev openssl",
+            "apkArch=\"$(apk --print-arch)\"",
+            "case \"$apkArch\" in 'x86_64') export GOARCH='amd64' GOOS='linux'",
+            "",
+            "",
+            "'armhf') export GOARCH='arm' GOARM='6' GOOS='linux'",
+            "",
+            "",
+            "'armv7') export GOARCH='arm' GOARM='7' GOOS='linux'",
+            "",
+            "",
+            "'aarch64') export GOARCH='arm64' GOOS='linux'",
+            "",
+            "",
+            "'x86') export GO386='softfloat' GOARCH='386' GOOS='linux'",
+            "",
+            "",
+            "'ppc64le') export GOARCH='ppc64le' GOOS='linux'",
+            "",
+            "",
+            "'s390x') export GOARCH='s390x' GOOS='linux'",
+            "",
+            "",
+            "*) echo >&2 \"error: unsupported architecture '$apkArch' (likely packaging update needed)\"",
+            "exit 1",
+            "",
+            "esac",
+            "url='https://dl.google.com/go/go1.16.4.src.tar.gz'",
+            "sha256='ae4f6b6e2a1677d31817984655a762074b5356da50fb58722b99104870d43503'",
+            "wget -O go.tgz.asc \"$url.asc\"",
+            "wget -O go.tgz \"$url\"",
+            "echo \"$sha256 *go.tgz\" | sha256sum -c -",
+            "export GNUPGHOME=\"$(mktemp -d)\"",
+            "gpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys 'EB4C 1BFD 4F04 2F6D DDCC EC91 7721 F63B D38B 4796'",
+            "gpg --batch --verify go.tgz.asc go.tgz",
+            "gpgconf --kill all",
+            "rm -rf \"$GNUPGHOME\" go.tgz.asc",
+            "tar -C /usr/local -xzf go.tgz",
+            "rm go.tgz",
+            "( cd /usr/local/go/src",
+            "export GOROOT_BOOTSTRAP=\"$(go env GOROOT)\" GOHOSTOS=\"$GOOS\" GOHOSTARCH=\"$GOARCH\"",
+            "if [ \"${GO386:-}\" = 'softfloat' ]",
+            "then GO386= ./bootstrap.bash",
+            "export GOROOT_BOOTSTRAP=\"/usr/local/go-$GOOS-$GOARCH-bootstrap\"",
+            "\"$GOROOT_BOOTSTRAP/bin/go\" version",
+            "fi",
+            "./make.bash",
+            "if [ \"${GO386:-}\" = 'softfloat' ]",
+            "then rm -rf \"$GOROOT_BOOTSTRAP\"",
+            "fi",
+            ")",
+            "apk del --no-network .build-deps",
+            "go install std",
+            "rm -rf /usr/local/go/pkg/*/cmd /usr/local/go/pkg/bootstrap /usr/local/go/pkg/obj /usr/local/go/pkg/tool/*/api /usr/local/go/pkg/tool/*/go_bootstrap /usr/local/go/src/cmd/dist/dist",
+            "go version"
+          ]
+        },
+        {
+          "type": "ENV",
+          "time": "2021-05-06T23:20:05Z",
+          "is_nop": true,
+          "local_image_exists": false,
+          "layer_index": 3,
+          "layer_id": "fc2bc9aa0b71a9bbc02073eee508f5c5e012f1e8b2626174d0838d3a4a4e7bbc",
+          "layer_fsdiff_id": "sha256:dc27f0c2b8639f2b2fdb58e9094573f9d415987c3cf163cdeba131366719774b",
+          "size": 0,
+          "params": "GOPATH=/go",
+          "command_snippet": "ENV GOPATH=/go",
+          "command_all": "ENV GOPATH=/go",
+          "empty_layer": true
+        },
+        {
+          "type": "ENV",
+          "time": "2021-05-06T23:20:05Z",
+          "is_nop": true,
+          "local_image_exists": false,
+          "layer_index": 3,
+          "layer_id": "fc2bc9aa0b71a9bbc02073eee508f5c5e012f1e8b2626174d0838d3a4a4e7bbc",
+          "layer_fsdiff_id": "sha256:dc27f0c2b8639f2b2fdb58e9094573f9d415987c3cf163cdeba131366719774b",
+          "size": 0,
+          "params": "PATH=/go/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+          "command_snippet": "ENV PATH=/go/bin:/usr/local/go/bin:/usr/loca...",
+          "command_all": "ENV PATH=/go/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+          "empty_layer": true
+        },
+        {
+          "type": "RUN",
+          "time": "2021-05-06T23:20:06Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 4,
+          "layer_id": "0c22e92878835dc9ab49de53c731fcfd245781da262454b366d4c071e14df394",
+          "layer_fsdiff_id": "sha256:a9d40f605488c1cd64acb4ed2f54a7a5c08567716b8b621e69051cbf9cc4a824",
+          "size": 0,
+          "command_snippet": "RUN mkdir -p \"$GOPATH/src\" \"$GOPATH/bin\" && ...",
+          "command_all": "RUN mkdir -p \"$GOPATH/src\" \"$GOPATH/bin\" && \\\n\tchmod -R 777 \"$GOPATH\"",
+          "system_commands": [
+            "mkdir -p \"$GOPATH/src\" \"$GOPATH/bin\"",
+            "chmod -R 777 \"$GOPATH\""
+          ]
+        },
+        {
+          "type": "WORKDIR",
+          "time": "2021-05-06T23:20:07Z",
+          "is_nop": true,
+          "local_image_exists": false,
+          "layer_index": 4,
+          "layer_id": "0c22e92878835dc9ab49de53c731fcfd245781da262454b366d4c071e14df394",
+          "layer_fsdiff_id": "sha256:a9d40f605488c1cd64acb4ed2f54a7a5c08567716b8b621e69051cbf9cc4a824",
+          "size": 0,
+          "params": "/go",
+          "command_snippet": "WORKDIR /go",
+          "command_all": "WORKDIR /go",
+          "system_commands": [
+            "mkdir -p /go"
+          ],
+          "empty_layer": true
+        },
+        {
+          "type": "RUN",
+          "time": "2021-06-05T23:35:07Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 4,
+          "layer_id": "0c22e92878835dc9ab49de53c731fcfd245781da262454b366d4c071e14df394",
+          "layer_fsdiff_id": "sha256:a9d40f605488c1cd64acb4ed2f54a7a5c08567716b8b621e69051cbf9cc4a824",
+          "size": 0,
+          "command_snippet": "RUN [\"ENV\",\"GITHUB_USER=\"]",
+          "command_all": "RUN [\"ENV\",\"GITHUB_USER=\"]",
+          "system_commands": [
+            "[\"ENV\",\"GITHUB_USER=\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "type": "RUN",
+          "time": "2021-06-05T23:35:07Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 4,
+          "layer_id": "0c22e92878835dc9ab49de53c731fcfd245781da262454b366d4c071e14df394",
+          "layer_fsdiff_id": "sha256:a9d40f605488c1cd64acb4ed2f54a7a5c08567716b8b621e69051cbf9cc4a824",
+          "size": 0,
+          "command_snippet": "RUN [\"ENV\",\"GITHUB_PASSWORD=\"]",
+          "command_all": "RUN [\"ENV\",\"GITHUB_PASSWORD=\"]",
+          "system_commands": [
+            "[\"ENV\",\"GITHUB_PASSWORD=\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "type": "RUN",
+          "time": "2021-06-05T23:35:07Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 4,
+          "layer_id": "0c22e92878835dc9ab49de53c731fcfd245781da262454b366d4c071e14df394",
+          "layer_fsdiff_id": "sha256:a9d40f605488c1cd64acb4ed2f54a7a5c08567716b8b621e69051cbf9cc4a824",
+          "size": 0,
+          "command_snippet": "RUN [\"ENV\",\"GITHUB_EMAIL=\"]",
+          "command_all": "RUN [\"ENV\",\"GITHUB_EMAIL=\"]",
+          "system_commands": [
+            "[\"ENV\",\"GITHUB_EMAIL=\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "type": "RUN",
+          "time": "2021-06-05T23:35:07Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 4,
+          "layer_id": "0c22e92878835dc9ab49de53c731fcfd245781da262454b366d4c071e14df394",
+          "layer_fsdiff_id": "sha256:a9d40f605488c1cd64acb4ed2f54a7a5c08567716b8b621e69051cbf9cc4a824",
+          "size": 0,
+          "command_snippet": "RUN [\"ENV\",\"GCP_PROJECT_ID=\"]",
+          "command_all": "RUN [\"ENV\",\"GCP_PROJECT_ID=\"]",
+          "system_commands": [
+            "[\"ENV\",\"GCP_PROJECT_ID=\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "type": "RUN",
+          "time": "2021-06-05T23:35:07Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 4,
+          "layer_id": "0c22e92878835dc9ab49de53c731fcfd245781da262454b366d4c071e14df394",
+          "layer_fsdiff_id": "sha256:a9d40f605488c1cd64acb4ed2f54a7a5c08567716b8b621e69051cbf9cc4a824",
+          "size": 0,
+          "command_snippet": "RUN [\"ENV\",\"AWS_DEFAULT_REGION=\"]",
+          "command_all": "RUN [\"ENV\",\"AWS_DEFAULT_REGION=\"]",
+          "system_commands": [
+            "[\"ENV\",\"AWS_DEFAULT_REGION=\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "type": "RUN",
+          "time": "2021-06-05T23:35:07Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 4,
+          "layer_id": "0c22e92878835dc9ab49de53c731fcfd245781da262454b366d4c071e14df394",
+          "layer_fsdiff_id": "sha256:a9d40f605488c1cd64acb4ed2f54a7a5c08567716b8b621e69051cbf9cc4a824",
+          "size": 0,
+          "command_snippet": "RUN [\"ENV\",\"AWS_ACCESS_KEY_ID=\"]",
+          "command_all": "RUN [\"ENV\",\"AWS_ACCESS_KEY_ID=\"]",
+          "system_commands": [
+            "[\"ENV\",\"AWS_ACCESS_KEY_ID=\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "type": "RUN",
+          "time": "2021-06-05T23:35:07Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 4,
+          "layer_id": "0c22e92878835dc9ab49de53c731fcfd245781da262454b366d4c071e14df394",
+          "layer_fsdiff_id": "sha256:a9d40f605488c1cd64acb4ed2f54a7a5c08567716b8b621e69051cbf9cc4a824",
+          "size": 0,
+          "command_snippet": "RUN [\"ENV\",\"AWS_SECRET_ACCESS_KEY=\"]",
+          "command_all": "RUN [\"ENV\",\"AWS_SECRET_ACCESS_KEY=\"]",
+          "system_commands": [
+            "[\"ENV\",\"AWS_SECRET_ACCESS_KEY=\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "type": "RUN",
+          "time": "2021-06-05T23:35:07Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 5,
+          "layer_id": "493f71f188e49a24fb59d4bd4cbac6faf781e253a27aec57f51c344d05b5538f",
+          "layer_fsdiff_id": "sha256:78f2eb05dd5a3121655d73c90724209e6ac1f12ad5be6b2ec59c830de002647e",
+          "size": 467,
+          "size_human": "467 B",
+          "command_snippet": "RUN [\"COPY\",\"/usr/local/bin/az\",\"/usr/local/...",
+          "command_all": "RUN [\"COPY\",\"/usr/local/bin/az\",\"/usr/local/bin/az\"]",
+          "system_commands": [
+            "[\"COPY\",\"/usr/local/bin/az\",\"/usr/local/bin/az\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2021-06-05T23:35:07Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 6,
+          "layer_id": "2223c3b5ffabef7376309484aa0349888940d6226cd9096f2f5d9d6c955d0d3d",
+          "layer_fsdiff_id": "sha256:d8603e41f50cc328da3b635da715f89696482c391093b8527e59b054caab399b",
+          "size": 80648452,
+          "size_human": "81 MB",
+          "command_snippet": "RUN [\"COPY\",\"/bin/terraform\",\"/usr/local/bin...",
+          "command_all": "RUN [\"COPY\",\"/bin/terraform\",\"/usr/local/bin/terraform\"]",
+          "system_commands": [
+            "[\"COPY\",\"/bin/terraform\",\"/usr/local/bin/terraform\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2021-06-05T23:35:08Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 7,
+          "layer_id": "ac7c13e6fd7b7e319bc07ac45c0d4214b02bdb6f399a42aa0b062d610329e9a4",
+          "layer_fsdiff_id": "sha256:16a3e1d80e369233b2805a7a714d632cda3445a0e44ce559fc461dd8bb72358f",
+          "size": 9588736,
+          "size_human": "9.6 MB",
+          "command_snippet": "RUN [\"COPY\",\"/usr/bin/tfsec\",\"/usr/local/bin...",
+          "command_all": "RUN [\"COPY\",\"/usr/bin/tfsec\",\"/usr/local/bin/tfsec\"]",
+          "system_commands": [
+            "[\"COPY\",\"/usr/bin/tfsec\",\"/usr/local/bin/tfsec\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2021-06-05T23:35:08Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 8,
+          "layer_id": "fe60d994cc3fba60a668ee5b938d9f761fdaacdfb2d8b37fe6662e6fec7c5b02",
+          "layer_fsdiff_id": "sha256:cf42a74564a3fb40e2cf2c80be2613d5066f10fe27e534e949b654655d10b341",
+          "size": 53965663,
+          "size_human": "54 MB",
+          "command_snippet": "RUN [\"COPY\",\"/usr/local/bin/tflint\",\"/usr/lo...",
+          "command_all": "RUN [\"COPY\",\"/usr/local/bin/tflint\",\"/usr/local/bin/tflint\"]",
+          "system_commands": [
+            "[\"COPY\",\"/usr/local/bin/tflint\",\"/usr/local/bin/tflint\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2021-06-06T03:29:56Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 9,
+          "layer_id": "1c9d8b2f3536343f3e53a7f5275a1a739e9fb2a6e996a9ca0d6b05a72f77c7cc",
+          "layer_fsdiff_id": "sha256:4e5a0d57b5e15eeda4241ad679c601691eb6a77377c4f6bfc7c809d60e003e92",
+          "size": 9345923,
+          "size_human": "9.3 MB",
+          "command_snippet": "RUN [\"COPY\",\"/usr/local/bin/terraform-docs\",...",
+          "command_all": "RUN [\"COPY\",\"/usr/local/bin/terraform-docs\",\"/usr/local/bin/terraform-docs\"]",
+          "system_commands": [
+            "[\"COPY\",\"/usr/local/bin/terraform-docs\",\"/usr/local/bin/terraform-docs\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2021-06-06T03:29:56Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 10,
+          "layer_id": "54e00d01b4714a4d759c84e70acc792bb14f6438e803066bec35422b0a2b2f2e",
+          "layer_fsdiff_id": "sha256:fec64f4f0a05b310b690c9a317a603a3a5c7bfb4e15c5cbf49fba7403930ed9b",
+          "size": 76755848,
+          "size_human": "77 MB",
+          "command_snippet": "RUN [\"COPY\",\"/go/bin/terrascan\",\"/usr/local/...",
+          "command_all": "RUN [\"COPY\",\"/go/bin/terrascan\",\"/usr/local/bin/tfscan\"]",
+          "system_commands": [
+            "[\"COPY\",\"/go/bin/terrascan\",\"/usr/local/bin/tfscan\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2021-06-06T03:29:56Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 10,
+          "layer_id": "54e00d01b4714a4d759c84e70acc792bb14f6438e803066bec35422b0a2b2f2e",
+          "layer_fsdiff_id": "sha256:fec64f4f0a05b310b690c9a317a603a3a5c7bfb4e15c5cbf49fba7403930ed9b",
+          "size": 0,
+          "command_snippet": "RUN [\"ENV\",\"TASK_VERSION=3.4.2\"]",
+          "command_all": "RUN [\"ENV\",\"TASK_VERSION=3.4.2\"]",
+          "system_commands": [
+            "[\"ENV\",\"TASK_VERSION=3.4.2\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "type": "RUN",
+          "time": "2021-06-06T03:29:56Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 10,
+          "layer_id": "54e00d01b4714a4d759c84e70acc792bb14f6438e803066bec35422b0a2b2f2e",
+          "layer_fsdiff_id": "sha256:fec64f4f0a05b310b690c9a317a603a3a5c7bfb4e15c5cbf49fba7403930ed9b",
+          "size": 0,
+          "command_snippet": "RUN [\"ENV\",\"GCLOUD_VERSION=343.0.0\"]",
+          "command_all": "RUN [\"ENV\",\"GCLOUD_VERSION=343.0.0\"]",
+          "system_commands": [
+            "[\"ENV\",\"GCLOUD_VERSION=343.0.0\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "type": "RUN",
+          "time": "2021-06-06T03:29:56Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 10,
+          "layer_id": "54e00d01b4714a4d759c84e70acc792bb14f6438e803066bec35422b0a2b2f2e",
+          "layer_fsdiff_id": "sha256:fec64f4f0a05b310b690c9a317a603a3a5c7bfb4e15c5cbf49fba7403930ed9b",
+          "size": 0,
+          "command_snippet": "RUN [\"ENV\",\"PYTHON_VERSION_MINOR=3.8\"]",
+          "command_all": "RUN [\"ENV\",\"PYTHON_VERSION_MINOR=3.8\"]",
+          "system_commands": [
+            "[\"ENV\",\"PYTHON_VERSION_MINOR=3.8\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "type": "RUN",
+          "time": "2021-06-06T03:29:56Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 10,
+          "layer_id": "54e00d01b4714a4d759c84e70acc792bb14f6438e803066bec35422b0a2b2f2e",
+          "layer_fsdiff_id": "sha256:fec64f4f0a05b310b690c9a317a603a3a5c7bfb4e15c5cbf49fba7403930ed9b",
+          "size": 0,
+          "command_snippet": "RUN [\"ENV\",\"PYTHON_VERSION_MAJOR=3\"]",
+          "command_all": "RUN [\"ENV\",\"PYTHON_VERSION_MAJOR=3\"]",
+          "system_commands": [
+            "[\"ENV\",\"PYTHON_VERSION_MAJOR=3\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "type": "RUN",
+          "time": "2021-06-06T03:29:56Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 10,
+          "layer_id": "54e00d01b4714a4d759c84e70acc792bb14f6438e803066bec35422b0a2b2f2e",
+          "layer_fsdiff_id": "sha256:fec64f4f0a05b310b690c9a317a603a3a5c7bfb4e15c5cbf49fba7403930ed9b",
+          "size": 0,
+          "command_snippet": "RUN [\"ENV\",\"ARCH=amd64\"]",
+          "command_all": "RUN [\"ENV\",\"ARCH=amd64\"]",
+          "system_commands": [
+            "[\"ENV\",\"ARCH=amd64\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "type": "RUN",
+          "time": "2021-06-06T03:29:56Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 10,
+          "layer_id": "54e00d01b4714a4d759c84e70acc792bb14f6438e803066bec35422b0a2b2f2e",
+          "layer_fsdiff_id": "sha256:fec64f4f0a05b310b690c9a317a603a3a5c7bfb4e15c5cbf49fba7403930ed9b",
+          "size": 0,
+          "command_snippet": "RUN [\"ENV\",\"ARCH_86=x86_64\"]",
+          "command_all": "RUN [\"ENV\",\"ARCH_86=x86_64\"]",
+          "system_commands": [
+            "[\"ENV\",\"ARCH_86=x86_64\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "type": "RUN",
+          "time": "2021-06-06T03:29:56Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 10,
+          "layer_id": "54e00d01b4714a4d759c84e70acc792bb14f6438e803066bec35422b0a2b2f2e",
+          "layer_fsdiff_id": "sha256:fec64f4f0a05b310b690c9a317a603a3a5c7bfb4e15c5cbf49fba7403930ed9b",
+          "size": 0,
+          "command_snippet": "RUN [\"ENV\",\"OS=linux\"]",
+          "command_all": "RUN [\"ENV\",\"OS=linux\"]",
+          "system_commands": [
+            "[\"ENV\",\"OS=linux\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "type": "RUN",
+          "time": "2021-06-06T03:29:56Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 10,
+          "layer_id": "54e00d01b4714a4d759c84e70acc792bb14f6438e803066bec35422b0a2b2f2e",
+          "layer_fsdiff_id": "sha256:fec64f4f0a05b310b690c9a317a603a3a5c7bfb4e15c5cbf49fba7403930ed9b",
+          "size": 0,
+          "command_snippet": "RUN [\"ENV\",\"PYTHONUNBUFFERED=1\"]",
+          "command_all": "RUN [\"ENV\",\"PYTHONUNBUFFERED=1\"]",
+          "system_commands": [
+            "[\"ENV\",\"PYTHONUNBUFFERED=1\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "type": "RUN",
+          "time": "2021-06-06T10:44:34Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 11,
+          "layer_id": "74d39b62672e16de7c9fc1542708c802dc8ff2192131904eab36ae8533fdd2f9",
+          "layer_fsdiff_id": "sha256:e983ee9e5445e58d29f3e4bdec96d9f72168f6617853c1754898cb602755b640",
+          "size": 0,
+          "command_snippet": "RUN [\"RUN\",\"/bin/sh\",\"-c\",\"GOCACHE=OFF\"]",
+          "command_all": "RUN [\"RUN\",\"/bin/sh\",\"-c\",\"GOCACHE=OFF\"]",
+          "system_commands": [
+            "[\"RUN\",\"/bin/sh\",\"-c\",\"GOCACHE=OFF\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2021-06-06T10:44:34Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 12,
+          "layer_id": "3b614b2e2c50b1b2bc67e5dd386055ca3c01fdc95dbef66ca2e72ffdbe7d1269",
+          "layer_fsdiff_id": "sha256:51b87384e4afcccee4660ccaa805f2a7609295438250c7995d2fbfc8aba8dac9",
+          "size": 31,
+          "size_human": "31 B",
+          "command_snippet": "RUN [\"RUN\",\"/bin/sh\",\"-c\",\"go\",\"env\",\"-w\",\"G...",
+          "command_all": "RUN [\"RUN\",\"/bin/sh\",\"-c\",\"go\",\"env\",\"-w\",\"GOPRIVATE=github.com/gruberdev\"]",
+          "system_commands": [
+            "[\"RUN\",\"/bin/sh\",\"-c\",\"go\",\"env\",\"-w\",\"GOPRIVATE=github.com/gruberdev\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2021-06-06T10:44:34Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 12,
+          "layer_id": "3b614b2e2c50b1b2bc67e5dd386055ca3c01fdc95dbef66ca2e72ffdbe7d1269",
+          "layer_fsdiff_id": "sha256:51b87384e4afcccee4660ccaa805f2a7609295438250c7995d2fbfc8aba8dac9",
+          "size": 0,
+          "command_snippet": "RUN [\"ENV\",\"LANG=\",\"LC_ALL=\",\"PATH=/usr/loca...",
+          "command_all": "RUN [\"ENV\",\"LANG=\",\"LC_ALL=\",\"PATH=/usr/local/go/bin:/go/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\"GO111MODULE=on\",\"SHELL=/bin/bash\",\"HAS_ALLOW_UNSAFE=y\"]",
+          "system_commands": [
+            "[\"ENV\",\"LANG=\",\"LC_ALL=\",\"PATH=/usr/local/go/bin:/go/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\"GO111MODULE=on\",\"SHELL=/bin/bash\",\"HAS_ALLOW_UNSAFE=y\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "type": "RUN",
+          "time": "2021-06-06T10:45:36Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 13,
+          "layer_id": "68ccb6dbeb059c079be8bbf0e5681cf71516a894dd09afd674cb1ecd420e846f",
+          "layer_fsdiff_id": "sha256:d32b85e33c0b067e4938aa237e0c387687e99bf1228d5a17c60e02bd4add0308",
+          "size": 320662987,
+          "size_human": "321 MB",
+          "command_snippet": "RUN [\"RUN\",\"/bin/sh\",\"-c\",\"apk\",\"add\",\"--upd...",
+          "command_all": "RUN [\"RUN\",\"/bin/sh\",\"-c\",\"apk\",\"add\",\"--update\",\"--no-cache\",\"bash\",\"gcc\",\"g++\",\"git\",\"curl\",\"zlib\",\"libffi-dev\",\"wget\",\"musl-dev\",\"python${PYTHON_VERSION_MAJOR}\",\"openssl\",\"sudo\",\"jq\",\"py${PYTHON_VERSION_MAJOR}-pip\",\"ncurses\",\"openssh-client\",\"rsync\",\"ca-certificates\",\"musl-dev\",\"openssl-dev\",\"make\",\"python${PYTHON_VERSION_MAJOR}-dev\",\"\\u0026\\u0026\",\"ln\",\"-sf\",\"python${PYTHON_VERSION_MAJOR}\",\"/usr/bin/python\",\"\\u0026\\u0026\",\"ln\",\"-s\",\"/usr/bin/python${PYTHON_VERSION_MINOR}\",\"/usr/local/bin/python\",\"\\u0026\\u0026\",\"python${PYTHON_VERSION_MAJOR}\",\"-m\",\"ensurepip\"]",
+          "system_commands": [
+            "[\"RUN\",\"/bin/sh\",\"-c\",\"apk\",\"add\",\"--update\",\"--no-cache\",\"bash\",\"gcc\",\"g++\",\"git\",\"curl\",\"zlib\",\"libffi-dev\",\"wget\",\"musl-dev\",\"python${PYTHON_VERSION_MAJOR}\",\"openssl\",\"sudo\",\"jq\",\"py${PYTHON_VERSION_MAJOR}-pip\",\"ncurses\",\"openssh-client\",\"rsync\",\"ca-certificates\",\"musl-dev\",\"openssl-dev\",\"make\",\"python${PYTHON_VERSION_MAJOR}-dev\",\"u0026u0026\",\"ln\",\"-sf\",\"python${PYTHON_VERSION_MAJOR}\",\"/usr/bin/python\",\"u0026u0026\",\"ln\",\"-s\",\"/usr/bin/python${PYTHON_VERSION_MINOR}\",\"/usr/local/bin/python\",\"u0026u0026\",\"python${PYTHON_VERSION_MAJOR}\",\"-m\",\"ensurepip\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2021-06-06T10:45:36Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 13,
+          "layer_id": "68ccb6dbeb059c079be8bbf0e5681cf71516a894dd09afd674cb1ecd420e846f",
+          "layer_fsdiff_id": "sha256:d32b85e33c0b067e4938aa237e0c387687e99bf1228d5a17c60e02bd4add0308",
+          "size": 0,
+          "command_snippet": "RUN [\"SHELL\",\"[/bin/bash\",\"-eo\",\"pipefail\",\"...",
+          "command_all": "RUN [\"SHELL\",\"[/bin/bash\",\"-eo\",\"pipefail\",\"-c]\"]",
+          "system_commands": [
+            "[\"SHELL\",\"[/bin/bash\",\"-eo\",\"pipefail\",\"-c]\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "type": "RUN",
+          "time": "2021-06-06T11:03:03Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 14,
+          "layer_id": "a0748ab6cffe85c98a493f568128b9e8dc039a88b536d9ca94dd5a1542699f19",
+          "layer_fsdiff_id": "sha256:4d39c2ae0eaf7280531281b51801ae0599478015fc4fc688bb11a6fc0850eb57",
+          "size": 23756864,
+          "size_human": "24 MB",
+          "command_snippet": "RUN [\"RUN\",\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\"...",
+          "command_all": "RUN [\"RUN\",\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\",\"curl\",\"-sSfL\",\"https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh\",\"|\",\"sh\",\"-s\",\"--\",\"-b\",\"$(go\",\"env\",\"GOPATH)/bin\",\"\\u0026\\u0026\",\"golangci-lint\",\"--version\"]",
+          "system_commands": [
+            "[\"RUN\",\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\",\"curl\",\"-sSfL\",\"https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh\",\"|\",\"sh\",\"-s\",\"--\",\"-b\",\"$(go\",\"env\",\"GOPATH)/bin\",\"u0026u0026\",\"golangci-lint\",\"--version\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2021-06-06T11:13:46Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 15,
+          "layer_id": "1f28b70d0ef8d7b45a9a37a7d1787eaef95dea7b828f2b7f4f789610d53feecd",
+          "layer_fsdiff_id": "sha256:685f02c18f2e99cd718f4a456d53ee0cd8edef64b59fcbf695bbc7b1d36717c6",
+          "size": 7805818,
+          "size_human": "7.8 MB",
+          "command_snippet": "RUN [\"RUN\",\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\"...",
+          "command_all": "RUN [\"RUN\",\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\",\"wget\",\"-O\",\"/tmp/task.tar.gz\",\"https://github.com/go-task/task/releases/download/v${TASK_VERSION}/task_${OS}_${ARCH}.tar.gz\",\"\\u0026\\u0026\",\"tar\",\"-C\",\"/usr/bin/\",\"-xvf\",\"/tmp/task.tar.gz\",\"\\u0026\\u0026\",\"rm\",\"-rf\",\"/tmp/gotty.tar.gz\"]",
+          "system_commands": [
+            "[\"RUN\",\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\",\"wget\",\"-O\",\"/tmp/task.tar.gz\",\"https://github.com/go-task/task/releases/download/v${TASK_VERSION}/task_${OS}_${ARCH}.tar.gz\",\"u0026u0026\",\"tar\",\"-C\",\"/usr/bin/\",\"-xvf\",\"/tmp/task.tar.gz\",\"u0026u0026\",\"rm\",\"-rf\",\"/tmp/gotty.tar.gz\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2021-06-06T11:14:54Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 16,
+          "layer_id": "a333e6b60d31cfba49b4b1d86387bad8fb1a272f44027093fddd8d73009f54c1",
+          "layer_fsdiff_id": "sha256:4fa8a0de66b2aae48f8a72e13ea6421c5d8fb23cdb9127777de863b4cb2562ea",
+          "size": 1533029610,
+          "size_human": "1.5 GB",
+          "command_snippet": "RUN [\"RUN\",\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\"...",
+          "command_all": "RUN [\"RUN\",\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\",\"curl\",\"https://sdk.cloud.google.com\",\"\\u003e\",\"/tmp/install.sh\",\"\\u0026\\u0026\",\"bash\",\"/tmp/install.sh\",\"--disable-prompts\",\"\\u0026\\u0026\",\"cp\",\"-r\",\"~/google-cloud-sdk\",\"/usr/local/google-cloud-sdk\"]",
+          "system_commands": [
+            "[\"RUN\",\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\",\"curl\",\"https://sdk.cloud.google.com\",\"u003e\",\"/tmp/install.sh\",\"u0026u0026\",\"bash\",\"/tmp/install.sh\",\"--disable-prompts\",\"u0026u0026\",\"cp\",\"-r\",\"~/google-cloud-sdk\",\"/usr/local/google-cloud-sdk\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2021-06-06T11:14:55Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 17,
+          "layer_id": "045dd542def706fc15e046c0063d9bd01ffd145a8b5e94e035ebf7641a4c05c0",
+          "layer_fsdiff_id": "sha256:e19c9a859061348db7178a8a5c2d3fbc6bba900ae4ae315dd6fd6773e7a9d9ed",
+          "size": 102,
+          "size_human": "102 B",
+          "command_snippet": "RUN [\"RUN\",\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\"...",
+          "command_all": "RUN [\"RUN\",\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\",\"echo\",\"export PATH=\\\"/usr/local/google-cloud-sdk/bin:${PATH}\\\"\",\"\\u003e\\u003e\",\"${HOME}/.bashrc\",\"\\u0026\\u0026\",\"echo\",\"export PATH=\\\"/go/bin:/usr/local/go/bin:${PATH}\\\"\",\"\\u003e\\u003e\",\"${HOME}/.bashrc\",\"\\u0026\\u0026\",\"mkdir\",\"/root/.aws\"]",
+          "system_commands": [
+            "[\"RUN\",\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\",\"echo\",\"export PATH=\"/usr/local/google-cloud-sdk/bin:${PATH}\"\",\"u003eu003e\",\"${HOME}/.bashrc\",\"u0026u0026\",\"echo\",\"export PATH=\"/go/bin:/usr/local/go/bin:${PATH}\"\",\"u003eu003e\",\"${HOME}/.bashrc\",\"u0026u0026\",\"mkdir\",\"/root/.aws\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2021-06-06T11:14:55Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 18,
+          "layer_id": "5c96ba079f78047570e533d2f49b22309fee492cac151c413010888efbdbd6ab",
+          "layer_fsdiff_id": "sha256:e95efa41f77e7745fc8a503a92f9f9f7606932a008ac2893704c6103d5d633ee",
+          "size": 0,
+          "command_snippet": "RUN [\"WORKDIR\",\"/project\"]",
+          "command_all": "RUN [\"WORKDIR\",\"/project\"]",
+          "system_commands": [
+            "[\"WORKDIR\",\"/project\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2021-06-06T11:14:55Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 19,
+          "layer_id": "9a824ab48e23342e3ba4f37c8e2541aa18efdcd5e9c4e1558bc805b2722b2ef6",
+          "layer_fsdiff_id": "sha256:9e15f49ef3d78f6bd828e4488807765b3e41d3bbe27ea7d46ae843d5d43680ae",
+          "size": 7055861,
+          "size_human": "7.1 MB",
+          "command_snippet": "RUN [\"COPY\",\".\",\".\"]",
+          "command_all": "RUN [\"COPY\",\".\",\".\"]",
+          "system_commands": [
+            "[\"COPY\",\".\",\".\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2021-06-06T11:19:34Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 20,
+          "layer_id": "f9f7d56f7f67554e13fd9033870b0ebe964d57b56071ac98cb7f09b74e07b048",
+          "layer_fsdiff_id": "sha256:ba5c9f7844f9bba2dcceb03bf8d570a18aa468ce70392a6e410e4563e427a1aa",
+          "size": 838060453,
+          "size_human": "838 MB",
+          "command_snippet": "RUN [\"RUN\",\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\"...",
+          "command_all": "RUN [\"RUN\",\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\",\"cd\",\"/project/scripts\",\"\\u0026\\u0026\",\"pip${PYTHON_VERSION_MAJOR}\",\"install\",\"-r\",\"requirements.txt\",\"\\u0026\\u0026\",\"chmod\",\"+x\",\"/project/scripts/entrypoint.sh\"]",
+          "system_commands": [
+            "[\"RUN\",\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\",\"cd\",\"/project/scripts\",\"u0026u0026\",\"pip${PYTHON_VERSION_MAJOR}\",\"install\",\"-r\",\"requirements.txt\",\"u0026u0026\",\"chmod\",\"+x\",\"/project/scripts/entrypoint.sh\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2021-06-06T11:19:39Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 21,
+          "layer_id": "a2efd2c9f12be7234fea9e8a62979c3b644fd664fc5227afbadf6a4f30f39162",
+          "layer_fsdiff_id": "sha256:c35e7d93b58f665528d238847196f96faf8a2fa755beb3f042a4e2df6e4b8a83",
+          "size": 4792,
+          "size_human": "4.8 kB",
+          "command_snippet": "RUN [\"RUN\",\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\"...",
+          "command_all": "RUN [\"RUN\",\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\",\"curl\",\"-sL\",\"https://git.io/_has\",\"|\",\"bash\",\"-s\",\"git\",\"az\",\"aws\",\"tfscan\",\"tfsec\",\"terraform-docs\",\"terraform\",\"go\",\"task\",\"python\",\"bash\"]",
+          "system_commands": [
+            "[\"RUN\",\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\",\"curl\",\"-sL\",\"https://git.io/_has\",\"|\",\"bash\",\"-s\",\"git\",\"az\",\"aws\",\"tfscan\",\"tfsec\",\"terraform-docs\",\"terraform\",\"go\",\"task\",\"python\",\"bash\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2021-06-06T11:19:39Z",
+          "is_last_instruction": true,
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": true,
+          "layer_index": 20,
+          "layer_id": "f9f7d56f7f67554e13fd9033870b0ebe964d57b56071ac98cb7f09b74e07b048",
+          "layer_fsdiff_id": "sha256:ba5c9f7844f9bba2dcceb03bf8d570a18aa468ce70392a6e410e4563e427a1aa",
+          "size": 0,
+          "command_snippet": "RUN [\"CMD\",\"[/bin/bash\",\"-c\",\"/project/scrip...",
+          "command_all": "RUN [\"CMD\",\"[/bin/bash\",\"-c\",\"/project/scripts/entrypoint.sh]\"]",
+          "system_commands": [
+            "[\"CMD\",\"[/bin/bash\",\"-c\",\"/project/scripts/entrypoint.sh]\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true,
+          "raw_tags": [
+            "terraformfree:latest"
+          ]
+        }
+      ]
+    }
+  ],
+  "image_layers": [
+    {
+      "id": "d09376239d873ace0c02b1b53834f0fe3167a652a8fc436465db0171eb639b61",
+      "index": 0,
+      "path": "d09376239d873ace0c02b1b53834f0fe3167a652a8fc436465db0171eb639b61/layer.tar",
+      "fsdiff_id": "sha256:b2d5eeeaba3a22b9b8aa97261957974a6bd65274ebd43e1d81d0a7b8b752b116",
+      "stats": {
+        "all_size": 5608905,
+        "object_count": 487,
+        "dir_count": 94,
+        "file_count": 74,
+        "link_count": 319,
+        "max_file_size": 2605744,
+        "max_dir_size": 0,
+        "deleted_count": 0,
+        "deleted_dir_content_count": 0,
+        "deleted_dir_count": 0,
+        "deleted_file_count": 0,
+        "deleted_link_count": 0,
+        "deleted_size": 0,
+        "added_size": 5608905,
+        "modified_size": 0
+      },
+      "changes": {
+        "deleted": 0,
+        "added": 487,
+        "modified": 0
+      },
+      "top": [
+        {
+          "change": "A",
+          "name": "/lib/libcrypto.so.1.1",
+          "size": 2605744,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-03-25T11:10:28-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/bin/busybox",
+          "size": 824904,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-04-14T05:56:30-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/lib/ld-musl-x86_64.so.1",
+          "size": 604736,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-01-15T06:46:22-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/lib/libssl.so.1.1",
+          "size": 523744,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-03-25T11:10:28-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/etc/ssl/certs/ca-certificates.crt",
+          "size": 214057,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2020-10-25T09:57:31-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            },
+            "M": [
+              {
+                "layer": 1
+              }
+            ]
+          }
+        },
+        {
+          "change": "A",
+          "name": "/lib/libapk.so.3.12.0",
+          "size": 183928,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-04-12T09:41:56-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/lib/libz.so.1.2.11",
+          "size": 100144,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2019-08-26T06:00:43-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/lib/libtls-standalone.so.1.0.0",
+          "size": 96096,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2020-04-25T08:33:45-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/bin/scanelf",
+          "size": 79648,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2020-12-20T19:50:07-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/sbin/apk",
+          "size": 69704,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-04-12T09:41:56-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/bin/getent",
+          "size": 52112,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-01-15T06:46:22-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/bin/getconf",
+          "size": 36584,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-01-15T06:46:22-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/lib/engines-1.1/padlock.so",
+          "size": 26528,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-03-25T11:10:28-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/bin/iconv",
+          "size": 25320,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-01-15T06:46:22-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/lib/engines-1.1/afalg.so",
+          "size": 22784,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-03-25T11:10:28-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/etc/services",
+          "size": 14464,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2020-06-19T07:32:48-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/bin/ssl_client",
+          "size": 13984,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-04-14T05:56:30-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/sbin/mkmntdirs",
+          "size": 13968,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2020-06-19T07:32:48-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/lib/engines-1.1/capi.so",
+          "size": 13872,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-03-25T11:10:28-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/lib/apk/db/installed",
+          "size": 11989,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-04-14T07:25:48-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            },
+            "M": [
+              {
+                "layer": 1
+              },
+              {
+                "layer": 3
+              },
+              {
+                "layer": 13
+              }
+            ]
+          }
+        }
+      ],
+      "change_instruction": {
+        "index": 0,
+        "image_index": 0,
+        "type": "ADD",
+        "all": "ADD file:8ec69d882e7f29f0652d537557160e638168550f738d0d49f90a7ef96bf31787 /",
+        "snippet": "ADD file:8ec69d882e7f29f0652d537557160e63816..."
+      },
+      "other_instructions": [
+        {
+          "index": 1,
+          "image_index": 0,
+          "type": "CMD",
+          "all": "CMD [\"/bin/sh\"]",
+          "snippet": "CMD [\"/bin/sh\"]"
+        }
+      ]
+    },
+    {
+      "id": "bfc088daa35f68d261e53a2815681eefaa2d41d240fba976a3f0d9d2644b2e70",
+      "index": 1,
+      "path": "bfc088daa35f68d261e53a2815681eefaa2d41d240fba976a3f0d9d2644b2e70/layer.tar",
+      "fsdiff_id": "sha256:224f6b2e3ad2c652ac21bcffcbb9e263ef9a89ff0124fa1974076ff10d3f1c26",
+      "stats": {
+        "all_size": 497898,
+        "object_count": 447,
+        "dir_count": 22,
+        "file_count": 151,
+        "link_count": 274,
+        "max_file_size": 214057,
+        "max_dir_size": 0,
+        "deleted_count": 0,
+        "deleted_dir_content_count": 3,
+        "deleted_dir_count": 0,
+        "deleted_file_count": 3,
+        "deleted_link_count": 0,
+        "deleted_size": 0,
+        "added_size": 247981,
+        "modified_size": 249917
+      },
+      "changes": {
+        "deleted": 3,
+        "added": 421,
+        "modified": 23
+      },
+      "top": [
+        {
+          "change": "M",
+          "name": "/etc/ssl/certs/ca-certificates.crt",
+          "size": 214057,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-04-14T18:27:12-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            },
+            "M": [
+              {
+                "layer": 1
+              }
+            ]
+          }
+        },
+        {
+          "change": "M",
+          "name": "/lib/apk/db/installed",
+          "size": 22261,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-04-14T18:27:12-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            },
+            "M": [
+              {
+                "layer": 1
+              },
+              {
+                "layer": 3
+              },
+              {
+                "layer": 13
+              }
+            ]
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/bin/c_rehash",
+          "size": 14208,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2020-10-25T09:57:31-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 1
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/sbin/update-ca-certificates",
+          "size": 14040,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2020-10-25T09:57:31-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 1
+            }
+          }
+        },
+        {
+          "change": "M",
+          "name": "/lib/apk/db/scripts.tar",
+          "size": 13312,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-04-14T18:27:12-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            },
+            "M": [
+              {
+                "layer": 1
+              },
+              {
+                "layer": 3
+              },
+              {
+                "layer": 13
+              }
+            ]
+          }
+        },
+        {
+          "change": "A",
+          "name": "/etc/ca-certificates.conf",
+          "size": 5613,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2020-10-25T09:57:31-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 1
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/share/ca-certificates/mozilla/ACCVRAIZ1.crt",
+          "size": 2772,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2020-10-25T09:57:31-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 1
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/share/ca-certificates/mozilla/Chambers_of_Commerce_Root_-_2008.crt",
+          "size": 2594,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2020-10-25T09:57:31-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 1
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/share/ca-certificates/mozilla/Global_Chambersign_Root_-_2008.crt",
+          "size": 2585,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2020-10-25T09:57:31-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 1
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/share/ca-certificates/mozilla/QuoVadis_Root_CA_3.crt",
+          "size": 2354,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2020-10-25T09:57:31-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 1
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/share/ca-certificates/mozilla/Certigna_Root_CA.crt",
+          "size": 2264,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2020-10-25T09:57:31-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 1
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/share/ca-certificates/mozilla/Entrust_Root_Certification_Authority_-_G4.crt",
+          "size": 2244,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2020-10-25T09:57:31-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 1
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/share/ca-certificates/mozilla/E-Tugra_Certification_Authority.crt",
+          "size": 2244,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2020-10-25T09:57:31-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 1
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/share/ca-certificates/mozilla/TrustCor_RootCert_CA-2.crt",
+          "size": 2204,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2020-10-25T09:57:31-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 1
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/share/ca-certificates/mozilla/Autoridad_de_Certificacion_Firmaprofesional_CIF_A62634068.crt",
+          "size": 2167,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2020-10-25T09:57:31-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 1
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/share/ca-certificates/mozilla/Hellenic_Academic_and_Research_Institutions_RootCA_2015.crt",
+          "size": 2155,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2020-10-25T09:57:31-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 1
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/share/ca-certificates/mozilla/Izenpe.com.crt",
+          "size": 2122,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2020-10-25T09:57:31-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 1
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/share/ca-certificates/mozilla/SSL.com_EV_Root_Certification_Authority_RSA_R2.crt",
+          "size": 2114,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2020-10-25T09:57:31-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 1
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/share/ca-certificates/mozilla/USERTrust_RSA_Certification_Authority.crt",
+          "size": 2094,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2020-10-25T09:57:31-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 1
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/share/ca-certificates/mozilla/SSL.com_Root_Certification_Authority_RSA.crt",
+          "size": 2094,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2020-10-25T09:57:31-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 1
+            }
+          }
+        }
+      ],
+      "change_instruction": {
+        "index": 2,
+        "image_index": 0,
+        "type": "RUN",
+        "all": "RUN apk add --no-cache \t\tca-certificates",
+        "snippet": "RUN apk add --no-cache \t\tca-certificates"
+      }
+    },
+    {
+      "id": "3a2bcea58a051b1c8ed2895d03e7fdd69b15b55d804fdfaf7c458fe4e3f27f45",
+      "index": 2,
+      "path": "3a2bcea58a051b1c8ed2895d03e7fdd69b15b55d804fdfaf7c458fe4e3f27f45/layer.tar",
+      "fsdiff_id": "sha256:a588deb4bef34d005e4c67384ec8df1b2d6a11634a373c04cfdb6c1808c61f7c",
+      "stats": {
+        "all_size": 17,
+        "object_count": 2,
+        "dir_count": 1,
+        "file_count": 1,
+        "link_count": 0,
+        "max_file_size": 17,
+        "max_dir_size": 0,
+        "deleted_count": 0,
+        "deleted_dir_content_count": 0,
+        "deleted_dir_count": 0,
+        "deleted_file_count": 0,
+        "deleted_link_count": 0,
+        "deleted_size": 0,
+        "added_size": 17,
+        "modified_size": 0
+      },
+      "changes": {
+        "deleted": 0,
+        "added": 1,
+        "modified": 1
+      },
+      "top": [
+        {
+          "change": "A",
+          "name": "/etc/nsswitch.conf",
+          "size": 17,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-04-14T18:27:13-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 2
+            }
+          }
+        },
+        {
+          "change": "M",
+          "name": "/etc",
+          "mode": 2147484141,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-04-14T18:27:13-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            },
+            "M": [
+              {
+                "layer": 1
+              },
+              {
+                "layer": 2
+              },
+              {
+                "layer": 3
+              },
+              {
+                "layer": 11
+              },
+              {
+                "layer": 12
+              },
+              {
+                "layer": 13
+              },
+              {
+                "layer": 14
+              },
+              {
+                "layer": 15
+              },
+              {
+                "layer": 16
+              },
+              {
+                "layer": 17
+              },
+              {
+                "layer": 20
+              },
+              {
+                "layer": 21
+              }
+            ]
+          }
+        }
+      ],
+      "change_instruction": {
+        "index": 3,
+        "image_index": 0,
+        "type": "RUN",
+        "all": "RUN [ ! -e /etc/nsswitch.conf ] && \\\n\techo 'hosts: files dns' > /etc/nsswitch.conf",
+        "snippet": "RUN [ ! -e /etc/nsswitch.conf ] && \\\n\techo '..."
+      },
+      "other_instructions": [
+        {
+          "index": 4,
+          "image_index": 0,
+          "type": "ENV",
+          "all": "ENV PATH=/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+          "snippet": "ENV PATH=/usr/local/go/bin:/usr/local/sbin:/..."
+        },
+        {
+          "index": 5,
+          "image_index": 0,
+          "type": "ENV",
+          "all": "ENV GOLANG_VERSION=1.16.4",
+          "snippet": "ENV GOLANG_VERSION=1.16.4"
+        }
+      ]
+    },
+    {
+      "id": "fc2bc9aa0b71a9bbc02073eee508f5c5e012f1e8b2626174d0838d3a4a4e7bbc",
+      "index": 3,
+      "path": "fc2bc9aa0b71a9bbc02073eee508f5c5e012f1e8b2626174d0838d3a4a4e7bbc/layer.tar",
+      "fsdiff_id": "sha256:dc27f0c2b8639f2b2fdb58e9094573f9d415987c3cf163cdeba131366719774b",
+      "stats": {
+        "all_size": 295315254,
+        "object_count": 10975,
+        "dir_count": 1373,
+        "file_count": 9600,
+        "link_count": 2,
+        "max_file_size": 19467757,
+        "max_dir_size": 0,
+        "deleted_count": 0,
+        "deleted_dir_content_count": 2,
+        "deleted_dir_count": 0,
+        "deleted_file_count": 2,
+        "deleted_link_count": 0,
+        "deleted_size": 0,
+        "added_size": 295279356,
+        "modified_size": 35898
+      },
+      "changes": {
+        "deleted": 2,
+        "added": 10949,
+        "modified": 24
+      },
+      "top": [
+        {
+          "change": "A",
+          "name": "/usr/local/go/pkg/tool/linux_amd64/compile",
+          "size": 19467757,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-06T20:19:58-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 3
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/local/go/bin/go",
+          "size": 14069677,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-06T20:19:58-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 3
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/local/go/pkg/tool/linux_amd64/pprof",
+          "size": 13717255,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-06T20:19:58-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 3
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/local/go/pkg/tool/linux_amd64/trace",
+          "size": 10340394,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-06T20:19:57-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 3
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/local/go/pkg/linux_amd64/runtime.a",
+          "size": 7317876,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-06T20:20:01-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 3
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/local/go/pkg/tool/linux_amd64/vet",
+          "size": 6838893,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-06T20:19:58-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 3
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/local/go/pkg/tool/linux_amd64/link",
+          "size": 6678907,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-06T20:19:58-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 3
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/local/go/pkg/linux_amd64/net/http.a",
+          "size": 6285830,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-06T20:20:01-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 3
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/local/go/pkg/tool/linux_amd64/asm",
+          "size": 4908053,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-06T20:19:58-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 3
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/local/go/pkg/tool/linux_amd64/cover",
+          "size": 4894132,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-06T20:19:49-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 3
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/local/go/pkg/tool/linux_amd64/cgo",
+          "size": 4566855,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-06T20:19:58-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 3
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/local/go/pkg/tool/linux_amd64/objdump",
+          "size": 4417624,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-06T20:19:53-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 3
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/local/go/pkg/tool/linux_amd64/addr2line",
+          "size": 4068285,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-06T20:19:41-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 3
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/local/go/pkg/tool/linux_amd64/nm",
+          "size": 4007618,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-06T20:19:53-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 3
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/local/go/pkg/tool/linux_amd64/doc",
+          "size": 3882507,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-06T20:19:50-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 3
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/local/go/pkg/tool/linux_amd64/dist",
+          "size": 3488873,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-06T20:19:51-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 3
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/local/go/bin/gofmt",
+          "size": 3453176,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-06T20:19:53-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 3
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/local/go/pkg/tool/linux_amd64/fix",
+          "size": 3259702,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-06T20:19:51-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 3
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/local/go/pkg/linux_amd64/go/types.a",
+          "size": 3190376,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-06T20:20:01-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 3
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/local/go/test/fixedbugs/bug257.go",
+          "size": 3022479,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-06T12:06:00-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 3
+            }
+          }
+        }
+      ],
+      "change_instruction": {
+        "index": 6,
+        "image_index": 0,
+        "type": "RUN",
+        "all": "RUN set -eux; \tapk add --no-cache --virtual .build-deps \t\tbash \t\tgcc \t\tgnupg \t\tgo \t\tmusl-dev \t\topenssl \t; \tapkArch=\"$(apk --print-arch)\"; \tcase \"$apkArch\" in \t\t'x86_64') \t\t\texport GOARCH='amd64' GOOS='linux'; \t\t\t;; \t\t'armhf') \t\t\texport GOARCH='arm' GOARM='6' GOOS='linux'; \t\t\t;; \t\t'armv7') \t\t\texport GOARCH='arm' GOARM='7' GOOS='linux'; \t\t\t;; \t\t'aarch64') \t\t\texport GOARCH='arm64' GOOS='linux'; \t\t\t;; \t\t'x86') \t\t\texport GO386='softfloat' GOARCH='386' GOOS='linux'; \t\t\t;; \t\t'ppc64le') \t\t\texport GOARCH='ppc64le' GOOS='linux'; \t\t\t;; \t\t's390x') \t\t\texport GOARCH='s390x' GOOS='linux'; \t\t\t;; \t\t*) echo >&2 \"error: unsupported architecture '$apkArch' (likely packaging update needed)\"; exit 1 ;; \tesac; \t\turl='https://dl.google.com/go/go1.16.4.src.tar.gz'; \tsha256='ae4f6b6e2a1677d31817984655a762074b5356da50fb58722b99104870d43503'; \t\twget -O go.tgz.asc \"$url.asc\"; \twget -O go.tgz \"$url\"; \techo \"$sha256 *go.tgz\" | sha256sum -c -; \t\texport GNUPGHOME=\"$(mktemp -d)\"; \tgpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys 'EB4C 1BFD 4F04 2F6D DDCC EC91 7721 F63B D38B 4796'; \tgpg --batch --verify go.tgz.asc go.tgz; \tgpgconf --kill all; \trm -rf \"$GNUPGHOME\" go.tgz.asc; \t\ttar -C /usr/local -xzf go.tgz; \trm go.tgz; \t\t( \t\tcd /usr/local/go/src; \t\texport GOROOT_BOOTSTRAP=\"$(go env GOROOT)\" GOHOSTOS=\"$GOOS\" GOHOSTARCH=\"$GOARCH\"; \t\tif [ \"${GO386:-}\" = 'softfloat' ]; then \t\t\tGO386= ./bootstrap.bash; \t\t\texport GOROOT_BOOTSTRAP=\"/usr/local/go-$GOOS-$GOARCH-bootstrap\"; \t\t\t\"$GOROOT_BOOTSTRAP/bin/go\" version; \t\tfi; \t\t./make.bash; \t\tif [ \"${GO386:-}\" = 'softfloat' ]; then \t\t\trm -rf \"$GOROOT_BOOTSTRAP\"; \t\tfi; \t); \t\tapk del --no-network .build-deps; \t\tgo install std; \t\trm -rf \t\t/usr/local/go/pkg/*/cmd \t\t/usr/local/go/pkg/bootstrap \t\t/usr/local/go/pkg/obj \t\t/usr/local/go/pkg/tool/*/api \t\t/usr/local/go/pkg/tool/*/go_bootstrap \t\t/usr/local/go/src/cmd/dist/dist \t; \t\tgo version",
+        "snippet": "RUN set -eux; \tapk add --no-cache --virtual ..."
+      },
+      "other_instructions": [
+        {
+          "index": 7,
+          "image_index": 0,
+          "type": "ENV",
+          "all": "ENV GOPATH=/go",
+          "snippet": "ENV GOPATH=/go"
+        },
+        {
+          "index": 8,
+          "image_index": 0,
+          "type": "ENV",
+          "all": "ENV PATH=/go/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+          "snippet": "ENV PATH=/go/bin:/usr/local/go/bin:/usr/loca..."
+        }
+      ]
+    },
+    {
+      "id": "0c22e92878835dc9ab49de53c731fcfd245781da262454b366d4c071e14df394",
+      "index": 4,
+      "path": "0c22e92878835dc9ab49de53c731fcfd245781da262454b366d4c071e14df394/layer.tar",
+      "fsdiff_id": "sha256:a9d40f605488c1cd64acb4ed2f54a7a5c08567716b8b621e69051cbf9cc4a824",
+      "stats": {
+        "all_size": 0,
+        "object_count": 4,
+        "dir_count": 3,
+        "file_count": 1,
+        "link_count": 0,
+        "max_file_size": 0,
+        "max_dir_size": 0,
+        "deleted_count": 0,
+        "deleted_dir_content_count": 1,
+        "deleted_dir_count": 0,
+        "deleted_file_count": 1,
+        "deleted_link_count": 0,
+        "deleted_size": 0,
+        "added_size": 0,
+        "modified_size": 0
+      },
+      "changes": {
+        "deleted": 1,
+        "added": 3,
+        "modified": 0
+      },
+      "top": [
+        {
+          "change": "D",
+          "dir_content_delete": true,
+          "name": "/go/*",
+          "mode": 511,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "1969-12-31T21:00:00-03:00",
+          "change_time": "0001-01-01T00:00:00Z"
+        },
+        {
+          "change": "A",
+          "name": "/go/bin",
+          "mode": 2147484159,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-06T20:20:06-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 4
+            },
+            "M": [
+              {
+                "layer": 14
+              }
+            ]
+          }
+        },
+        {
+          "change": "A",
+          "name": "/go/src",
+          "mode": 2147484159,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-06T20:20:06-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 4
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/go",
+          "mode": 2147484159,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-06T20:20:06-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 4
+            },
+            "M": [
+              {
+                "layer": 14
+              }
+            ]
+          }
+        }
+      ],
+      "change_instruction": {
+        "index": 9,
+        "image_index": 0,
+        "type": "RUN",
+        "all": "RUN mkdir -p \"$GOPATH/src\" \"$GOPATH/bin\" && \\\n\tchmod -R 777 \"$GOPATH\"",
+        "snippet": "RUN mkdir -p \"$GOPATH/src\" \"$GOPATH/bin\" && ..."
+      },
+      "other_instructions": [
+        {
+          "index": 10,
+          "image_index": 0,
+          "type": "WORKDIR",
+          "all": "WORKDIR /go",
+          "snippet": "WORKDIR /go"
+        },
+        {
+          "index": 11,
+          "image_index": 0,
+          "type": "RUN",
+          "all": "RUN [\"ENV\",\"GITHUB_USER=\"]",
+          "snippet": "RUN [\"ENV\",\"GITHUB_USER=\"]"
+        },
+        {
+          "index": 12,
+          "image_index": 0,
+          "type": "RUN",
+          "all": "RUN [\"ENV\",\"GITHUB_PASSWORD=\"]",
+          "snippet": "RUN [\"ENV\",\"GITHUB_PASSWORD=\"]"
+        },
+        {
+          "index": 13,
+          "image_index": 0,
+          "type": "RUN",
+          "all": "RUN [\"ENV\",\"GITHUB_EMAIL=\"]",
+          "snippet": "RUN [\"ENV\",\"GITHUB_EMAIL=\"]"
+        },
+        {
+          "index": 14,
+          "image_index": 0,
+          "type": "RUN",
+          "all": "RUN [\"ENV\",\"GCP_PROJECT_ID=\"]",
+          "snippet": "RUN [\"ENV\",\"GCP_PROJECT_ID=\"]"
+        },
+        {
+          "index": 15,
+          "image_index": 0,
+          "type": "RUN",
+          "all": "RUN [\"ENV\",\"AWS_DEFAULT_REGION=\"]",
+          "snippet": "RUN [\"ENV\",\"AWS_DEFAULT_REGION=\"]"
+        },
+        {
+          "index": 16,
+          "image_index": 0,
+          "type": "RUN",
+          "all": "RUN [\"ENV\",\"AWS_ACCESS_KEY_ID=\"]",
+          "snippet": "RUN [\"ENV\",\"AWS_ACCESS_KEY_ID=\"]"
+        },
+        {
+          "index": 17,
+          "image_index": 0,
+          "type": "RUN",
+          "all": "RUN [\"ENV\",\"AWS_SECRET_ACCESS_KEY=\"]",
+          "snippet": "RUN [\"ENV\",\"AWS_SECRET_ACCESS_KEY=\"]"
+        }
+      ]
+    },
+    {
+      "id": "493f71f188e49a24fb59d4bd4cbac6faf781e253a27aec57f51c344d05b5538f",
+      "index": 5,
+      "path": "493f71f188e49a24fb59d4bd4cbac6faf781e253a27aec57f51c344d05b5538f/layer.tar",
+      "fsdiff_id": "sha256:78f2eb05dd5a3121655d73c90724209e6ac1f12ad5be6b2ec59c830de002647e",
+      "stats": {
+        "all_size": 467,
+        "object_count": 4,
+        "dir_count": 3,
+        "file_count": 1,
+        "link_count": 0,
+        "max_file_size": 467,
+        "max_dir_size": 0,
+        "deleted_count": 0,
+        "deleted_dir_content_count": 0,
+        "deleted_dir_count": 0,
+        "deleted_file_count": 0,
+        "deleted_link_count": 0,
+        "deleted_size": 0,
+        "added_size": 467,
+        "modified_size": 0
+      },
+      "changes": {
+        "deleted": 0,
+        "added": 1,
+        "modified": 3
+      },
+      "top": [
+        {
+          "change": "A",
+          "name": "/usr/local/bin/az",
+          "size": 467,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2020-07-16T05:14:09-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 5
+            }
+          }
+        },
+        {
+          "change": "M",
+          "name": "/usr/local/bin",
+          "mode": 2147484141,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-05T20:35:07-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            },
+            "M": [
+              {
+                "layer": 5
+              },
+              {
+                "layer": 6
+              },
+              {
+                "layer": 7
+              },
+              {
+                "layer": 8
+              },
+              {
+                "layer": 9
+              },
+              {
+                "layer": 10
+              },
+              {
+                "layer": 13
+              }
+            ]
+          }
+        },
+        {
+          "change": "M",
+          "name": "/usr/local",
+          "mode": 2147484141,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-06T20:18:13-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            },
+            "M": [
+              {
+                "layer": 1
+              },
+              {
+                "layer": 3
+              },
+              {
+                "layer": 5
+              },
+              {
+                "layer": 6
+              },
+              {
+                "layer": 7
+              },
+              {
+                "layer": 8
+              },
+              {
+                "layer": 9
+              },
+              {
+                "layer": 10
+              },
+              {
+                "layer": 13
+              },
+              {
+                "layer": 16
+              }
+            ]
+          }
+        },
+        {
+          "change": "M",
+          "name": "/usr",
+          "mode": 2147484141,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-06T20:20:00-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            },
+            "M": [
+              {
+                "layer": 1
+              },
+              {
+                "layer": 3
+              },
+              {
+                "layer": 5
+              },
+              {
+                "layer": 6
+              },
+              {
+                "layer": 7
+              },
+              {
+                "layer": 8
+              },
+              {
+                "layer": 9
+              },
+              {
+                "layer": 10
+              },
+              {
+                "layer": 13
+              },
+              {
+                "layer": 15
+              },
+              {
+                "layer": 16
+              },
+              {
+                "layer": 20
+              }
+            ]
+          }
+        }
+      ],
+      "change_instruction": {
+        "index": 18,
+        "image_index": 0,
+        "type": "RUN",
+        "all": "RUN [\"COPY\",\"/usr/local/bin/az\",\"/usr/local/bin/az\"]",
+        "snippet": "RUN [\"COPY\",\"/usr/local/bin/az\",\"/usr/local/..."
+      }
+    },
+    {
+      "id": "2223c3b5ffabef7376309484aa0349888940d6226cd9096f2f5d9d6c955d0d3d",
+      "index": 6,
+      "path": "2223c3b5ffabef7376309484aa0349888940d6226cd9096f2f5d9d6c955d0d3d/layer.tar",
+      "fsdiff_id": "sha256:d8603e41f50cc328da3b635da715f89696482c391093b8527e59b054caab399b",
+      "stats": {
+        "all_size": 80648452,
+        "object_count": 4,
+        "dir_count": 3,
+        "file_count": 1,
+        "link_count": 0,
+        "max_file_size": 80648452,
+        "max_dir_size": 0,
+        "deleted_count": 0,
+        "deleted_dir_content_count": 0,
+        "deleted_dir_count": 0,
+        "deleted_file_count": 0,
+        "deleted_link_count": 0,
+        "deleted_size": 0,
+        "added_size": 80648452,
+        "modified_size": 0
+      },
+      "changes": {
+        "deleted": 0,
+        "added": 1,
+        "modified": 3
+      },
+      "top": [
+        {
+          "change": "A",
+          "name": "/usr/local/bin/terraform",
+          "size": 80648452,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-19T16:17:40-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 6
+            }
+          }
+        },
+        {
+          "change": "M",
+          "name": "/usr/local/bin",
+          "mode": 2147484141,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-05T20:35:07-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            },
+            "M": [
+              {
+                "layer": 5
+              },
+              {
+                "layer": 6
+              },
+              {
+                "layer": 7
+              },
+              {
+                "layer": 8
+              },
+              {
+                "layer": 9
+              },
+              {
+                "layer": 10
+              },
+              {
+                "layer": 13
+              }
+            ]
+          }
+        },
+        {
+          "change": "M",
+          "name": "/usr/local",
+          "mode": 2147484141,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-06T20:18:13-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            },
+            "M": [
+              {
+                "layer": 1
+              },
+              {
+                "layer": 3
+              },
+              {
+                "layer": 5
+              },
+              {
+                "layer": 6
+              },
+              {
+                "layer": 7
+              },
+              {
+                "layer": 8
+              },
+              {
+                "layer": 9
+              },
+              {
+                "layer": 10
+              },
+              {
+                "layer": 13
+              },
+              {
+                "layer": 16
+              }
+            ]
+          }
+        },
+        {
+          "change": "M",
+          "name": "/usr",
+          "mode": 2147484141,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-06T20:20:00-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            },
+            "M": [
+              {
+                "layer": 1
+              },
+              {
+                "layer": 3
+              },
+              {
+                "layer": 5
+              },
+              {
+                "layer": 6
+              },
+              {
+                "layer": 7
+              },
+              {
+                "layer": 8
+              },
+              {
+                "layer": 9
+              },
+              {
+                "layer": 10
+              },
+              {
+                "layer": 13
+              },
+              {
+                "layer": 15
+              },
+              {
+                "layer": 16
+              },
+              {
+                "layer": 20
+              }
+            ]
+          }
+        }
+      ],
+      "change_instruction": {
+        "index": 19,
+        "image_index": 0,
+        "type": "RUN",
+        "all": "RUN [\"COPY\",\"/bin/terraform\",\"/usr/local/bin/terraform\"]",
+        "snippet": "RUN [\"COPY\",\"/bin/terraform\",\"/usr/local/bin..."
+      }
+    },
+    {
+      "id": "ac7c13e6fd7b7e319bc07ac45c0d4214b02bdb6f399a42aa0b062d610329e9a4",
+      "index": 7,
+      "path": "ac7c13e6fd7b7e319bc07ac45c0d4214b02bdb6f399a42aa0b062d610329e9a4/layer.tar",
+      "fsdiff_id": "sha256:16a3e1d80e369233b2805a7a714d632cda3445a0e44ce559fc461dd8bb72358f",
+      "stats": {
+        "all_size": 9588736,
+        "object_count": 4,
+        "dir_count": 3,
+        "file_count": 1,
+        "link_count": 0,
+        "max_file_size": 9588736,
+        "max_dir_size": 0,
+        "deleted_count": 0,
+        "deleted_dir_content_count": 0,
+        "deleted_dir_count": 0,
+        "deleted_file_count": 0,
+        "deleted_link_count": 0,
+        "deleted_size": 0,
+        "added_size": 9588736,
+        "modified_size": 0
+      },
+      "changes": {
+        "deleted": 0,
+        "added": 1,
+        "modified": 3
+      },
+      "top": [
+        {
+          "change": "A",
+          "name": "/usr/local/bin/tfsec",
+          "size": 9588736,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-20T09:18:31-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 7
+            }
+          }
+        },
+        {
+          "change": "M",
+          "name": "/usr/local/bin",
+          "mode": 2147484141,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-05T20:35:07-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            },
+            "M": [
+              {
+                "layer": 5
+              },
+              {
+                "layer": 6
+              },
+              {
+                "layer": 7
+              },
+              {
+                "layer": 8
+              },
+              {
+                "layer": 9
+              },
+              {
+                "layer": 10
+              },
+              {
+                "layer": 13
+              }
+            ]
+          }
+        },
+        {
+          "change": "M",
+          "name": "/usr/local",
+          "mode": 2147484141,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-06T20:18:13-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            },
+            "M": [
+              {
+                "layer": 1
+              },
+              {
+                "layer": 3
+              },
+              {
+                "layer": 5
+              },
+              {
+                "layer": 6
+              },
+              {
+                "layer": 7
+              },
+              {
+                "layer": 8
+              },
+              {
+                "layer": 9
+              },
+              {
+                "layer": 10
+              },
+              {
+                "layer": 13
+              },
+              {
+                "layer": 16
+              }
+            ]
+          }
+        },
+        {
+          "change": "M",
+          "name": "/usr",
+          "mode": 2147484141,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-06T20:20:00-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            },
+            "M": [
+              {
+                "layer": 1
+              },
+              {
+                "layer": 3
+              },
+              {
+                "layer": 5
+              },
+              {
+                "layer": 6
+              },
+              {
+                "layer": 7
+              },
+              {
+                "layer": 8
+              },
+              {
+                "layer": 9
+              },
+              {
+                "layer": 10
+              },
+              {
+                "layer": 13
+              },
+              {
+                "layer": 15
+              },
+              {
+                "layer": 16
+              },
+              {
+                "layer": 20
+              }
+            ]
+          }
+        }
+      ],
+      "change_instruction": {
+        "index": 20,
+        "image_index": 0,
+        "type": "RUN",
+        "all": "RUN [\"COPY\",\"/usr/bin/tfsec\",\"/usr/local/bin/tfsec\"]",
+        "snippet": "RUN [\"COPY\",\"/usr/bin/tfsec\",\"/usr/local/bin..."
+      }
+    },
+    {
+      "id": "fe60d994cc3fba60a668ee5b938d9f761fdaacdfb2d8b37fe6662e6fec7c5b02",
+      "index": 8,
+      "path": "fe60d994cc3fba60a668ee5b938d9f761fdaacdfb2d8b37fe6662e6fec7c5b02/layer.tar",
+      "fsdiff_id": "sha256:cf42a74564a3fb40e2cf2c80be2613d5066f10fe27e534e949b654655d10b341",
+      "stats": {
+        "all_size": 53965663,
+        "object_count": 4,
+        "dir_count": 3,
+        "file_count": 1,
+        "link_count": 0,
+        "max_file_size": 53965663,
+        "max_dir_size": 0,
+        "deleted_count": 0,
+        "deleted_dir_content_count": 0,
+        "deleted_dir_count": 0,
+        "deleted_file_count": 0,
+        "deleted_link_count": 0,
+        "deleted_size": 0,
+        "added_size": 53965663,
+        "modified_size": 0
+      },
+      "changes": {
+        "deleted": 0,
+        "added": 1,
+        "modified": 3
+      },
+      "top": [
+        {
+          "change": "A",
+          "name": "/usr/local/bin/tflint",
+          "size": 53965663,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-05T04:46:19-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 8
+            }
+          }
+        },
+        {
+          "change": "M",
+          "name": "/usr/local/bin",
+          "mode": 2147484141,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-05T20:35:08-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            },
+            "M": [
+              {
+                "layer": 5
+              },
+              {
+                "layer": 6
+              },
+              {
+                "layer": 7
+              },
+              {
+                "layer": 8
+              },
+              {
+                "layer": 9
+              },
+              {
+                "layer": 10
+              },
+              {
+                "layer": 13
+              }
+            ]
+          }
+        },
+        {
+          "change": "M",
+          "name": "/usr/local",
+          "mode": 2147484141,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-06T20:18:13-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            },
+            "M": [
+              {
+                "layer": 1
+              },
+              {
+                "layer": 3
+              },
+              {
+                "layer": 5
+              },
+              {
+                "layer": 6
+              },
+              {
+                "layer": 7
+              },
+              {
+                "layer": 8
+              },
+              {
+                "layer": 9
+              },
+              {
+                "layer": 10
+              },
+              {
+                "layer": 13
+              },
+              {
+                "layer": 16
+              }
+            ]
+          }
+        },
+        {
+          "change": "M",
+          "name": "/usr",
+          "mode": 2147484141,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-06T20:20:00-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            },
+            "M": [
+              {
+                "layer": 1
+              },
+              {
+                "layer": 3
+              },
+              {
+                "layer": 5
+              },
+              {
+                "layer": 6
+              },
+              {
+                "layer": 7
+              },
+              {
+                "layer": 8
+              },
+              {
+                "layer": 9
+              },
+              {
+                "layer": 10
+              },
+              {
+                "layer": 13
+              },
+              {
+                "layer": 15
+              },
+              {
+                "layer": 16
+              },
+              {
+                "layer": 20
+              }
+            ]
+          }
+        }
+      ],
+      "change_instruction": {
+        "index": 21,
+        "image_index": 0,
+        "type": "RUN",
+        "all": "RUN [\"COPY\",\"/usr/local/bin/tflint\",\"/usr/local/bin/tflint\"]",
+        "snippet": "RUN [\"COPY\",\"/usr/local/bin/tflint\",\"/usr/lo..."
+      }
+    },
+    {
+      "id": "1c9d8b2f3536343f3e53a7f5275a1a739e9fb2a6e996a9ca0d6b05a72f77c7cc",
+      "index": 9,
+      "path": "1c9d8b2f3536343f3e53a7f5275a1a739e9fb2a6e996a9ca0d6b05a72f77c7cc/layer.tar",
+      "fsdiff_id": "sha256:4e5a0d57b5e15eeda4241ad679c601691eb6a77377c4f6bfc7c809d60e003e92",
+      "stats": {
+        "all_size": 9345923,
+        "object_count": 4,
+        "dir_count": 3,
+        "file_count": 1,
+        "link_count": 0,
+        "max_file_size": 9345923,
+        "max_dir_size": 0,
+        "deleted_count": 0,
+        "deleted_dir_content_count": 0,
+        "deleted_dir_count": 0,
+        "deleted_file_count": 0,
+        "deleted_link_count": 0,
+        "deleted_size": 0,
+        "added_size": 9345923,
+        "modified_size": 0
+      },
+      "changes": {
+        "deleted": 0,
+        "added": 1,
+        "modified": 3
+      },
+      "top": [
+        {
+          "change": "A",
+          "name": "/usr/local/bin/terraform-docs",
+          "size": 9345923,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T00:04:17-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 9
+            }
+          }
+        },
+        {
+          "change": "M",
+          "name": "/usr/local/bin",
+          "mode": 2147484141,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T00:29:56-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            },
+            "M": [
+              {
+                "layer": 5
+              },
+              {
+                "layer": 6
+              },
+              {
+                "layer": 7
+              },
+              {
+                "layer": 8
+              },
+              {
+                "layer": 9
+              },
+              {
+                "layer": 10
+              },
+              {
+                "layer": 13
+              }
+            ]
+          }
+        },
+        {
+          "change": "M",
+          "name": "/usr/local",
+          "mode": 2147484141,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-06T20:18:13-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            },
+            "M": [
+              {
+                "layer": 1
+              },
+              {
+                "layer": 3
+              },
+              {
+                "layer": 5
+              },
+              {
+                "layer": 6
+              },
+              {
+                "layer": 7
+              },
+              {
+                "layer": 8
+              },
+              {
+                "layer": 9
+              },
+              {
+                "layer": 10
+              },
+              {
+                "layer": 13
+              },
+              {
+                "layer": 16
+              }
+            ]
+          }
+        },
+        {
+          "change": "M",
+          "name": "/usr",
+          "mode": 2147484141,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-06T20:20:00-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            },
+            "M": [
+              {
+                "layer": 1
+              },
+              {
+                "layer": 3
+              },
+              {
+                "layer": 5
+              },
+              {
+                "layer": 6
+              },
+              {
+                "layer": 7
+              },
+              {
+                "layer": 8
+              },
+              {
+                "layer": 9
+              },
+              {
+                "layer": 10
+              },
+              {
+                "layer": 13
+              },
+              {
+                "layer": 15
+              },
+              {
+                "layer": 16
+              },
+              {
+                "layer": 20
+              }
+            ]
+          }
+        }
+      ],
+      "change_instruction": {
+        "index": 22,
+        "image_index": 0,
+        "type": "RUN",
+        "all": "RUN [\"COPY\",\"/usr/local/bin/terraform-docs\",\"/usr/local/bin/terraform-docs\"]",
+        "snippet": "RUN [\"COPY\",\"/usr/local/bin/terraform-docs\",..."
+      }
+    },
+    {
+      "id": "54e00d01b4714a4d759c84e70acc792bb14f6438e803066bec35422b0a2b2f2e",
+      "index": 10,
+      "path": "54e00d01b4714a4d759c84e70acc792bb14f6438e803066bec35422b0a2b2f2e/layer.tar",
+      "fsdiff_id": "sha256:fec64f4f0a05b310b690c9a317a603a3a5c7bfb4e15c5cbf49fba7403930ed9b",
+      "stats": {
+        "all_size": 76755848,
+        "object_count": 4,
+        "dir_count": 3,
+        "file_count": 1,
+        "link_count": 0,
+        "max_file_size": 76755848,
+        "max_dir_size": 0,
+        "deleted_count": 0,
+        "deleted_dir_content_count": 0,
+        "deleted_dir_count": 0,
+        "deleted_file_count": 0,
+        "deleted_link_count": 0,
+        "deleted_size": 0,
+        "added_size": 76755848,
+        "modified_size": 0
+      },
+      "changes": {
+        "deleted": 0,
+        "added": 1,
+        "modified": 3
+      },
+      "top": [
+        {
+          "change": "A",
+          "name": "/usr/local/bin/tfscan",
+          "size": 76755848,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-04T09:32:51-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 10
+            }
+          }
+        },
+        {
+          "change": "M",
+          "name": "/usr/local/bin",
+          "mode": 2147484141,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T00:29:56-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            },
+            "M": [
+              {
+                "layer": 5
+              },
+              {
+                "layer": 6
+              },
+              {
+                "layer": 7
+              },
+              {
+                "layer": 8
+              },
+              {
+                "layer": 9
+              },
+              {
+                "layer": 10
+              },
+              {
+                "layer": 13
+              }
+            ]
+          }
+        },
+        {
+          "change": "M",
+          "name": "/usr/local",
+          "mode": 2147484141,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-06T20:18:13-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            },
+            "M": [
+              {
+                "layer": 1
+              },
+              {
+                "layer": 3
+              },
+              {
+                "layer": 5
+              },
+              {
+                "layer": 6
+              },
+              {
+                "layer": 7
+              },
+              {
+                "layer": 8
+              },
+              {
+                "layer": 9
+              },
+              {
+                "layer": 10
+              },
+              {
+                "layer": 13
+              },
+              {
+                "layer": 16
+              }
+            ]
+          }
+        },
+        {
+          "change": "M",
+          "name": "/usr",
+          "mode": 2147484141,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-06T20:20:00-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            },
+            "M": [
+              {
+                "layer": 1
+              },
+              {
+                "layer": 3
+              },
+              {
+                "layer": 5
+              },
+              {
+                "layer": 6
+              },
+              {
+                "layer": 7
+              },
+              {
+                "layer": 8
+              },
+              {
+                "layer": 9
+              },
+              {
+                "layer": 10
+              },
+              {
+                "layer": 13
+              },
+              {
+                "layer": 15
+              },
+              {
+                "layer": 16
+              },
+              {
+                "layer": 20
+              }
+            ]
+          }
+        }
+      ],
+      "change_instruction": {
+        "index": 23,
+        "image_index": 0,
+        "type": "RUN",
+        "all": "RUN [\"COPY\",\"/go/bin/terrascan\",\"/usr/local/bin/tfscan\"]",
+        "snippet": "RUN [\"COPY\",\"/go/bin/terrascan\",\"/usr/local/..."
+      },
+      "other_instructions": [
+        {
+          "index": 24,
+          "image_index": 0,
+          "type": "RUN",
+          "all": "RUN [\"ENV\",\"TASK_VERSION=3.4.2\"]",
+          "snippet": "RUN [\"ENV\",\"TASK_VERSION=3.4.2\"]"
+        },
+        {
+          "index": 25,
+          "image_index": 0,
+          "type": "RUN",
+          "all": "RUN [\"ENV\",\"GCLOUD_VERSION=343.0.0\"]",
+          "snippet": "RUN [\"ENV\",\"GCLOUD_VERSION=343.0.0\"]"
+        },
+        {
+          "index": 26,
+          "image_index": 0,
+          "type": "RUN",
+          "all": "RUN [\"ENV\",\"PYTHON_VERSION_MINOR=3.8\"]",
+          "snippet": "RUN [\"ENV\",\"PYTHON_VERSION_MINOR=3.8\"]"
+        },
+        {
+          "index": 27,
+          "image_index": 0,
+          "type": "RUN",
+          "all": "RUN [\"ENV\",\"PYTHON_VERSION_MAJOR=3\"]",
+          "snippet": "RUN [\"ENV\",\"PYTHON_VERSION_MAJOR=3\"]"
+        },
+        {
+          "index": 28,
+          "image_index": 0,
+          "type": "RUN",
+          "all": "RUN [\"ENV\",\"ARCH=amd64\"]",
+          "snippet": "RUN [\"ENV\",\"ARCH=amd64\"]"
+        },
+        {
+          "index": 29,
+          "image_index": 0,
+          "type": "RUN",
+          "all": "RUN [\"ENV\",\"ARCH_86=x86_64\"]",
+          "snippet": "RUN [\"ENV\",\"ARCH_86=x86_64\"]"
+        },
+        {
+          "index": 30,
+          "image_index": 0,
+          "type": "RUN",
+          "all": "RUN [\"ENV\",\"OS=linux\"]",
+          "snippet": "RUN [\"ENV\",\"OS=linux\"]"
+        },
+        {
+          "index": 31,
+          "image_index": 0,
+          "type": "RUN",
+          "all": "RUN [\"ENV\",\"PYTHONUNBUFFERED=1\"]",
+          "snippet": "RUN [\"ENV\",\"PYTHONUNBUFFERED=1\"]"
+        }
+      ]
+    },
+    {
+      "id": "74d39b62672e16de7c9fc1542708c802dc8ff2192131904eab36ae8533fdd2f9",
+      "index": 11,
+      "path": "74d39b62672e16de7c9fc1542708c802dc8ff2192131904eab36ae8533fdd2f9/layer.tar",
+      "fsdiff_id": "sha256:e983ee9e5445e58d29f3e4bdec96d9f72168f6617853c1754898cb602755b640",
+      "stats": {
+        "all_size": 0,
+        "object_count": 1,
+        "dir_count": 1,
+        "file_count": 0,
+        "link_count": 0,
+        "max_file_size": 0,
+        "max_dir_size": 0,
+        "deleted_count": 0,
+        "deleted_dir_content_count": 0,
+        "deleted_dir_count": 0,
+        "deleted_file_count": 0,
+        "deleted_link_count": 0,
+        "deleted_size": 0,
+        "added_size": 0,
+        "modified_size": 0
+      },
+      "changes": {
+        "deleted": 0,
+        "added": 0,
+        "modified": 1
+      },
+      "top": [
+        {
+          "change": "M",
+          "name": "/etc",
+          "mode": 2147484141,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T07:44:34-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            },
+            "M": [
+              {
+                "layer": 1
+              },
+              {
+                "layer": 2
+              },
+              {
+                "layer": 3
+              },
+              {
+                "layer": 11
+              },
+              {
+                "layer": 12
+              },
+              {
+                "layer": 13
+              },
+              {
+                "layer": 14
+              },
+              {
+                "layer": 15
+              },
+              {
+                "layer": 16
+              },
+              {
+                "layer": 17
+              },
+              {
+                "layer": 20
+              },
+              {
+                "layer": 21
+              }
+            ]
+          }
+        }
+      ],
+      "change_instruction": {
+        "index": 32,
+        "image_index": 0,
+        "type": "RUN",
+        "all": "RUN [\"RUN\",\"/bin/sh\",\"-c\",\"GOCACHE=OFF\"]",
+        "snippet": "RUN [\"RUN\",\"/bin/sh\",\"-c\",\"GOCACHE=OFF\"]"
+      }
+    },
+    {
+      "id": "3b614b2e2c50b1b2bc67e5dd386055ca3c01fdc95dbef66ca2e72ffdbe7d1269",
+      "index": 12,
+      "path": "3b614b2e2c50b1b2bc67e5dd386055ca3c01fdc95dbef66ca2e72ffdbe7d1269/layer.tar",
+      "fsdiff_id": "sha256:51b87384e4afcccee4660ccaa805f2a7609295438250c7995d2fbfc8aba8dac9",
+      "stats": {
+        "all_size": 31,
+        "object_count": 6,
+        "dir_count": 4,
+        "file_count": 2,
+        "link_count": 0,
+        "max_file_size": 31,
+        "max_dir_size": 0,
+        "deleted_count": 0,
+        "deleted_dir_content_count": 1,
+        "deleted_dir_count": 0,
+        "deleted_file_count": 1,
+        "deleted_link_count": 0,
+        "deleted_size": 0,
+        "added_size": 31,
+        "modified_size": 0
+      },
+      "changes": {
+        "deleted": 1,
+        "added": 3,
+        "modified": 2
+      },
+      "top": [
+        {
+          "change": "A",
+          "name": "/root/.config/go/env",
+          "size": 31,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T07:44:34-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 12
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.config",
+          "mode": 2147484141,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T07:44:34-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 12
+            },
+            "M": [
+              {
+                "layer": 16
+              }
+            ]
+          }
+        },
+        {
+          "change": "D",
+          "dir_content_delete": true,
+          "name": "/root/.config/*",
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "1969-12-31T21:00:00-03:00",
+          "change_time": "0001-01-01T00:00:00Z"
+        },
+        {
+          "change": "A",
+          "name": "/root/.config/go",
+          "mode": 2147484141,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T07:44:34-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 12
+            }
+          }
+        },
+        {
+          "change": "M",
+          "name": "/root",
+          "mode": 2147484096,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T07:44:34-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            },
+            "M": [
+              {
+                "layer": 3
+              },
+              {
+                "layer": 12
+              },
+              {
+                "layer": 14
+              },
+              {
+                "layer": 15
+              },
+              {
+                "layer": 16
+              },
+              {
+                "layer": 17
+              },
+              {
+                "layer": 20
+              },
+              {
+                "layer": 21
+              }
+            ]
+          }
+        },
+        {
+          "change": "M",
+          "name": "/etc",
+          "mode": 2147484141,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T07:44:34-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            },
+            "M": [
+              {
+                "layer": 1
+              },
+              {
+                "layer": 2
+              },
+              {
+                "layer": 3
+              },
+              {
+                "layer": 11
+              },
+              {
+                "layer": 12
+              },
+              {
+                "layer": 13
+              },
+              {
+                "layer": 14
+              },
+              {
+                "layer": 15
+              },
+              {
+                "layer": 16
+              },
+              {
+                "layer": 17
+              },
+              {
+                "layer": 20
+              },
+              {
+                "layer": 21
+              }
+            ]
+          }
+        }
+      ],
+      "change_instruction": {
+        "index": 33,
+        "image_index": 0,
+        "type": "RUN",
+        "all": "RUN [\"RUN\",\"/bin/sh\",\"-c\",\"go\",\"env\",\"-w\",\"GOPRIVATE=github.com/gruberdev\"]",
+        "snippet": "RUN [\"RUN\",\"/bin/sh\",\"-c\",\"go\",\"env\",\"-w\",\"G..."
+      },
+      "other_instructions": [
+        {
+          "index": 34,
+          "image_index": 0,
+          "type": "RUN",
+          "all": "RUN [\"ENV\",\"LANG=\",\"LC_ALL=\",\"PATH=/usr/local/go/bin:/go/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\"GO111MODULE=on\",\"SHELL=/bin/bash\",\"HAS_ALLOW_UNSAFE=y\"]",
+          "snippet": "RUN [\"ENV\",\"LANG=\",\"LC_ALL=\",\"PATH=/usr/loca..."
+        }
+      ]
+    },
+    {
+      "id": "68ccb6dbeb059c079be8bbf0e5681cf71516a894dd09afd674cb1ecd420e846f",
+      "index": 13,
+      "path": "68ccb6dbeb059c079be8bbf0e5681cf71516a894dd09afd674cb1ecd420e846f/layer.tar",
+      "fsdiff_id": "sha256:d32b85e33c0b067e4938aa237e0c387687e99bf1228d5a17c60e02bd4add0308",
+      "stats": {
+        "all_size": 320662987,
+        "object_count": 8099,
+        "dir_count": 467,
+        "file_count": 7398,
+        "link_count": 234,
+        "max_file_size": 39887180,
+        "max_dir_size": 0,
+        "deleted_count": 0,
+        "deleted_dir_content_count": 23,
+        "deleted_dir_count": 0,
+        "deleted_file_count": 23,
+        "deleted_link_count": 0,
+        "deleted_size": 0,
+        "added_size": 319648033,
+        "modified_size": 1014954
+      },
+      "changes": {
+        "deleted": 23,
+        "added": 8046,
+        "modified": 30
+      },
+      "top": [
+        {
+          "change": "A",
+          "name": "/usr/lib/python3.8/config-3.8-x86_64-linux-gnu/libpython3.8.a",
+          "size": 39887180,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-05T21:05:59-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 13
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/libexec/gcc/x86_64-alpine-linux-musl/10.2.1/cc1plus",
+          "size": 24897352,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-01-10T23:48:45-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 13
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/libexec/gcc/x86_64-alpine-linux-musl/10.2.1/cc1",
+          "size": 23484584,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-01-10T23:48:45-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 13
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/libexec/gcc/x86_64-alpine-linux-musl/10.2.1/lto1",
+          "size": 22500712,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-01-10T23:48:45-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 13
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/bin/lto-dump",
+          "size": 22496616,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-01-10T23:48:45-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 13
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/lib/libstdc++.a",
+          "size": 21299180,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-01-10T23:48:45-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 13
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/lib/libc.a",
+          "size": 9824192,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-01-15T06:46:22-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 13
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/lib/libgphobos.so.1.0.0",
+          "size": 6121528,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-01-10T23:48:45-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 13
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/lib/libstdc++fs.a",
+          "size": 3938622,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-01-10T23:48:45-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 13
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/lib/gcc/x86_64-alpine-linux-musl/10.2.1/libgcc.a",
+          "size": 3032746,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-01-10T23:48:45-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 13
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/bin/git",
+          "size": 2740424,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-03-09T16:56:18-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 13
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/lib/libpython3.8.so.1.0",
+          "size": 2729928,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-05T21:05:59-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 13
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/lib/libmpfr.so.6.1.0",
+          "size": 2725136,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2020-09-27T19:07:38-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 13
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/lib/libstdc++.so.6.0.28",
+          "size": 1694208,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-01-10T23:48:45-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 13
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/lib/libisl.so.22.0.0",
+          "size": 1673624,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2020-11-04T06:38:14-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 13
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/bin/ld",
+          "size": 1625464,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-04-23T03:34:36-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 13
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/libexec/git-core/git-remote-ftp",
+          "size": 1567296,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-03-09T16:56:18-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 13
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/libexec/git-core/git-http-push",
+          "size": 1563136,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-03-09T16:56:18-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 13
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/libexec/git-core/git-http-fetch",
+          "size": 1559104,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-03-09T16:56:18-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 13
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/lib/python3.8/ensurepip/_bundled/pip-21.1.1-py3-none-any.whl",
+          "size": 1547644,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-05T21:05:59-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 13
+            }
+          }
+        }
+      ],
+      "change_instruction": {
+        "index": 35,
+        "image_index": 0,
+        "type": "RUN",
+        "all": "RUN [\"RUN\",\"/bin/sh\",\"-c\",\"apk\",\"add\",\"--update\",\"--no-cache\",\"bash\",\"gcc\",\"g++\",\"git\",\"curl\",\"zlib\",\"libffi-dev\",\"wget\",\"musl-dev\",\"python${PYTHON_VERSION_MAJOR}\",\"openssl\",\"sudo\",\"jq\",\"py${PYTHON_VERSION_MAJOR}-pip\",\"ncurses\",\"openssh-client\",\"rsync\",\"ca-certificates\",\"musl-dev\",\"openssl-dev\",\"make\",\"python${PYTHON_VERSION_MAJOR}-dev\",\"\\u0026\\u0026\",\"ln\",\"-sf\",\"python${PYTHON_VERSION_MAJOR}\",\"/usr/bin/python\",\"\\u0026\\u0026\",\"ln\",\"-s\",\"/usr/bin/python${PYTHON_VERSION_MINOR}\",\"/usr/local/bin/python\",\"\\u0026\\u0026\",\"python${PYTHON_VERSION_MAJOR}\",\"-m\",\"ensurepip\"]",
+        "snippet": "RUN [\"RUN\",\"/bin/sh\",\"-c\",\"apk\",\"add\",\"--upd..."
+      },
+      "other_instructions": [
+        {
+          "index": 36,
+          "image_index": 0,
+          "type": "RUN",
+          "all": "RUN [\"SHELL\",\"[/bin/bash\",\"-eo\",\"pipefail\",\"-c]\"]",
+          "snippet": "RUN [\"SHELL\",\"[/bin/bash\",\"-eo\",\"pipefail\",\"..."
+        }
+      ]
+    },
+    {
+      "id": "a0748ab6cffe85c98a493f568128b9e8dc039a88b536d9ca94dd5a1542699f19",
+      "index": 14,
+      "path": "a0748ab6cffe85c98a493f568128b9e8dc039a88b536d9ca94dd5a1542699f19/layer.tar",
+      "fsdiff_id": "sha256:4d39c2ae0eaf7280531281b51801ae0599478015fc4fc688bb11a6fc0850eb57",
+      "stats": {
+        "all_size": 23756864,
+        "object_count": 266,
+        "dir_count": 263,
+        "file_count": 3,
+        "link_count": 0,
+        "max_file_size": 23756800,
+        "max_dir_size": 0,
+        "deleted_count": 0,
+        "deleted_dir_content_count": 1,
+        "deleted_dir_count": 0,
+        "deleted_file_count": 1,
+        "deleted_link_count": 0,
+        "deleted_size": 0,
+        "added_size": 23756864,
+        "modified_size": 0
+      },
+      "changes": {
+        "deleted": 1,
+        "added": 259,
+        "modified": 6
+      },
+      "top": [
+        {
+          "change": "A",
+          "name": "/go/bin/golangci-lint",
+          "size": 23756800,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:03:03-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 14
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.cache/golangci-lint/README",
+          "size": 64,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:03:03-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 14
+            }
+          }
+        },
+        {
+          "change": "M",
+          "name": "/go/bin",
+          "mode": 2147484159,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:03:03-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 4
+            },
+            "M": [
+              {
+                "layer": 14
+              }
+            ]
+          }
+        },
+        {
+          "change": "M",
+          "name": "/root",
+          "mode": 2147484096,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T07:44:34-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            },
+            "M": [
+              {
+                "layer": 3
+              },
+              {
+                "layer": 12
+              },
+              {
+                "layer": 14
+              },
+              {
+                "layer": 15
+              },
+              {
+                "layer": 16
+              },
+              {
+                "layer": 17
+              },
+              {
+                "layer": 20
+              },
+              {
+                "layer": 21
+              }
+            ]
+          }
+        },
+        {
+          "change": "M",
+          "name": "/root/.cache",
+          "mode": 2147484141,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:03:03-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 3
+            },
+            "M": [
+              {
+                "layer": 14
+              },
+              {
+                "layer": 20
+              }
+            ]
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.cache/golangci-lint",
+          "mode": 2147484132,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:03:03-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 14
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.cache/golangci-lint/00",
+          "mode": 2147484132,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:03:03-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 14
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.cache/golangci-lint/08",
+          "mode": 2147484132,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:03:03-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 14
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.cache/golangci-lint/01",
+          "mode": 2147484132,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:03:03-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 14
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.cache/golangci-lint/02",
+          "mode": 2147484132,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:03:03-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 14
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.cache/golangci-lint/03",
+          "mode": 2147484132,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:03:03-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 14
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.cache/golangci-lint/04",
+          "mode": 2147484132,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:03:03-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 14
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.cache/golangci-lint/05",
+          "mode": 2147484132,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:03:03-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 14
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.cache/golangci-lint/06",
+          "mode": 2147484132,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:03:03-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 14
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.cache/golangci-lint/07",
+          "mode": 2147484132,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:03:03-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 14
+            }
+          }
+        },
+        {
+          "change": "D",
+          "dir_content_delete": true,
+          "name": "/root/.cache/golangci-lint/*",
+          "mode": 484,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "1969-12-31T21:00:00-03:00",
+          "change_time": "0001-01-01T00:00:00Z"
+        },
+        {
+          "change": "A",
+          "name": "/root/.cache/golangci-lint/09",
+          "mode": 2147484132,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:03:03-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 14
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.cache/golangci-lint/0a",
+          "mode": 2147484132,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:03:03-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 14
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.cache/golangci-lint/0b",
+          "mode": 2147484132,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:03:03-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 14
+            }
+          }
+        },
+        {
+          "change": "M",
+          "name": "/tmp",
+          "mode": 2148532735,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:03:03-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            },
+            "M": [
+              {
+                "layer": 3
+              },
+              {
+                "layer": 13
+              },
+              {
+                "layer": 14
+              },
+              {
+                "layer": 15
+              },
+              {
+                "layer": 16
+              },
+              {
+                "layer": 20
+              },
+              {
+                "layer": 21
+              }
+            ]
+          }
+        }
+      ],
+      "change_instruction": {
+        "index": 37,
+        "image_index": 0,
+        "type": "RUN",
+        "all": "RUN [\"RUN\",\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\",\"curl\",\"-sSfL\",\"https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh\",\"|\",\"sh\",\"-s\",\"--\",\"-b\",\"$(go\",\"env\",\"GOPATH)/bin\",\"\\u0026\\u0026\",\"golangci-lint\",\"--version\"]",
+        "snippet": "RUN [\"RUN\",\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\"..."
+      }
+    },
+    {
+      "id": "1f28b70d0ef8d7b45a9a37a7d1787eaef95dea7b828f2b7f4f789610d53feecd",
+      "index": 15,
+      "path": "1f28b70d0ef8d7b45a9a37a7d1787eaef95dea7b828f2b7f4f789610d53feecd/layer.tar",
+      "fsdiff_id": "sha256:685f02c18f2e99cd718f4a456d53ee0cd8edef64b59fcbf695bbc7b1d36717c6",
+      "stats": {
+        "all_size": 7805818,
+        "object_count": 11,
+        "dir_count": 5,
+        "file_count": 6,
+        "link_count": 0,
+        "max_file_size": 5578752,
+        "max_dir_size": 0,
+        "deleted_count": 0,
+        "deleted_dir_content_count": 0,
+        "deleted_dir_count": 0,
+        "deleted_file_count": 0,
+        "deleted_link_count": 0,
+        "deleted_size": 0,
+        "added_size": 7805818,
+        "modified_size": 0
+      },
+      "changes": {
+        "deleted": 0,
+        "added": 6,
+        "modified": 5
+      },
+      "top": [
+        {
+          "change": "A",
+          "name": "/usr/bin/task",
+          "size": 5578752,
+          "mode": 493,
+          "uid": 1001,
+          "gid": 121,
+          "mod_time": "2021-04-23T18:13:31-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 15
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/tmp/task.tar.gz",
+          "size": 2208446,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-04-23T18:14:26-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 15
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/bin/CHANGELOG.md",
+          "size": 16901,
+          "mode": 420,
+          "uid": 1001,
+          "gid": 121,
+          "mod_time": "2021-04-23T18:12:52-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 15
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/bin/LICENSE",
+          "size": 1080,
+          "mode": 420,
+          "uid": 1001,
+          "gid": 121,
+          "mod_time": "2021-04-23T18:12:52-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 15
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/bin/README.md",
+          "size": 412,
+          "mode": 420,
+          "uid": 1001,
+          "gid": 121,
+          "mod_time": "2021-04-23T18:12:52-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 15
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.wget-hsts",
+          "size": 227,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:13:46-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 15
+            }
+          }
+        },
+        {
+          "change": "M",
+          "name": "/usr/bin",
+          "mode": 2147484141,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:13:46-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            },
+            "M": [
+              {
+                "layer": 1
+              },
+              {
+                "layer": 3
+              },
+              {
+                "layer": 13
+              },
+              {
+                "layer": 15
+              },
+              {
+                "layer": 20
+              }
+            ]
+          }
+        },
+        {
+          "change": "M",
+          "name": "/usr",
+          "mode": 2147484141,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T07:44:48-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            },
+            "M": [
+              {
+                "layer": 1
+              },
+              {
+                "layer": 3
+              },
+              {
+                "layer": 5
+              },
+              {
+                "layer": 6
+              },
+              {
+                "layer": 7
+              },
+              {
+                "layer": 8
+              },
+              {
+                "layer": 9
+              },
+              {
+                "layer": 10
+              },
+              {
+                "layer": 13
+              },
+              {
+                "layer": 15
+              },
+              {
+                "layer": 16
+              },
+              {
+                "layer": 20
+              }
+            ]
+          }
+        },
+        {
+          "change": "M",
+          "name": "/tmp",
+          "mode": 2148532735,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:13:44-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            },
+            "M": [
+              {
+                "layer": 3
+              },
+              {
+                "layer": 13
+              },
+              {
+                "layer": 14
+              },
+              {
+                "layer": 15
+              },
+              {
+                "layer": 16
+              },
+              {
+                "layer": 20
+              },
+              {
+                "layer": 21
+              }
+            ]
+          }
+        },
+        {
+          "change": "M",
+          "name": "/root",
+          "mode": 2147484096,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:13:46-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            },
+            "M": [
+              {
+                "layer": 3
+              },
+              {
+                "layer": 12
+              },
+              {
+                "layer": 14
+              },
+              {
+                "layer": 15
+              },
+              {
+                "layer": 16
+              },
+              {
+                "layer": 17
+              },
+              {
+                "layer": 20
+              },
+              {
+                "layer": 21
+              }
+            ]
+          }
+        },
+        {
+          "change": "M",
+          "name": "/etc",
+          "mode": 2147484141,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:13:46-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            },
+            "M": [
+              {
+                "layer": 1
+              },
+              {
+                "layer": 2
+              },
+              {
+                "layer": 3
+              },
+              {
+                "layer": 11
+              },
+              {
+                "layer": 12
+              },
+              {
+                "layer": 13
+              },
+              {
+                "layer": 14
+              },
+              {
+                "layer": 15
+              },
+              {
+                "layer": 16
+              },
+              {
+                "layer": 17
+              },
+              {
+                "layer": 20
+              },
+              {
+                "layer": 21
+              }
+            ]
+          }
+        }
+      ],
+      "change_instruction": {
+        "index": 38,
+        "image_index": 0,
+        "type": "RUN",
+        "all": "RUN [\"RUN\",\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\",\"wget\",\"-O\",\"/tmp/task.tar.gz\",\"https://github.com/go-task/task/releases/download/v${TASK_VERSION}/task_${OS}_${ARCH}.tar.gz\",\"\\u0026\\u0026\",\"tar\",\"-C\",\"/usr/bin/\",\"-xvf\",\"/tmp/task.tar.gz\",\"\\u0026\\u0026\",\"rm\",\"-rf\",\"/tmp/gotty.tar.gz\"]",
+        "snippet": "RUN [\"RUN\",\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\"..."
+      }
+    },
+    {
+      "id": "a333e6b60d31cfba49b4b1d86387bad8fb1a272f44027093fddd8d73009f54c1",
+      "index": 16,
+      "path": "a333e6b60d31cfba49b4b1d86387bad8fb1a272f44027093fddd8d73009f54c1/layer.tar",
+      "fsdiff_id": "sha256:4fa8a0de66b2aae48f8a72e13ea6421c5d8fb23cdb9127777de863b4cb2562ea",
+      "stats": {
+        "all_size": 1533029610,
+        "object_count": 89415,
+        "dir_count": 15629,
+        "file_count": 73782,
+        "link_count": 4,
+        "max_file_size": 133373209,
+        "max_dir_size": 0,
+        "deleted_count": 0,
+        "deleted_dir_content_count": 5,
+        "deleted_dir_count": 0,
+        "deleted_file_count": 5,
+        "deleted_link_count": 0,
+        "deleted_size": 0,
+        "added_size": 1533029610,
+        "modified_size": 0
+      },
+      "changes": {
+        "deleted": 5,
+        "added": 89404,
+        "modified": 6
+      },
+      "top": [
+        {
+          "change": "A",
+          "name": "/usr/local/google-cloud-sdk/bin/anthoscli",
+          "size": 133373209,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:14:53-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 16
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/google-cloud-sdk/bin/anthoscli",
+          "size": 133373209,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "1980-01-01T05:00:00-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 16
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/local/google-cloud-sdk/.install/.backup/data/cli/gcloud.json",
+          "size": 51262087,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:14:47-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 16
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/local/google-cloud-sdk/data/cli/gcloud.json",
+          "size": 51262087,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:14:46-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 16
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/google-cloud-sdk/data/cli/gcloud.json",
+          "size": 51262087,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "1980-01-01T05:00:00-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 16
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/google-cloud-sdk/.install/.backup/data/cli/gcloud.json",
+          "size": 51262087,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "1980-01-01T05:00:00-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 16
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/local/google-cloud-sdk/.install/.backup/lib/googlecloudsdk/third_party/apis/compute_alpha.json",
+          "size": 3270481,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:14:48-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 16
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/local/google-cloud-sdk/lib/googlecloudsdk/third_party/apis/compute_alpha.json",
+          "size": 3270481,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:14:51-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 16
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/google-cloud-sdk/.install/.backup/lib/googlecloudsdk/third_party/apis/compute_alpha.json",
+          "size": 3270481,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "1980-01-01T05:00:00-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 16
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/google-cloud-sdk/lib/googlecloudsdk/third_party/apis/compute_alpha.json",
+          "size": 3270481,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "1980-01-01T05:00:00-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 16
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/google-cloud-sdk/.install/.backup/lib/googlecloudsdk/third_party/apis/compute/alpha/compute_alpha_messages.py",
+          "size": 3091350,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "1980-01-01T05:00:00-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 16
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/local/google-cloud-sdk/.install/.backup/lib/googlecloudsdk/third_party/apis/compute/alpha/compute_alpha_messages.py",
+          "size": 3091350,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:14:48-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 16
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/google-cloud-sdk/lib/googlecloudsdk/third_party/apis/compute/alpha/compute_alpha_messages.py",
+          "size": 3091350,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "1980-01-01T05:00:00-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 16
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/local/google-cloud-sdk/lib/googlecloudsdk/third_party/apis/compute/alpha/compute_alpha_messages.py",
+          "size": 3091350,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:14:51-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 16
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/local/google-cloud-sdk/lib/googlecloudsdk/third_party/apis/compute_beta.json",
+          "size": 2835202,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:14:51-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 16
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/google-cloud-sdk/.install/.backup/lib/googlecloudsdk/third_party/apis/compute_beta.json",
+          "size": 2835202,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "1980-01-01T05:00:00-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 16
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/google-cloud-sdk/lib/googlecloudsdk/third_party/apis/compute_beta.json",
+          "size": 2835202,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "1980-01-01T05:00:00-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 16
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/local/google-cloud-sdk/.install/.backup/lib/googlecloudsdk/third_party/apis/compute_beta.json",
+          "size": 2835202,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:14:47-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 16
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/local/google-cloud-sdk/data/cli/gcloud_completions.py",
+          "size": 2773136,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:14:46-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 16
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/google-cloud-sdk/.install/.backup/data/cli/gcloud_completions.py",
+          "size": 2773136,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "1980-01-01T05:00:00-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 16
+            }
+          }
+        }
+      ],
+      "change_instruction": {
+        "index": 39,
+        "image_index": 0,
+        "type": "RUN",
+        "all": "RUN [\"RUN\",\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\",\"curl\",\"https://sdk.cloud.google.com\",\"\\u003e\",\"/tmp/install.sh\",\"\\u0026\\u0026\",\"bash\",\"/tmp/install.sh\",\"--disable-prompts\",\"\\u0026\\u0026\",\"cp\",\"-r\",\"~/google-cloud-sdk\",\"/usr/local/google-cloud-sdk\"]",
+        "snippet": "RUN [\"RUN\",\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\"..."
+      }
+    },
+    {
+      "id": "045dd542def706fc15e046c0063d9bd01ffd145a8b5e94e035ebf7641a4c05c0",
+      "index": 17,
+      "path": "045dd542def706fc15e046c0063d9bd01ffd145a8b5e94e035ebf7641a4c05c0/layer.tar",
+      "fsdiff_id": "sha256:e19c9a859061348db7178a8a5c2d3fbc6bba900ae4ae315dd6fd6773e7a9d9ed",
+      "stats": {
+        "all_size": 102,
+        "object_count": 5,
+        "dir_count": 3,
+        "file_count": 2,
+        "link_count": 0,
+        "max_file_size": 102,
+        "max_dir_size": 0,
+        "deleted_count": 0,
+        "deleted_dir_content_count": 1,
+        "deleted_dir_count": 0,
+        "deleted_file_count": 1,
+        "deleted_link_count": 0,
+        "deleted_size": 0,
+        "added_size": 102,
+        "modified_size": 0
+      },
+      "changes": {
+        "deleted": 1,
+        "added": 2,
+        "modified": 2
+      },
+      "top": [
+        {
+          "change": "A",
+          "name": "/root/.bashrc",
+          "size": 102,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:14:55-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 17
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.aws",
+          "mode": 2147484141,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:14:55-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 17
+            }
+          }
+        },
+        {
+          "change": "D",
+          "dir_content_delete": true,
+          "name": "/root/.aws/*",
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "1969-12-31T21:00:00-03:00",
+          "change_time": "0001-01-01T00:00:00Z"
+        },
+        {
+          "change": "M",
+          "name": "/root",
+          "mode": 2147484096,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:14:55-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            },
+            "M": [
+              {
+                "layer": 3
+              },
+              {
+                "layer": 12
+              },
+              {
+                "layer": 14
+              },
+              {
+                "layer": 15
+              },
+              {
+                "layer": 16
+              },
+              {
+                "layer": 17
+              },
+              {
+                "layer": 20
+              },
+              {
+                "layer": 21
+              }
+            ]
+          }
+        },
+        {
+          "change": "M",
+          "name": "/etc",
+          "mode": 2147484141,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:14:55-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            },
+            "M": [
+              {
+                "layer": 1
+              },
+              {
+                "layer": 2
+              },
+              {
+                "layer": 3
+              },
+              {
+                "layer": 11
+              },
+              {
+                "layer": 12
+              },
+              {
+                "layer": 13
+              },
+              {
+                "layer": 14
+              },
+              {
+                "layer": 15
+              },
+              {
+                "layer": 16
+              },
+              {
+                "layer": 17
+              },
+              {
+                "layer": 20
+              },
+              {
+                "layer": 21
+              }
+            ]
+          }
+        }
+      ],
+      "change_instruction": {
+        "index": 40,
+        "image_index": 0,
+        "type": "RUN",
+        "all": "RUN [\"RUN\",\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\",\"echo\",\"export PATH=\\\"/usr/local/google-cloud-sdk/bin:${PATH}\\\"\",\"\\u003e\\u003e\",\"${HOME}/.bashrc\",\"\\u0026\\u0026\",\"echo\",\"export PATH=\\\"/go/bin:/usr/local/go/bin:${PATH}\\\"\",\"\\u003e\\u003e\",\"${HOME}/.bashrc\",\"\\u0026\\u0026\",\"mkdir\",\"/root/.aws\"]",
+        "snippet": "RUN [\"RUN\",\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\"..."
+      }
+    },
+    {
+      "id": "5c96ba079f78047570e533d2f49b22309fee492cac151c413010888efbdbd6ab",
+      "index": 18,
+      "path": "5c96ba079f78047570e533d2f49b22309fee492cac151c413010888efbdbd6ab/layer.tar",
+      "fsdiff_id": "sha256:e95efa41f77e7745fc8a503a92f9f9f7606932a008ac2893704c6103d5d633ee",
+      "stats": {
+        "all_size": 0,
+        "object_count": 2,
+        "dir_count": 1,
+        "file_count": 1,
+        "link_count": 0,
+        "max_file_size": 0,
+        "max_dir_size": 0,
+        "deleted_count": 0,
+        "deleted_dir_content_count": 1,
+        "deleted_dir_count": 0,
+        "deleted_file_count": 1,
+        "deleted_link_count": 0,
+        "deleted_size": 0,
+        "added_size": 0,
+        "modified_size": 0
+      },
+      "changes": {
+        "deleted": 1,
+        "added": 1,
+        "modified": 0
+      },
+      "top": [
+        {
+          "change": "D",
+          "dir_content_delete": true,
+          "name": "/project/*",
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "1969-12-31T21:00:00-03:00",
+          "change_time": "0001-01-01T00:00:00Z"
+        },
+        {
+          "change": "A",
+          "name": "/project",
+          "mode": 2147484141,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:14:55-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 18
+            },
+            "M": [
+              {
+                "layer": 19
+              },
+              {
+                "layer": 20
+              }
+            ]
+          }
+        }
+      ],
+      "change_instruction": {
+        "index": 41,
+        "image_index": 0,
+        "type": "RUN",
+        "all": "RUN [\"WORKDIR\",\"/project\"]",
+        "snippet": "RUN [\"WORKDIR\",\"/project\"]"
+      }
+    },
+    {
+      "id": "9a824ab48e23342e3ba4f37c8e2541aa18efdcd5e9c4e1558bc805b2722b2ef6",
+      "index": 19,
+      "path": "9a824ab48e23342e3ba4f37c8e2541aa18efdcd5e9c4e1558bc805b2722b2ef6/layer.tar",
+      "fsdiff_id": "sha256:9e15f49ef3d78f6bd828e4488807765b3e41d3bbe27ea7d46ae843d5d43680ae",
+      "stats": {
+        "all_size": 7055861,
+        "object_count": 1135,
+        "dir_count": 312,
+        "file_count": 823,
+        "link_count": 0,
+        "max_file_size": 2491380,
+        "max_dir_size": 0,
+        "deleted_count": 0,
+        "deleted_dir_content_count": 8,
+        "deleted_dir_count": 0,
+        "deleted_file_count": 8,
+        "deleted_link_count": 0,
+        "deleted_size": 0,
+        "added_size": 7055861,
+        "modified_size": 0
+      },
+      "changes": {
+        "deleted": 8,
+        "added": 1126,
+        "modified": 1
+      },
+      "top": [
+        {
+          "change": "A",
+          "name": "/project/docs/build/docs/build/assets/codedoc-bundle.js",
+          "size": 2491380,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-01T02:28:03-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 19
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/project/docs/build/docs/assets/codedoc-bundle.js",
+          "size": 2491344,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-28T06:19:00-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 19
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/project/.git/objects/pack/pack-35fc2121f45af1203a6b0e62cc48c5917e2e2df7.pack",
+          "size": 224471,
+          "mode": 292,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-05T18:37:01-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 19
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/project/.codedoc/package-lock.json",
+          "size": 187633,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-02T17:40:54-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 19
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/project/test/gcp/go.sum",
+          "size": 69516,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-03T21:04:22-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 19
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/project/test/go.sum",
+          "size": 69037,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-28T06:19:01-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 19
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/project/test/aws/go.sum",
+          "size": 64393,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-03T21:10:04-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 19
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/project/docs/build/docs/cheat-sheet.html",
+          "size": 56943,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-01T02:27:50-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 19
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/project/docs/build/docs/resources/providers/aws/references.html",
+          "size": 55992,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-01T03:05:30-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 19
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/project/docs/build/docs/code-features.html",
+          "size": 40580,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-01T02:27:50-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 19
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/project/docs/build/docs/build/assets/codedoc-styles.css",
+          "size": 31015,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-01T02:27:56-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 19
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/project/docs/build/docs/assets/codedoc-styles.css",
+          "size": 31002,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-28T06:19:00-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 19
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/project/.git/objects/pack/pack-35fc2121f45af1203a6b0e62cc48c5917e2e2df7.idx",
+          "size": 27476,
+          "mode": 292,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-28T06:18:16-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 19
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/project/.git/objects/83/a7eb761b16218401278f2962830c2b64bcd5f3",
+          "size": 27349,
+          "mode": 292,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-31T17:59:00-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 19
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/project/docs/build/index.html",
+          "size": 22540,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-01T14:26:25-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 19
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/project/.git/objects/67/10ffe73592aa88b058c3e4fec685f21af1c51b",
+          "size": 19812,
+          "mode": 292,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-05-31T12:16:06-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 19
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/project/docs/build/docs/providers/aws/resources.html",
+          "size": 14798,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-01T02:27:53-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 19
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/project/docs/build/docs/providers/gcp/resources.html",
+          "size": 14798,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-01T02:27:55-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 19
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/project/docs/build/docs/resources/providers/azure/resources.html",
+          "size": 14798,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-01T02:27:56-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 19
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/project/docs/build/docs/resources/providers/gcp/resources.html",
+          "size": 14798,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-01T02:27:56-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 19
+            }
+          }
+        }
+      ],
+      "change_instruction": {
+        "index": 42,
+        "image_index": 0,
+        "type": "RUN",
+        "all": "RUN [\"COPY\",\".\",\".\"]",
+        "snippet": "RUN [\"COPY\",\".\",\".\"]"
+      }
+    },
+    {
+      "id": "f9f7d56f7f67554e13fd9033870b0ebe964d57b56071ac98cb7f09b74e07b048",
+      "index": 20,
+      "path": "f9f7d56f7f67554e13fd9033870b0ebe964d57b56071ac98cb7f09b74e07b048/layer.tar",
+      "fsdiff_id": "sha256:ba5c9f7844f9bba2dcceb03bf8d570a18aa468ce70392a6e410e4563e427a1aa",
+      "stats": {
+        "all_size": 838060453,
+        "object_count": 52487,
+        "dir_count": 6161,
+        "file_count": 46326,
+        "link_count": 0,
+        "max_file_size": 20940368,
+        "max_dir_size": 0,
+        "deleted_count": 1,
+        "deleted_dir_content_count": 218,
+        "deleted_dir_count": 0,
+        "deleted_file_count": 219,
+        "deleted_link_count": 0,
+        "deleted_size": 0,
+        "added_size": 835511151,
+        "modified_size": 2549302
+      },
+      "changes": {
+        "deleted": 219,
+        "added": 51868,
+        "modified": 400
+      },
+      "top": [
+        {
+          "change": "A",
+          "name": "/root/.cache/pip/http/2/8/a/b/3/28ab325d068b87c101c7d16187c4b09176846917dfa51685e9a18b44",
+          "size": 20940368,
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:15:08-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 20
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.cache/pip/http/d/9/e/1/b/d9e1ba1fbad1af986224cb56ed80a1dc6aaae5babe1640ac8a604a56",
+          "size": 7593626,
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:15:25-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 20
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.cache/pip/http/1/e/a/e/d/1eaed0c8b6b243f09045c346f15238e5dd58b575e6b522644266fa78",
+          "size": 7227298,
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:16:05-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 20
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.cache/pip/http/d/f/1/f/6/df1f61a5f227cc97e0abf482e78a323c61077886cbb07ed50a63a65c",
+          "size": 4344242,
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:15:11-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 20
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/lib/python3.8/site-packages/cryptography/hazmat/bindings/_openssl.abi3.so",
+          "size": 4129432,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:18:13-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 20
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/lib/python3.8/site-packages/nacl/_sodium.abi3.so",
+          "size": 4057456,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:18:13-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 20
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.cache/pip/http/6/1/6/f/9/616f9299b4ee481b8dd8f1aafe5e306e688713915aeec2ab48f3c6a0",
+          "size": 3627865,
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:15:00-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 20
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.cache/pip/http/a/e/d/f/8/aedf809595470e581a00fe3a5b4065986be9e1520577b8565e2bff80",
+          "size": 3558806,
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:15:03-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 20
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.cache/pip/http/b/1/a/e/6/b1ae62581cb692c78b5fdcfd7dd499017217404087c27f059a3e049f",
+          "size": 3417788,
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:15:44-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 20
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.cache/pip/http/8/1/d/b/b/81dbbbfffd54256d8caa39461b1cd4a55ccd90636e24690a622e9e51",
+          "size": 2570748,
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:15:43-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 20
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.cache/pip/http/2/4/b/0/2/24b0229069bd6142037e3b02f840e3a7e03ad418a74c32f362cd3682",
+          "size": 2328445,
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:16:05-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 20
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.cache/pip/http/9/3/2/6/a/9326a25ed80efd3ddf966d745b02d2f0349eb0ec3bc4f5d7f00c193f",
+          "size": 2303127,
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:15:11-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 20
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.cache/pip/http/9/7/6/2/d/9762dc737b48355cff3677be90d9eb40935330a3cbdd8f2bb3f27ca0",
+          "size": 2171850,
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:15:09-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 20
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.cache/pip/http/b/0/c/3/e/b0c3e28e040d9edae48ce6b07c9114271b3881fad11d405ee428c7ff",
+          "size": 2165950,
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:15:00-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 20
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/lib/python3.8/site-packages/botocore/data/ec2/2016-11-15/service-2.json",
+          "size": 2112011,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:18:19-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 20
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/lib/python3.8/site-packages/azure/synapse/artifacts/models/_models_py3.py",
+          "size": 1969272,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:18:37-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 20
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/lib/python3.8/site-packages/azure/synapse/artifacts/models/_models.py",
+          "size": 1680573,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:18:37-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 20
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.cache/pip/http/9/f/c/6/5/9fc65c5b6a035d210a2d36eeec1b1e7c749d231477804cb7029f1dfc",
+          "size": 1619391,
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:15:10-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 20
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/lib/python3.8/site-packages/virtualenv/seed/wheels/embed/pip-21.1.2-py3-none-any.whl",
+          "size": 1547997,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:18:20-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 20
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/usr/lib/python3.8/site-packages/virtualenv/seed/wheels/embed/pip-20.3.4-py2.py3-none-any.whl",
+          "size": 1522101,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:18:20-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 20
+            }
+          }
+        }
+      ],
+      "change_instruction": {
+        "index": 43,
+        "image_index": 0,
+        "type": "RUN",
+        "all": "RUN [\"RUN\",\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\",\"cd\",\"/project/scripts\",\"\\u0026\\u0026\",\"pip${PYTHON_VERSION_MAJOR}\",\"install\",\"-r\",\"requirements.txt\",\"\\u0026\\u0026\",\"chmod\",\"+x\",\"/project/scripts/entrypoint.sh\"]",
+        "snippet": "RUN [\"RUN\",\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\"..."
+      },
+      "other_instructions": [
+        {
+          "index": 45,
+          "image_index": 0,
+          "type": "RUN",
+          "all": "RUN [\"CMD\",\"[/bin/bash\",\"-c\",\"/project/scripts/entrypoint.sh]\"]",
+          "snippet": "RUN [\"CMD\",\"[/bin/bash\",\"-c\",\"/project/scrip..."
+        }
+      ]
+    },
+    {
+      "id": "a2efd2c9f12be7234fea9e8a62979c3b644fd664fc5227afbadf6a4f30f39162",
+      "index": 21,
+      "path": "a2efd2c9f12be7234fea9e8a62979c3b644fd664fc5227afbadf6a4f30f39162/layer.tar",
+      "fsdiff_id": "sha256:c35e7d93b58f665528d238847196f96faf8a2fa755beb3f042a4e2df6e4b8a83",
+      "stats": {
+        "all_size": 4792,
+        "object_count": 20,
+        "dir_count": 7,
+        "file_count": 13,
+        "link_count": 0,
+        "max_file_size": 2695,
+        "max_dir_size": 0,
+        "deleted_count": 0,
+        "deleted_dir_content_count": 2,
+        "deleted_dir_count": 0,
+        "deleted_file_count": 2,
+        "deleted_link_count": 0,
+        "deleted_size": 0,
+        "added_size": 4792,
+        "modified_size": 0
+      },
+      "changes": {
+        "deleted": 2,
+        "added": 15,
+        "modified": 3
+      },
+      "top": [
+        {
+          "change": "A",
+          "name": "/root/.azure/telemetry/cache",
+          "size": 2695,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:19:37-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 21
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.azure/logs/telemetry.log",
+          "size": 1040,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:19:37-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 21
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.terraform.d/checkpoint_signature",
+          "size": 394,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:19:38-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 21
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.terraform.d/checkpoint_cache",
+          "size": 330,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:19:39-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 21
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.azure/versionCheck.json",
+          "size": 211,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:19:37-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 21
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.azure/azureProfile.json",
+          "size": 61,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:19:37-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 21
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.azure/config",
+          "size": 27,
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:19:37-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 21
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.azure/telemetry.txt",
+          "size": 19,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:19:37-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 21
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.azure/az.sess",
+          "size": 5,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:19:36-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 21
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.azure/az.json",
+          "size": 5,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:19:36-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 21
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.azure/commandIndex.json",
+          "size": 5,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:19:36-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 21
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.azure/telemetry",
+          "mode": 2147484141,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:19:37-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 21
+            }
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.azure",
+          "mode": 2147484141,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:19:37-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 21
+            }
+          }
+        },
+        {
+          "change": "M",
+          "name": "/tmp",
+          "mode": 2148532735,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:19:39-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            },
+            "M": [
+              {
+                "layer": 3
+              },
+              {
+                "layer": 13
+              },
+              {
+                "layer": 14
+              },
+              {
+                "layer": 15
+              },
+              {
+                "layer": 16
+              },
+              {
+                "layer": 20
+              },
+              {
+                "layer": 21
+              }
+            ]
+          }
+        },
+        {
+          "change": "A",
+          "name": "/root/.azure/logs",
+          "mode": 2147484141,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:19:37-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 21
+            }
+          }
+        },
+        {
+          "change": "D",
+          "dir_content_delete": true,
+          "name": "/root/.terraform.d/*",
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "1969-12-31T21:00:00-03:00",
+          "change_time": "0001-01-01T00:00:00Z"
+        },
+        {
+          "change": "A",
+          "name": "/root/.terraform.d",
+          "mode": 2147484141,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:19:39-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 21
+            }
+          }
+        },
+        {
+          "change": "D",
+          "dir_content_delete": true,
+          "name": "/root/.azure/*",
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "1969-12-31T21:00:00-03:00",
+          "change_time": "0001-01-01T00:00:00Z"
+        },
+        {
+          "change": "M",
+          "name": "/root",
+          "mode": 2147484096,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:19:38-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            },
+            "M": [
+              {
+                "layer": 3
+              },
+              {
+                "layer": 12
+              },
+              {
+                "layer": 14
+              },
+              {
+                "layer": 15
+              },
+              {
+                "layer": 16
+              },
+              {
+                "layer": 17
+              },
+              {
+                "layer": 20
+              },
+              {
+                "layer": 21
+              }
+            ]
+          }
+        },
+        {
+          "change": "M",
+          "name": "/etc",
+          "mode": 2147484141,
+          "uid": 0,
+          "gid": 0,
+          "mod_time": "2021-06-06T08:19:39-03:00",
+          "change_time": "0001-01-01T00:00:00Z",
+          "history": {
+            "A": {
+              "layer": 0
+            },
+            "M": [
+              {
+                "layer": 1
+              },
+              {
+                "layer": 2
+              },
+              {
+                "layer": 3
+              },
+              {
+                "layer": 11
+              },
+              {
+                "layer": 12
+              },
+              {
+                "layer": 13
+              },
+              {
+                "layer": 14
+              },
+              {
+                "layer": 15
+              },
+              {
+                "layer": 16
+              },
+              {
+                "layer": 17
+              },
+              {
+                "layer": 20
+              },
+              {
+                "layer": 21
+              }
+            ]
+          }
+        }
+      ],
+      "change_instruction": {
+        "index": 44,
+        "image_index": 0,
+        "type": "RUN",
+        "all": "RUN [\"RUN\",\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\",\"curl\",\"-sL\",\"https://git.io/_has\",\"|\",\"bash\",\"-s\",\"git\",\"az\",\"aws\",\"tfscan\",\"tfsec\",\"terraform-docs\",\"terraform\",\"go\",\"task\",\"python\",\"bash\"]",
+        "snippet": "RUN [\"RUN\",\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\"..."
+      }
+    }
+  ],
+  "image_archive_location": "/tmp/docker-slim-state/.docker-slim-state/images/1fc964c4eefabd13dfe8925808c0f0718f198a658e91ba507477df7b63cfe3d7/image/1fc964c4eefabd13dfe8925808c0f0718f198a658e91ba507477df7b63cfe3d7.tar"
+}

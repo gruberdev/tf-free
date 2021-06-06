@@ -54,13 +54,3 @@ variable "db_security_group_name" {
   default     = "security-db"
 }
 
-variable "vpc_id" {
-  description = "Instance type for database"
-}
-
-variable "cidr_blocks" {
-  description = "Instance type for database"
-}
-variable "database_subnets" {
-  description = "Instance type for database"
-}

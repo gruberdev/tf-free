@@ -23,7 +23,7 @@ resource "random_string" "bucket_name" {
 module "terraform_state_backend" {
   source = "cloudposse/tfstate-backend/aws"
   # Cloud Posse recommends pinning every module to a specific version
-  # version     = "x.x.x"
+  version                            = "v0.32.1"
   namespace                          = random_string.namespace.result
   stage                              = var.backend_stage
   name                               = random_string.s3_name.result
@@ -32,6 +32,21 @@ module "terraform_state_backend" {
   terraform_backend_config_file_path = "."
   terraform_backend_config_file_name = "backend.tf"
   force_destroy                      = var.backend_destroy
+  depends_on = [
+    null_resource.backend
+  ]
+}
+
+resource "null_resource" "backend" {
+  triggers = {
+    backend_destroy = var.backend_destroy
+  }
+  lifecycle {
+    prevent_destroy = false
+  }
+  #  depends_on = [
+  #    terraform_state_backend
+  #  ]
 }
 
 module "google_cloud" {
