@@ -6,6 +6,8 @@ steps:
   - name: plan
     commands:
       - export PROJECT=/home/gruber/projects/tf-free
+      - cd $$PROJECT
+      - task clean-keys
       - cd $$PROJECT/modules/aws
       - echo "$$AWS_SSH_KEY" >> aws.pub
       - cd $$PROJECT/examples/gcp/unit/compute
