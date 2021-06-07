@@ -5,8 +5,12 @@ name: Static Code Analysis
 steps:
   - name: plan
     commands:
-      - sudo cat $GOOGLE_APPLICATION_CREDENTIALS > gcp.json
-      - sudo cat $AWS_SSH_KEY > aws.pub
+      - export PROJECT=/home/gruber/projects/tf-free
+      - cd $$PROJECT
+      - task tf-clean
+      - cd $$PROJECT/modules/aws
+      - echo "$$AWS_SSH_KEY" >> aws.pub
+      - cd $$PROJECT
       - task init
       - terraform plan
     when:
