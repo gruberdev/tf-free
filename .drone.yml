@@ -13,6 +13,7 @@ steps:
       - cd $$PROJECT/examples/gcp/unit/vpc
       - echo "$$GOOGLE_KEY" >> gcp.json
       - cd $$PROJECT
+      - echo "$$GOOGLE_KEY" >> gcp.json
       - task init
       - terraform plan
     when:

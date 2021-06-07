@@ -222,6 +222,22 @@ tasks:
       - cd modules/aws && terraform destroy -auto-approve
       - cd modules/aws && terraform apply -auto-approve
 
+  clean-keys:
+    desc: Terraform standard initialization
+    cmds:
+      - rm gcp.json || true
+      - rm aws.pub || true
+      - rm modules/aws/aws.pub || true
+      - rm modules/gcp/gcp.json || true
+      - rm modules/gcp/firewall/gcp.json || true
+      - rm modules/gcp/vpc/gcp.json || true
+      - rm modules/gcp/compute/gcp.json || true
+      - rm modules/gcp/compute/gcp.json || true
+      - rm examples/gcp/e2e/gcp.json || true
+      - rm examples/gcp/unit/compute/gcp.json || true
+      - rm examples/gcp/unit/vpc/gcp.json || true
+      - rm examples/aws/unit/ec2/aws.pub || true
+
   tf-clean:
     desc: Terraform standard initialization
     cmds:
