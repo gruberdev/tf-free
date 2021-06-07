@@ -8,7 +8,7 @@ variable "region" {
   description = "Region for AWS resources"
   type        = string
   default     = "us-east-1"
-}
+}=
 
 variable "ec2_ssh_name" {
   description = "The SSH Key Name"
@@ -39,7 +39,7 @@ variable "rds_user" {
 }
 
 variable "rds_password" {
-  description = "Region for AWS resources"
+  description = "Region for the RDS database"
   type        = string
   default     = "testingdatabase89372934279"
 }
