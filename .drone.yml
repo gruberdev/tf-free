@@ -9,13 +9,14 @@ steps:
       - cd $$PROJECT
       - task clean-keys
       - cd $$PROJECT/modules/aws
-      - echo "$$AWS_SSH_KEY" >> aws.pub
+      - echo "$$AWS_SSH_KEY" > aws.pub
       - cd $$PROJECT/examples/gcp/unit/compute
-      - echo "$$GOOGLE_KEY" >> gcp.json
+      - echo "$$GOOGLE_KEY" > gcp.json
       - cd $$PROJECT/examples/gcp/unit/vpc
-      - echo "$$GOOGLE_KEY" >> gcp.json
+      - echo "$$GOOGLE_KEY" > gcp.json
       - cd $$PROJECT
-      - echo "$$GOOGLE_KEY" >> gcp.json
+      - echo "$$AWS_SSH_KEY" > aws.pub
+      - echo "$$GOOGLE_KEY" > gcp.json
       - task init
       - terraform plan
     when:
