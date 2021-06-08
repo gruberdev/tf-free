@@ -81,10 +81,6 @@ name: Google Cloud Provider (GCP)
 steps:
   - name: Setup
     image: golang:1.16.4-alpine
-    commands:
-      - cd test/gcp
-      - go mod init "github.com/gruberdev/tf-free"
-      - go mod tidy
     when:
       branch:
         include:
@@ -105,7 +101,7 @@ steps:
         from_secret: aws_id
 
   - name: Unit Compute
-    image: golang:1.16.4-alpine
+    image: golang:1.16.5-alpine
     commands:
       - apk add build-base git curl
       - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
@@ -135,7 +131,7 @@ steps:
         from_secret: aws_id
 
   - name: Unit Networking
-    image: golang:1.16.4-alpine
+    image: golang:1.16.5-alpine
     commands:
       - apk add build-base git curl
       - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
@@ -165,7 +161,7 @@ steps:
         from_secret: aws_id
 
   - name: Integration Core Provider
-    image: golang:1.16.4-alpine
+    image: golang:1.16.5-alpine
     commands:
       - apk add build-base git curl
       - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community

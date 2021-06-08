@@ -1,0 +1,16 @@
+repos:
+  - repo: https://github.com/terraform-docs/terraform-docs
+    rev: v0.14.1
+    hooks:
+      - id: terraform-docs-go
+        args: ["--output-file", "README.md", "."]
+      - id: terraform-docs-go
+        args: ["--output-file", "README.md", "./modules/gcp/firewall"]
+      - id: terraform-docs-go
+        args: ["--output-file", "README.md", "./modules/gcp/compute"]
+      - id: terraform-docs-go
+        args: ["--output-file", "README.md", "./modules/gcp/vpc"]
+  - repo: git://github.com/antonbabenko/pre-commit-terraform
+    rev: v1.50.0
+    hooks:
+      - id: terraform_fmt
