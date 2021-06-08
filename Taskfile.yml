@@ -23,7 +23,6 @@ tasks:
   docker:
     desc: Create and cache your Docker container
     cmds:
-<<<<<<< HEAD
       - docker run -it --rm --name terraformfree -e GOOGLE_PROJECT=$GOOGLE_PROJECT -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION terraformfree:latest
 
   build:
@@ -32,10 +31,6 @@ tasks:
       - docker stop terraformfree:latest || true
       - docker rm terraformfree:latest || true
       - docker build --no-cache --pull -t terraformfree:latest .
-=======
-      - docker build -t tf-free:latest .
-      - docker run -it --rm --name tf-free -e GOOGLE_PROJECT=${GOOGLE_PROJECT} -v cache_terraform:/project -v repository_results:/root/.ssh tf-free:latest task docker-test
->>>>>>> main
 
   docker-test:
     desc: Run tests from inside your container

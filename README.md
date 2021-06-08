@@ -8,9 +8,11 @@
 
 ## Motivation
 
-Every major cloud provider offers a free tier that allows for the creation of all kind of resources free of charge, still, learning every cloud and managing these resources could prove burdensome.
+Every major cloud provider offers a free tier that allows for some kind of resource free of charge, still, learning every cloud and managing these resources can prove burdensome to most.
 
-The goal of this repository is to automate the management of these resources using Terraform as the central tool. It also aims to provide resources for learning and improve your skills as a DevOps Engineer and as a Terraform user. A CLI tool is part of this project for those who wish a more KIS-like approach.
+The goal is to automate the management of these resources using Terraform as the centralizing tool. It also aims to provide resources for learning and improve your skills as a DevOps Engineer and as a Terraform user, even if you're developer that never touched cloud infrastructure, nowadays there's great value in learning these tools.
+
+A CLI tool is part of this project for those who wish a more KIS-like approach.
 
 ## Getting started
 
@@ -19,10 +21,10 @@ The goal of this repository is to automate the management of these resources usi
 curl -sSLf https://gruber.dev.br/install | bash -s terraform-free
 ```
 
-Or use the explicit url/preview the script content
+Or use the explicit url _and_ preview script's content:
 
 ```
-wget https://raw.githubusercontent.com/gruberdev/setup/main/install.sh && cat install.sh && rm install.sh
+wget https://raw.githubusercontent.com/gruberdev/setup/main/install.sh && cat install.sh
 curl -sSL https://raw.githubusercontent.com/gruberdev/setup/main/install.sh | bash -s terraform-free
 ```
 
