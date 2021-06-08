@@ -1,6 +1,10 @@
 terraform {
   required_version = ">= 0.13"
   required_providers {
+    google = {
+      source  = "hashicorp/google"
+      version = "3.69.0"
+    }
     google-beta = {
       source  = "hashicorp/google-beta"
       version = "3.69.0"
@@ -17,15 +21,14 @@ terraform {
 }
 
 provider "aws" {
-  region     = "us-west-2"
-  access_key = "example"
-  secret_key = "example"
+  region = var.aws_default_region
 }
 
+provider "google" {
+  region = var.gcp_project_region
+}
 provider "google-beta" {
-  project     = var.google_project
-  region      = var.gcp_project_region
-  credentials = file("gcp.json")
+  region = var.gcp_project_region
 }
 
 provider "azurerm" {

@@ -1,13 +1,14 @@
+provider "google" {
+  region  = var.gcp_project_region
+}
 provider "google-beta" {
-  project     = var.google_project
-  region      = var.project_region
-  credentials = file("gcp.json")
+  region  = var.gcp_project_region
 }
 
 resource "google_compute_instance" "gcp_example" {
-  name         = var.instance_name
+  name         = var.gcp_instance_name
   machine_type = "f1-micro"
-  zone         = "${var.project_region}-b"
+  zone         = "${var.gcp_project_region}-b"
 
   boot_disk {
     initialize_params {

@@ -2,15 +2,16 @@
 
 module "gcp_vpc" {
   vpc_name       = var.network_name
-  source         = "github.com/gruberdev/tf-free/modules/gcp/vpc"
-  google_project = var.google_project
+  source         = "./vpc"
+  static_ip_name = var.instance_ipv4_name
+  google_project = var.project_id
 }
 
 module "gcp_firewall" {
   depends_on = [
     module.gcp_vpc.network_name
   ]
-  source       = "github.com/gruberdev/tf-free/modules/gcp/firewall"
+  source       = "./firewall"
   network_name = module.gcp_vpc.network_name
 }
 
@@ -19,7 +20,7 @@ module "gcp_instance" {
     module.gcp_vpc.network_name,
     module.gcp_vpc.ipv4_add
   ]
-  source       = "github.com/gruberdev/tf-free/modules/gcp/compute"
+  source       = "./compute"
   name         = var.instance_name
   region       = var.project_region
   network_name = module.gcp_vpc.network_name

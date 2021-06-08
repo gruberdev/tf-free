@@ -9,6 +9,10 @@ sections:
 output:
   file: README.md
   mode: inject
+  template: |-
+    <!-- BEGIN_TF_DOCS -->
+    {{ .Content }}
+    <!-- END_TF_DOCS -->
 
 sort:
   enabled: true
@@ -18,6 +22,7 @@ settings:
   anchor: false
   indent: 3
   color: true
+  html: true
   escape: true
   default: true
   required: false

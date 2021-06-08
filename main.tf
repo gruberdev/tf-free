@@ -1,46 +1,67 @@
 
-resource "google_project_service" "network_api" {
-  project                    = var.google_project
-  disable_dependent_services = true
-  service                    = "networkmanagement.googleapis.com"
-}
-resource "google_project_service" "enable_billing_api" {
-  project                    = var.google_project
-  service                    = "cloudbilling.googleapis.com"
-  disable_dependent_services = true
-}
-resource "google_project_service" "enable_admin_api" {
-  project                    = var.google_project
-  service                    = "admin.googleapis.com"
-  disable_dependent_services = true
+resource "random_string" "namespace" {
+  length  = 2
+  special = false
+  number  = false
+  upper   = false
 }
 
-resource "google_project_service" "enable_api" {
-  project                    = var.google_project
-  service                    = "iam.googleapis.com"
-  disable_dependent_services = true
+resource "random_string" "s3_name" {
+  length  = 6
+  special = false
+  number  = false
+  upper   = false
 }
-resource "google_project_service" "control_api" {
-  project                    = var.google_project
-  service                    = "servicecontrol.googleapis.com"
-  disable_dependent_services = true
+
+resource "random_string" "bucket_name" {
+  length  = 10
+  special = false
+  number  = false
+  upper   = false
 }
-resource "google_project_service" "management_api" {
-  project                    = var.google_project
-  service                    = "servicemanagement.googleapis.com"
-  disable_dependent_services = true
+
+module "terraform_state_backend" {
+  source = "cloudposse/tfstate-backend/aws"
+  # Cloud Posse recommends pinning every module to a specific version
+  version                            = "v0.32.1"
+  namespace                          = random_string.namespace.result
+  stage                              = var.backend_stage
+  name                               = random_string.s3_name.result
+  s3_bucket_name                     = random_string.bucket_name.result
+  attributes                         = ["state"]
+  terraform_backend_config_file_path = "."
+  terraform_backend_config_file_name = "backend.tf"
+  force_destroy                      = var.backend_destroy
+  depends_on = [
+    null_resource.backend
+  ]
+}
+
+resource "null_resource" "backend" {
+  triggers = {
+    backend_destroy = var.backend_destroy
+  }
+  lifecycle {
+    prevent_destroy = false
+  }
+  #  depends_on = [
+  #    terraform_state_backend
+  #  ]
 }
 
 module "google_cloud" {
-  depends_on = [
-    google_project_service.network_api,
-    google_project_service.enable_billing_api,
-    google_project_service.enable_admin_api,
-    google_project_service.enable_api,
-    google_project_service.control_api,
-    google_project_service.management_api,
-  ]
-  source         = "github.com/gruberdev/tf-free/modules/gcp"
+  source         = "./modules/gcp"
+  project_id     = var.gcp_project_id
   project_region = var.gcp_project_region
   instance_name  = var.gcp_instance_name
+
+  depends_on = [
+    module.terraform_state_backend.dynamodb_table_name,
+    module.terraform_state_backend.dynamodb_table_id,
+    module.terraform_state_backend.terraform_backend_config
+  ]
+}
+
+module "aws" {
+  source = "./modules/aws"
 }

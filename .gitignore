@@ -9,22 +9,55 @@ override.tf.json
 *_override.tf.json
 **/.terraform.lock.hcl/*
 .terraform.lock.hcl
+.terraform
 *tfplan*
-gcp.json
 terraform.tfvars
-**/gcp.json/*
 graph.json
 graph.svg
-go.sum
-go.mod
-test/go.sum
+*.tfvars
+terraform.tfvars
+terraform.env.tfvars
+*.tfstate.*
+graph.png
+plan.json
+plan.out
+graph.html
+index.html
+backend.tf
+
+# Terraform Backend
+.terraform.tfstate.lock.info
+
+# Go project-related
+test/*/go.sum
+test/*/go.mod
+test/gcp/go.mod
+test/gcp/go.sum
+test/aws/go.sum
+test/aws/go.mod
 test/go.mod
+test/go.sum
+
+# credentials
+aws.json
+aws.pub
+**/gcp.json/*
+gcp.json
+*.pub
+**/id_rsa.pub/*
+id_rsa.*
+**/id_rsa/*
 
 # Documentation / Node.js
 docs/dist/*
 docs/*.html
+*/*.html
+*.html
 logs
 *.log
+*.js
+*.meta.json
+*.css
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -73,3 +106,9 @@ dist
 
 # .vscode
 .vscode
+
+# Artifacts docker-slim
+slim.report.json
+Dockerfile.fat 
+creport.jsondiff
+*.report.json

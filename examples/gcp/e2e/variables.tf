@@ -8,13 +8,16 @@ variable "gcp_project_region" {
   type = string
 }
 
-variable "google_project" {
+variable "gcp_project_id" {
   type    = string
   default = ""
 }
-variable "main_network_name" {
+variable "gcp_network_name" {
   type    = string
   default = ""
 }
 
-
+variable "gcp_ipv4_name" {
+  type    = string
+  default = ""
+}

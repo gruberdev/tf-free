@@ -9,22 +9,41 @@ override.tf.json
 *_override.tf.json
 **/.terraform.lock.hcl/*
 .terraform.lock.hcl
+.terraform
 *tfplan*
-gcp.json
 terraform.tfvars
-**/gcp.json/*
 graph.json
 graph.svg
-go.sum
-go.mod
-test/go.sum
-test/go.mod
+*.tfvars
+terraform.tfvars
+terraform.env.tfvars
+*.tfstate.*
+graph.png
+plan.json
+plan.out
+graph.html
+index.html
+
+# credentials
+aws.json
+aws.pub
+**/gcp.json/*
+gcp.json
+*.pub
+**/id_rsa.pub/*
+id_rsa.*
+**/id_rsa/*
 
 # Documentation / Node.js
 docs/dist/*
 docs/*.html
+*/*.html
+*.html
 logs
 *.log
+*.js
+*.meta.json
+*.css
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -67,10 +86,14 @@ dist
 .serverless/
 .fusebox/
 .dynamodb/
-.tern-port
+.tern-por
 
-# Docker
 
 # .vscode
 .vscode
-renovate.json
+
+# Artifacts docker-slim
+slim.report.json
+Dockerfile.fat
+creport.jsondiff
+*.report.json
