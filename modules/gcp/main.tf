@@ -4,7 +4,7 @@ module "gcp_vpc" {
   vpc_name       = var.network_name
   source         = "./vpc"
   static_ip_name = var.instance_ipv4_name
-  google_project = var.google_project
+  google_project = var.project_id
 }
 
 module "gcp_firewall" {

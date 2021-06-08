@@ -1,14 +1,25 @@
 ARG GO_VERSION=1.16.4
 
+<<<<<<< HEAD
 
 ARG AZURE_VERSION="2.9.1"
 ARG TF_CLI_VERSION="0.15.5"
+=======
+ARG GCLOUD_VERSION="342.0.0"
+ARG AWS_VERSION="2.2.6"
+ARG AZURE_VERSION="2.9.1"
+ARG TF_CLI_VERSION="0.15.4"
+>>>>>>> main
 ARG TFSEC_VERSION="0.39.35"
 ARG TFLINT_VERSION="0.28.1"
 ARG TFDOCS_VERSION="0.9.1"
 
+<<<<<<< HEAD
 # CLIs Dockerized Providers
 #FROM amazon/aws-cli:${AWS_VERSION} as build-aws
+=======
+FROM amazon/aws-cli:${AWS_VERSION} as build-aws
+>>>>>>> main
 FROM mcr.microsoft.com/azure-cli:${AZURE_VERSION} as build-azure
 FROM hashicorp/terraform:${TF_CLI_VERSION} as build-tf-cli
 FROM tfsec/tfsec-alpine:v${TFSEC_VERSION} as build-tfsec
@@ -22,13 +33,21 @@ FROM accurics/terrascan:latest as build-tfscan
 # Base Alpine Version & Environment
 FROM golang:$GO_VERSION-alpine
 
+<<<<<<< HEAD
 #COPY --from=build-aws /usr/local/aws-cli/ /usr/local/aws-cli/
 #COPY --from=build-aws /usr/local/bin/ /usr/local/bin/
+=======
+COPY --from=build-aws /usr/local/bin/aws /usr/local/bin/aws
+>>>>>>> main
 COPY --from=build-azure /usr/local/bin/az /usr/local/bin/az
 COPY --from=build-tf-cli /bin/terraform /usr/local/bin/terraform
 COPY --from=build-tfsec /usr/bin/tfsec /usr/local/bin/tfsec
 COPY --from=build-tflint /usr/local/bin/tflint /usr/local/bin/tflint
+<<<<<<< HEAD
 COPY --from=build-terraform-docs /usr/local/bin/terraform-docs /usr/local/bin/terraform-docs
+=======
+COPY --from=build-terraform-docs /usr/local/bin/terraform-docs /usr/local/bin/tfscan
+>>>>>>> main
 COPY --from=build-tfscan /go/bin/terrascan /usr/local/bin/tfscan
 
 # Cloud CLI-related Packages

@@ -10,7 +10,7 @@
 
 Every major cloud provider offers a free tier that allows for the creation of all kind of resources free of charge, still, learning every cloud and managing these resources could prove burdensome.
 
-The goal of this repository is to automate the management of these resources using Terraform as the central tool. It also aims to provide resources for learning and improve your skills as a DevOps Engineer and as a Terraform user. A CLI tool is part of this project for those who want a KIS approach.
+The goal of this repository is to automate the management of these resources using Terraform as the central tool. It also aims to provide resources for learning and improve your skills as a DevOps Engineer and as a Terraform user. A CLI tool is part of this project for those who wish a more KIS-like approach.
 
 ## Getting started
 
@@ -126,7 +126,7 @@ More information at the [provider's documentation page][tf-free-aws-resources].
 <details>
 
   <summary>
-   Microsoft Azure Cloud
+   Microsoft Azure
   </summary>
 
 ---
@@ -144,6 +144,26 @@ More information at the [provider's documentation page][tf-free-azure-resources]
 
 </details>
 
+<details>
+
+  <summary>
+   Oracle Cloud
+  </summary>
+
+---
+
+### Available Resources
+
+- **2x** [AMD based VM, 1/8 shared CPU and 1GB RAM][oracle-compute-info]
+- **2x** [Oracle NoSQL Database with 20GB][oracle-database-info]
+- **1x** [10GB Object Storage Capacity][oracle-storage-info]
+
+More information at the [provider's documentation page][tf-free-oracle-resources].
+
+---
+
+</details>
+
 ## License
 
 The MIT license grant is not for Hashicorp's trademarks, which include the logo designs. [Hashicorp reserves all trademark and copyright rights in and to all Hashicorp trademarks][disclaimer].
@@ -153,7 +173,7 @@ Terraform®, Vault®, Hashicorp's logos are Hasicorp's Trademarks or registered 
 <!-- Images URLs -->
 
 [drone-img]: https://img.shields.io/drone/build/gruberdev/tf-free?label=Pipeline%20Status&color=46bac0&labelColor=1F1F1F&logo=Drone&style=flat-square&server=https%3A%2F%2Fdrone.gruber.dev.br
-[docs-img]: https://img.shields.io/badge/read%20documentation-online?style=flat-square&logo=zeit&color=black
+[docs-img]: https://img.shields.io/badge/read%20the%20documentation-online?style=flat-square&logo=zeit&color=black
 
 <!-- Repository links -->
 
@@ -251,3 +271,7 @@ Terraform®, Vault®, Hashicorp's logos are Hasicorp's Trademarks or registered 
 [azure-sql-free-info]: https://azure.microsoft.com/en-us/products/azure-sql/database/
 [azure-vm-info]: https://azure.microsoft.com/en-us/services/virtual-machines/
 [azure-storage-info]: https://azure.microsoft.com/en-us/services/storage/files/
+[oracle-compute-info]: https://www.oracle.com/cloud/compute/
+[oracle-database-info]: https://www.oracle.com/database/
+[oracle-storage-info]: https://www.oracle.com/cloud/storage/
+[tf-free-oracle-resources]: https://free.terraform.gruber.dev.br/docs/resources/providers/gcp#resources

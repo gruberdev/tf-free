@@ -51,6 +51,7 @@ resource "null_resource" "backend" {
 
 module "google_cloud" {
   source         = "./modules/gcp"
+  project_id     = var.gcp_project_id
   project_region = var.gcp_project_region
   instance_name  = var.gcp_instance_name
 

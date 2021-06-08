@@ -24,3 +24,7 @@ variable "instance_ipv4_name" {
   type    = string
   default = "ipv4-instanc-gcp"
 }
+variable "project_id" {
+  type    = string
+  default = "ipv4-instanc-gcp"
+}
