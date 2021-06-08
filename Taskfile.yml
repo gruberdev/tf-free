@@ -23,9 +23,9 @@ tasks:
   docker:
     desc: Create and cache your Docker container
     cmds:
-      - docker run -it --rm --name terraformfree -v cache_terraform:/project -v repository_results:/root/.ssh terraformfree:latest task docker-test
+      - docker run -it --rm --name terraformfree -e GOOGLE_SECRET_KEY=$GOOGLE_SECRET_KEY -e GOOGLE_PROJECT=$GOOGLE_PROJECT -e AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION -e GITHUB_USER=$GITHUB_USER -e GITHUB_PASSWORD=$GITHUB_KEY -e TF_VAR_aws_account_id=$AWS_ACCESS_KEY_ID -e TF_VAR_aws_account_key=$AWS_SECRET_ACCESS_KEY  terraformfree:latest
 
-  dockerbuild:
+  build:
     desc: Create and cache your Docker container
     cmds:
       - docker stop terraformfree:latest || true
@@ -221,22 +221,6 @@ tasks:
     cmds:
       - cd modules/aws && terraform destroy -auto-approve
       - cd modules/aws && terraform apply -auto-approve
-
-  clean-keys:
-    desc: Terraform standard initialization
-    cmds:
-      - rm gcp.json || true
-      - rm aws.pub || true
-      - rm modules/aws/aws.pub || true
-      - rm modules/gcp/gcp.json || true
-      - rm modules/gcp/firewall/gcp.json || true
-      - rm modules/gcp/vpc/gcp.json || true
-      - rm modules/gcp/compute/gcp.json || true
-      - rm modules/gcp/compute/gcp.json || true
-      - rm examples/gcp/e2e/gcp.json || true
-      - rm examples/gcp/unit/compute/gcp.json || true
-      - rm examples/gcp/unit/vpc/gcp.json || true
-      - rm examples/aws/unit/ec2/aws.pub || true
 
   tf-clean:
     desc: Terraform standard initialization

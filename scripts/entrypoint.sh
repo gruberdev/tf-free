@@ -9,3 +9,4 @@ if [ -f ~/.gcloud/credentials.json ]; then
     export GOOGLE_APPLICATION_CREDENTIALS=~/.gcloud/credentials.json
 fi
 export GOOGLE_PROJECT=$GCP_PROJECT_ID
+/bin/bash

@@ -22,19 +22,6 @@ FROM accurics/terrascan:latest as build-tfscan
 # Base Alpine Version & Environment
 FROM golang:$GO_VERSION-alpine
 
-# Github
-ENV GITHUB_USER=""
-ENV GITHUB_PASSWORD=""
-ENV GITHUB_EMAIL=""
-
-# Google Cloud platform
-ENV GCP_PROJECT_ID=""
-
-# AWS Cloud
-ENV AWS_DEFAULT_REGION=""
-ENV AWS_ACCESS_KEY_ID=""
-ENV AWS_SECRET_ACCESS_KEY=""
-
 #COPY --from=build-aws /usr/local/aws-cli/ /usr/local/aws-cli/
 #COPY --from=build-aws /usr/local/bin/ /usr/local/bin/
 COPY --from=build-azure /usr/local/bin/az /usr/local/bin/az
@@ -47,8 +34,9 @@ COPY --from=build-tfscan /go/bin/terrascan /usr/local/bin/tfscan
 # Cloud CLI-related Packages
 ENV TASK_VERSION=3.4.2
 ENV GCLOUD_VERSION=343.0.0
-ENV PYTHON_VERSION_MINOR=3.8
+ENV PYTHON_VERSION_MINOR=3.9
 ENV PYTHON_VERSION_MAJOR=3
+ENV AZURE_VERSION=2.18.0
 
 # Alpine Packages
 ENV GCC_VERSION=10.2.1_pre1-r3
@@ -72,12 +60,12 @@ ENV \
  GO111MODULE='on' \
  SHELL="/bin/bash" \
  HAS_ALLOW_UNSAFE=y \
- GOCACHE=OFF
+ GOCACHE=/go
 
 # Install Python and GCC dependencies
 # hadolint ignore=DL3018
 RUN apk add --update --no-cache \
- bash gcc=${GCC_VERSION} g++ git=${GIT_VERSION} curl=${CURL_VERSION} \
+ bash=${BASH_VERSION} gcc=${GCC_VERSION} g++ git=${GIT_VERSION} curl=${CURL_VERSION} \
  zlib libffi-dev  \
  musl-dev python${PYTHON_VERSION_MAJOR} openssl \
  sudo jq=${JQ_VERSION} py${PYTHON_VERSION_MAJOR}-pip ncurses=${NCURSES_VERSION} \
@@ -94,15 +82,16 @@ SHELL ["/bin/bash", "-eo", "pipefail", "-c"]
 RUN curl -sSfL "https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh" | sh -s '-- -b $(go env GOPATH)/bin' 
 
 # Task / makefile Alternative
-RUN curl -O /tmp/task.tar.gz https://github.com/go-task/task/releases/download/v${TASK_VERSION}/task_${OS}_${ARCH}.tar.gz && \
+RUN wget -O /tmp/task.tar.gz https://github.com/go-task/task/releases/download/v${TASK_VERSION}/task_${OS}_${ARCH}.tar.gz && \
  tar -C /usr/bin/ -xvf /tmp/task.tar.gz && \
- rm -rf /tmp/gotty.tar.gz
+ rm -rf /tmp/gotty.tar.gzln
 
 # Gcloud SDK CLI
 RUN curl https://sdk.cloud.google.com > /tmp/install.sh \
  && bash /tmp/install.sh --disable-prompts  \
  && cp -r ~/google-cloud-sdk /usr/local/google-cloud-sdk \
- && /bin/bash -c 'source /usr/local/google-cloud-sdk/path.bash.inc'
+ && /bin/bash -c 'source /usr/local/google-cloud-sdk/path.bash.inc' \
+ && ln -s /usr/local/google-cloud-sdk/bin/gcloud /usr/local/bin/gcloud
 
 # Creating initial environment Variables and config folders
 RUN echo "export PATH="/usr/local/google-cloud-sdk/bin:${PATH}"" >> "${HOME}/.bashrc" \
@@ -114,12 +103,13 @@ WORKDIR /project
 COPY . .
 
 # Install Azure-cli and its dependencies
-RUN pip${PYTHON_VERSION_MAJOR} install --no-cache-dir -r scripts/requirements.txt \
- && chmod +x /project/scripts/entrypoint.sh
+RUN pip${PYTHON_VERSION_MAJOR} install -r scripts/requirements.txt
+RUN chmod +x /project/scripts/entrypoint.sh && /bin/bash -s /project/scripts/entrypoint.sh
 
 # Verifying dependencies existence within Dockerfile
 RUN curl -sL https://git.io/_has | bash -s git az aws tfscan \
  tfsec terraform-docs terraform go task python bash
 
-CMD ["/bin/bash", "-c", "/project/scripts/entrypoint.sh"]
+CMD ["/bin/bash"]
+ENTRYPOINT ["/project/scripts/entrypoint.sh"]
 

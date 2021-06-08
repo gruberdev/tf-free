@@ -1,13 +1,10 @@
 provider "google" {
-  project     = var.gcp_project_id
-  region      = var.gcp_project_region
-  credentials = chomp(file("gcp.json"))
-
+  project = var.gcp_project_id
+  region  = var.gcp_project_region
 }
 provider "google-beta" {
-  project     = var.gcp_project_id
-  region      = var.gcp_project_region
-  credentials = chomp(file("gcp.json"))
+  project = var.gcp_project_id
+  region  = var.gcp_project_region
 }
 
 module "gcp_vpc" {
