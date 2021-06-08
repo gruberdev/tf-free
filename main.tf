@@ -23,7 +23,7 @@ resource "random_string" "bucket_name" {
 module "terraform_state_backend" {
   source = "cloudposse/tfstate-backend/aws"
   # Cloud Posse recommends pinning every module to a specific version
-  version                            = "v0.32.1"
+  version                            = "0.33.0"
   namespace                          = random_string.namespace.result
   stage                              = var.backend_stage
   name                               = random_string.s3_name.result
