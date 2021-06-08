@@ -6,17 +6,10 @@ steps:
   - name: plan
     commands:
       - export PROJECT=/home/gruber/projects/tf-free
-      - cd $$PROJECT
-      - task clean-keys
       - cd $$PROJECT/modules/aws
       - printf "%s" $$AWS_SSH_KEY > aws.pub
-      - cd $$PROJECT/examples/gcp/unit/compute
-      - printf "%s" $$GOOGLE_KEY > gcp.json
-      - cd $$PROJECT/examples/gcp/unit/vpc
-      - printf "%s" $$GOOGLE_KEY > gcp.json
       - cd $$PROJECT
       - printf "%s" $$AWS_SSH_KEY > aws.pub
-      - printf "%s" $$GOOGLE_KEY > gcp.json
       - task init
       - terraform plan
     when:
