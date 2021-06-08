@@ -1,4 +1,4 @@
-[![Logo Animation](https://readme-typing-svg.herokuapp.com?font=Major+Mono+Display&color=00E7F7&size=40&vCenter=true&width=800&height=200&lines=tf-free;cloud+for+free.)](https://free.terraform.gruber.dev.br)
+[![Logo Animation](https://readme-typing-svg.herokuapp.com?font=Major+Mono+Display&color=00E7F7&size=40&vCenter=true&width=800&height=130&lines=tf-free;cloud+for+free.)](https://free.terraform.gruber.dev.br)
 
 ---
 
@@ -22,15 +22,14 @@ There are three main ways to bootstrap this project:
 
 The first method is exemplified below:
 
-```
-# one liner docker-install for debian-based systems
-curl -sSLf https://gruber.dev.br/install | bash -s terraform-free
+```bash | --no-wmbar
+curl -sSLf https://gruber.dev.br/install | bash -s terraform-free  # --> one liner docker-install for debian-based systems
 ```
 
 Or use the explicit url/preview the script content
 
-```
-wget https://raw.githubusercontent.com/gruberdev/setup/main/install.sh && cat install.sh && rm install.sh
+```bash | --no-wmbar
+wget https://raw.githubusercontent.com/gruberdev/setup/main/install.sh && cat install.sh && rm install.sh # --> direct url to the bash script
 curl -sSL https://raw.githubusercontent.com/gruberdev/setup/main/install.sh | bash -s terraform-free
 ```
 
