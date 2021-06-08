@@ -62,7 +62,5 @@ module "google_cloud" {
 }
 
 module "aws" {
-  source      = "./modules/aws"
-  account_id  = var.aws_account_id
-  account_key = var.aws_account_key
+  source = "./modules/aws"
 }

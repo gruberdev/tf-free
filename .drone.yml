@@ -5,37 +5,27 @@ name: Static Code Analysis
 steps:
   - name: plan
     commands:
-      - export PROJECT=/home/gruber/projects/tf-free
-      - cd $$PROJECT/modules/aws
-      - printf "%s" $$AWS_SSH_KEY > aws.pub
-      - cd $$PROJECT
-      - printf "%s" $$AWS_SSH_KEY > aws.pub
+      - echo $$SERVICE_ACCOUNT > /gcp.json
+      - gcloud auth activate-service-account --key-file /gcp.json
+      - cd PROJECT=/home/gruber/projects/tf-free
       - task init
       - terraform plan
     when:
       event:
         - push
     environment:
-      AWS_SSH_KEY:
-        from_secret: aws_ssh_key
       GOOGLE_APPLICATION_CREDENTIALS:
         from_secret: gcp_key_path
-      GOOGLE_PROJECT:
+      PROJECT_ID:
         from_secret: gcp_project_id
-      GOOGLE_KEY:
-        from_secret: gcp_default
+      SERVICE_ACCOUNT:
+        from_secret: gcp_app_key
       AWS_DEFAULT_REGION:
         from_secret: aws_region
       AWS_SECRET_ACCESS_KEY:
         from_secret: aws_key
-      AWS_ACCOUNT_ID:
+      AWS_ACCESS_KEY_ID:
         from_secret: aws_id
-      TF_VAR_aws_account_id:
-        from_secret: aws_id
-      TF_VAR_aws_account_key:
-        from_secret: aws_key
-      TF_VAR_aws_default_region:
-        from_secret: aws_region
 
   # - name: tfsec
   #   image: tfsec/tfsec
@@ -83,6 +73,7 @@ steps:
   #       from_secret: aws_key
   #     AWS_ACCESS_KEY_ID:
   #       from_secret: aws_id
+
 ---
 kind: pipeline
 type: docker
@@ -91,15 +82,6 @@ steps:
   - name: Setup
     image: golang:1.16.4-alpine
     commands:
-      - cd examples/gcp/unit/compute
-      - echo $GOOGLE_KEY > gcp.json
-      - cd ../../../../
-      - cd examples/gcp/unit/vpc
-      - echo $GOOGLE_KEY > gcp.json
-      - cd ../../../../
-      - cd examples/gcp/e2e
-      - echo $GOOGLE_KEY > gcp.json
-      - cd ../../../
       - cd test/gcp
       - go mod init "github.com/gruberdev/tf-free"
       - go mod tidy

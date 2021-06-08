@@ -23,7 +23,7 @@ tasks:
   docker:
     desc: Create and cache your Docker container
     cmds:
-      - docker run -it --rm --name terraformfree -e GOOGLE_SECRET_KEY=$GOOGLE_SECRET_KEY -e GOOGLE_PROJECT=$GOOGLE_PROJECT -e AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION -e GITHUB_USER=$GITHUB_USER -e GITHUB_PASSWORD=$GITHUB_KEY -e TF_VAR_aws_account_id=$AWS_ACCESS_KEY_ID -e TF_VAR_aws_account_key=$AWS_SECRET_ACCESS_KEY  terraformfree:latest
+      - docker run -it --rm --name terraformfree -e GOOGLE_PROJECT=$GOOGLE_PROJECT -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION terraformfree:latest
 
   build:
     desc: Create and cache your Docker container
@@ -56,6 +56,11 @@ tasks:
     desc: Initialize module and build cache, and remake go.sum file.
     cmds:
       - go vet ./...
+
+  gcp:
+    desc: Initialize module and build cache, and remake go.sum file.
+    cmds:
+      - gcloud auth application-default login
 
   fmt:
     desc: Format Go files

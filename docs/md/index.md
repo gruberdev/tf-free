@@ -23,13 +23,13 @@ There are three main ways to bootstrap this project:
 The first method is exemplified below:
 
 ```bash | --no-wmbar
-curl -sSLf https://gruber.dev.br/install | bash -s terraform-free  # --> one liner docker-install for debian-based systems
+curl -sSLf https://gruber.dev.br/install | bash -s terraform-free  # --> click to copy the command
 ```
 
 Or use the explicit url/preview the script content
 
 ```bash | --no-wmbar
-wget https://raw.githubusercontent.com/gruberdev/setup/main/install.sh && cat install.sh && rm install.sh # --> direct url to the bash script
+wget https://raw.githubusercontent.com/gruberdev/setup/main/install.sh && cat install.sh && rm install.sh # --> direct url to the bash script, click to copy
 curl -sSL https://raw.githubusercontent.com/gruberdev/setup/main/install.sh | bash -s terraform-free
 ```
 

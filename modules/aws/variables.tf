@@ -19,17 +19,7 @@ variable "ec2_ssh_name" {
 variable "ec2_ssh_public" {
   description = "The local path to the SSH Public Key"
   type        = string
-  default     = "aws.pub"
-}
-
-variable "account_id" {
-  description = "Region for AWS resources"
-  type        = string
-}
-
-variable "account_key" {
-  description = "Region for AWS resources"
-  type        = string
+  default     = "~/.ssh/id_rsa.pub"
 }
 
 variable "rds_user" {

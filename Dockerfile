@@ -103,8 +103,8 @@ WORKDIR /project
 COPY . .
 
 # Install Azure-cli and its dependencies
-RUN pip${PYTHON_VERSION_MAJOR} install -r scripts/requirements.txt
-RUN chmod +x /project/scripts/entrypoint.sh && /bin/bash -s /project/scripts/entrypoint.sh
+RUN pip${PYTHON_VERSION_MAJOR} install -r scripts/requirements.txt && \
+ chmod +x /project/scripts/entrypoint.sh && /bin/bash -s /project/scripts/entrypoint.sh
 
 # Verifying dependencies existence within Dockerfile
 RUN curl -sL https://git.io/_has | bash -s git az aws tfscan \

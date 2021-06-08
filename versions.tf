@@ -21,18 +21,16 @@ terraform {
 }
 
 provider "aws" {
-  region     = var.aws_default_region
-  access_key = var.aws_account_id
-  secret_key = var.aws_account_key
+  region = var.aws_default_region
 }
 
 provider "google" {
-  project     = var.gcp_project_id
-  region      = var.gcp_project_region
+  project = var.gcp_project_id
+  region  = var.gcp_project_region
 }
 provider "google-beta" {
-  project     = var.gcp_project_id
-  region      = var.gcp_project_region
+  project = var.gcp_project_id
+  region  = var.gcp_project_region
 }
 
 provider "azurerm" {

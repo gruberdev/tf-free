@@ -4,12 +4,6 @@ variable "ssh_name" {
 variable "ssh_public" {
   type = string
 }
-variable "aws_account_id" {
-  type = string
-}
-variable "aws_account_key" {
-  type = string
-}
 variable "aws_default_region" {
   type = string
 }
