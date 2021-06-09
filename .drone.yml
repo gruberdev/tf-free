@@ -104,8 +104,8 @@ steps:
     image: golang:1.16.4-alpine
     commands:
       - cd test/gcp && go mod init "github.com/gruberdev/tf-free" && go mod tidy
-      - cd test/docker && go mod init "github.com/gruberdev/tf-free" && go mod tidy
-      - cd test/aws && go mod init "github.com/gruberdev/tf-free" && go mod tidy
+      - cd ../docker && go mod init "github.com/gruberdev/tf-free" && go mod tidy
+      - cd ../aws && go mod init "github.com/gruberdev/tf-free" && go mod tidy
     when:
       branch:
         include:
