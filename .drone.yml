@@ -6,7 +6,7 @@ steps:
   - name: Terraform Plan
     commands:
       - gcloud auth activate-service-account --key-file /home/gruber/gcp.json
-      - terraform init
+      - terraform init -reconfigure -force-copy
       - terraform plan
     when:
       event:
