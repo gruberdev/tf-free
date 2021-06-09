@@ -37,3 +37,13 @@ variable "bucket_permissions" {
   default     = "publicread"
   description = "Your instance's network on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format)"
 }
+variable "firestore_name" {
+  type        = string
+  default     = "firestore-db-1"
+  description = "Your instance's network on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format)"
+}
+variable "region_zone" {
+  type        = string
+  default     = "us-west1-c"
+  description = "Your instance's network on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format)"
+}
