@@ -105,7 +105,7 @@ steps:
     when:
       branch:
         include:
-          - master
+          - main
           - feature/gcp_*
       event:
         - push
@@ -133,7 +133,7 @@ steps:
     when:
       branch:
         include:
-          - master
+          - main
           - feature/gcp_*
       event:
         - push
@@ -163,7 +163,7 @@ steps:
     when:
       branch:
         include:
-          - master
+          - main
           - feature/gcp_*
       event:
         - push
@@ -193,7 +193,7 @@ steps:
     when:
       branch:
         include:
-          - master
+          - main
           - feature/gcp_*
       event:
         - push
