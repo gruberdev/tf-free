@@ -47,6 +47,11 @@ tasks:
     cmds:
       - goreleaser --snapshot --skip-publish --rm-dist
 
+  gcp:
+    desc: Build executable binary with GoReleaser.
+    cmds:
+      - gcloud auth application-default login
+
   generate:
     desc: Initialize test fakes
     cmds:
@@ -79,6 +84,10 @@ tasks:
       - terraform-docs markdown -c .terraform-docs.yml ./modules/gcp/compute --output-file README.md
       - terraform-docs markdown -c .terraform-docs.yml ./modules/gcp/firewall --output-file README.md
       - terraform-docs markdown -c .terraform-docs.yml ./modules/gcp/vpc --output-file README.md
+      - terraform-docs markdown -c .terraform-docs.yml ./modules/azure --output-file README.md
+      - terraform-docs markdown -c .terraform-docs.yml ./modules/azure/compute --output-file README.md
+      - terraform-docs markdown -c .terraform-docs.yml ./modules/azure/db --output-file README.md
+      - terraform-docs markdown -c .terraform-docs.yml ./modules/azure/vpc --output-file README.md
 
   docs:
     desc: Initialize module and build cache, and remake go.sum file on root directory.

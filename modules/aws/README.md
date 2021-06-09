@@ -16,7 +16,7 @@
 | ec2\_ssh\_name | The SSH Key Name | `string` | `"free-tier-ec2-key"` |
 | ec2\_ssh\_public | The local path to the SSH Public Key | `string` | `"aws.pub"` |
 | profile | AWS Profile | `string` | `"terraform"` |
-| rds\_password | Region for AWS resources | `string` | `"testingdatabase89372934279"` |
+| rds\_password | Region for the RDS database | `string` | `"testingdatabase89372934279"` |
 | rds\_user | Region for AWS resources | `string` | `"testing"` |
 | region | Region for AWS resources | `string` | `"us-east-1"` |
 
