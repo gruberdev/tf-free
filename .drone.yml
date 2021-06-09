@@ -218,6 +218,7 @@ type: docker
 name: Documentation
 depends_on:
   - Basic testing
+  - Google Cloud Provider (GCP)
 steps:
   - name: build_static
     image: node:14.4
