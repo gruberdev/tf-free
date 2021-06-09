@@ -84,6 +84,7 @@ tasks:
       - terraform-docs markdown -c .terraform-docs.yml ./modules/gcp/compute --output-file README.md
       - terraform-docs markdown -c .terraform-docs.yml ./modules/gcp/firewall --output-file README.md
       - terraform-docs markdown -c .terraform-docs.yml ./modules/gcp/vpc --output-file README.md
+      - terraform-docs markdown -c .terraform-docs.yml ./modules/gcp/storage --output-file README.md
 
   docs:
     desc: Initialize module and build cache, and remake go.sum file on root directory.

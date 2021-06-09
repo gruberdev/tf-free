@@ -38,41 +38,37 @@ curl -sSL https://raw.githubusercontent.com/gruberdev/setup/main/install.sh | ba
 ---
 
 <!-- BEGIN_TF_DOCS -->
-
 ### Modules
 
-| Name                    | Source                         | Version |
-| ----------------------- | ------------------------------ | ------- |
-| aws                     | ./modules/aws                  |         |
-| google_cloud            | ./modules/gcp                  |         |
-| terraform_state_backend | cloudposse/tfstate-backend/aws | v0.32.1 |
+| Name | Source | Version |
+|------|--------|---------|
+| aws | ./modules/aws |  |
+| google\_cloud | ./modules/gcp |  |
+| terraform\_state\_backend | cloudposse/tfstate-backend/aws | 0.33.0 |
 
 ### Inputs
 
-| Name               | Description                                                                                                                                                                  | Type     | Default         |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | --------------- |
-| aws_account_id     | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | n/a             |
-| aws_account_key    | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | n/a             |
-| aws_default_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-east-1"`   |
-| backend_destroy    | Allows destroying the backend.                                                                                                                                               | `string` | `"false"`       |
-| backend_stage      | Stages possible for Backend.                                                                                                                                                 | `string` | `"test"`        |
-| gcp_instance_name  | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"gcp-machine"` |
-| gcp_project_id     | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `""`            |
-| gcp_project_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-west1"`    |
+| Name | Description | Type | Default |
+|------|-------------|------|---------|
+| aws\_default\_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-east-1"` |
+| backend\_destroy | Allows destroying the backend. | `string` | `"false"` |
+| backend\_stage | Stages possible for Backend. | `string` | `"test"` |
+| gcp\_instance\_name | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"gcp-machine"` |
+| gcp\_project\_id | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `""` |
+| gcp\_project\_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-west1"` |
 
 ### Outputs
 
-| Name                   | Description                                                                        |
-| ---------------------- | ---------------------------------------------------------------------------------- |
-| aws_ec2_ipv6_addresses | AWS EC2 IPv6 Public Address                                                        |
-| aws_ec2_password_data  | List of Base-64 encoded encrypted password data for AWS EC2 instances              |
-| aws_ec2_private_ip     | AWS EC2 assigned Private IP                                                        |
-| aws_ec2_public_ip      | AWS EC2 IPv4 Public Address                                                        |
-| db_backend_name        | Name of the resulting DynamoDB created for locking state files.                    |
-| gcp_public_ip          | GCP VM Compute IPv4 Public Address                                                 |
-| s3_backend_bucket      | ID of the resulting S3 bucket created on AWS as part of the backend infrastructure |
-| s3_backend_domain      | Domain name of the S3 bucket created on AWS as part of the backend infrastructure  |
-
+| Name | Description |
+|------|-------------|
+| aws\_ec2\_ipv6\_addresses | AWS EC2 IPv6 Public Address |
+| aws\_ec2\_password\_data | List of Base-64 encoded encrypted password data for AWS EC2 instances |
+| aws\_ec2\_private\_ip | AWS EC2 assigned Private IP |
+| aws\_ec2\_public\_ip | AWS EC2 IPv4 Public Address |
+| db\_backend\_name | Name of the resulting DynamoDB created for locking state files. |
+| gcp\_public\_ip | GCP VM Compute IPv4 Public Address |
+| s3\_backend\_bucket | ID of the resulting S3 bucket created on AWS as part of the backend infrastructure |
+| s3\_backend\_domain | Domain name of the S3 bucket created on AWS as part of the backend infrastructure |
 <!-- END_TF_DOCS -->
 
 </details>
