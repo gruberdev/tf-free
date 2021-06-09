@@ -1,9 +1,9 @@
 ---
 kind: pipeline
 type: exec
-name: Static Code Analysis
+name: Basic testing
 steps:
-  - name: plan
+  - name: Terraform Plan
     commands:
       - echo $$SERVICE_ACCOUNT > /gcp.json
       - gcloud auth activate-service-account --key-file /gcp.json
@@ -26,7 +26,12 @@ steps:
         from_secret: aws_key
       AWS_ACCESS_KEY_ID:
         from_secret: aws_id
-
+  - name: Docker build
+    commands:
+      - task test-docker
+    when:
+      event:
+        - push
   # - name: tfsec
   #   image: tfsec/tfsec
   #   commands:
@@ -46,7 +51,7 @@ steps:
   #     AWS_DEFAULT_REGION:
   #       from_secret: aws_region
   #     AWS_SECRET_ACCESS_KEY:
-  #       from_secret: aws_key
+  #       from_secret: awswwwwwwwwwwwwwwwwwwwwww_key
   #     AWS_ACCESS_KEY_ID:
   #       from_secret: aws_id
 

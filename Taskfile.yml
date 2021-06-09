@@ -173,6 +173,14 @@ tasks:
       - terraform apply -auto-approve
       - terraform init -force-copy
 
+  test-docker:
+    desc: Terraform standard initialization
+    cmds:
+      - cd test/docker && rm go.mod || true
+      - cd test/docker && rm go.sum || true
+      - cd test/docker && go mod init "github.com/gruberdev/tf-free" && go mod tidy
+      - cd test/docker && go test -v -timeout 5m -run TestDockerBuild
+
   lastdestroy:
     desc: Terraform standard initialization
     cmds:

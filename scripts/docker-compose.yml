@@ -1,0 +1,6 @@
+version: "3.0"
+services:
+  simple_stdout:
+    build:
+      context: ../
+    entrypoint: /project/scripts/test.sh

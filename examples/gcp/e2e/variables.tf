@@ -21,3 +21,4 @@ variable "gcp_ipv4_name" {
   type    = string
   default = ""
 }
+

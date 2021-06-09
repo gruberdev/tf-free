@@ -170,7 +170,8 @@ More information at the [provider's documentation page][tf-free-oracle-resources
 
 The MIT license grant is not for Hashicorp's trademarks, which include the logo designs. [Hashicorp reserves all trademark and copyright rights in and to all Hashicorp trademarks][disclaimer].
 
-Terraform®, Vault®, Hashicorp's logos are Hasicorp's Trademarks or registered Trademarks. When using Hashicorp's logos, be sure to follow the [community][guidelines] and [brand usage][brand] guidelines.
+This repository **is not** associated with any of the cloud providers or Hashicorp. Terraform®, Vault®, Hashicorp's logos and names are Hasicorp's registered Trademarks. When using Hashicorp's logos, be sure to follow their [community][guidelines] and [brand usage][brand] guidelines.
+Be sure to [read the terms][usage-terms] of usage to understand the responsabilities involved.
 
 <!-- Images URLs -->
 
@@ -187,6 +188,7 @@ Terraform®, Vault®, Hashicorp's logos are Hasicorp's Trademarks or registered 
 [free-docs-gcp]: https://cloud.google.com/free/docs/gcp-free-tier
 [free-azure]: https://azure.microsoft.com/en-us/free/
 [azure-faq]: https://azure.microsoft.com/en-us/free/free-account-faq/
+[usage-terms]: https://free.terraform.gruber.dev.br/docs/resources/providers/gcp#resources
 [azure-full-terms]: https://azure.microsoft.com/en-us/offers/ms-azr-0044p/
 [aws-faq]: https://aws.amazon.com/free/free-tier-faqs/
 [docs-repo-url]: https://github.com/CONNECT-platform/codedoc
