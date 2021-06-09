@@ -26,12 +26,27 @@ steps:
         from_secret: aws_key
       AWS_ACCESS_KEY_ID:
         from_secret: aws_id
+
   - name: Docker build
     commands:
       - task test-docker
     when:
       event:
         - push
+    environment:
+      GOOGLE_APPLICATION_CREDENTIALS:
+        from_secret: gcp_key_path
+      PROJECT_ID:
+        from_secret: gcp_project_id
+      SERVICE_ACCOUNT:
+        from_secret: gcp_app_key
+      AWS_DEFAULT_REGION:
+        from_secret: aws_region
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: aws_key
+      AWS_ACCESS_KEY_ID:
+        from_secret: aws_id
+
   # - name: tfsec
   #   image: tfsec/tfsec
   #   commands:
