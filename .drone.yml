@@ -109,9 +109,6 @@ steps:
           - feature/gcp_*
       event:
         - push
-    depends_on:
-      - Docker build
-      - Terraform Plan
     environment:
       GOOGLE_PROJECT:
         from_secret: gcp_project_id
