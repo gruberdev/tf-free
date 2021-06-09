@@ -129,8 +129,9 @@ steps:
     image: golang:1.16.5-alpine
     commands:
       - apk add build-base git curl
+      - echo $GOOGLE_KEY > $PWD/gcp.json
       - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
-      - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/examples/gcp/unit/compute/gcp.json
+      - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
       - cd test/gcp
       - go mod tidy
       - go test -v -timeout 5m -run TestUnitCompute
@@ -159,8 +160,9 @@ steps:
     image: golang:1.16.5-alpine
     commands:
       - apk add build-base git curl
+      - echo $GOOGLE_KEY > $PWD/gcp.json
       - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
-      - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/examples/gcp/unit/vpc/gcp.json
+      - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
       - cd test/gcp
       - go mod tidy
       - go test -v -timeout 5m -run TestUnitVPC
@@ -189,8 +191,9 @@ steps:
     image: golang:1.16.5-alpine
     commands:
       - apk add build-base git curl
+      - echo $GOOGLE_KEY > $PWD/gcp.json
       - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
-      - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/examples/gcp/e2e/gcp.json
+      - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
       - cd test/gcp
       - go mod tidy
       - go test -v -timeout 10m -run TestIntegrationGCP
