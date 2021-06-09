@@ -5,7 +5,7 @@ name: Basic testing
 steps:
   - name: Terraform Plan
     commands:
-      - echo $$SERVICE_ACCOUNT > /gcp.json
+      - sudo echo $$SERVICE_ACCOUNT > /gcp.json
       - gcloud auth activate-service-account --key-file /gcp.json
       - cd PROJECT=/home/gruber/projects/tf-free
       - task init
