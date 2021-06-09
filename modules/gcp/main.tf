@@ -1,7 +1,3 @@
-provider "google" {
-  region = var.project_region
-}
-
 module "gcp_vpc" {
   vpc_name       = var.network_name
   source         = "./vpc"
