@@ -34,7 +34,7 @@ module "gcp_storage" {
   source         = "./storage"
   project_id     = var.gcp_project_id
   name           = var.bucket_name
-  permissions    = var.bucket_permissions
+  permissions    = var.permissions
   firestore_name = var.firestore_name
   firestore_zone = var.region_zone
   network_name   = module.gcp_vpc.network_name

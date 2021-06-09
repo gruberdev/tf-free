@@ -1,3 +1,7 @@
+data "google_project" "current" {
+  project_id = var.project_id
+}
+
 locals {
   default_role_entities = [
     "OWNER:project-owners-${data.google_project.current.number}",

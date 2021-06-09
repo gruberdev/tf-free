@@ -54,6 +54,7 @@ module "google_cloud" {
   gcp_project_id = var.gcp_project_id
   project_region = var.gcp_project_region
   instance_name  = var.gcp_instance_name
+  permissions    = var.gcp_storage_permissions
 
   depends_on = [
     module.terraform_state_backend.dynamodb_table_name,

@@ -15,14 +15,17 @@ variable "google_project" {
   type    = string
   default = ""
 }
+
 variable "network_name" {
   type    = string
   default = "gcp-network"
 }
+
 variable "instance_ipv4_name" {
   type    = string
   default = "ipv4-instance-gcp"
 }
+
 variable "gcp_project_id" {
   type = string
 }
@@ -30,20 +33,23 @@ variable "gcp_project_id" {
 variable "bucket_name" {
   type        = string
   default     = "my-bucket"
-  description = "Your instance's network on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format)"
+  description = "Your instance's network on GCP."
 }
-variable "bucket_permissions" {
+
+variable "permissions" {
   type        = string
   default     = "publicread"
-  description = "Your instance's network on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format)"
+  description = "Your instance's network on GCP."
 }
+
 variable "firestore_name" {
   type        = string
   default     = "firestore-db-1"
-  description = "Your instance's network on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format)"
+  description = "Your instance's network on GCP."
 }
+
 variable "region_zone" {
   type        = string
   default     = "us-west1-c"
-  description = "Your instance's network on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format)"
+  description = "Your instance's network on GCP."
 }
