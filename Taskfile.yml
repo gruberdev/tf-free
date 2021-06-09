@@ -30,7 +30,7 @@ tasks:
     cmds:
       - docker stop terraformfree:latest || true
       - docker rm terraformfree:latest || true
-      - docker build -t terraformfree:latest .
+      - docker build --cache-from terraformfree:latest --no-cache -t terraformfree:latest .
 
   docker-test:
     desc: Run tests from inside your container

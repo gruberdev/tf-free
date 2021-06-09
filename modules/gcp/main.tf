@@ -24,3 +24,15 @@ module "gcp_instance" {
   network_name = module.gcp_vpc.network_name
   ip_addr      = module.gcp_vpc.ipv4_addr
 }
+
+module "gcp_storage_bucket" {
+  depends_on = [
+    module.gcp_vpc.network_name,
+    module.gcp_vpc.ipv4_add
+    module.gcp_instance.resulting_name,
+  ]
+  source       = "./storage"
+  project_id = var.gcp_project_id
+  name       = var.bucket_name
+  permissions = var.bucket_permissions
+}
