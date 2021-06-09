@@ -5,6 +5,9 @@ name: Basic testing
 steps:
   - name: Terraform Plan
     commands:
+      - mkdir -p ~/.ssh-temp
+      - chmod 700 ~/.ssh-temp
+      - ssh-keygen -t rsa -b 4096 -C "example@gmail.com" -N 'test' -f ~/.ssh-temp/id_rsa
       - gcloud auth activate-service-account --key-file /home/gruber/gcp.json
       - terraform init -reconfigure -force-copy
       - terraform plan
