@@ -219,6 +219,8 @@ steps:
 kind: pipeline
 type: docker
 name: Documentation
+depends_on:
+  - Basic testing
 steps:
   - name: build_static
     image: node:14.4
@@ -259,5 +261,3 @@ steps:
         from_secret: github_user
       GITHUB_PW:
         from_secret: github_token
-depends_on:
-  - Basic testing
