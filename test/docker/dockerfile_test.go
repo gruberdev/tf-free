@@ -29,4 +29,4 @@ func TestDockerBuild(t *testing.T) {
 	)
 	assert.Contains(t, output, "stdout: passed")
 	assert.NotContains(t, output, "stderr: building error")
-}s
+}
