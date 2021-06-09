@@ -6,7 +6,7 @@ steps:
   - name: Terraform Plan
     commands:
       - sudo echo $$SERVICE_ACCOUNT > /gcp.json
-      - gcloud auth activate-service-account --key-file /gcp.json
+      - sudo gcloud auth activate-service-account --key-file /gcp.json
       - cd PROJECT=/home/gruber/projects/tf-free
       - task init
       - terraform plan
