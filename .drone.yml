@@ -214,8 +214,7 @@ steps:
         from_secret: aws_key
       AWS_ACCESS_KEY_ID:
         from_secret: aws_id
-depends_on:
-  - Basic testing
+
 ---
 kind: pipeline
 type: docker
