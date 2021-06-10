@@ -25,11 +25,11 @@ resource "google_storage_bucket_acl" "default" {
   role_entity = local.default_role_entities
 }
 
-resource "google_filestore_instance" "instance" {
+/* resource "google_filestore_instance" "instance" {
   provider = google-beta
   name     = var.firestore_name
   zone     = "${var.region}-b"
-  tier     = var.tier
+  tier     = var.storage_class
 
   file_shares {
     capacity_gb = var.fire_size
@@ -55,3 +55,4 @@ resource "google_filestore_instance" "instance" {
     modes   = ["MODE_IPV4"]
   }
 }
+ */

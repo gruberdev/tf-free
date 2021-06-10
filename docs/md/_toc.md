@@ -47,6 +47,16 @@
 > > [Examples](/docs/resources/providers/azure#examples)
 > >
 > > [References](/docs/resources/providers/azure#references)
+>
+> > :Collapse label=Oracle Cloud
+> >
+> > [Available Resources](/docs/resources/providers/oracle#resources)
+> >
+> > [Configuration Options](/docs/resources/providers/oracle#options)
+> >
+> > [Examples](/docs/resources/providers/oraclee#examples)
+> >
+> > [References](/docs/resources/providers/oracle#references)
 
 > :Collapse label="About"
 >

@@ -18,9 +18,9 @@ variable "bucket_permissions" {
   default = "publicread"
 }
 
-variable "firestore_name" {
+/* variable "firestore_name" {
   type = string
-}
+} */
 
 variable "gcp_ipv4_name" {
   type = string

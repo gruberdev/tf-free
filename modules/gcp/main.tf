@@ -33,7 +33,7 @@ module "gcp_storage" {
   ]
   source         = "./storage"
   region         = var.project_region
-  project_id     = var.gcp_project_id
+  project_id     = var.google_project
   name           = var.bucket_name
   permissions    = var.permissions
   firestore_name = var.firestore_name

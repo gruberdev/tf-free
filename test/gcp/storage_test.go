@@ -20,13 +20,12 @@ func TestUnitStorage(t *testing.T) {
 	t.Parallel()
 
 	projectId := gcp.GetGoogleProjectIDFromEnvVar(t)
-	exampleDir := test_structure.CopyTerraformFolderToTemp(t, "../../", "examples/gcp/e2e")
-	region := gcp.GetRandomRegion(t, projectId, []string{"us-central1"}, nil)
+	exampleDir := test_structure.CopyTerraformFolderToTemp(t, "../../", "examples/gcp/unit/storage")
+	region := gcp.GetRandomRegion(t, projectId, []string{"us-east1"}, nil)
 
 	gsIPName := gcp.RandomValidGcpName()
 	gsNetworkName := gcp.RandomValidGcpName()
 	gsBucketName := gcp.RandomValidGcpName()
-	gsFirestoreName := gcp.RandomValidGcpName()
 
 	// Variables to pass to our Terraform code using -var options
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
@@ -36,7 +35,6 @@ func TestUnitStorage(t *testing.T) {
 			"gcp_project_region": region,
 			"gcp_network_name":   gsNetworkName,
 			"gcp_project_id":     projectId,
-			"firestore_name`":    gsFirestoreName,
 			"gcp_ipv4_name":      gsIPName,
 			"bucket_name":        gsBucketName,
 		},
