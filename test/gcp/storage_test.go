@@ -16,7 +16,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestStorageGCP(t *testing.T) {
+func TestUnitStorage(t *testing.T) {
 	t.Parallel()
 
 	projectId := gcp.GetGoogleProjectIDFromEnvVar(t)

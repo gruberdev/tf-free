@@ -129,6 +129,7 @@ tasks:
       - cd test/gcp && go mod init "github.com/gruberdev/tf-free" && go mod tidy
       - cd test/gcp && go test -v -timeout 5m -run TestUnitCompute
       - cd test/gcp && go test -v -timeout 5m -run TestUnitVPC
+      - cd test/gcp && go test -v -timeout 5m -run TestUnitStorage
       - cd test/gcp && go test -v -timeout 10m -run TestIntegrationGCP
 
   full-test-local:
@@ -271,6 +272,11 @@ tasks:
     desc: Terraform standard initialization
     cmds:
       - cd test/gcp && go test -v -timeout 5m -run TestUnitCompute
+
+  unit-storage-gcp:
+    desc: Terraform standard initialization
+    cmds:
+      - cd test/gcp && go test -v -timeout 5m -run TestUnitStorage
 
   unit-network-gcp:
     desc: Terraform standard initialization
