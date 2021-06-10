@@ -3,16 +3,17 @@
 package test
 
 import (
+	"bytes"
 	"fmt"
 	"strings"
 	"testing"
-	"time"
 
 	"github.com/gruntwork-io/terratest/modules/gcp"
-	"github.com/gruntwork-io/terratest/modules/retry"
-	"github.com/gruntwork-io/terratest/modules/ssh"
+	"github.com/gruntwork-io/terratest/modules/logger"
+	"github.com/gruntwork-io/terratest/modules/random"
 	"github.com/gruntwork-io/terratest/modules/terraform"
 	test_structure "github.com/gruntwork-io/terratest/modules/test-structure"
+	"github.com/stretchr/testify/require"
 )
 
 func TestStorageGCP(t *testing.T) {
@@ -20,12 +21,12 @@ func TestStorageGCP(t *testing.T) {
 
 	projectId := gcp.GetGoogleProjectIDFromEnvVar(t)
 	exampleDir := test_structure.CopyTerraformFolderToTemp(t, "../../", "examples/gcp/e2e")
-	region := gcp.GetRandomRegion(t, projectId, []string{"us-west1", "us-central1", "us-east1"}, nil)
-	randomValidGcpName := gcp.RandomValidGcpName()
-	randomValidIPName := gcp.RandomValidGcpName()
-	randomValidNetworkName := gcp.RandomValidGcpName()
-	randomValidBucketName := gcp.RandomValidGcpName()
-	randomValidFirestoreName := gcp.RandomValidGcpName()
+	region := gcp.GetRandomRegion(t, projectId, []string{"us-central1"}, nil)
+
+	gsIPName := gcp.RandomValidGcpName()
+	gsNetworkName := gcp.RandomValidGcpName()
+	gsBucketName := gcp.RandomValidGcpName()
+	gsFirestoreName := gcp.RandomValidGcpName()
 
 	// Variables to pass to our Terraform code using -var options
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
@@ -33,40 +34,28 @@ func TestStorageGCP(t *testing.T) {
 		TerraformDir: exampleDir,
 		Vars: map[string]interface{}{
 			"gcp_project_region": region,
-			"gcp_instance_name":  randomValidGcpName,
-			"gcp_network_name":   randomValidNetworkGcpName,
+			"gcp_network_name":   gsNetworkName,
 			"gcp_project_id":     projectId,
-			"gcp_ipv4_name":      randomValidIPGcpName,
+			"firestore_name`":    gsFirestoreName,
+			"gcp_ipv4_name":      gsIPName,
+			"bucket_name":        gsBucketName,
 		},
 		EnvVars: map[string]string{
 			"GOOGLE_PROJECT": projectId,
 		},
 	})
+
 	defer terraform.Destroy(t, terraformOptions)
 	terraform.InitAndApply(t, terraformOptions)
-	publicIp := terraform.Output(t, terraformOptions, "gcp_public_ip")
-	instance := gcp.FetchInstance(t, projectId, randomValidGcpName)
-	sampleText := "Hello World"
-	sshUsername := "root"
-	keyPair := ssh.GenerateRSAKeyPair(t, 2048)
-	instance.AddSshKey(t, sshUsername, keyPair.PublicKey)
-	host := ssh.Host{
-		Hostname:    publicIp,
-		SshKeyPair:  keyPair,
-		SshUserName: sshUsername,
-	}
-	maxRetries := 20
-	sleepBetweenRetries := 3 * time.Second
-	retry.DoWithRetry(t, "Attempting to SSH", maxRetries, sleepBetweenRetries, func() (string, error) {
-		output, err := ssh.CheckSshCommandE(t, host, fmt.Sprintf("echo '%s'", sampleText))
-		if err != nil {
-			return "", err
-		}
 
-		if strings.TrimSpace(sampleText) != strings.TrimSpace(output) {
-			return "", fmt.Errorf("Expected: %s. Got: %s\n", sampleText, output)
-		}
-
-		return "", nil
-	})
+	testFilePath := fmt.Sprintf("test-file-%s.txt", random.UniqueId())
+	testFileBody := "test file text"
+	logger.Logf(t, "Random values selected Bucket Name = %s, Test Filepath: %s\n", gsBucketName, testFilePath)
+	objectURL := gcp.WriteBucketObject(t, gsBucketName, testFilePath, strings.NewReader(testFileBody), "text/plain")
+	logger.Logf(t, "Got URL: %s", objectURL)
+	fileReader := gcp.ReadBucketObject(t, gsBucketName, testFilePath)
+	buf := new(bytes.Buffer)
+	buf.ReadFrom(fileReader)
+	result := buf.String()
+	require.Equal(t, testFileBody, result)
 }

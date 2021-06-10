@@ -34,7 +34,7 @@ variable "firestore_name" {
 
 variable "region" {
   type        = string
-  default     = "us-west1"
+  default     = "us-central1"
   description = "Your instance's network on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format)"
 }
 

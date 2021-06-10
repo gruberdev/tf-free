@@ -47,9 +47,3 @@ variable "firestore_name" {
   default     = "firestore-db-1"
   description = "Your instance's network on GCP."
 }
-
-variable "region_zone" {
-  type        = string
-  default     = "us-west1-c"
-  description = "Your instance's network on GCP."
-}
