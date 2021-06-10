@@ -30,7 +30,7 @@ tasks:
     cmds:
       - docker stop terraformfree:latest || true
       - docker rm terraformfree:latest || true
-      - docker build -t terraformfree:latest .
+      - docker build --cache-from terraformfree:latest --no-cache -t terraformfree:latest .
 
   docker-test:
     desc: Run tests from inside your container
@@ -84,6 +84,7 @@ tasks:
       - terraform-docs markdown -c .terraform-docs.yml ./modules/gcp/compute --output-file README.md
       - terraform-docs markdown -c .terraform-docs.yml ./modules/gcp/firewall --output-file README.md
       - terraform-docs markdown -c .terraform-docs.yml ./modules/gcp/vpc --output-file README.md
+      - terraform-docs markdown -c .terraform-docs.yml ./modules/gcp/storage --output-file README.md
 
   docs:
     desc: Initialize module and build cache, and remake go.sum file on root directory.
@@ -128,6 +129,7 @@ tasks:
       - cd test/gcp && go mod init "github.com/gruberdev/tf-free" && go mod tidy
       - cd test/gcp && go test -v -timeout 5m -run TestUnitCompute
       - cd test/gcp && go test -v -timeout 5m -run TestUnitVPC
+      - cd test/gcp && go test -v -timeout 5m -run TestUnitStorage
       - cd test/gcp && go test -v -timeout 10m -run TestIntegrationGCP
 
   full-test-local:
@@ -270,6 +272,11 @@ tasks:
     desc: Terraform standard initialization
     cmds:
       - cd test/gcp && go test -v -timeout 5m -run TestUnitCompute
+
+  unit-storage-gcp:
+    desc: Terraform standard initialization
+    cmds:
+      - cd test/gcp && go test -v -timeout 5m -run TestUnitStorage
 
   unit-network-gcp:
     desc: Terraform standard initialization

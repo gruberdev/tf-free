@@ -114,3 +114,7 @@ slim.report.json
 Dockerfile.fat 
 creport.jsondiff
 *.report.json
+
+# Terraform Visual 
+terraform-visual-report
+terraform-visual-report/*

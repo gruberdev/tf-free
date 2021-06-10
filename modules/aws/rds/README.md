@@ -5,7 +5,7 @@
 |------|--------|---------|
 | db\_default | terraform-aws-modules/rds/aws |  |
 | security\_group | terraform-aws-modules/security-group/aws | ~> 4 |
-| vpc | terraform-aws-modules/vpc/aws | ~> 2 |
+| vpc | terraform-aws-modules/vpc/aws | ~> 3.1.0 |
 
 ### Inputs
 
