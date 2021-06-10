@@ -1,6 +1,6 @@
 variable "project_id" {
   type        = string
-  default     = "-bucket"
+  default     = "mybucket"
   description = "Your instance's network on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format)"
 }
 variable "name" {
@@ -32,15 +32,15 @@ variable "firestore_name" {
   description = "Your instance's network on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format)"
 }
 
-variable "firestore_zone" {
+variable "region" {
   type        = string
-  default     = "us-central1-b"
+  default     = "us-west1"
   description = "Your instance's network on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format)"
 }
 
 variable "tier" {
   type        = string
-  default     = "BASIC_SSD"
+  default     = "STANDARD"
   description = "Your instance's network on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format)"
 }
 

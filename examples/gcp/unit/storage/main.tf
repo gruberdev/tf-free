@@ -6,9 +6,22 @@ provider "google-beta" {
   region  = var.gcp_project_region
 }
 
-module "gcp_storage_bucket" {
-  source      = "./storage"
-  project_id  = var.gcp_project_id
-  name        = var.bucket_name
-  permissions = var.bucket_permissions
+module "gcp_vpc" {
+  vpc_name       = var.gcp_network_name
+  static_ip_name = var.gcp_ipv4_name
+  source         = "../../../../modules/gcp/vpc"
+  google_project = var.gcp_project_id
+}
+
+module "gcp_storage" {
+  depends_on = [
+    module.gcp_vpc.network_name,
+  ]
+  source         = "../../../../modules/gcp/storage"
+  project_id     = var.gcp_project_id
+  name           = var.bucket_name
+  permissions    = var.bucket_permissions
+  firestore_name = var.firestore_name
+  region         = var.gcp_project_region
+  network_name   = module.gcp_vpc.network_name
 }

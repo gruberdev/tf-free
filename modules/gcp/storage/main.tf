@@ -27,7 +27,7 @@ resource "google_storage_bucket_acl" "default" {
 resource "google_filestore_instance" "instance" {
   provider = google-beta
   name     = var.firestore_name
-  zone     = var.firestore_zone
+  zone     = "${var.region}-b"
   tier     = var.tier
 
   file_shares {
