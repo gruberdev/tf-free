@@ -22,3 +22,7 @@ variable "gcp_ipv4_name" {
   default = ""
 }
 
+variable "gcp_storage_permissions" {
+  type    = string
+  default = "publicread"
+}

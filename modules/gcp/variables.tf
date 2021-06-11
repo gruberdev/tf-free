@@ -15,14 +15,35 @@ variable "google_project" {
   type    = string
   default = ""
 }
+
 variable "network_name" {
   type    = string
   default = "gcp-network"
 }
+
 variable "instance_ipv4_name" {
   type    = string
   default = "ipv4-instance-gcp"
 }
+
 variable "gcp_project_id" {
   type = string
+}
+
+variable "bucket_name" {
+  type        = string
+  default     = "my-bucket"
+  description = "Your instance's network on GCP."
+}
+
+variable "permissions" {
+  type        = string
+  default     = "publicread"
+  description = "Your instance's network on GCP."
+}
+
+variable "firestore_name" {
+  type        = string
+  default     = "firestore-db-1"
+  description = "Your instance's network on GCP."
 }

@@ -45,14 +45,12 @@ curl -sSL https://raw.githubusercontent.com/gruberdev/setup/main/install.sh | ba
 | ----------------------- | ------------------------------ | ------- |
 | aws                     | ./modules/aws                  |         |
 | google_cloud            | ./modules/gcp                  |         |
-| terraform_state_backend | cloudposse/tfstate-backend/aws | v0.32.1 |
+| terraform_state_backend | cloudposse/tfstate-backend/aws | 0.33.0  |
 
 ### Inputs
 
 | Name               | Description                                                                                                                                                                  | Type     | Default         |
 | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | --------------- |
-| aws_account_id     | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | n/a             |
-| aws_account_key    | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | n/a             |
 | aws_default_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-east-1"`   |
 | backend_destroy    | Allows destroying the backend.                                                                                                                                               | `string` | `"false"`       |
 | backend_stage      | Stages possible for Backend.                                                                                                                                                 | `string` | `"test"`        |
@@ -278,4 +276,4 @@ Be sure to [read the terms][usage-terms] of usage to understand the responsabili
 [oracle-compute-info]: https://www.oracle.com/cloud/compute/
 [oracle-database-info]: https://www.oracle.com/database/
 [oracle-storage-info]: https://www.oracle.com/cloud/storage/
-[tf-free-oracle-resources]: https://free.terraform.gruber.dev.br/docs/resources/providers/gcp#resources
+[tf-free-oracle-resources]: https://free.terraform.gruber.dev.br/docs/resources/providers/oracle#resources

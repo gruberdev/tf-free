@@ -16,7 +16,6 @@
 - Some resources are **only valid for 12 months** and not forever. Please [check the list of resources](aws-sorted-list) to verify each resource maximum usage within the Free-Tier plan.
 - EC2 Machines and RDS Databases are limited to `t3.micro` and `db.t2.micro` types respectively.
 - AWS provides the free-tier resource usage for all their [global regions](aws-regions) except China (Beijing).
-
 #### Requirements
 
 - **An active account on AWS** | See: \_[Getting started on AWS](aws-account-create)
