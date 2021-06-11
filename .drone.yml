@@ -1,5 +1,23 @@
 ---
 kind: pipeline
+type: docker
+name: Kickoff Drone CI
+steps:
+  - name: Notification Webhook
+    image: appleboy/drone-discord
+    settings:
+      webhook_id:
+        from_secret: discord_id
+      webhook_token:
+        from_secret: discord_token
+      message: |-
+        Drone CI multi-pipeline task initialized.
+        Build number: {{build.number}}
+      event:
+        - push
+
+---
+kind: pipeline
 type: exec
 name: Basic testing
 steps:
