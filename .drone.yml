@@ -217,6 +217,39 @@ steps:
       GOOGLE_KEY:
         from_secret: gcp_default
       AWS_DEFAULT_REGION:
+        from_secret: aws_regions
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: aws_key
+      AWS_ACCESS_KEY_ID:
+        from_secret: aws_id
+
+  - name: Unit Bucket Storage
+    image: golang:1.16.5-alpine
+    commands:
+      - apk add build-base git curl
+      - echo $GOOGLE_KEY > $PWD/gcp.json
+      - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
+      - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
+      - cd test/gcp
+      - go mod tidy
+      - go test -v -timeout 5m -run  TestUnitStorage
+    when:
+      branch:
+        include:
+          - main
+          - feature/gcp_*
+      event:
+        - push
+    depends_on:
+      - Setup
+      - Unit Networking
+      - Unit Compute
+    environment:
+      GOOGLE_PROJECT:
+        from_secret: gcp_project_id
+      GOOGLE_KEY:
+        from_secret: gcp_default
+      AWS_DEFAULT_REGION:
         from_secret: aws_region
       AWS_SECRET_ACCESS_KEY:
         from_secret: aws_key
@@ -242,7 +275,9 @@ steps:
         - push
     depends_on:
       - Unit Networking
+      - Unit Compute
       - Setup
+      - Unit Storage
     environment:
       GOOGLE_PROJECT:
         from_secret: gcp_project_id
@@ -263,7 +298,7 @@ steps:
       webhook_token:
         from_secret: discord_token
       message: |-
-        Succesfully finished building the GCP pipeline on Drone CI.
+        **SUCCESSFULLY** finished building the GCP pipeline on Drone CI.
         Build number: {{build.number}}
     depends_on:
       - Unit Networking
@@ -286,7 +321,7 @@ steps:
       webhook_token:
         from_secret: discord_token
       message: |-
-        Succesfully finished building the GCP pipeline on Drone CI.
+        Alert: **FAILURE** building the GCP pipeline on Drone CI.
         Build number: {{build.number}}
     depends_on:
       - Unit Networking
@@ -305,6 +340,7 @@ steps:
           - feature/gcp_*
       event:
         - push
+
 ---
 kind: pipeline
 type: docker
