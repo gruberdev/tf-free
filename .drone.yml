@@ -125,6 +125,24 @@ steps:
       AWS_ACCESS_KEY_ID:
         from_secret: aws_id
 
+  - name: GCP Start Notification
+    image: appleboy/drone-discord
+    settings:
+      webhook_id:
+        from_secret: discord_id
+      webhook_token:
+        from_secret: discord_token
+      message: |-
+        Started GCP Pipeline on Drone CI.
+        Build number: {{build.number}}
+    when:
+      branch:
+        include:
+          - main
+          - feature/gcp_*
+      event:
+        - push
+
   - name: Unit Compute
     image: golang:1.16.5-alpine
     commands:
@@ -219,6 +237,56 @@ steps:
       AWS_ACCESS_KEY_ID:
         from_secret: aws_id
 
+  - name: Success @Testing GCP Module
+    image: appleboy/drone-discord
+    settings:
+      webhook_id:
+        from_secret: discord_id
+      webhook_token:
+        from_secret: discord_token
+      message: |-
+        Succesfully finished building the GCP pipeline on Drone CI.
+        Build number: {{build.number}}
+    depends_on:
+      - Unit Networking
+      - Setup
+      - Integration Core Provider
+      - Unit Compute
+    when:
+      branch:
+        include:
+          - main
+          - feature/gcp_*
+      event:
+        - push
+
+  - name: Failure @Testing GCP Module
+    image: appleboy/drone-discord
+    settings:
+      webhook_id:
+        from_secret: discord_id
+      webhook_token:
+        from_secret: discord_token
+      message: |-
+        Succesfully finished building the GCP pipeline on Drone CI.
+        Build number: {{build.number}}
+    depends_on:
+      - Unit Networking
+      - Setup
+      - Integration Core Provider
+      - Unit Compute
+    when:
+      trigger:
+        status:
+          - failure
+      status:
+        - failure
+      branch:
+        include:
+          - main
+          - feature/gcp_*
+      event:
+        - push
 ---
 kind: pipeline
 type: docker
