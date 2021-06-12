@@ -1,7 +1,7 @@
 ---
 kind: pipeline
 type: docker
-name: Kickoff Drone CI
+name: Kickoff
 steps:
   - name: Notification Webhook
     image: appleboy/drone-discord
@@ -118,6 +118,7 @@ type: docker
 name: Amazon Web Services (AWS)
 depends_on:
   - Basic testing
+  - Kickoff
 steps:
   - name: Setup AWS
     image: golang:1.16.4-alpine
@@ -169,6 +170,7 @@ type: docker
 name: Google Cloud Provider (GCP)
 depends_on:
   - Basic testing
+  - Kickoff
 steps:
   - name: Setup
     image: golang:1.16.4-alpine
@@ -397,6 +399,9 @@ steps:
 kind: pipeline
 type: docker
 name: Documentation
+depends_on:
+  - Basic testing
+  - Kickoff
 steps:
   - name: build_static
     image: node:14.4
