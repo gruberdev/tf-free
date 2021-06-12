@@ -9,8 +9,8 @@ variable "gcp_project_region" {
 }
 
 variable "gcp_project_id" {
-  type    = string
-  default = ""
+  type      = string
+  sensitive = true
 }
 
 variable "gcp_ipv4_name" {

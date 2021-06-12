@@ -25,7 +25,7 @@ func TestUnitEC2(t *testing.T) {
 	t.Parallel()
 	sshName := fmt.Sprintf("ssh-key-%s", random.UniqueId())
 	// Pick a random AWS region to test in. This helps ensure your code works in all regions.
-	awsRegion := aws.GetRandomStableRegion(t, []string{"us-east-1", "us-west-1", "ca-central-1", "eu-west-1", "sa-east-1", "ap-northeast-1", "af-south-1"}, nil)
+	awsRegion := aws.GetRandomStableRegion(t, []string{"us-east-1"}, nil)
 	awsAvailability := aws.GetAvailabilityZones(t, awsRegion)
 	awsAccessID := environment.GetFirstNonEmptyEnvVarOrEmptyString(t, accessList)
 	awsSecretKey := environment.GetFirstNonEmptyEnvVarOrEmptyString(t, secretList)
@@ -38,8 +38,6 @@ func TestUnitEC2(t *testing.T) {
 		TerraformDir: "../../examples/aws/unit/ec2",
 		// Environment variables to set when running Terraform
 		Vars: map[string]interface{}{
-			"aws_account_id":     awsAccessID,
-			"aws_account_key":    awsSecretKey,
 			"aws_default_region": awsRegion,
 			"ssh_name":           sshName,
 			"ssh_public":         keyPublic,

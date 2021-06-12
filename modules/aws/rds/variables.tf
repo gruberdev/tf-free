@@ -19,11 +19,13 @@ variable "db_engine" {
 variable "db_user" {
   description = "Region for AWS resources"
   default     = "default-user"
+  sensitive   = true
   type        = string
 }
 
 variable "db_password" {
   description = "Region for AWS resources"
+  sensitive   = true
   default     = "for-the-love-of-god-change-me"
   type        = string
 }
@@ -43,6 +45,7 @@ variable "db_instance_type" {
 
 variable "subnet_group_name" {
   description = "Instance type for database"
+  sensitive   = true
   type        = string
   default     = "subnet-db"
 }
@@ -51,6 +54,7 @@ variable "subnet_group_name" {
 variable "db_security_group_name" {
   description = "Instance type for database"
   type        = string
+  sensitive   = true
   default     = "security-db"
 }
 

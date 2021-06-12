@@ -12,8 +12,9 @@ variable "project_region" {
 }
 
 variable "google_project" {
-  type    = string
-  default = ""
+  type      = string
+  sensitive = true
+  default   = ""
 }
 
 variable "network_name" {
@@ -27,7 +28,8 @@ variable "instance_ipv4_name" {
 }
 
 variable "gcp_project_id" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "bucket_name" {
