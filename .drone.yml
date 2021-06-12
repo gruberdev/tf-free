@@ -112,7 +112,55 @@ steps:
   #       from_secret: aws_key
   #     AWS_ACCESS_KEY_ID:
   #       from_secret: aws_id
-
+---
+kind: pipeline
+type: docker
+name: Amazon Web Services (AWS)
+steps:
+  - name: Setup AWS
+    image: golang:1.16.4-alpine
+    commands:
+      - rm test/aws/go.mod || true
+      - rm test/aws/go.sum || true
+      - cd test/aws && go mod init "github.com/gruberdev/tf-free" && go mod tidy
+    when:
+      branch:
+        include:
+          - main
+          - feature/aws_*
+      event:
+        - push
+    environment:
+      AWS_DEFAULT_REGION:
+        from_secret: aws_region
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: aws_key
+      AWS_ACCESS_KEY_ID:
+        from_secret: aws_id
+  - name: Unit Test EC2
+    image: golang:1.16.4-alpine
+    commands:
+      - apk add build-base git curl
+      - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
+      - cd test/aws
+      - go mod tidy
+      - go test -v -timeout 8m -run TestUnitEC2
+    when:
+      branch:
+        include:
+          - main
+          - feature/aws_*
+      event:
+        - push
+    depends_on:
+      - Setup AWS
+    environment:
+      AWS_DEFAULT_REGION:
+        from_secret: aws_region
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: aws_key
+      AWS_ACCESS_KEY_ID:
+        from_secret: aws_id
 ---
 kind: pipeline
 type: docker
@@ -348,6 +396,7 @@ name: Documentation
 depends_on:
   - Basic testing
   - Google Cloud Provider (GCP)
+  - Amazon Web Services (AWS)
 steps:
   - name: build_static
     image: node:14.4
@@ -375,6 +424,7 @@ steps:
         - master
         - docs
         - aws_provider
+        - aws-tests
       event:
         - push
     environment:
