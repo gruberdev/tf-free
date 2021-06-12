@@ -296,7 +296,7 @@ tasks:
   unit-rds-aws:
     desc: Terraform standard initialization
     cmds:
-      - cd test/aws && go test -v -timeout 5m -run TestUniRDS
+      - cd test/aws && go test -v -timeout 5m -run TestUnitRDS
 
   integration-gcp:
     desc: Terraform standard initialization

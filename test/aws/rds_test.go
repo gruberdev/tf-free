@@ -23,7 +23,7 @@ func TestUnitRDS(t *testing.T) {
 	username := "username"
 	password := "password"
 	// Pick a random AWS region to test in. This helps ensure your code works in all regions.
-	awsRegion := aws.GetRandomStableRegion(t, nil, nil)
+	awsRegion := aws.GetRandomStableRegion(t, []string{"us-east-1"}, nil)
 	instanceType := aws.GetRecommendedRdsInstanceType(t, awsRegion, "postgres", "12.6", []string{"db.t2.micro", "db.t3.micro"})
 
 	// Construct the terraform options with default retryable errors to handle the most common retryable errors in
@@ -35,15 +35,16 @@ func TestUnitRDS(t *testing.T) {
 		// Variables to pass to our Terraform code using -var options
 		// "username" and "password" should not be passed from here in a production scenario.
 		Vars: map[string]interface{}{
-			"name":              expectedName,
-			"engine_name":       "postgres",
-			"engine_version":    "12.6",
-			"instance_class":    instanceType,
-			"username":          username,
-			"password":          password,
-			"allocated_storage": 5,
-			"port":              expectedPort,
-			"database_name":     expectedDatabaseName,
+			"name":               expectedName,
+			"engine_name":        "postgres",
+			"engine_version":     "12.6",
+			"instance_class":     instanceType,
+			"username":           username,
+			"password":           password,
+			"allocated_storage":  5,
+			"db_port":            expectedPort,
+			"database_name":      expectedDatabaseName,
+			"aws_default_region": awsRegion,
 		},
 
 		// Environment variables to set when running Terraform

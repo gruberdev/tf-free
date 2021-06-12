@@ -7,14 +7,19 @@ variable "name" {
 variable "engine_name" {
   type = string
 }
+variable "engine_version" {
+  type = string
+}
 variable "instance_class" {
   type = string
 }
 variable "username" {
-  type = string
+  sensitive = true
+  type      = string
 }
 variable "password" {
-  type = string
+  sensitive = true
+  type      = string
 }
 variable "allocated_storage" {
   type    = number

@@ -7,6 +7,7 @@ output "db_address" {
 output "db_username" {
   description = "List of public IP addresses assigned to the instances, if applicable"
   value       = module.rds.db_default_instance_username
+  sensitive   = true
 }
 
 output "db_password" {
