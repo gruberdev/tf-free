@@ -64,7 +64,7 @@ ENV \
 # Install Python and GCC dependencies
 # hadolint ignore=DL3018
 RUN apk add --update --no-cache \
- bash=${BASH_VERSION} gcc=${GCC_VERSION} g++ git=${GIT_VERSION} curl=${CURL_VERSION} \
+ bash=${BASH_VERSION} gcc=${GCC_VERSION} g++ git=${GIT_VERSION} curl \
  zlib libffi-dev  \
  musl-dev python${PYTHON_VERSION_MAJOR} openssl \
  sudo jq=${JQ_VERSION} py${PYTHON_VERSION_MAJOR}-pip ncurses=${NCURSES_VERSION} \
