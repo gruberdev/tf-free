@@ -3,9 +3,9 @@ provider "azurerm" {
 }
 
 module "azure" {
-  source           = "../../../modules/azure"
-  location         = ""
-  database_name    = ""
-  database_db_name = ""
-  database_user    = ""
+  source              = "../../../modules/azure"
+  resource_group_name = var.resource_group_name
+  location            = var.location
+/*   linux_hostname = var.linux_vm
+  windows_hostname = var.windows_vm */
 }

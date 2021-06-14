@@ -22,8 +22,3 @@ variable "sql_password" {
   type    = string
   default = "P@ssw0rd12345!"
 }
-
-variable "environment" {
-  type    = string
-  default = "dev"
-}

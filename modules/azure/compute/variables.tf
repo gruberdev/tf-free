@@ -13,14 +13,18 @@ variable "windows_dns_server" {
   default = "winsimplevmips"
 }
 
+variable "linux_hostname" {
+  type    = string
+  default = "mywinvm"
+}
+
+variable "linux_password" {
+  type    = string
+  default = "mywinvj33j4k3"
+}
 variable "linux_dns_server" {
   type    = string
   default = "linsimplevmips"
-}
-
-variable "group_name" {
-  type    = string
-  default = "dev"
 }
 
 variable "subnet_id" {

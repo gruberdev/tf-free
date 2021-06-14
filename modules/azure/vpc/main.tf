@@ -1,28 +1,19 @@
-module "network" {
-  source              = "Azure/network/azurerm"
+resource "azurerm_virtual_network" "example" {
+  name                = "virtualNetwork1"
+  location            = var.location
   resource_group_name = var.resource_group_name
-  address_spaces      = ["10.0.0.0/16", "10.2.0.0/16"]
-  subnet_prefixes     = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
-  subnet_names        = ["subnet1", "subnet2", "subnet3"]
-
-  subnet_service_endpoints = {
-    "subnet1" : ["Microsoft.Sql"],
-    "subnet2" : ["Microsoft.Sql"],
-    "subnet3" : ["Microsoft.Sql"]
+  address_space       = ["10.0.0.0/16"]
+  dns_servers         = ["10.0.0.4", "10.0.0.5"]
+  subnet {
+    name           = "subnet1"
+    address_prefix = "10.0.1.0/24"
   }
-
-  tags = {
-    environment = var.environment
-  }
-
-  depends_on = [azurerm_resource_group.example]
 }
 
 resource "azurerm_network_security_group" "ssh" {
   name                = "ssh"
   resource_group_name = var.resource_group_name
   location            = var.location
-
   security_rule {
     name                       = "test123"
     priority                   = 100

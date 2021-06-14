@@ -62,11 +62,6 @@ tasks:
     cmds:
       - go vet ./...
 
-  gcp:
-    desc: Initialize module and build cache, and remake go.sum file.
-    cmds:
-      - gcloud auth application-default login
-
   fmt:
     desc: Format Go files
     cmds:
@@ -311,3 +306,8 @@ tasks:
     desc: Terraform standard initialization
     cmds:
       - cd test/gcp && go test -v -timeout 10m -run TestIntegrationGCP
+
+  integration-azure:
+    desc: Terraform Azure initialization
+    cmds:
+      - cd test/azure && go test -v -timeout 10m -run TestIntegrationAzure
