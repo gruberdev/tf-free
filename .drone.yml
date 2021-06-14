@@ -75,13 +75,16 @@ steps:
 ---
 kind: pipeline
 type: docker
-name: Notification Basic Success
+name: Notification Success
 depends_on:
   - Basic testing
+  - Kickoff
 trigger:
   event:
     - push
     - pull_request
+  status:
+    - success
 steps:
   - name: Notification Webhook
     image: appleboy/drone-discord
@@ -95,6 +98,9 @@ steps:
         Build number: {{build.number}}
       event:
         - push
+      when:
+        status:
+          - failure
     depends_on:
       - Docker build
       - Terraform Plan
@@ -102,19 +108,19 @@ steps:
 ---
 kind: pipeline
 type: docker
-name: Notification Failure
+name: Failure Notification
+depends_on:
+  - Basic testing
+  - Kickoff
 trigger:
   status:
     - failure
-  event:
-    when:
-      - failure
-    include:
-      - push
-      - pull_request
 steps:
   - name: Notification Webhook
     image: appleboy/drone-discord
+    when:
+      status:
+        - failure
     settings:
       webhook_id:
         from_secret: discord_id
