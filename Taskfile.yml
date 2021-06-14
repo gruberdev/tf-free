@@ -268,7 +268,7 @@ tasks:
   init-drone:
     desc: Terraform standard initialization
     cmds:
-      - apk add build-base git
+      - apk add build-base git curl
       - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
 
   unit-compute-gcp:
