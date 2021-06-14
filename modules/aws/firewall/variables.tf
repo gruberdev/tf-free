@@ -1,9 +1,3 @@
-variable "should_be_created" {
-  description = "Should the Route Table be created?"
-  type        = bool
-  default     = true
-}
-
 variable "name" {
   description = "The Name of the Route Table"
   type        = string
@@ -12,6 +6,7 @@ variable "name" {
 
 variable "vpc_id" {
   description = "The ID of the VPC"
+  sensitive   = true
   type        = string
 }
 
@@ -22,5 +17,6 @@ variable "internet_gateway_id" {
 
 variable "public_subnet_id" {
   description = "The ID of the Public Subnet"
+  sensitive   = true
   type        = string
 }

@@ -5,15 +5,17 @@
 |------|--------|---------|
 | ec2 | ./ec2 |  |
 | rds | ./rds |  |
-| vpc | terraform-aws-modules/vpc/aws |  |
+| vpc | ./vpc |  |
 
 ### Inputs
 
 | Name | Description | Type | Default |
 |------|-------------|------|---------|
+| ec2\_enable | AWS Profile | `bool` | `true` |
 | ec2\_ssh\_name | The SSH Key Name | `string` | `"free-tier-ec2-key"` |
 | ec2\_ssh\_public | The local path to the SSH Public Key | `string` | `"~/.ssh-temp/id_rsa.pub"` |
 | profile | AWS Profile | `string` | `"terraform"` |
+| rds\_enable | AWS Profile | `bool` | `true` |
 | rds\_password | Region for the RDS database | `string` | `"testingdatabase89372934279"` |
 | rds\_user | Region for AWS resources | `string` | `"testing"` |
 | region | Region for AWS resources | `string` | `"us-east-1"` |
@@ -22,6 +24,7 @@
 
 | Name | Description |
 |------|-------------|
+| db\_id | List of key names of instances |
 | ec2\_ipv6\_addresses | List of assigned IPv6 addresses of instances |
 | ec2\_key\_name | List of key names of instances |
 | ec2\_password\_data | List of Base-64 encoded encrypted password data for the instance |

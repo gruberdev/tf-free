@@ -4,22 +4,28 @@
 | Name | Source | Version |
 |------|--------|---------|
 | db\_default | terraform-aws-modules/rds/aws |  |
-| security\_group | terraform-aws-modules/security-group/aws | ~> 4 |
-| vpc | terraform-aws-modules/vpc/aws | ~> 3.1.0 |
+| security\_group | terraform-aws-modules/security-group/aws |  |
 
 ### Inputs
 
 | Name | Description | Type | Default |
 |------|-------------|------|---------|
 | db\_engine | The local path to the SSH Public Key | `string` | `"postgres"` |
+| db\_family | The local path to the SSH Public Key | `string` | `"postgres12"` |
 | db\_instance\_type | Instance type for database | `string` | `"db.t2.micro"` |
-| db\_password | Region for AWS resources | `string` | `"for-the-love-of-god-change-me"` |
+| db\_major\_engine | n/a | `string` | `"12"` |
+| db\_password | Region for AWS resources | `string` | `"forALEKkjkfeajme"` |
 | db\_security\_group\_name | Instance type for database | `string` | `"security-db"` |
-| db\_user | Region for AWS resources | `string` | `"default-user"` |
-| engine\_version | The SSH Key Name | `string` | `"12.6"` |
+| db\_user | Region for AWS resources | `string` | `"defaultuser"` |
+| db\_version | The SSH Key Name | `string` | `"12.6"` |
+| disk\_size | n/a | `number` | `20` |
 | license | Region for AWS resources | `string` | `"postgresql-license"` |
 | name | Region for AWS resources | `string` | `"databasetf"` |
+| region | n/a | `string` | n/a |
 | subnet\_group\_name | Instance type for database | `string` | `"subnet-db"` |
+| vpc\_cidr\_block | n/a | `string` | n/a |
+| vpc\_id | n/a | `string` | n/a |
+| vpc\_subnet\_ids | n/a | `any` | n/a |
 
 ### Outputs
 

@@ -1,0 +1,57 @@
+# Misc
+.DS_Store
+LICENSE.md
+README.md
+
+# Binaries
+.terraform/
+*.exe
+*.tfstate
+*.backup
+*.bak
+*.info
+
+# Credentials
+*account.json
+sshkey*
+privkey*
+pubkey*
+id_rsa*
+.git/
+.github/
+.terraform/
+.vscode/
+doc/
+dockerfiles/
+kubernetes/
+schemas/
+templates/
+tools/backend
+frontend
+.editorconfig
+.gitignore
+
+# Terraform
+**.terraform/
+**.terraform.lock.hcl
+**.json
+
+# Sensitive
+**policy_documents/
+**trust_document/
+
+# logs
+terraform.log
+
+# MacOS
+.DS_Store
+
+#Node modules
+node_modules/**
+
+# Coverage reports
+.nyc_output/**
+coverage/**
+
+# Build output folder
+dist/**

@@ -1,18 +1,18 @@
 [![Logo Animation](https://readme-typing-svg.herokuapp.com?font=Major+Mono+Display&color=00E7F7&size=40&vCenter=true&width=800&height=200&lines=tf-free;cloud+for+free.)](https://free.terraform.gruber.dev.br)
 
-<a href='https://free.terraform.gruber.dev.br' target='_blank'>![docs-img]</a>
+<a href='https://free.terraform.gruber.dev.br' target='_blank'>![docs-img]</a> <a href='https://drone.gruber.dev.br' target='_blank'>![drone-img]</a>
 
 ## Objective
 
-> **Creating and managing all available resources offered by major cloud providers in free-tier plans. Terraform is as the main tool used for creating, managing and providing access to these resources in a simplified and centralized manner.**
+> **Creating and managing all available resources offered by major cloud providers exclusively in free-tier plans. Using Terraform to create and manage all the resources in a simplified and centralized manner.**
 
 ## Motivation
 
 Every major cloud provider offers a free tier that allows for some kind of resource free of charge, still, learning every cloud and managing these resources can prove burdensome to most.
 
-The goal is to automate the management of these resources using Terraform as the centralizing tool. It also aims to provide resources for learning and improve your skills as a DevOps Engineer and as a Terraform user, even if you're developer that never touched cloud infrastructure, nowadays there's great value in learning these tools.
+The goal is to automate the management of these resources using Terraform as the centralizing tool. It also aims to provide resources for learning and improve your skills as a SRE/DevOps Engineer and as a Terraform user, even if you're developer that never touched cloud infrastructure, nowadays there's great value in learning these tools.
 
-A CLI tool is part of this project for those who wish a more KIS-like approach.
+A CLI tool is part of this project for those who wish a more [KIS][kis-approach]-like approach.
 
 ## Getting started
 
@@ -28,49 +28,51 @@ wget https://raw.githubusercontent.com/gruberdev/setup/main/install.sh && cat in
 curl -sSL https://raw.githubusercontent.com/gruberdev/setup/main/install.sh | bash -s terraform-free
 ```
 
-- [CLI Tool Documentation][tf-free-docs-cli]
+▶ [CLI Tool Documentation][tf-free-docs-cli]
 
 <details>
   <summary>
-  Terraform module documentation
+   Module documentation
   </summary>
 
 ---
 
 <!-- BEGIN_TF_DOCS -->
-
 ### Modules
 
-| Name                    | Source                         | Version |
-| ----------------------- | ------------------------------ | ------- |
-| aws                     | ./modules/aws                  |         |
-| google_cloud            | ./modules/gcp                  |         |
-| terraform_state_backend | cloudposse/tfstate-backend/aws | 0.33.0  |
+| Name | Source | Version |
+|------|--------|---------|
+| aws | ./modules/aws |  |
+| google\_cloud | ./modules/gcp |  |
+| terraform\_state\_backend | cloudposse/tfstate-backend/aws | 0.33.0 |
 
 ### Inputs
 
-| Name               | Description                                                                                                                                                                  | Type     | Default         |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | --------------- |
-| aws_default_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-east-1"`   |
-| backend_destroy    | Allows destroying the backend.                                                                                                                                               | `string` | `"false"`       |
-| backend_stage      | Stages possible for Backend.                                                                                                                                                 | `string` | `"test"`        |
-| gcp_instance_name  | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"gcp-machine"` |
-| gcp_project_id     | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `""`            |
-| gcp_project_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-west1"`    |
+| Name | Description | Type | Default |
+|------|-------------|------|---------|
+| aws\_default\_region | Your default region for AWS resources creation. [Available regions for Google Compute on Free Tier.](https://free.terraform.gruber.dev.br/docs/resources/providers/aws#options) | `string` | `"us-east-1"` |
+| backend\_destroy | Allows destroying all resourcesinside the configured S3 Remote Backend. See more at [tf-free's Backend Documentation](https://free.terraform.gruber.dev.br/docs/setup/backend) | `string` | `"false"` |
+| backend\_stage | Stages possible for Backend. Set for a random string. | `string` | `"test"` |
+| ec2\_aws | Allow for the creation of EC2 instances on AWS. | `bool` | `true` |
+| gcp\_instance\_name | Your VM instance name. [Naming resources convention](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"gcp-machine"` |
+| gcp\_project\_id | Your static IP network nameP. [Naming resources convention](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"test"` |
+| gcp\_project\_region | Zone location of your instance, [see the list of available regions](https://cloud.google.com/compute/docs/regions-zones#available) - [Terraform provider documentation](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance#zone) | `string` | `"us-west1"` |
+| gcp\_storage\_permissions | See all available values for the parameter at [Predefined ACL's on GCS Permissions](https://cloud.google.com/storage/docs/access-control/lists#predefined-acl) | `string` | `"publicread"` |
+| prevents\_destroy | Prevents destroying the previously provisioned S3 Remote Backend. See more at [tf-free's Backend Documentation](https://free.terraform.gruber.dev.br/docs/setup/backend) | `bool` | `true` |
+| rds\_aws | Allow for the creation of a PostgreSQL database on AWS | `bool` | `true` |
 
 ### Outputs
 
-| Name                   | Description                                                                        |
-| ---------------------- | ---------------------------------------------------------------------------------- |
-| aws_ec2_ipv6_addresses | AWS EC2 IPv6 Public Address                                                        |
-| aws_ec2_password_data  | List of Base-64 encoded encrypted password data for AWS EC2 instances              |
-| aws_ec2_private_ip     | AWS EC2 assigned Private IP                                                        |
-| aws_ec2_public_ip      | AWS EC2 IPv4 Public Address                                                        |
-| db_backend_name        | Name of the resulting DynamoDB created for locking state files.                    |
-| gcp_public_ip          | GCP VM Compute IPv4 Public Address                                                 |
-| s3_backend_bucket      | ID of the resulting S3 bucket created on AWS as part of the backend infrastructure |
-| s3_backend_domain      | Domain name of the S3 bucket created on AWS as part of the backend infrastructure  |
-
+| Name | Description |
+|------|-------------|
+| aws\_ec2\_ipv6\_addresses | AWS EC2 IPv6 Public Address |
+| aws\_ec2\_password\_data | List of Base-64 encoded encrypted password data for AWS EC2 instances |
+| aws\_ec2\_private\_ip | AWS EC2 assigned Private IP |
+| aws\_ec2\_public\_ip | AWS EC2 IPv4 Public Address |
+| db\_backend\_name | Name of the resulting DynamoDB created for locking state files. |
+| gcp\_public\_ip | GCP VM Compute IPv4 Public Address |
+| s3\_backend\_bucket | ID of the resulting S3 bucket created on AWS as part of the backend infrastructure |
+| s3\_backend\_domain | Domain name of the S3 bucket created on AWS as part of the backend infrastructure |
 <!-- END_TF_DOCS -->
 
 </details>
@@ -126,7 +128,7 @@ More information at the [provider's documentation page][tf-free-aws-resources].
 <details>
 
   <summary>
-   Microsoft Azure
+   Microsoft Azure (not ready yet)
   </summary>
 
 ---
@@ -142,12 +144,13 @@ More information at the [provider's documentation page][tf-free-azure-resources]
 
 ---
 
-</details>
+## </details>
 
+</details>
 <details>
 
   <summary>
-   Oracle Cloud
+   Oracle Cloud (not ready yet)
   </summary>
 
 ---
@@ -174,7 +177,7 @@ Be sure to [read the terms][usage-terms] of usage to understand the responsabili
 <!-- Images URLs -->
 
 [drone-img]: https://img.shields.io/drone/build/gruberdev/tf-free?label=Pipeline%20Status&color=46bac0&labelColor=1F1F1F&logo=Drone&style=flat-square&server=https%3A%2F%2Fdrone.gruber.dev.br
-[docs-img]: https://img.shields.io/badge/read%20the%20documentation-online?style=flat-square&logo=zeit&color=black
+[docs-img]: https://img.shields.io/badge/read%20available%20documentation-online?style=flat-square&logo=zeit&color=black
 
 <!-- Repository links -->
 
@@ -183,6 +186,7 @@ Be sure to [read the terms][usage-terms] of usage to understand the responsabili
 [guidelines]: https://www.hashicorp.com/community-guidelines
 [free-aws]: https://aws.amazon.com/free/?all-free-tier
 [free-gcp]: https://cloud.google.com/free
+[kis-approach]: https://en.wikipedia.org/wiki/KISS_principle
 [free-docs-gcp]: https://cloud.google.com/free/docs/gcp-free-tier
 [free-azure]: https://azure.microsoft.com/en-us/free/
 [azure-faq]: https://azure.microsoft.com/en-us/free/free-account-faq/

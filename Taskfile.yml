@@ -1,17 +1,6 @@
 version: "3"
 
 tasks:
-  default:
-    cmds:
-      - task: clean
-      - task: tf-clean
-      - task: generate
-      - task: vet
-      - task: fmt
-      - task: lint
-      - task: test
-      - task: mod
-
   docker-init:
     desc: Create and cache your Docker container
     cmds:
@@ -22,6 +11,8 @@ tasks:
 
   docker:
     desc: Create and cache your Docker container
+    deps:
+      - build
     cmds:
       - docker run -it --rm --name terraformfree -e GOOGLE_PROJECT=$GOOGLE_PROJECT -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION terraformfree:latest
 
@@ -32,20 +23,15 @@ tasks:
       - docker rm terraformfree:latest || true
       - docker build --cache-from terraformfree:latest --no-cache -t terraformfree:latest .
 
-  docker-test:
-    desc: Run tests from inside your container
-    cmds:
-      - gcloud auth login
-      - cd test && go mod init "github.com/gruberdev/tf-free" || true
-      - cd test && go mod tidy
-      - cd test && go test -v -timeout 5m -run TestUnitCompute
-      - cd test && go test -v -timeout 5m -run TestUnitVPC
-      - cd test && go test -v -timeout 10m -run TestIntegrationGCP
-
   build-all:
     desc: Build executable binary with GoReleaser.
     cmds:
       - goreleaser --snapshot --skip-publish --rm-dist
+
+  gcp:
+    desc: Build executable binary with GoReleaser.
+    cmds:
+      - gcloud auth application-default login
 
   generate:
     desc: Initialize test fakes
@@ -56,11 +42,6 @@ tasks:
     desc: Initialize module and build cache, and remake go.sum file.
     cmds:
       - go vet ./...
-
-  gcp:
-    desc: Initialize module and build cache, and remake go.sum file.
-    cmds:
-      - gcloud auth application-default login
 
   fmt:
     desc: Format Go files
@@ -84,6 +65,10 @@ tasks:
       - terraform-docs markdown -c .terraform-docs.yml ./modules/gcp/compute --output-file README.md
       - terraform-docs markdown -c .terraform-docs.yml ./modules/gcp/firewall --output-file README.md
       - terraform-docs markdown -c .terraform-docs.yml ./modules/gcp/vpc --output-file README.md
+      - terraform-docs markdown -c .terraform-docs.yml ./modules/azure --output-file README.md
+      - terraform-docs markdown -c .terraform-docs.yml ./modules/azure/compute --output-file README.md
+      - terraform-docs markdown -c .terraform-docs.yml ./modules/azure/db --output-file README.md
+      - terraform-docs markdown -c .terraform-docs.yml ./modules/azure/vpc --output-file README.md
       - terraform-docs markdown -c .terraform-docs.yml ./modules/gcp/storage --output-file README.md
 
   docs:
@@ -121,72 +106,98 @@ tasks:
       - go get github.com/pcasteran/terraform-graph-beautifier
       - terraform graph | terraform-graph-beautifier --exclude="module.root.provider" --output-type=cyto-html > graph.html
 
-  gcp-test:
-    desc: Terraform testing (GCP modules)
+  gcp-boot:
+    desc: test
     cmds:
       - cd test/gcp && rm go.mod || true
       - cd test/gcp && rm go.sum || true
-      - cd test/gcp && go mod init "github.com/gruberdev/tf-free" && go mod tidy
-      - cd test/gcp && go test -v -timeout 5m -run TestUnitCompute
-      - cd test/gcp && go test -v -timeout 5m -run TestUnitVPC
-      - cd test/gcp && go test -v -timeout 5m -run TestUnitStorage
+      - cd test/gcp && go mod init "github.com/gruberdev/tf-free" || true
+      - cd test/gcp && go mod tidy || true
+
+  gcp-init:
+    desc: Bootstrapping Google Cloud provider testing files
+    cmds:
+      - cd test/gcp && rm go.mod || true
+      - cd test/gcp && rm go.sum || true
+      - cd test/gcp && go mod init "github.com/gruberdev/tf-free" || true
+      - cd test/gcp && go mod tidy || true
+
+  gcp-test:
+    desc: Terraform testing (GCP provider)
+    deps:
+      - gcp-boot
+      - gcp-init
+      - unit-network-gcp
+      - unit-compute-gcp
+      - unit-storage-gcp
+    cmds:
       - cd test/gcp && go test -v -timeout 10m -run TestIntegrationGCP
 
-  full-test-local:
-    desc: Terraform testing (GCP modules)
+  aws-init:
+    desc: Bootstrapping AWS provider testing files
     cmds:
-      - cd test/gcp && rm go.mod || true
-      - cd test/gcp && rm go.sum || true
-      - cd test/gcp && go mod init "github.com/gruberdev/tf-free" && go mod tidy
-      - cd test/gcp && go test -v -timeout 5m -run TestUnitCompute
-      - cd test/gcp && go test -v -timeout 5m -run TestUnitVPC
-      - cd test/gcp && go test -v -timeout 10m -run TestIntegrationGCP
       - cd test/aws && rm go.mod || true
       - cd test/aws && rm go.sum || true
       - cd test/aws && go mod init "github.com/gruberdev/tf-free" && go mod tidy
-      - cd test/gcp && go test -v -timeout 5m -run TestUnitEC2
 
   aws-test:
-    desc: Terraform testing (AWS modules)
+    deps:
+      - aws-init
+    desc: Terraform testing (AWS provider)
     cmds:
       - cd test/aws && go mod init "github.com/gruberdev/tf-free" && go mod tidy
-      - cd test/aws && go test -v -timeout 5m -run TestUnitEC2
+      - cd test/aws && go test -v -timeout 10m -run TestUnitEC2
+      - cd test/aws && go test -v -timeout 10m -run TestUnitRDS
+
+  full-test-local:
+    desc: Terraform testing all providers.
+    deps:
+      - gcp-test
+      - aws-test
+      - docker-test
+    cmds:
+      - echo "Finished testing."
 
   apply-local:
-    desc: Terraform standard initialization
+    desc: Terraform standard local apply command
     cmds:
       - terraform init
       - terraform apply -auto-approve
 
   destroy-local:
-    desc: Terraform standard initialization
+    desc: Terraform standard local destroy command
     cmds:
       - terraform destroy -auto-approve
 
   init:
-    desc: Terraform standard initialization
+    desc: Terraform standard local init command
     cmds:
       - terraform init -upgrade
 
   initialapply:
-    desc: Terraform standard initialization
+    desc: Terraform standard initial apply command (w/ Backend)
     cmds:
       - terraform init -reconfigure
       - terraform apply -auto-approve
       - terraform init -force-copy
 
-  test-docker:
-    desc: Terraform standard initialization
+  init-docker:
     cmds:
       - cd test/docker && rm go.mod || true
       - cd test/docker && rm go.sum || true
       - cd test/docker && go mod init "github.com/gruberdev/tf-free" && go mod tidy
-      - cd test/docker && go test -v -timeout 5m -run TestDockerBuild
+
+  docker-test:
+    desc: Terraform standard initialization
+    deps:
+      - init-docker
+    cmds:
+      - cd test/docker && go test -v -timeout 45m -run TestDockerBuild
 
   lastdestroy:
     desc: Terraform standard initialization
     cmds:
-      - terraform apply -var backend_destroy=true -target module.terraform_state_backend -auto-approve
+      - terraform apply -var backend_destroy=true -var prevents_destroy=false -target module.terraform_state_backend -auto-approve
       - terraform init -force-copy
       - terraform destroy -target  module.aws.module.rds.aws_db_instance.rds -auto-approve
       - terraform destroy -auto-approve
@@ -205,6 +216,7 @@ tasks:
     desc: Terraform standard initialization
     cmds:
       - cd modules/gcp && terraform apply -auto-approve
+
   destroy-gcp:
     desc: Terraform standard initialization
     cmds:
@@ -237,10 +249,17 @@ tasks:
       - cd modules/aws && terraform destroy -auto-approve
       - cd modules/aws && terraform apply -auto-approve
 
+  heavy-artillery:
+    desc: Destroy all resources but the S3 Backend and the DynamoDB instances on AWS.
+    cmds:
+      - terraform destroy -target module.google_cloud -auto-approve
+      - terraform destroy -target module.aws -auto-approve
+
   tf-clean:
     desc: Terraform standard initialization
     cmds:
       - rm -rf ./.terraform || true
+      - rm -rf ./.blast || true
       - rm terraform.tfstate || true
       - rm terraform.tfstate.backup || true
       - rm ./.terraform.lock.hcl || true
@@ -248,6 +267,9 @@ tasks:
       - rm errored.tfstate || true
       - rm graph.html || true
       - rm index.html || true
+      - rm plan.json || true
+      - rm plan.out || true
+      - rm gcp.json || true
       - cd modules && cd gcp && rm -rf ./.terraform && rm ./.terraform.lock.hcl || true
       - cd modules && cd gcp && cd vpc && rm -rf ./.terraform && rm ./.terraform.lock.hcl || true
       - cd modules && cd gcp && cd firewall && rm -rf ./.terraform && rm ./.terraform.lock.hcl || true
@@ -255,40 +277,51 @@ tasks:
       - cd modules && cd aws && rm -rf ./.terraform && rm ./.terraform.lock.hcl || true
       - cd modules && cd aws && cd ec2 && rm -rf ./.terraform && rm ./.terraform.lock.hcl || true
       - cd modules && cd aws && cd rds && rm -rf ./.terraform && rm ./.terraform.lock.hcl || true
+      - rm examples/aws/unit/ec2/.terraform.lock.hcl || true
+      - rm -rf examples/aws/unit/ec2/.terraform || true
+      - rm examples/aws/unit/ec2/terraform.tfstate || true
+      - rm examples/aws/unit/ec2/terraform.tfstate.backup || true
+      - rm examples/aws/unit/rds/.terraform.lock.hcl || true
+      - rm -rf examples/aws/unit/rds/.terraform || true
+      - rm examples/aws/unit/rds/terraform.tfstate || true
+      - rm examples/aws/unit/rds/terraform.tfstate.backup || true
 
   init-drone:
     desc: Terraform standard initialization
     cmds:
-      - apk add build-base git
+      - apk add build-base git curl
       - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
 
-  drone-gcp:
-    desc: Terraform standard initialization
-    cmds:
-      - cd test/gcp && go mod init "github.com/gruberdev/tf-free" || true
-      - cd test/gcp && go mod tidy
-
   unit-compute-gcp:
-    desc: Terraform standard initialization
+    deps:
+      - gcp-init
     cmds:
       - cd test/gcp && go test -v -timeout 5m -run TestUnitCompute
 
   unit-storage-gcp:
-    desc: Terraform standard initialization
+    deps:
+      - gcp-init
     cmds:
       - cd test/gcp && go test -v -timeout 5m -run TestUnitStorage
 
   unit-network-gcp:
-    desc: Terraform standard initialization
+    deps:
+      - gcp-init
     cmds:
       - cd test/gcp && go test -v -timeout 5m -run TestUnitVPC
 
   unit-ec2-aws:
-    desc: Terraform standard initialization
+    deps:
+      - aws-init
     cmds:
-      - cd test/aws && go test -v -timeout 5m -run TestUnitEC2
+      - cd test/aws && go test -v -timeout 15m -run TestUnitEC2
 
-  integration-gcp:
-    desc: Terraform standard initialization
+  unit-rds-aws:
+    deps:
+      - aws-init
     cmds:
-      - cd test/gcp && go test -v -timeout 10m -run TestIntegrationGCP
+      - cd test/aws && go test -v -timeout 30m -run TestUnitRDS
+
+  blast-radius:
+    cmds:
+      - docker run --rm -it -p 5013:5000 -v $(pwd):/data:ro -v $(pwd)/blast:/tmp/results --security-opt apparmor:unconfined --cap-add=SYS_ADMIN blastradius:local

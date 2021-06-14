@@ -1,4 +1,3 @@
-
 output "s3_backend_domain" {
   value       = module.terraform_state_backend.s3_bucket_domain_name
   description = "Domain name of the S3 bucket created on AWS as part of the backend infrastructure"

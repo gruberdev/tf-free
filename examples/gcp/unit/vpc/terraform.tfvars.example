@@ -1,0 +1,3 @@
+gcp_network_name       = "example-network"
+gcp_project_region      = ""
+gcp_project_id          = ""

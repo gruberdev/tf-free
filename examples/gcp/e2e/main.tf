@@ -6,9 +6,16 @@ provider "google-beta" {
 }
 
 module "google_cloud" {
-  source         = "./modules/gcp"
+  source         = "../../../modules/gcp"
   gcp_project_id = var.gcp_project_id
   project_region = var.gcp_project_region
   instance_name  = var.gcp_instance_name
   permissions    = var.gcp_storage_permissions
+  bucket_name    = var.gcp_bucket_name
+  network_name   = var.gcp_network_name
 }
+
+output "gcp_public_ip" {
+  value     = module.google_cloud.machine_ip
+}
+

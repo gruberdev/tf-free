@@ -1,9 +1,3 @@
-variable "should_be_created" {
-  description = "Should the EC2 be created?"
-  type        = bool
-  default     = true
-}
-
 variable "name" {
   description = "The Name of the EC2"
   type        = string
@@ -36,11 +30,13 @@ variable "instance_type" {
 
 variable "vpc_id" {
   description = "The ID of the VPC"
+  sensitive   = true
   type        = string
 }
 
 variable "public_subnet_id" {
   description = "The ID of the Public Subnet"
+  sensitive   = true
   type        = string
 }
 
@@ -52,6 +48,7 @@ variable "ssh_name" {
 
 variable "ssh_public" {
   description = "The local path to the SSH Public Key"
+  sensitive   = true
   type        = string
 }
 variable "seed_data" {

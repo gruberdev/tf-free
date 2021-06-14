@@ -1,7 +1,11 @@
 variable "name" {
   type        = string
   default     = "private"
-  description = "A name for the project's GCE Instance. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format)"
+  description = "A name for GCP's Virtual Machine instance. [Naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format)"
+  validation {
+    condition     = can(regex("^[a-z0-9][-a-z0-9]*[a-z0-9]$", var.name))
+    error_message = "The instance name can contain only dashes, lowercase letters, and numbers. It must be at least 2 characters and can neither start nor end with a dash."
+  }
 }
 
 variable "type" {
@@ -59,5 +63,6 @@ variable "network_name" {
 variable "ip_addr" {
   type        = string
   default     = null
+  sensitive = true
   description = "The IP address that will be 1:1 mapped to the instance's network ip. If not given, one will be generated. [Docs Ref.](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance#access_config)"
 }

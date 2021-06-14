@@ -34,6 +34,25 @@ Related: [Pricing on egress rates.][pricing-egress] and [How Google calculates e
 
 ### Examples
 
+```hcl | /examples/gcp/e2e/main.tf
+provider "google" {
+region = "your_project_region"
+}
+provider "google-beta" {
+region = "your_project_region"
+}
+
+module "gcp_free" {
+source = "https://github.com/gruberdev/tf-free/tree/main/modules/gcp"
+gcp_project_id = "your_project_id"
+project_region = "your_project_region"
+instance_name = "your_resulting_instance_name"
+permissions = "permissions_configuration"
+bucket_name = "resulting_bucket_name"
+network_name = "resulting_network_name"
+}
+```
+
 ### References
 
 - [Main landing page on the Free-Tier plan][google-free-landing]
@@ -83,3 +102,7 @@ Related: [Pricing on egress rates.][pricing-egress] and [How Google calculates e
 [compute-api-enable]: https://console.cloud.google.com/apis/library/compute.googleapis.com
 [cloud-api-info]: https://cloud.google.com/deployment-manager
 [cloud-api-enable]: https://console.cloud.google.com/apis/library/deploymentmanager.googleapis.com
+
+```
+
+```

@@ -1,0 +1,3 @@
+gcp_instance_name       = "example-machine"
+gcp_project_region      = ""
+gcp_project_id          = ""

@@ -22,8 +22,8 @@ func TestIntegrationGCP(t *testing.T) {
 	exampleDir := test_structure.CopyTerraformFolderToTemp(t, "../../", "examples/gcp/e2e")
 	region := gcp.GetRandomRegion(t, projectId, []string{"us-west1", "us-central1", "us-east1"}, nil)
 	randomValidGcpName := gcp.RandomValidGcpName()
-	randomValidIPGcpName := gcp.RandomValidGcpName()
 	randomValidNetworkGcpName := gcp.RandomValidGcpName()
+	randomValidBucketGcpName := gcp.RandomValidGcpName()
 
 	// Variables to pass to our Terraform code using -var options
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
@@ -33,8 +33,8 @@ func TestIntegrationGCP(t *testing.T) {
 			"gcp_project_region": region,
 			"gcp_instance_name":  randomValidGcpName,
 			"gcp_network_name":   randomValidNetworkGcpName,
+			"gcp_bucket_name":    randomValidBucketGcpName,
 			"gcp_project_id":     projectId,
-			"gcp_ipv4_name":      randomValidIPGcpName,
 		},
 		EnvVars: map[string]string{
 			"GOOGLE_PROJECT": projectId,

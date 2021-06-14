@@ -23,7 +23,6 @@ func TestUnitStorage(t *testing.T) {
 	exampleDir := test_structure.CopyTerraformFolderToTemp(t, "../../", "examples/gcp/unit/storage")
 	region := gcp.GetRandomRegion(t, projectId, []string{"us-east1"}, nil)
 
-	gsIPName := gcp.RandomValidGcpName()
 	gsNetworkName := gcp.RandomValidGcpName()
 	gsBucketName := gcp.RandomValidGcpName()
 
@@ -35,7 +34,6 @@ func TestUnitStorage(t *testing.T) {
 			"gcp_project_region": region,
 			"gcp_network_name":   gsNetworkName,
 			"gcp_project_id":     projectId,
-			"gcp_ipv4_name":      gsIPName,
 			"bucket_name":        gsBucketName,
 		},
 		EnvVars: map[string]string{

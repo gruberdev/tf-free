@@ -1,17 +1,18 @@
 variable "project_id" {
   type        = string
-  description = "Your instance's network on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format)"
+  sensitive   = true
+  description = "Google Cloud SDK project's ID number identifier. [Indetifying projects | GCP Docs](https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects)"
 }
 variable "name" {
   type        = string
-  default     = "regional-buckeet"
-  description = "Your instance's network on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format)"
+  default     = "regionaltftest"
+  description = "Public name of your storage bucket on GCP. [Naming guidelines for Storage Buckets | GCP Docs](https://cloud.google.com/storage/docs/naming-buckets)"
 }
 
 variable "storage_class" {
   type        = string
   default     = "STANDARD"
-  description = "[GCP Docs on Storage Bucket Classes](https://cloud.google.com/storage/docs/storage-classes) | [GCP Storage Classes on Terraform Provider](https://registry.terraform.io/providers/hashicorp/google-beta/latest/docs/resources/storage_bucket#storage_class)"
+  description = "[Storage Bucket Classes | GCP Docs](https://cloud.google.com/storage/docs/storage-classes) | [GCP Storage Classes on Terraform Provider](https://registry.terraform.io/providers/hashicorp/google-beta/latest/docs/resources/storage_bucket#storage_class)"
 }
 
 variable "enable_destroy" {
@@ -34,8 +35,8 @@ variable "firestore_name" {
 
 variable "region" {
   type        = string
-  default     = "us-central1"
-  description = "Your instance's network on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format)"
+  default     = "us-west1"
+  description = "Identifier for default resource location based on GCP region naming convention. [Regions and Zones | GCP Docs](https://cloud.google.com/compute/docs/regions-zones)"
 }
 
 variable "fire_size" {
