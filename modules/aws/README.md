@@ -5,7 +5,7 @@
 |------|--------|---------|
 | ec2 | ./ec2 |  |
 | rds | ./rds |  |
-| vpc | terraform-aws-modules/vpc/aws |  |
+| vpc | ./vpc |  |
 
 ### Inputs
 

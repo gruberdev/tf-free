@@ -88,7 +88,6 @@ dist
 .dynamodb/
 .tern-por
 
-
 # .vscode
 .vscode
 
@@ -97,3 +96,11 @@ slim.report.json
 Dockerfile.fat
 creport.jsondiff
 *.report.json
+
+# Terraform Visual 
+terraform-visual-report
+terraform-visual-report/*
+
+# Blast Radius
+blast/*
+blast
