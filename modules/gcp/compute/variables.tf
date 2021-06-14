@@ -1,7 +1,11 @@
 variable "name" {
   type        = string
   default     = "private"
-  description = "A name for the project's GCE Instance. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format)"
+  description = "A name for GCP's Virtual Machine instance. [Naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format)"
+  validation {
+    condition     = can(regex("^[a-z0-9][-a-z0-9]*[a-z0-9]$", var.name))
+    error_message = "The instance name can contain only dashes, lowercase letters, and numbers. It must be at least 2 characters and can neither start nor end with a dash."
+  }
 }
 
 variable "type" {

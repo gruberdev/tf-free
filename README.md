@@ -1,18 +1,18 @@
 [![Logo Animation](https://readme-typing-svg.herokuapp.com?font=Major+Mono+Display&color=00E7F7&size=40&vCenter=true&width=800&height=200&lines=tf-free;cloud+for+free.)](https://free.terraform.gruber.dev.br)
 
-<a href='https://free.terraform.gruber.dev.br' target='_blank'>![docs-img]</a>
+<a href='https://free.terraform.gruber.dev.br' target='_blank'>![docs-img]</a> <a href='https://drone.gruber.dev.br' target='_blank'>![drone-img]</a>
 
 ## Objective
 
-> **Creating and managing all available resources offered by major cloud providers in free-tier plans. Terraform is as the main tool used for creating, managing and providing access to these resources in a simplified and centralized manner.**
+> **Creating and managing all available resources offered by major cloud providers exclusively in free-tier plans. Using Terraform to create and manage all the resources in a simplified and centralized manner.**
 
 ## Motivation
 
 Every major cloud provider offers a free tier that allows for some kind of resource free of charge, still, learning every cloud and managing these resources can prove burdensome to most.
 
-The goal is to automate the management of these resources using Terraform as the centralizing tool. It also aims to provide resources for learning and improve your skills as a DevOps Engineer and as a Terraform user, even if you're developer that never touched cloud infrastructure, nowadays there's great value in learning these tools.
+The goal is to automate the management of these resources using Terraform as the centralizing tool. It also aims to provide resources for learning and improve your skills as a SRE/DevOps Engineer and as a Terraform user, even if you're developer that never touched cloud infrastructure, nowadays there's great value in learning these tools.
 
-A CLI tool is part of this project for those who wish a more KIS-like approach.
+A CLI tool is part of this project for those who wish a more [KIS][kis-approach]-like approach.
 
 ## Getting started
 
@@ -28,11 +28,11 @@ wget https://raw.githubusercontent.com/gruberdev/setup/main/install.sh && cat in
 curl -sSL https://raw.githubusercontent.com/gruberdev/setup/main/install.sh | bash -s terraform-free
 ```
 
-- [CLI Tool Documentation][tf-free-docs-cli]
+▶ [CLI Tool Documentation][tf-free-docs-cli]
 
 <details>
   <summary>
-   Terraform module documentation
+   Module documentation
   </summary>
 
 ---
@@ -51,12 +51,12 @@ curl -sSL https://raw.githubusercontent.com/gruberdev/setup/main/install.sh | ba
 | Name | Description | Type | Default |
 |------|-------------|------|---------|
 | aws\_default\_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-east-1"` |
-| backend\_destroy | Allows destroying the backend. | `string` | `"false"` |
+| backend\_destroy | Allows destroying a previously provisioned S3 Remote Backend. See more at [tf-free's Backend Documentation]() | `string` | `"false"` |
 | backend\_stage | Stages possible for Backend. | `string` | `"test"` |
 | gcp\_instance\_name | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"gcp-machine"` |
-| gcp\_project\_id | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `""` |
-| gcp\_project\_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-west1"` |
-| gcp\_storage\_permissions | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"publicread"` |
+| gcp\_project\_id | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"test"` |
+| gcp\_project\_region | Zone location of your instance, you can choose a region on [GCP's Official Documentation](https://cloud.google.com/compute/docs/regions-zones#available) - [Terraform provider documentation](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance#zone) | `string` | `"us-west1"` |
+| gcp\_storage\_permissions | See all available values for the parameter at [Predefined ACL's on GCS Permissions](https://cloud.google.com/storage/docs/access-control/lists#predefined-acl) | `string` | `"publicread"` |
 
 ### Outputs
 
@@ -154,26 +154,6 @@ More information at the [provider's documentation page][tf-free-azure-resources]
 
 ### Available Resources
 
-- **2x** [AMD based VM, 1/8 shared CPU and 1GB RAM][orcle-compute-info]
-- **2x** [Oracle NoSQL Database with 20GB][oracle-database-info]
-- **1x** [10GB Object Storage Capacity][oracle-storage-info]
-
-More information at the [provider's documentation page][tf-free-oracle-resources].
-
----
-
-</details>
-
-<details>
-
-  <summary>
-   Oracle Cloud
-  </summary>
-
----
-
-### Available Resources
-
 - **2x** [AMD based VM, 1/8 shared CPU and 1GB RAM][oracle-compute-info]
 - **2x** [Oracle NoSQL Database with 20GB][oracle-database-info]
 - **1x** [10GB Object Storage Capacity][oracle-storage-info]
@@ -194,7 +174,7 @@ Be sure to [read the terms][usage-terms] of usage to understand the responsabili
 <!-- Images URLs -->
 
 [drone-img]: https://img.shields.io/drone/build/gruberdev/tf-free?label=Pipeline%20Status&color=46bac0&labelColor=1F1F1F&logo=Drone&style=flat-square&server=https%3A%2F%2Fdrone.gruber.dev.br
-[docs-img]: https://img.shields.io/badge/read%20the%20documentation-online?style=flat-square&logo=zeit&color=black
+[docs-img]: https://img.shields.io/badge/read%20available%20documentation-online?style=flat-square&logo=zeit&color=black
 
 <!-- Repository links -->
 
@@ -203,6 +183,7 @@ Be sure to [read the terms][usage-terms] of usage to understand the responsabili
 [guidelines]: https://www.hashicorp.com/community-guidelines
 [free-aws]: https://aws.amazon.com/free/?all-free-tier
 [free-gcp]: https://cloud.google.com/free
+[kis-approach]: https://en.wikipedia.org/wiki/KISS_principle
 [free-docs-gcp]: https://cloud.google.com/free/docs/gcp-free-tier
 [free-azure]: https://azure.microsoft.com/en-us/free/
 [azure-faq]: https://azure.microsoft.com/en-us/free/free-account-faq/
