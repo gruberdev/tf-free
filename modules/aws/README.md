@@ -11,9 +11,11 @@
 
 | Name | Description | Type | Default |
 |------|-------------|------|---------|
+| ec2\_enable | AWS Profile | `bool` | `true` |
 | ec2\_ssh\_name | The SSH Key Name | `string` | `"free-tier-ec2-key"` |
 | ec2\_ssh\_public | The local path to the SSH Public Key | `string` | `"~/.ssh-temp/id_rsa.pub"` |
 | profile | AWS Profile | `string` | `"terraform"` |
+| rds\_enable | AWS Profile | `bool` | `true` |
 | rds\_password | Region for the RDS database | `string` | `"testingdatabase89372934279"` |
 | rds\_user | Region for AWS resources | `string` | `"testing"` |
 | region | Region for AWS resources | `string` | `"us-east-1"` |

@@ -10,6 +10,18 @@ variable "region" {
   default     = "us-east-1"
 }
 
+variable "ec2_enable" {
+  description = "AWS Profile"
+  type        = bool
+  default     = true
+}
+
+variable "rds_enable" {
+  description = "AWS Profile"
+  type        = bool
+  default     = true
+}
+
 variable "ec2_ssh_name" {
   description = "The SSH Key Name"
   type        = string

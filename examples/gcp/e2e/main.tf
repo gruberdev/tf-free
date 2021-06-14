@@ -14,3 +14,8 @@ module "google_cloud" {
   bucket_name    = var.gcp_bucket_name
   network_name   = var.gcp_network_name
 }
+
+output "gcp_public_ip" {
+  value     = module.google_cloud.machine_ip
+}
+

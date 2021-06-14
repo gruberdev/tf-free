@@ -38,7 +38,6 @@ resource "aws_security_group" "security_group" {
 }
 
 resource "aws_instance" "ec2" {
-  count = var.should_be_created ? 1 : 0
 
   ami           = var.ami
   instance_type = var.instance_type

@@ -1,9 +1,3 @@
-variable "should_be_created" {
-  description = "Should the EC2 be created?"
-  type        = bool
-  default     = true
-}
-
 variable "name" {
   description = "The Name of the EC2"
   type        = string

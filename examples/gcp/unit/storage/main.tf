@@ -8,7 +8,6 @@ provider "google-beta" {
 
 module "gcp_vpc" {
   vpc_name       = var.gcp_network_name
-  static_ip_name = var.gcp_ipv4_name
   source         = "../../../../modules/gcp/vpc"
   google_project = var.gcp_project_id
 }
@@ -24,4 +23,9 @@ module "gcp_storage" {
   /*   firestore_name = var.firestore_name */
   region       = var.gcp_project_region
   network_name = module.gcp_vpc.network_name
+}
+
+output "bucket_name" {
+  description = "Name of the GCS bucket that will receive the objects."
+  value       = module.gcp_storage.bucket_name
 }

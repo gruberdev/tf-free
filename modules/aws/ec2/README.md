@@ -14,7 +14,6 @@ No modules.
 | security\_group\_description | The Description of the EC2 Security Group | `string` | `"Free Tier EC2 Security Group"` |
 | security\_group\_name | The Name of the EC2 Security Group | `string` | `"Free Tier EC2 Security Group"` |
 | seed\_data | The local path to the SSH Public Key | `string` | `""` |
-| should\_be\_created | Should the EC2 be created? | `bool` | `true` |
 | ssh\_name | The SSH Key Name | `string` | `"free-tier-ec2-key"` |
 | ssh\_public | The local path to the SSH Public Key | `string` | n/a |
 | vpc\_id | The ID of the VPC | `string` | n/a |

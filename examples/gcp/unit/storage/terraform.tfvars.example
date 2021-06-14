@@ -1,0 +1,6 @@
+gcp_instance_name       = "example-machine"
+gcp_project_region      = ""
+gcp_project_id          = ""
+gcp_bucket_name         = ""
+gcp_network_name        = ""
+gcp_storage_permissions = "publicread"
