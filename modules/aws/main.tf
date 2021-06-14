@@ -5,7 +5,7 @@ module "vpc" {
 
 module "ec2" {
   source = "./ec2"
-  count = var.ec2_enabled ? 1 : 0
+  count = var.ec2_enable ? 1 : 0
  
   vpc_id           = module.vpc.id
   public_subnet_id = module.vpc.public_subnets[0]
@@ -24,5 +24,5 @@ module "rds" {
   region = var.region
   vpc_id = module.vpc.id
   vpc_cidr_block = module.vpc.cidr_block
-  vpc_subnet_ids = ["${module.vpc.database_subnets[0]}", "${module.vpc.database_subnets[1]}", "${module.vpc.database_subnets[2]}"]
+  vpc_subnet_ids = ["${module.vpc.database_subnets[0]}", "${module.vpc.database_subnets[1]}"]
 }

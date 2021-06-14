@@ -22,7 +22,6 @@ resource "random_string" "bucket_name" {
 
 module "terraform_state_backend" {
   source = "cloudposse/tfstate-backend/aws"
-  # Cloud Posse recommends pinning every module to a specific version
   version                            = "0.33.0"
   namespace                          = random_string.namespace.result
   stage                              = var.backend_stage
@@ -42,11 +41,8 @@ resource "null_resource" "backend" {
     backend_destroy = var.backend_destroy
   }
   lifecycle {
-    prevent_destroy = false
+     prevent_destroy = true
   }
-  #  depends_on = [
-  #    terraform_state_backend
-  #  ]
 }
 
 module "google_cloud" {
@@ -65,4 +61,6 @@ module "google_cloud" {
 
 module "aws" {
   source = "./modules/aws"
+  ec2_enable = var.ec2_aws
+  rds_enable = var.rds_aws
 }

@@ -1,17 +1,6 @@
 version: "3"
 
 tasks:
-  default:
-    cmds:
-      - task: clean
-      - task: tf-clean
-      - task: generate
-      - task: vet
-      - task: fmt
-      - task: lint
-      - task: test
-      - task: mod
-
   docker-init:
     desc: Create and cache your Docker container
     cmds:
@@ -117,16 +106,26 @@ tasks:
       - go get github.com/pcasteran/terraform-graph-beautifier
       - terraform graph | terraform-graph-beautifier --exclude="module.root.provider" --output-type=cyto-html > graph.html
 
+  gcp-boot:
+    desc: test
+    cmds:
+      - cd test/gcp && rm go.mod || true
+      - cd test/gcp && rm go.sum || true
+      - cd test/gcp && go mod init "github.com/gruberdev/tf-free" || true
+      - cd test/gcp && go mod tidy || true
+
   gcp-init:
     desc: Bootstrapping Google Cloud provider testing files
     cmds:
       - cd test/gcp && rm go.mod || true
       - cd test/gcp && rm go.sum || true
-      - cd test/gcp && go mod init "github.com/gruberdev/tf-free" && go mod tidy
+      - cd test/gcp && go mod init "github.com/gruberdev/tf-free" || true
+      - cd test/gcp && go mod tidy || true
 
   gcp-test:
     desc: Terraform testing (GCP provider)
     deps:
+      - gcp-boot
       - gcp-init
       - unit-network-gcp
       - unit-compute-gcp
@@ -198,7 +197,7 @@ tasks:
   lastdestroy:
     desc: Terraform standard initialization
     cmds:
-      - terraform apply -var backend_destroy=true -target module.terraform_state_backend -auto-approve
+      - terraform apply -var backend_destroy=true -var prevents_destroy=false -target module.terraform_state_backend -auto-approve
       - terraform init -force-copy
       - terraform destroy -target  module.aws.module.rds.aws_db_instance.rds -auto-approve
       - terraform destroy -auto-approve
@@ -250,10 +249,17 @@ tasks:
       - cd modules/aws && terraform destroy -auto-approve
       - cd modules/aws && terraform apply -auto-approve
 
+  heavy-artillery:
+    desc: Destroy all resources but the S3 Backend and the DynamoDB instances on AWS.
+    cmds:
+      - terraform destroy -target module.google_cloud -auto-approve
+      - terraform destroy -target module.aws -auto-approve
+
   tf-clean:
     desc: Terraform standard initialization
     cmds:
       - rm -rf ./.terraform || true
+      - rm -rf ./.blast || true
       - rm terraform.tfstate || true
       - rm terraform.tfstate.backup || true
       - rm ./.terraform.lock.hcl || true
@@ -261,6 +267,9 @@ tasks:
       - rm errored.tfstate || true
       - rm graph.html || true
       - rm index.html || true
+      - rm plan.json || true
+      - rm plan.out || true
+      - rm gcp.json || true
       - cd modules && cd gcp && rm -rf ./.terraform && rm ./.terraform.lock.hcl || true
       - cd modules && cd gcp && cd vpc && rm -rf ./.terraform && rm ./.terraform.lock.hcl || true
       - cd modules && cd gcp && cd firewall && rm -rf ./.terraform && rm ./.terraform.lock.hcl || true
@@ -268,6 +277,14 @@ tasks:
       - cd modules && cd aws && rm -rf ./.terraform && rm ./.terraform.lock.hcl || true
       - cd modules && cd aws && cd ec2 && rm -rf ./.terraform && rm ./.terraform.lock.hcl || true
       - cd modules && cd aws && cd rds && rm -rf ./.terraform && rm ./.terraform.lock.hcl || true
+      - rm examples/aws/unit/ec2/.terraform.lock.hcl || true
+      - rm -rf examples/aws/unit/ec2/.terraform || true
+      - rm examples/aws/unit/ec2/terraform.tfstate || true
+      - rm examples/aws/unit/ec2/terraform.tfstate.backup || true
+      - rm examples/aws/unit/rds/.terraform.lock.hcl || true
+      - rm -rf examples/aws/unit/rds/.terraform || true
+      - rm examples/aws/unit/rds/terraform.tfstate || true
+      - rm examples/aws/unit/rds/terraform.tfstate.backup || true
 
   init-drone:
     desc: Terraform standard initialization

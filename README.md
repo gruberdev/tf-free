@@ -50,13 +50,16 @@ curl -sSL https://raw.githubusercontent.com/gruberdev/setup/main/install.sh | ba
 
 | Name | Description | Type | Default |
 |------|-------------|------|---------|
-| aws\_default\_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-east-1"` |
-| backend\_destroy | Allows destroying a previously provisioned S3 Remote Backend. See more at [tf-free's Backend Documentation]() | `string` | `"false"` |
-| backend\_stage | Stages possible for Backend. | `string` | `"test"` |
-| gcp\_instance\_name | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"gcp-machine"` |
-| gcp\_project\_id | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"test"` |
-| gcp\_project\_region | Zone location of your instance, you can choose a region on [GCP's Official Documentation](https://cloud.google.com/compute/docs/regions-zones#available) - [Terraform provider documentation](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance#zone) | `string` | `"us-west1"` |
+| aws\_default\_region | Your default region for AWS resources creation. [Available regions for Google Compute on Free Tier.](https://free.terraform.gruber.dev.br/docs/resources/providers/aws#options) | `string` | `"us-east-1"` |
+| backend\_destroy | Allows destroying all resourcesinside the configured S3 Remote Backend. See more at [tf-free's Backend Documentation](https://free.terraform.gruber.dev.br/docs/setup/backend) | `string` | `"false"` |
+| backend\_stage | Stages possible for Backend. Set for a random string. | `string` | `"test"` |
+| ec2\_aws | Allow for the creation of EC2 instances on AWS. | `bool` | `true` |
+| gcp\_instance\_name | Your VM instance name. [Naming resources convention](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"gcp-machine"` |
+| gcp\_project\_id | Your static IP network nameP. [Naming resources convention](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"test"` |
+| gcp\_project\_region | Zone location of your instance, [see the list of available regions](https://cloud.google.com/compute/docs/regions-zones#available) - [Terraform provider documentation](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance#zone) | `string` | `"us-west1"` |
 | gcp\_storage\_permissions | See all available values for the parameter at [Predefined ACL's on GCS Permissions](https://cloud.google.com/storage/docs/access-control/lists#predefined-acl) | `string` | `"publicread"` |
+| prevents\_destroy | Prevents destroying the previously provisioned S3 Remote Backend. See more at [tf-free's Backend Documentation](https://free.terraform.gruber.dev.br/docs/setup/backend) | `bool` | `true` |
+| rds\_aws | Allow for the creation of a PostgreSQL database on AWS | `bool` | `true` |
 
 ### Outputs
 
@@ -125,7 +128,7 @@ More information at the [provider's documentation page][tf-free-aws-resources].
 <details>
 
   <summary>
-   Microsoft Azure
+   Microsoft Azure (not ready yet)
   </summary>
 
 ---
@@ -147,7 +150,7 @@ More information at the [provider's documentation page][tf-free-azure-resources]
 <details>
 
   <summary>
-   Oracle Cloud
+   Oracle Cloud (not ready yet)
   </summary>
 
 ---
