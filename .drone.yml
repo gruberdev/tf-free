@@ -54,7 +54,7 @@ steps:
 
   - name: Docker build
     commands:
-      - task test-docker
+      - task docker-test
     when:
       event:
         - push
@@ -75,7 +75,7 @@ steps:
 ---
 kind: pipeline
 type: docker
-name: Notification Basic Sucessfull
+name: Notification Basic Success
 depends_on:
   - Basic testing
 trigger:
@@ -107,6 +107,8 @@ trigger:
   status:
     - failure
   event:
+    when:
+      - failure
     include:
       - push
       - pull_request
