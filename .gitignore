@@ -118,3 +118,7 @@ creport.jsondiff
 # Terraform Visual 
 terraform-visual-report
 terraform-visual-report/*
+
+# Blast Radius
+blast/*
+blast

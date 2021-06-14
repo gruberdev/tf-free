@@ -2,6 +2,10 @@
 kind: pipeline
 type: docker
 name: Kickoff
+trigger:
+  event:
+    - push
+    - pull_request
 steps:
   - name: Notification Webhook
     image: appleboy/drone-discord
@@ -13,13 +17,15 @@ steps:
       message: |-
         Drone CI multi-pipeline task initialized.
         Build number: {{build.number}}
-      event:
-        - push
 
 ---
 kind: pipeline
 type: exec
 name: Basic testing
+trigger:
+  event:
+    - push
+    - pull_request
 steps:
   - name: Terraform Plan
     commands:
@@ -65,6 +71,55 @@ steps:
         from_secret: aws_key
       AWS_ACCESS_KEY_ID:
         from_secret: aws_id
+
+---
+kind: pipeline
+type: docker
+name: Notification Basic Sucessfull
+depends_on:
+  - Basic testing
+trigger:
+  event:
+    - push
+    - pull_request
+steps:
+  - name: Notification Webhook
+    image: appleboy/drone-discord
+    settings:
+      webhook_id:
+        from_secret: discord_id
+      webhook_token:
+        from_secret: discord_token
+      message: |-
+        Drone CI multi-pipeline task initialized.
+        Build number: {{build.number}}
+      event:
+        - push
+    depends_on:
+      - Docker build
+      - Terraform Plan
+
+---
+kind: pipeline
+type: docker
+name: Notification Failure
+trigger:
+  status:
+    - failure
+  event:
+    include:
+      - push
+      - pull_request
+steps:
+  - name: Notification Webhook
+    image: appleboy/drone-discord
+    settings:
+      webhook_id:
+        from_secret: discord_id
+      webhook_token:
+        from_secret: discord_token
+      message: |-
+        Drone CI pipeline {{build.number}} has failed.
 
   # - name: tfsec
   #   image: tfsec/tfsec
@@ -112,6 +167,7 @@ steps:
   #       from_secret: aws_key
   #     AWS_ACCESS_KEY_ID:
   #       from_secret: aws_id
+
 ---
 kind: pipeline
 type: docker
@@ -130,13 +186,6 @@ steps:
       - rm test/aws/go.mod || true
       - rm test/aws/go.sum || true
       - cd test/aws && go mod init "github.com/gruberdev/tf-free" && go mod tidy
-    when:
-      branch:
-        include:
-          - main
-          - feature/aws_*
-      event:
-        - push
     environment:
       AWS_DEFAULT_REGION:
         from_secret: aws_region
@@ -144,6 +193,7 @@ steps:
         from_secret: aws_key
       AWS_ACCESS_KEY_ID:
         from_secret: aws_id
+
   - name: Unit Test EC2
     image: golang:1.16.4-alpine
     commands:
@@ -152,13 +202,6 @@ steps:
       - cd test/aws
       - go mod tidy
       - go test -v -timeout 14m -run TestUnitEC2
-    when:
-      branch:
-        include:
-          - main
-          - feature/aws_*
-      event:
-        - push
     depends_on:
       - Setup AWS
     environment:
@@ -187,13 +230,6 @@ steps:
       - cd test/gcp && go mod init "github.com/gruberdev/tf-free" && go mod tidy
       - cd ../docker && go mod init "github.com/gruberdev/tf-free" && go mod tidy
       - cd ../aws && go mod init "github.com/gruberdev/tf-free" && go mod tidy
-    when:
-      branch:
-        include:
-          - main
-          - feature/gcp_*
-      event:
-        - push
     environment:
       GOOGLE_PROJECT:
         from_secret: gcp_project_id
@@ -216,13 +252,6 @@ steps:
       message: |-
         Started GCP Pipeline on Drone CI.
         Build number: {{build.number}}
-    when:
-      branch:
-        include:
-          - main
-          - feature/gcp_*
-      event:
-        - push
 
   - name: Unit Compute
     image: golang:1.16.5-alpine
@@ -234,13 +263,6 @@ steps:
       - cd test/gcp
       - go mod tidy
       - go test -v -timeout 10m -run TestUnitCompute
-    when:
-      branch:
-        include:
-          - main
-          - feature/gcp_*
-      event:
-        - push
     depends_on:
       - Setup
     environment:
@@ -265,13 +287,6 @@ steps:
       - cd test/gcp
       - go mod tidy
       - go test -v -timeout 10m -run TestUnitVPC
-    when:
-      branch:
-        include:
-          - main
-          - feature/gcp_*
-      event:
-        - push
     depends_on:
       - Setup
     environment:
@@ -296,13 +311,6 @@ steps:
       - cd test/gcp
       - go mod tidy
       - go test -v -timeout 8m -run  TestUnitStorage
-    when:
-      branch:
-        include:
-          - main
-          - feature/gcp_*
-      event:
-        - push
     depends_on:
       - Setup
       - Unit Networking
@@ -329,13 +337,6 @@ steps:
       - cd test/gcp
       - go mod tidy
       - go test -v -timeout 10m -run TestIntegrationGCP
-    when:
-      branch:
-        include:
-          - main
-          - feature/gcp_*
-      event:
-        - push
     depends_on:
       - Unit Networking
       - Unit Compute
@@ -368,41 +369,6 @@ steps:
       - Setup
       - Integration Core Provider
       - Unit Compute
-    when:
-      branch:
-        include:
-          - main
-          - feature/gcp_*
-      event:
-        - push
-
-  - name: Failure @Testing GCP Module
-    image: appleboy/drone-discord
-    settings:
-      webhook_id:
-        from_secret: discord_id
-      webhook_token:
-        from_secret: discord_token
-      message: |-
-        Alert: **FAILURE** building the GCP pipeline on Drone CI.
-        Build number: {{build.number}}
-    depends_on:
-      - Unit Networking
-      - Setup
-      - Integration Core Provider
-      - Unit Compute
-    when:
-      trigger:
-        status:
-          - failure
-      status:
-        - failure
-      branch:
-        include:
-          - main
-          - feature/gcp_*
-      event:
-        - push
 
 ---
 kind: pipeline
@@ -414,11 +380,11 @@ depends_on:
 trigger:
   branch:
     - main
-    - feature/aws_*
-    - feature/gcp_*
   event:
     exclude:
       - pull_request
+    include:
+      - push
 steps:
   - name: build_static
     image: node:14.4
@@ -441,12 +407,6 @@ steps:
       - cp docs/vercel.json public/vercel.json
       - cp -r public/* $DOCS_REPO/ && cd $DOCS_REPO
       - git add . && git commit -a -m "updated docs" && git push
-    when:
-      branch:
-        - master
-        - docs
-      event:
-        - push
     environment:
       SSH_KEY:
         from_secret: ssh_id

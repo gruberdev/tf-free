@@ -5,7 +5,7 @@
 |------|--------|---------|
 | ec2 | ./ec2 |  |
 | rds | ./rds |  |
-| vpc | terraform-aws-modules/vpc/aws |  |
+| vpc | ./vpc |  |
 
 ### Inputs
 
@@ -22,6 +22,7 @@
 
 | Name | Description |
 |------|-------------|
+| db\_id | List of key names of instances |
 | ec2\_ipv6\_addresses | List of assigned IPv6 addresses of instances |
 | ec2\_key\_name | List of key names of instances |
 | ec2\_password\_data | List of Base-64 encoded encrypted password data for the instance |

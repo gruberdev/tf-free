@@ -27,7 +27,6 @@ output "ec2_key_name" {
   value       = module.ec2.names
 }
 
-
 output "db_id" {
   description = "List of key names of instances"
   value       = module.rds.db_default_instance_id

@@ -4,10 +4,21 @@ variable "name" {
   default     = "databasetf"
 }
 
-variable "engine_version" {
+variable "db_version" {
   description = "The SSH Key Name"
   type        = string
   default     = "12.6"
+}
+
+variable "db_family" {
+  description = "The local path to the SSH Public Key"
+  type        = string
+  default     = "postgres12"
+}
+
+variable "db_major_engine" {
+  type = string
+  default = "12"
 }
 
 variable "db_engine" {
@@ -16,9 +27,14 @@ variable "db_engine" {
   default     = "postgres"
 }
 
+variable "disk_size" {
+  type = number
+  default = 20
+}
+
 variable "db_user" {
   description = "Region for AWS resources"
-  default     = "default-user"
+  default     = "defaultuser"
   sensitive   = true
   type        = string
 }
@@ -26,7 +42,7 @@ variable "db_user" {
 variable "db_password" {
   description = "Region for AWS resources"
   sensitive   = true
-  default     = "for-the-love-of-god-change-me"
+  default     = "forALEKkjkfeajme"
   type        = string
 }
 
@@ -58,3 +74,17 @@ variable "db_security_group_name" {
   default     = "security-db"
 }
 
+variable "region" {
+ type = string
+}
+
+variable "vpc_id" {
+ type = string
+}
+
+variable "vpc_cidr_block" {
+ type = string
+}
+
+variable "vpc_subnet_ids" {
+}
