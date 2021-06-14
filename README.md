@@ -40,22 +40,23 @@ curl -sSL https://raw.githubusercontent.com/gruberdev/setup/main/install.sh | ba
 <!-- BEGIN_TF_DOCS -->
 ### Modules
 
-| Name                    | Source                         | Version |
-| ----------------------- | ------------------------------ | ------- |
-| aws                     | ./modules/aws                  |         |
-| google_cloud            | ./modules/gcp                  |         |
-| terraform_state_backend | cloudposse/tfstate-backend/aws | 0.33.0  |
+| Name | Source | Version |
+|------|--------|---------|
+| aws | ./modules/aws |  |
+| google\_cloud | ./modules/gcp |  |
+| terraform\_state\_backend | cloudposse/tfstate-backend/aws | 0.33.0 |
 
 ### Inputs
 
-| Name               | Description                                                                                                                                                                  | Type     | Default         |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | --------------- |
-| aws_default_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-east-1"`   |
-| backend_destroy    | Allows destroying the backend.                                                                                                                                               | `string` | `"false"`       |
-| backend_stage      | Stages possible for Backend.                                                                                                                                                 | `string` | `"test"`        |
-| gcp_instance_name  | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"gcp-machine"` |
-| gcp_project_id     | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `""`            |
-| gcp_project_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-west1"`    |
+| Name | Description | Type | Default |
+|------|-------------|------|---------|
+| aws\_default\_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-east-1"` |
+| backend\_destroy | Allows destroying the backend. | `string` | `"false"` |
+| backend\_stage | Stages possible for Backend. | `string` | `"test"` |
+| gcp\_instance\_name | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"gcp-machine"` |
+| gcp\_project\_id | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `""` |
+| gcp\_project\_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-west1"` |
+| gcp\_storage\_permissions | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"publicread"` |
 
 ### Outputs
 

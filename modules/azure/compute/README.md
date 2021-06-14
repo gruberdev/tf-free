@@ -10,8 +10,9 @@
 
 | Name | Description | Type | Default |
 |------|-------------|------|---------|
-| group\_name | n/a | `string` | `"dev"` |
 | linux\_dns\_server | n/a | `string` | `"linsimplevmips"` |
+| linux\_hostname | n/a | `string` | `"mywinvm"` |
+| linux\_password | n/a | `string` | `"mywinvj33j4k3"` |
 | resource\_group\_name | n/a | `string` | n/a |
 | subnet\_id | n/a | `string` | `"dev"` |
 | windows\_dns\_server | n/a | `string` | `"winsimplevmips"` |

@@ -3,14 +3,13 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| database | Azure/database/azurerm | 1.1.0 |
+| database | Azure/database/azurerm |  |
 
 ### Inputs
 
 | Name | Description | Type | Default |
 |------|-------------|------|---------|
 | db\_name | n/a | `string` | `"mydatabase"` |
-| environment | n/a | `string` | `"dev"` |
 | location | n/a | `string` | `"westus"` |
 | name | n/a | `string` | `"myapp"` |
 | sql\_password | n/a | `string` | `"P@ssw0rd12345!"` |

@@ -4,7 +4,6 @@
 | Name | Source | Version |
 |------|--------|---------|
 | compute | ./compute |  |
-| database | ./db |  |
 | networking | ./vpc |  |
 
 ### Inputs
@@ -15,10 +14,12 @@
 | database\_name | n/a | `string` | `"myapp"` |
 | database\_password | n/a | `string` | `"P@ssw0rd12345!"` |
 | database\_user | n/a | `string` | `"mradministrator"` |
-| ldns\_server | n/a | `string` | `"P@ssw0rd12345!"` |
-| location | n/a | `string` | `"West Europe"` |
+| ldns\_server | n/a | `string` | `"uniquename"` |
+| linux\_name | n/a | `string` | `"linux-pc"` |
+| location | n/a | `string` | `"East US"` |
 | resource\_group\_name | n/a | `string` | `"my-azure-group"` |
-| wdns\_server | n/a | `string` | `"P@ssw0rd12345!"` |
+| wdns\_server | n/a | `string` | `"uniquename2"` |
+| windows\_name | n/a | `string` | `"windows-pc"` |
 
 ### Outputs
 
