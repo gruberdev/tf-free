@@ -138,10 +138,10 @@ tasks:
       - cd test/aws && rm go.mod || true
       - cd test/aws && rm go.sum || true
       - cd test/aws && go mod init "github.com/gruberdev/tf-free" && go mod tidy
-      - cd test/aws && go test -v -timeout 5m -run TestUnitEC2
-      - cd test/aws && go test -v -timeout 5m -run TestUnitAWSNetworking
-      - cd test/aws && go test -v -timeout 5m -run TestUnitRDS
-      - cd test/aws && go test -v -timeout 8m -run TestUnitBackend
+      - cd test/aws && go test -v -timeout 10m -run TestUnitEC2
+      - cd test/aws && go test -v -timeout 10m -run TestUnitAWSNetworking
+      - cd test/aws && go test -v -timeout 10m -run TestUnitRDS
+      - cd test/aws && go test -v -timeout 20m -run TestUnitBackend
 
   full-test-local:
     desc: Terraform testing (GCP modules)
@@ -291,7 +291,7 @@ tasks:
   unit-ec2-aws:
     desc: Terraform standard initialization
     cmds:
-      - cd test/aws && go test -v -timeout 5m -run TestUnitEC2
+      - cd test/aws && go test -v -timeout 15m -run TestUnitEC2
 
   unit-rds-aws:
     desc: Terraform standard initialization

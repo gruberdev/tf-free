@@ -119,6 +119,10 @@ name: Amazon Web Services (AWS)
 depends_on:
   - Basic testing
   - Kickoff
+trigger:
+  branch:
+    - main
+    - feature/aws_*
 steps:
   - name: Setup AWS
     image: golang:1.16.4-alpine
@@ -147,7 +151,7 @@ steps:
       - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
       - cd test/aws
       - go mod tidy
-      - go test -v -timeout 8m -run TestUnitEC2
+      - go test -v -timeout 14m -run TestUnitEC2
     when:
       branch:
         include:
@@ -164,6 +168,7 @@ steps:
         from_secret: aws_key
       AWS_ACCESS_KEY_ID:
         from_secret: aws_id
+
 ---
 kind: pipeline
 type: docker
@@ -171,6 +176,10 @@ name: Google Cloud Provider (GCP)
 depends_on:
   - Basic testing
   - Kickoff
+trigger:
+  branch:
+    - main
+    - feature/gcp_*
 steps:
   - name: Setup
     image: golang:1.16.4-alpine
@@ -224,7 +233,7 @@ steps:
       - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
       - cd test/gcp
       - go mod tidy
-      - go test -v -timeout 5m -run TestUnitCompute
+      - go test -v -timeout 10m -run TestUnitCompute
     when:
       branch:
         include:
@@ -255,7 +264,7 @@ steps:
       - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
       - cd test/gcp
       - go mod tidy
-      - go test -v -timeout 5m -run TestUnitVPC
+      - go test -v -timeout 10m -run TestUnitVPC
     when:
       branch:
         include:
@@ -286,7 +295,7 @@ steps:
       - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
       - cd test/gcp
       - go mod tidy
-      - go test -v -timeout 5m -run  TestUnitStorage
+      - go test -v -timeout 8m -run  TestUnitStorage
     when:
       branch:
         include:
@@ -402,6 +411,14 @@ name: Documentation
 depends_on:
   - Basic testing
   - Kickoff
+trigger:
+  branch:
+    - main
+    - feature/aws_*
+    - feature/gcp_*
+  event:
+    exclude:
+      - pull_request
 steps:
   - name: build_static
     image: node:14.4
@@ -428,8 +445,6 @@ steps:
       branch:
         - master
         - docs
-        - aws_provider
-        - aws-tests
       event:
         - push
     environment:
