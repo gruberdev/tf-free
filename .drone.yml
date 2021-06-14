@@ -4,8 +4,10 @@ type: docker
 name: Kickoff
 trigger:
   event:
-    - push
-    - pull_request
+    include:
+      - push
+    exclude:
+      - pull_request
   repo:
     - gruberdev/tf-free
 steps:
@@ -26,8 +28,10 @@ type: exec
 name: Basic testing
 trigger:
   event:
-    - push
-    - pull_request
+    include:
+      - push
+    exclude:
+      - pull_request
   repo:
     - gruberdev/tf-free
 steps:
@@ -131,6 +135,11 @@ depends_on:
   - Basic testing
   - Kickoff
 trigger:
+  event:
+    include:
+      - push
+    exclude:
+      - pull_request
   branch:
     - main
     - feature/aws_*
@@ -140,9 +149,9 @@ steps:
   - name: Setup AWS
     image: golang:1.16.4-alpine
     commands:
-      - rm test/aws/go.mod || true
-      - rm test/aws/go.sum || true
-      - cd test/aws && go mod init "github.com/gruberdev/tf-free" && go mod tidy
+      - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
+      - task init-drone
+      - task aws-init
     environment:
       AWS_DEFAULT_REGION:
         from_secret: aws_region
@@ -154,6 +163,7 @@ steps:
   - name: Unit Test EC2
     image: golang:1.16.4-alpine
     commands:
+      - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
       - task init-drone
       - task unit-ec2-aws
     depends_on:
@@ -169,6 +179,7 @@ steps:
   - name: Unit Test RDS
     image: golang:1.16.4-alpine
     commands:
+      - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
       - task init-drone
       - task unit-rds-aws
     depends_on:
@@ -189,6 +200,11 @@ depends_on:
   - Basic testing
   - Kickoff
 trigger:
+  event:
+    include:
+      - push
+    exclude:
+      - pull_request
   branch:
     - main
     - feature/gcp_*
@@ -198,6 +214,7 @@ steps:
   - name: Setup
     image: golang:1.16.4-alpine
     commands:
+      - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
       - task init-drone
     environment:
       GOOGLE_PROJECT:
@@ -225,6 +242,7 @@ steps:
   - name: Unit Compute
     image: golang:1.16.5-alpine
     commands:
+      - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
       - task init-drone
       - echo $GOOGLE_KEY > $PWD/gcp.json
       - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
@@ -246,6 +264,7 @@ steps:
   - name: Unit Networking
     image: golang:1.16.5-alpine
     commands:
+      - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
       - task init-drone
       - echo $GOOGLE_KEY > $PWD/gcp.json
       - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
@@ -267,6 +286,7 @@ steps:
   - name: Unit Bucket Storage
     image: golang:1.16.5-alpine
     commands:
+      - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
       - task init-drone
       - echo $GOOGLE_KEY > $PWD/gcp.json
       - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
@@ -290,6 +310,7 @@ steps:
   - name: Integration Core Provider
     image: golang:1.16.5-alpine
     commands:
+      - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
       - task init-drone
       - echo $GOOGLE_KEY > $PWD/gcp.json
       - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
@@ -311,22 +332,6 @@ steps:
       AWS_ACCESS_KEY_ID:
         from_secret: aws_id
 
-  - name: Success @Testing GCP Module
-    image: appleboy/drone-discord
-    settings:
-      webhook_id:
-        from_secret: discord_id
-      webhook_token:
-        from_secret: discord_token
-      message: |-
-        **SUCCESSFULLY** finished building the GCP pipeline on Drone CI.
-        Build number: {{build.number}}
-    depends_on:
-      - Unit Networking
-      - Setup
-      - Integration Core Provider
-      - Unit Compute
-
 ---
 kind: pipeline
 type: docker
@@ -335,15 +340,15 @@ depends_on:
   - Basic testing
   - Kickoff
 trigger:
+  event:
+    include:
+      - push
+    exclude:
+      - pull_request
   branch:
     - main
   repo:
     - gruberdev/tf-free
-  event:
-    exclude:
-      - pull_request
-    include:
-      - push
 steps:
   - name: build_static
     image: node:14.4
@@ -390,8 +395,10 @@ depends_on:
   - Documentation
 trigger:
   event:
-    - push
-    - pull_request
+    include:
+      - push
+    exclude:
+      - pull_request
   status:
     - success
   repo:
@@ -399,11 +406,6 @@ trigger:
 steps:
   - name: Notification Webhook
     image: appleboy/drone-discord
-    when:
-      event:
-        - push
-      status:
-        - success
     settings:
       webhook_id:
         from_secret: discord_id
@@ -423,6 +425,11 @@ depends_on:
   - Amazon Web Services (AWS)
   - Documentation
 trigger:
+  event:
+    include:
+      - push
+    exclude:
+      - pull_request
   status:
     - failure
   repo:
@@ -430,11 +437,6 @@ trigger:
 steps:
   - name: Notification Webhook
     image: appleboy/drone-discord
-    when:
-      event:
-        - push
-      status:
-        - failure
     settings:
       webhook_id:
         from_secret: discord_id
