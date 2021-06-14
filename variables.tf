@@ -4,7 +4,6 @@ variable "gcp_project_id" {
   default     = ""
   sensitive   = true
   description = "Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format)"
-
 }
 
 variable "gcp_project_region" {
@@ -20,17 +19,12 @@ variable "gcp_instance_name" {
   description = "Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format)"
 }
 
-variable "aws_account_id" {
+variable "gcp_storage_permissions" {
   type        = string
-  sensitive   = true
+  default     = "publicread"
   description = "Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format)"
 }
 
-variable "aws_account_key" {
-  type        = string
-  sensitive   = true
-  description = "Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format)"
-}
 
 variable "aws_default_region" {
   default     = "us-east-1"

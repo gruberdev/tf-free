@@ -9,15 +9,21 @@ variable "gcp_project_region" {
 }
 
 variable "gcp_project_id" {
-  type    = string
-  default = ""
-}
-variable "gcp_network_name" {
-  type    = string
-  default = ""
+  type      = string
+  sensitive = true
 }
 
 variable "gcp_ipv4_name" {
   type    = string
   default = ""
+}
+variable "gcp_bucket_name" {
+  type = string
+}
+variable "gcp_network_name" {
+  type = string
+}
+variable "gcp_storage_permissions" {
+  type    = string
+  default = "publicread"
 }

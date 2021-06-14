@@ -8,9 +8,11 @@
 
 ## Motivation
 
-Every major cloud provider offers a free tier that allows for the creation of all kind of resources free of charge, still, learning every cloud and managing these resources could prove burdensome.
+Every major cloud provider offers a free tier that allows for some kind of resource free of charge, still, learning every cloud and managing these resources can prove burdensome to most.
 
-The goal of this repository is to automate the management of these resources using Terraform as the central tool. It also aims to provide resources for learning and improve your skills as a DevOps Engineer and as a Terraform user. A CLI tool is part of this project for those who want a KIS approach.
+The goal is to automate the management of these resources using Terraform as the centralizing tool. It also aims to provide resources for learning and improve your skills as a DevOps Engineer and as a Terraform user, even if you're developer that never touched cloud infrastructure, nowadays there's great value in learning these tools.
+
+A CLI tool is part of this project for those who wish a more KIS-like approach.
 
 ## Getting started
 
@@ -19,10 +21,10 @@ The goal of this repository is to automate the management of these resources usi
 curl -sSLf https://gruber.dev.br/install | bash -s terraform-free
 ```
 
-Or use the explicit url _and_ preview the script content
+Or use the explicit url _and_ preview script's content:
 
 ```
-wget https://raw.githubusercontent.com/gruberdev/setup/main/install.sh && cat install.sh && rm install.sh
+wget https://raw.githubusercontent.com/gruberdev/setup/main/install.sh && cat install.sh
 curl -sSL https://raw.githubusercontent.com/gruberdev/setup/main/install.sh | bash -s terraform-free
 ```
 
@@ -38,24 +40,22 @@ curl -sSL https://raw.githubusercontent.com/gruberdev/setup/main/install.sh | ba
 <!-- BEGIN_TF_DOCS -->
 ### Modules
 
-| Name | Source | Version |
-|------|--------|---------|
-| aws | ./modules/aws |  |
-| google\_cloud | ./modules/gcp |  |
-| terraform\_state\_backend | cloudposse/tfstate-backend/aws | v0.32.1 |
+| Name                    | Source                         | Version |
+| ----------------------- | ------------------------------ | ------- |
+| aws                     | ./modules/aws                  |         |
+| google_cloud            | ./modules/gcp                  |         |
+| terraform_state_backend | cloudposse/tfstate-backend/aws | 0.33.0  |
 
 ### Inputs
 
-| Name | Description | Type | Default |
-|------|-------------|------|---------|
-| aws\_account\_id | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | n/a |
-| aws\_account\_key | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | n/a |
-| aws\_default\_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-east-1"` |
-| backend\_destroy | Allows destroying the backend. | `string` | `"false"` |
-| backend\_stage | Stages possible for Backend. | `string` | `"test"` |
-| gcp\_instance\_name | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"gcp-machine"` |
-| gcp\_project\_id | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `""` |
-| gcp\_project\_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-west1"` |
+| Name               | Description                                                                                                                                                                  | Type     | Default         |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | --------------- |
+| aws_default_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-east-1"`   |
+| backend_destroy    | Allows destroying the backend.                                                                                                                                               | `string` | `"false"`       |
+| backend_stage      | Stages possible for Backend.                                                                                                                                                 | `string` | `"test"`        |
+| gcp_instance_name  | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"gcp-machine"` |
+| gcp_project_id     | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `""`            |
+| gcp_project_region | Your static IP network resource name on GCP. [GCP's Official documentation on naming resources](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"us-west1"`    |
 
 ### Outputs
 
@@ -163,16 +163,37 @@ More information at the [provider's documentation page][tf-free-oracle-resources
 
 </details>
 
+<details>
+
+  <summary>
+   Oracle Cloud
+  </summary>
+
+---
+
+### Available Resources
+
+- **2x** [AMD based VM, 1/8 shared CPU and 1GB RAM][oracle-compute-info]
+- **2x** [Oracle NoSQL Database with 20GB][oracle-database-info]
+- **1x** [10GB Object Storage Capacity][oracle-storage-info]
+
+More information at the [provider's documentation page][tf-free-oracle-resources].
+
+---
+
+</details>
+
 ## License
 
 The MIT license grant is not for Hashicorp's trademarks, which include the logo designs. [Hashicorp reserves all trademark and copyright rights in and to all Hashicorp trademarks][disclaimer].
 
-Terraform®, Vault®, Hashicorp's logos are Hasicorp's Trademarks or registered Trademarks. When using Hashicorp's logos, be sure to follow the [community][guidelines] and [brand usage][brand] guidelines.
+This repository **is not** associated with any of the cloud providers or Hashicorp. Terraform®, Vault®, Hashicorp's logos and names are Hasicorp's registered Trademarks. When using Hashicorp's logos, be sure to follow their [community][guidelines] and [brand usage][brand] guidelines.
+Be sure to [read the terms][usage-terms] of usage to understand the responsabilities involved.
 
 <!-- Images URLs -->
 
 [drone-img]: https://img.shields.io/drone/build/gruberdev/tf-free?label=Pipeline%20Status&color=46bac0&labelColor=1F1F1F&logo=Drone&style=flat-square&server=https%3A%2F%2Fdrone.gruber.dev.br
-[docs-img]: https://img.shields.io/badge/read%20documentation-online?style=flat-square&logo=zeit&color=black
+[docs-img]: https://img.shields.io/badge/read%20the%20documentation-online?style=flat-square&logo=zeit&color=black
 
 <!-- Repository links -->
 
@@ -184,6 +205,7 @@ Terraform®, Vault®, Hashicorp's logos are Hasicorp's Trademarks or registered 
 [free-docs-gcp]: https://cloud.google.com/free/docs/gcp-free-tier
 [free-azure]: https://azure.microsoft.com/en-us/free/
 [azure-faq]: https://azure.microsoft.com/en-us/free/free-account-faq/
+[usage-terms]: https://free.terraform.gruber.dev.br/docs/resources/providers/gcp#resources
 [azure-full-terms]: https://azure.microsoft.com/en-us/offers/ms-azr-0044p/
 [aws-faq]: https://aws.amazon.com/free/free-tier-faqs/
 [docs-repo-url]: https://github.com/CONNECT-platform/codedoc
@@ -270,3 +292,7 @@ Terraform®, Vault®, Hashicorp's logos are Hasicorp's Trademarks or registered 
 [azure-sql-free-info]: https://azure.microsoft.com/en-us/products/azure-sql/database/
 [azure-vm-info]: https://azure.microsoft.com/en-us/services/virtual-machines/
 [azure-storage-info]: https://azure.microsoft.com/en-us/services/storage/files/
+[oracle-compute-info]: https://www.oracle.com/cloud/compute/
+[oracle-database-info]: https://www.oracle.com/database/
+[oracle-storage-info]: https://www.oracle.com/cloud/storage/
+[tf-free-oracle-resources]: https://free.terraform.gruber.dev.br/docs/resources/providers/oracle#resources

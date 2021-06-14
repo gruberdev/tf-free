@@ -11,10 +11,8 @@
 
 | Name | Description | Type | Default |
 |------|-------------|------|---------|
-| account\_id | Region for AWS resources | `string` | n/a |
-| account\_key | Region for AWS resources | `string` | n/a |
 | ec2\_ssh\_name | The SSH Key Name | `string` | `"free-tier-ec2-key"` |
-| ec2\_ssh\_public | The local path to the SSH Public Key | `string` | `"aws.pub"` |
+| ec2\_ssh\_public | The local path to the SSH Public Key | `string` | `"~/.ssh-temp/id_rsa.pub"` |
 | profile | AWS Profile | `string` | `"terraform"` |
 | rds\_password | Region for the RDS database | `string` | `"testingdatabase89372934279"` |
 | rds\_user | Region for AWS resources | `string` | `"testing"` |
@@ -83,4 +81,3 @@ EOF
 }
 
 ```
-

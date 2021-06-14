@@ -1,8 +1,6 @@
 provider "aws" {
-  profile    = var.profile
-  access_key = var.account_id
-  secret_key = var.account_key
-  region     = var.region
+  profile = var.profile
+  region  = var.region
 }
 
 module "vpc" {

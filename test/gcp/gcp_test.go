@@ -24,6 +24,7 @@ func TestIntegrationGCP(t *testing.T) {
 	randomValidGcpName := gcp.RandomValidGcpName()
 	randomValidIPGcpName := gcp.RandomValidGcpName()
 	randomValidNetworkGcpName := gcp.RandomValidGcpName()
+	randomValidBucketGcpName := gcp.RandomValidGcpName()
 
 	// Variables to pass to our Terraform code using -var options
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
@@ -33,6 +34,7 @@ func TestIntegrationGCP(t *testing.T) {
 			"gcp_project_region": region,
 			"gcp_instance_name":  randomValidGcpName,
 			"gcp_network_name":   randomValidNetworkGcpName,
+			"gcp_bucket_name":    randomValidBucketGcpName,
 			"gcp_project_id":     projectId,
 			"gcp_ipv4_name":      randomValidIPGcpName,
 		},

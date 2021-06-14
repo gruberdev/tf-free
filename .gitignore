@@ -37,6 +37,8 @@ test/aws/go.sum
 test/aws/go.mod
 test/go.mod
 test/go.sum
+test/docker/go.mod
+test/docker/go.sum
 
 # credentials
 aws.json
@@ -112,3 +114,7 @@ slim.report.json
 Dockerfile.fat 
 creport.jsondiff
 *.report.json
+
+# Terraform Visual 
+terraform-visual-report
+terraform-visual-report/*

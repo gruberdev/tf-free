@@ -86,13 +86,14 @@ dist
 .serverless/
 .fusebox/
 .dynamodb/
-.tern-port
+.tern-por
 
-# Docker
 
 # .vscode
 .vscode
 
-# Docker-slim artifcats
+# Artifacts docker-slim
 slim.report.json
-slim.*.json
+Dockerfile.fat
+creport.jsondiff
+*.report.json

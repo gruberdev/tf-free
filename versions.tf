@@ -3,39 +3,32 @@ terraform {
   required_providers {
     google = {
       source  = "hashicorp/google"
-      version = "3.69.0"
+      version = "3.71.0"
     }
     google-beta = {
       source  = "hashicorp/google-beta"
-      version = "3.69.0"
+      version = "3.71.0"
     }
     aws = {
       source  = "hashicorp/aws"
-      version = "3.42.0"
+      version = "3.45.0"
     }
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "2.61.0"
+      version = "2.63.0"
     }
   }
 }
 
 provider "aws" {
-  region     = var.aws_default_region
-  access_key = var.aws_account_id
-  secret_key = var.aws_account_key
+  region = var.aws_default_region
 }
 
 provider "google" {
-  project     = var.gcp_project_id
-  region      = var.gcp_project_region
-  credentials = chomp(file("gcp.json"))
-
+  region = var.gcp_project_region
 }
 provider "google-beta" {
-  project     = var.gcp_project_id
-  region      = var.gcp_project_region
-  credentials = chomp(file("gcp.json"))
+  region = var.gcp_project_region
 }
 
 provider "azurerm" {

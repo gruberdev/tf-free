@@ -1,48 +1,70 @@
 ---
 kind: pipeline
-type: exec
-name: Static Code Analysis
+type: docker
+name: Kickoff
 steps:
-  - name: plan
+  - name: Notification Webhook
+    image: appleboy/drone-discord
+    settings:
+      webhook_id:
+        from_secret: discord_id
+      webhook_token:
+        from_secret: discord_token
+      message: |-
+        Drone CI multi-pipeline task initialized.
+        Build number: {{build.number}}
+      event:
+        - push
+
+---
+kind: pipeline
+type: exec
+name: Basic testing
+steps:
+  - name: Terraform Plan
     commands:
-      - export PROJECT=/home/gruber/projects/tf-free
-      - cd $$PROJECT
-      - task clean-keys
-      - cd $$PROJECT/modules/aws
-      - printf "%s" $$AWS_SSH_KEY > aws.pub
-      - cd $$PROJECT/examples/gcp/unit/compute
-      - printf "%s" $$GOOGLE_KEY > gcp.json
-      - cd $$PROJECT/examples/gcp/unit/vpc
-      - printf "%s" $$GOOGLE_KEY > gcp.json
-      - cd $$PROJECT
-      - printf "%s" $$AWS_SSH_KEY > aws.pub
-      - printf "%s" $$GOOGLE_KEY > gcp.json
-      - task init
+      - mkdir -p ~/.ssh-temp
+      - chmod 700 ~/.ssh-temp
+      - ssh-keygen -t rsa -b 4096 -C "example@gmail.com" -N 'test' -f ~/.ssh-temp/id_rsa
+      - gcloud auth activate-service-account --key-file /home/gruber/gcp.json
+      - terraform init -reconfigure -force-copy
       - terraform plan
     when:
       event:
         - push
     environment:
-      AWS_SSH_KEY:
-        from_secret: aws_ssh_key
       GOOGLE_APPLICATION_CREDENTIALS:
         from_secret: gcp_key_path
-      GOOGLE_PROJECT:
+      PROJECT_ID:
         from_secret: gcp_project_id
-      GOOGLE_KEY:
-        from_secret: gcp_default
+      SERVICE_ACCOUNT:
+        from_secret: gcp_app_key
       AWS_DEFAULT_REGION:
         from_secret: aws_region
       AWS_SECRET_ACCESS_KEY:
         from_secret: aws_key
-      AWS_ACCOUNT_ID:
+      AWS_ACCESS_KEY_ID:
         from_secret: aws_id
-      TF_VAR_aws_account_id:
-        from_secret: aws_id
-      TF_VAR_aws_account_key:
-        from_secret: aws_key
-      TF_VAR_aws_default_region:
+
+  - name: Docker build
+    commands:
+      - task test-docker
+    when:
+      event:
+        - push
+    environment:
+      GOOGLE_APPLICATION_CREDENTIALS:
+        from_secret: gcp_key_path
+      PROJECT_ID:
+        from_secret: gcp_project_id
+      SERVICE_ACCOUNT:
+        from_secret: gcp_app_key
+      AWS_DEFAULT_REGION:
         from_secret: aws_region
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: aws_key
+      AWS_ACCESS_KEY_ID:
+        from_secret: aws_id
 
   # - name: tfsec
   #   image: tfsec/tfsec
@@ -63,7 +85,7 @@ steps:
   #     AWS_DEFAULT_REGION:
   #       from_secret: aws_region
   #     AWS_SECRET_ACCESS_KEY:
-  #       from_secret: aws_key
+  #       from_secret: awswwwwwwwwwwwwwwwwwwwwww_key
   #     AWS_ACCESS_KEY_ID:
   #       from_secret: aws_id
 
@@ -93,27 +115,82 @@ steps:
 ---
 kind: pipeline
 type: docker
+name: Amazon Web Services (AWS)
+depends_on:
+  - Basic testing
+  - Kickoff
+trigger:
+  branch:
+    - main
+    - feature/aws_*
+steps:
+  - name: Setup AWS
+    image: golang:1.16.4-alpine
+    commands:
+      - rm test/aws/go.mod || true
+      - rm test/aws/go.sum || true
+      - cd test/aws && go mod init "github.com/gruberdev/tf-free" && go mod tidy
+    when:
+      branch:
+        include:
+          - main
+          - feature/aws_*
+      event:
+        - push
+    environment:
+      AWS_DEFAULT_REGION:
+        from_secret: aws_region
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: aws_key
+      AWS_ACCESS_KEY_ID:
+        from_secret: aws_id
+  - name: Unit Test EC2
+    image: golang:1.16.4-alpine
+    commands:
+      - apk add build-base git curl
+      - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
+      - cd test/aws
+      - go mod tidy
+      - go test -v -timeout 14m -run TestUnitEC2
+    when:
+      branch:
+        include:
+          - main
+          - feature/aws_*
+      event:
+        - push
+    depends_on:
+      - Setup AWS
+    environment:
+      AWS_DEFAULT_REGION:
+        from_secret: aws_region
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: aws_key
+      AWS_ACCESS_KEY_ID:
+        from_secret: aws_id
+
+---
+kind: pipeline
+type: docker
 name: Google Cloud Provider (GCP)
+depends_on:
+  - Basic testing
+  - Kickoff
+trigger:
+  branch:
+    - main
+    - feature/gcp_*
 steps:
   - name: Setup
     image: golang:1.16.4-alpine
     commands:
-      - cd examples/gcp/unit/compute
-      - echo $GOOGLE_KEY > gcp.json
-      - cd ../../../../
-      - cd examples/gcp/unit/vpc
-      - echo $GOOGLE_KEY > gcp.json
-      - cd ../../../../
-      - cd examples/gcp/e2e
-      - echo $GOOGLE_KEY > gcp.json
-      - cd ../../../
-      - cd test/gcp
-      - go mod init "github.com/gruberdev/tf-free"
-      - go mod tidy
+      - cd test/gcp && go mod init "github.com/gruberdev/tf-free" && go mod tidy
+      - cd ../docker && go mod init "github.com/gruberdev/tf-free" && go mod tidy
+      - cd ../aws && go mod init "github.com/gruberdev/tf-free" && go mod tidy
     when:
       branch:
         include:
-          - master
+          - main
           - feature/gcp_*
       event:
         - push
@@ -129,19 +206,38 @@ steps:
       AWS_ACCESS_KEY_ID:
         from_secret: aws_id
 
-  - name: Unit Compute
-    image: golang:1.16.4-alpine
-    commands:
-      - apk add build-base git curl
-      - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
-      - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/examples/gcp/unit/compute/gcp.json
-      - cd test/gcp
-      - go mod tidy
-      - go test -v -timeout 5m -run TestUnitCompute
+  - name: GCP Start Notification
+    image: appleboy/drone-discord
+    settings:
+      webhook_id:
+        from_secret: discord_id
+      webhook_token:
+        from_secret: discord_token
+      message: |-
+        Started GCP Pipeline on Drone CI.
+        Build number: {{build.number}}
     when:
       branch:
         include:
-          - master
+          - main
+          - feature/gcp_*
+      event:
+        - push
+
+  - name: Unit Compute
+    image: golang:1.16.5-alpine
+    commands:
+      - apk add build-base git curl
+      - echo $GOOGLE_KEY > $PWD/gcp.json
+      - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
+      - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
+      - cd test/gcp
+      - go mod tidy
+      - go test -v -timeout 10m -run TestUnitCompute
+    when:
+      branch:
+        include:
+          - main
           - feature/gcp_*
       event:
         - push
@@ -160,23 +256,57 @@ steps:
         from_secret: aws_id
 
   - name: Unit Networking
-    image: golang:1.16.4-alpine
+    image: golang:1.16.5-alpine
     commands:
       - apk add build-base git curl
+      - echo $GOOGLE_KEY > $PWD/gcp.json
       - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
-      - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/examples/gcp/unit/vpc/gcp.json
+      - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
       - cd test/gcp
       - go mod tidy
-      - go test -v -timeout 5m -run TestUnitVPC
+      - go test -v -timeout 10m -run TestUnitVPC
     when:
       branch:
         include:
-          - master
+          - main
           - feature/gcp_*
       event:
         - push
     depends_on:
       - Setup
+    environment:
+      GOOGLE_PROJECT:
+        from_secret: gcp_project_id
+      GOOGLE_KEY:
+        from_secret: gcp_default
+      AWS_DEFAULT_REGION:
+        from_secret: aws_regions
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: aws_key
+      AWS_ACCESS_KEY_ID:
+        from_secret: aws_id
+
+  - name: Unit Bucket Storage
+    image: golang:1.16.5-alpine
+    commands:
+      - apk add build-base git curl
+      - echo $GOOGLE_KEY > $PWD/gcp.json
+      - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
+      - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
+      - cd test/gcp
+      - go mod tidy
+      - go test -v -timeout 8m -run  TestUnitStorage
+    when:
+      branch:
+        include:
+          - main
+          - feature/gcp_*
+      event:
+        - push
+    depends_on:
+      - Setup
+      - Unit Networking
+      - Unit Compute
     environment:
       GOOGLE_PROJECT:
         from_secret: gcp_project_id
@@ -190,24 +320,27 @@ steps:
         from_secret: aws_id
 
   - name: Integration Core Provider
-    image: golang:1.16.4-alpine
+    image: golang:1.16.5-alpine
     commands:
       - apk add build-base git curl
+      - echo $GOOGLE_KEY > $PWD/gcp.json
       - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
-      - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/examples/gcp/e2e/gcp.json
+      - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
       - cd test/gcp
       - go mod tidy
       - go test -v -timeout 10m -run TestIntegrationGCP
     when:
       branch:
         include:
-          - master
+          - main
           - feature/gcp_*
       event:
         - push
     depends_on:
       - Unit Networking
+      - Unit Compute
       - Setup
+      - Unit Storage
     environment:
       GOOGLE_PROJECT:
         from_secret: gcp_project_id
@@ -220,10 +353,72 @@ steps:
       AWS_ACCESS_KEY_ID:
         from_secret: aws_id
 
+  - name: Success @Testing GCP Module
+    image: appleboy/drone-discord
+    settings:
+      webhook_id:
+        from_secret: discord_id
+      webhook_token:
+        from_secret: discord_token
+      message: |-
+        **SUCCESSFULLY** finished building the GCP pipeline on Drone CI.
+        Build number: {{build.number}}
+    depends_on:
+      - Unit Networking
+      - Setup
+      - Integration Core Provider
+      - Unit Compute
+    when:
+      branch:
+        include:
+          - main
+          - feature/gcp_*
+      event:
+        - push
+
+  - name: Failure @Testing GCP Module
+    image: appleboy/drone-discord
+    settings:
+      webhook_id:
+        from_secret: discord_id
+      webhook_token:
+        from_secret: discord_token
+      message: |-
+        Alert: **FAILURE** building the GCP pipeline on Drone CI.
+        Build number: {{build.number}}
+    depends_on:
+      - Unit Networking
+      - Setup
+      - Integration Core Provider
+      - Unit Compute
+    when:
+      trigger:
+        status:
+          - failure
+      status:
+        - failure
+      branch:
+        include:
+          - main
+          - feature/gcp_*
+      event:
+        - push
+
 ---
 kind: pipeline
 type: docker
 name: Documentation
+depends_on:
+  - Basic testing
+  - Kickoff
+trigger:
+  branch:
+    - main
+    - feature/aws_*
+    - feature/gcp_*
+  event:
+    exclude:
+      - pull_request
 steps:
   - name: build_static
     image: node:14.4
@@ -250,7 +445,6 @@ steps:
       branch:
         - master
         - docs
-        - aws_provider
       event:
         - push
     environment:

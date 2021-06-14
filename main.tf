@@ -23,7 +23,7 @@ resource "random_string" "bucket_name" {
 module "terraform_state_backend" {
   source = "cloudposse/tfstate-backend/aws"
   # Cloud Posse recommends pinning every module to a specific version
-  version                            = "v0.32.1"
+  version                            = "0.33.0"
   namespace                          = random_string.namespace.result
   stage                              = var.backend_stage
   name                               = random_string.s3_name.result
@@ -51,8 +51,10 @@ resource "null_resource" "backend" {
 
 module "google_cloud" {
   source         = "./modules/gcp"
+  gcp_project_id = var.gcp_project_id
   project_region = var.gcp_project_region
   instance_name  = var.gcp_instance_name
+  permissions    = var.gcp_storage_permissions
 
   depends_on = [
     module.terraform_state_backend.dynamodb_table_name,
@@ -62,7 +64,5 @@ module "google_cloud" {
 }
 
 module "aws" {
-  source      = "./modules/aws"
-  account_id  = var.aws_account_id
-  account_key = var.aws_account_key
+  source = "./modules/aws"
 }
