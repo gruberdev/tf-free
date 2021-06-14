@@ -72,63 +72,6 @@ steps:
       AWS_ACCESS_KEY_ID:
         from_secret: aws_id
 
----
-kind: pipeline
-type: docker
-name: Notification Success
-depends_on:
-  - Basic testing
-  - Kickoff
-trigger:
-  event:
-    - push
-    - pull_request
-  status:
-    - success
-steps:
-  - name: Notification Webhook
-    image: appleboy/drone-discord
-    settings:
-      webhook_id:
-        from_secret: discord_id
-      webhook_token:
-        from_secret: discord_token
-      message: |-
-        Drone CI multi-pipeline task initialized.
-        Build number: {{build.number}}
-      event:
-        - push
-      when:
-        status:
-          - failure
-    depends_on:
-      - Docker build
-      - Terraform Plan
-
----
-kind: pipeline
-type: docker
-name: Failure Notification
-depends_on:
-  - Basic testing
-  - Kickoff
-trigger:
-  status:
-    - failure
-steps:
-  - name: Notification Webhook
-    image: appleboy/drone-discord
-    when:
-      status:
-        - failure
-    settings:
-      webhook_id:
-        from_secret: discord_id
-      webhook_token:
-        from_secret: discord_token
-      message: |-
-        Drone CI pipeline {{build.number}} has failed.
-
   # - name: tfsec
   #   image: tfsec/tfsec
   #   commands:
@@ -426,3 +369,65 @@ steps:
         from_secret: github_user
       GITHUB_PW:
         from_secret: github_token
+
+---
+kind: pipeline
+type: docker
+name: Notification Success
+depends_on:
+  - Basic testing
+  - Kickoff
+  - Google Cloud Provider (GCP)
+  - Amazon Web Services (AWS)
+  - Documentation
+trigger:
+  event:
+    - push
+    - pull_request
+  status:
+    - success
+steps:
+  - name: Notification Webhook
+    image: appleboy/drone-discord
+    when:
+      event:
+        - push
+      status:
+        - success
+    settings:
+      webhook_id:
+        from_secret: discord_id
+      webhook_token:
+        from_secret: discord_token
+      message: |-
+        Drone CI multi-pipeline task initialized.
+        Build number: {{build.number}}
+
+---
+kind: pipeline
+type: docker
+name: Failure Notification
+depends_on:
+  - Basic testing
+  - Kickoff
+  - Google Cloud Provider (GCP)
+  - Amazon Web Services (AWS)
+  - Documentation
+trigger:
+  status:
+    - failure
+steps:
+  - name: Notification Webhook
+    image: appleboy/drone-discord
+    when:
+      event:
+        - push
+      status:
+        - failure
+    settings:
+      webhook_id:
+        from_secret: discord_id
+      webhook_token:
+        from_secret: discord_token
+      message: |-
+        Drone CI pipeline {{build.number}} has failed.
