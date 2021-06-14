@@ -1,6 +1,6 @@
 module "network" {
   source              = "Azure/network/azurerm"
-  resource_group_name = azurerm_resource_group.example.name
+  resource_group_name = var.resource_group_name
   address_spaces      = ["10.0.0.0/16", "10.2.0.0/16"]
   subnet_prefixes     = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
   subnet_names        = ["subnet1", "subnet2", "subnet3"]
@@ -12,7 +12,7 @@ module "network" {
   }
 
   tags = {
-    environment = "dev"
+    environment = var.environment
   }
 
   depends_on = [azurerm_resource_group.example]
@@ -20,8 +20,8 @@ module "network" {
 
 resource "azurerm_network_security_group" "ssh" {
   name                = "ssh"
-  resource_group_name = azurerm_resource_group.example.name
-  location            = azurerm_resource_group.example.location
+  resource_group_name = var.resource_group_name
+  location            = var.location
 
   security_rule {
     name                       = "test123"
@@ -39,13 +39,13 @@ resource "azurerm_network_security_group" "ssh" {
 
 resource "azurerm_route_table" "example" {
   name                = "MyRouteTable"
-  resource_group_name = azurerm_resource_group.example.name
-  location            = azurerm_resource_group.example.location
+  resource_group_name = var.resource_group_name
+  location            = var.location
 }
 
 resource "azurerm_route" "example" {
   name                = "acceptanceTestRoute1"
-  resource_group_name = azurerm_resource_group.example.name
+  resource_group_name = var.resource_group_name
   route_table_name    = azurerm_route_table.example.name
   address_prefix      = "10.1.0.0/16"
   next_hop_type       = "vnetlocal"

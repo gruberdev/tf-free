@@ -12,6 +12,7 @@
 |------|-------------|------|---------|
 | group\_name | n/a | `string` | `"dev"` |
 | linux\_dns\_server | n/a | `string` | `"linsimplevmips"` |
+| resource\_group\_name | n/a | `string` | n/a |
 | subnet\_id | n/a | `string` | `"dev"` |
 | windows\_dns\_server | n/a | `string` | `"winsimplevmips"` |
 | windows\_hostname | n/a | `string` | `"mywinvm"` |

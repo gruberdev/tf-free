@@ -3,7 +3,7 @@ variable "resource_group_name" {
   default = "my-azure-group"
 }
 
-variable "azure_location" {
+variable "location" {
   type    = string
   default = "West Europe"
 }
