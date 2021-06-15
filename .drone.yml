@@ -42,8 +42,8 @@ steps:
       - ssh-keygen -t rsa -b 4096 -C "example@gmail.com" -N 'test' -f ~/.ssh-temp/id_rsa
       - gcloud auth activate-service-account --key-file /home/gruber/gcp.json
       - terraform init -reconfigure -force-copy
-      - echo "${GOOGLE_KEY}" > $PWD/gcp.json
-      - export GOOGLE_APPLICATION_CREDENTIALS=$wPWD/gcp.json
+      - echo "$${GOOGLE_KEY}" > $PWD/gcp.json
+      - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
       - terraform plan
     when:
       event:
