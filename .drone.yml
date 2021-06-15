@@ -317,8 +317,8 @@ steps:
     depends_on:
       - Unit Networking
       - Unit Compute
+      - Unit Bucket Storage
       - Setup
-      - Unit Storage
     environment:
       GOOGLE_CREDENTIALS:
         from_secret: gcp_key
