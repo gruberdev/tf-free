@@ -54,7 +54,7 @@ func TestIntegrationGCP(t *testing.T) {
 		SshUserName: sshUsername,
 	}
 	maxRetries := 20
-	sleepBetweenRetries := 3 * time.Second
+	sleepBetweenRetries := 4 * time.Second
 	retry.DoWithRetry(t, "Attempting to SSH", maxRetries, sleepBetweenRetries, func() (string, error) {
 		output, err := ssh.CheckSshCommandE(t, host, fmt.Sprintf("echo '%s'", sampleText))
 		if err != nil {
