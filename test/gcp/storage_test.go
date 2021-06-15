@@ -38,8 +38,8 @@ func TestUnitStorage(t *testing.T) {
 			"gcp_bucket_name":    gsBucketName,
 		},
 		EnvVars: map[string]string{
-			"GOOGLE_PROJECT":     projectId,
-			"GOOGLE_CREDENTIALS": gsCreds,
+			"GOOGLE_PROJECT":                 projectId,
+			"GOOGLE_APPLICATION_CREDENTIALS": gsCreds,
 		},
 	})
 

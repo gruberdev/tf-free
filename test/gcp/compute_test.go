@@ -25,8 +25,8 @@ func TestUnitCompute(t *testing.T) {
 			"gcp_project_id":     projectId,
 		},
 		EnvVars: map[string]string{
-			"GOOGLE_PROJECT":     projectId,
-			"GOOGLE_CREDENTIALS": gsCreds,
+			"GOOGLE_PROJECT":                 projectId,
+			"GOOGLE_APPLICATION_CREDENTIALS": gsCreds,
 		},
 	})
 
