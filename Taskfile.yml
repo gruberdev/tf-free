@@ -1,6 +1,14 @@
 version: "3"
 
 tasks:
+  docker-one-liner:
+    deps:
+      - docker-init
+      - build
+      - docker
+    cmds:
+      - "Loading container..."
+
   docker-init:
     desc: Create and cache your Docker container
     cmds:
