@@ -51,6 +51,8 @@ steps:
     environment:
       GOOGLE_APPLICATION_CREDENTIALS:
         from_secret: gcp_key_path
+      GOOGLE_KEY:
+        from_secret: gcp_default
       PROJECT_ID:
         from_secret: gcp_project_id
       SERVICE_ACCOUNT:
