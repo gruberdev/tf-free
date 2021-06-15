@@ -49,7 +49,7 @@ steps:
     environment:
       GOOGLE_CREDENTIALS:
         from_secret: gcp_key
-      PROJECT_ID:
+      GOOGLE_PROJECT:
         from_secret: gcp_project_id
       AWS_DEFAULT_REGION:
         from_secret: aws_region
@@ -67,7 +67,7 @@ steps:
     environment:
       GOOGLE_APPLICATION_CREDENTIALS:
         from_secret: gcp_key_path
-      PROJECT_ID:
+      GOOGLE_PROJECT:
         from_secret: gcp_project_id
       SERVICE_ACCOUNT:
         from_secret: gcp_app_key
@@ -251,7 +251,7 @@ steps:
     environment:
       GOOGLE_CREDENTIALS:
         from_secret: gcp_key
-      PROJECT_ID:
+      GOOGLE_PROJECT:
         from_secret: gcp_project_id
       AWS_DEFAULT_REGION:
         from_secret: aws_region
@@ -273,7 +273,7 @@ steps:
     environment:
       GOOGLE_CREDENTIALS:
         from_secret: gcp_key
-      PROJECT_ID:
+      GOOGLE_PROJECT:
         from_secret: gcp_project_id
       AWS_DEFAULT_REGION:
         from_secret: aws_regions
@@ -297,7 +297,7 @@ steps:
     environment:
       GOOGLE_CREDENTIALS:
         from_secret: gcp_key
-      PROJECT_ID:
+      GOOGLE_PROJECT:
         from_secret: gcp_project_id
       AWS_DEFAULT_REGION:
         from_secret: aws_region
@@ -322,7 +322,7 @@ steps:
     environment:
       GOOGLE_CREDENTIALS:
         from_secret: gcp_key
-      PROJECT_ID:
+      GOOGLE_PROJECT:
         from_secret: gcp_project_id
       AWS_DEFAULT_REGION:
         from_secret: aws_region
