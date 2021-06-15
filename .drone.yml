@@ -78,6 +78,13 @@ steps:
       AWS_ACCESS_KEY_ID:
         from_secret: aws_id
 
+  - name: Complete basic
+    commands:
+      - echo "Finished basic setup!"
+    depends_on:
+      - Docker build
+      - Terraform Plan
+
   # - name: tfsec
   #   image: tfsec/tfsec
   #   commands:
@@ -133,11 +140,8 @@ depends_on:
   - Basic testing
   - Kickoff
 trigger:
-  event:
-    include:
-      - push
-    exclude:
-      - pull_request
+  exclude:
+    - pull_request
   branch:
     - main
     - feature/aws_*
@@ -198,11 +202,8 @@ depends_on:
   - Basic testing
   - Kickoff
 trigger:
-  event:
-    include:
-      - push
-    exclude:
-      - pull_request
+  exclude:
+    - pull_request
   branch:
     - main
     - feature/gcp_*
