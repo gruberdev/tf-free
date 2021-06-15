@@ -42,21 +42,15 @@ steps:
       - ssh-keygen -t rsa -b 4096 -C "example@gmail.com" -N 'test' -f ~/.ssh-temp/id_rsa
       - gcloud auth activate-service-account --key-file /home/gruber/gcp.json
       - terraform init -reconfigure -force-copy
-      - echo "$${GOOGLE_KEY}" > $PWD/gcp.json
-      - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
       - terraform plan
     when:
       event:
         - push
     environment:
-      GOOGLE_APPLICATION_CREDENTIALS:
-        from_secret: gcp_key_path
-      GOOGLE_KEY:
-        from_secret: gcp_default
+      GOOGLE_CREDENTIALS:
+        from_secret: gcp_key
       PROJECT_ID:
         from_secret: gcp_project_id
-      SERVICE_ACCOUNT:
-        from_secret: gcp_app_key
       AWS_DEFAULT_REGION:
         from_secret: aws_region
       AWS_SECRET_ACCESS_KEY:
@@ -254,10 +248,10 @@ steps:
     depends_on:
       - Setup
     environment:
-      GOOGLE_PROJECT:
+      GOOGLE_CREDENTIALS:
+        from_secret: gcp_key
+      PROJECT_ID:
         from_secret: gcp_project_id
-      GOOGLE_KEY:
-        from_secret: gcp_default
       AWS_DEFAULT_REGION:
         from_secret: aws_region
       AWS_SECRET_ACCESS_KEY:
@@ -276,10 +270,10 @@ steps:
     depends_on:
       - Setup
     environment:
-      GOOGLE_PROJECT:
+      GOOGLE_CREDENTIALS:
+        from_secret: gcp_key
+      PROJECT_ID:
         from_secret: gcp_project_id
-      GOOGLE_KEY:
-        from_secret: gcp_default
       AWS_DEFAULT_REGION:
         from_secret: aws_regions
       AWS_SECRET_ACCESS_KEY:
@@ -300,10 +294,10 @@ steps:
       - Unit Networking
       - Unit Compute
     environment:
-      GOOGLE_PROJECT:
+      GOOGLE_CREDENTIALS:
+        from_secret: gcp_key
+      PROJECT_ID:
         from_secret: gcp_project_id
-      GOOGLE_KEY:
-        from_secret: gcp_default
       AWS_DEFAULT_REGION:
         from_secret: aws_region
       AWS_SECRET_ACCESS_KEY:
@@ -325,10 +319,10 @@ steps:
       - Setup
       - Unit Storage
     environment:
-      GOOGLE_PROJECT:
+      GOOGLE_CREDENTIALS:
+        from_secret: gcp_key
+      PROJECT_ID:
         from_secret: gcp_project_id
-      GOOGLE_KEY:
-        from_secret: gcp_default
       AWS_DEFAULT_REGION:
         from_secret: aws_region
       AWS_SECRET_ACCESS_KEY:
