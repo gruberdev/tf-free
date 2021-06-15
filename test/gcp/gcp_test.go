@@ -24,7 +24,7 @@ func TestIntegrationGCP(t *testing.T) {
 	randomValidGcpName := gcp.RandomValidGcpName()
 	randomValidNetworkGcpName := gcp.RandomValidGcpName()
 	randomValidBucketGcpName := gcp.RandomValidGcpName()
-
+	gsCreds := gcp.GetGoogleCredentialsFromEnvVar(t)
 	// Variables to pass to our Terraform code using -var options
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
 		// The path to where our Terraform code is located
@@ -37,7 +37,8 @@ func TestIntegrationGCP(t *testing.T) {
 			"gcp_project_id":     projectId,
 		},
 		EnvVars: map[string]string{
-			"GOOGLE_PROJECT": projectId,
+			"GOOGLE_PROJECT":     projectId,
+			"GOOGLE_CREDENTIALS": gsCreds,
 		},
 	})
 	defer terraform.Destroy(t, terraformOptions)

@@ -216,10 +216,10 @@ steps:
       - apk update && apk add curl && sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
       - task init-drone
     environment:
+      GOOGLE_CREDENTIALS:
+        from_secret: gcp_key
       GOOGLE_PROJECT:
         from_secret: gcp_project_id
-      GOOGLE_KEY:
-        from_secret: gcp_default
       AWS_DEFAULT_REGION:
         from_secret: aws_region
       AWS_SECRET_ACCESS_KEY:
@@ -243,8 +243,6 @@ steps:
     commands:
       - apk update && apk add curl && sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
       - task init-drone
-      - echo $GOOGLE_KEY > $PWD/gcp.json
-      - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
       - task unit-compute-gcp
     depends_on:
       - Setup
@@ -265,8 +263,6 @@ steps:
     commands:
       - apk update && apk add curl && sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
       - task init-drone
-      - echo $GOOGLE_KEY > $PWD/gcp.json
-      - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
       - task unit-network-gcp
     depends_on:
       - Setup
@@ -287,8 +283,6 @@ steps:
     commands:
       - apk update && apk add curl && sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
       - task init-drone
-      - echo $GOOGLE_KEY > $PWD/gcp.json
-      - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
       - task unit-storage-gcp
     depends_on:
       - Setup
@@ -306,14 +300,10 @@ steps:
       AWS_ACCESS_KEY_ID:
         from_secret: aws_id
 
-  - name: Integration Core Provider
+  - name: Testing has been sucessful
     image: golang:1.16.5-alpine
     commands:
-      - apk update && apk add curl && sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
-      - task init-drone
-      - echo $GOOGLE_KEY > $PWD/gcp.json
-      - export GOOGLE_APPLICATION_CREDENTIALS=$PWD/gcp.json
-      - task gcp-test
+      - echo "Finished."
     depends_on:
       - Unit Networking
       - Unit Compute
