@@ -8,6 +8,7 @@ provider "google-beta" {
 
 module "gcp_vpc" {
   vpc_name       = var.gcp_network_name
+  google_project = var.gcp_project_id
   source         = "../../../../modules/gcp/vpc"
 }
 

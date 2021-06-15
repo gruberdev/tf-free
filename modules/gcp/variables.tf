@@ -27,11 +27,6 @@ variable "network_name" {
   description = "Creates and names a VPC network. A VPC network is not the same as a GCP Subnetwork, see: [VPC Network Overview | GCP Docs](https://cloud.google.com/vpc/docs/vpc#vpc_networks_and_subnets)"
 }
 
-variable "instance_ipv4_name" {
-  type    = string
-  default = "ipv4-instance-gcp"
-}
-
 variable "bucket_name" {
   type        = string
   default     = "averynoncommonbuck"

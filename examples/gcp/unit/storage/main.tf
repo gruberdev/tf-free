@@ -18,8 +18,8 @@ module "gcp_storage" {
   ]
   source      = "../../../../modules/gcp/storage"
   project_id  = var.gcp_project_id
-  name        = var.bucket_name
-  permissions = var.bucket_permissions
+  name        = var.gcp_bucket_name
+  permissions = var.gcp_bucket_permissions
   /*   firestore_name = var.firestore_name */
   region       = var.gcp_project_region
   network_name = module.gcp_vpc.network_name

@@ -34,7 +34,7 @@ func TestUnitStorage(t *testing.T) {
 			"gcp_project_region": region,
 			"gcp_network_name":   gsNetworkName,
 			"gcp_project_id":     projectId,
-			"bucket_name":        gsBucketName,
+			"gcp_bucket_name":    gsBucketName,
 		},
 		EnvVars: map[string]string{
 			"GOOGLE_PROJECT": projectId,
