@@ -278,27 +278,27 @@ steps:
       AWS_ACCESS_KEY_ID:
         from_secret: aws_id
 
-  - name: Unit Bucket Storage
-    image: golang:1.16.5-alpine
-    commands:
-      - apk update && apk add curl && sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
-      - task init-drone
-      - task unit-storage-gcp
-    depends_on:
-      - Setup
-      - Unit Networking
-      - Unit Compute
-    environment:
-      GOOGLE_CREDENTIALS:
-        from_secret: gcp_key
-      GOOGLE_PROJECT:
-        from_secret: gcp_project_id
-      AWS_DEFAULT_REGION:
-        from_secret: aws_region
-      AWS_SECRET_ACCESS_KEY:
-        from_secret: aws_key
-      AWS_ACCESS_KEY_ID:
-        from_secret: aws_id
+  # - name: Unit Bucket Storage
+  #   image: golang:1.16.5-alpine
+  #   commands:
+  #     - apk update && apk add curl && sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
+  #     - task init-drone
+  #     - task unit-storage-gcp
+  #   depends_on:
+  #     - Setup
+  #     - Unit Networking
+  #     - Unit Compute
+  #   environment:
+  #     GOOGLE_CREDENTIALS:
+  #       from_secret: gcp_key
+  #     GOOGLE_PROJECT:
+  #       from_secret: gcp_project_id
+  #     AWS_DEFAULT_REGION:
+  #       from_secret: aws_region
+  #     AWS_SECRET_ACCESS_KEY:
+  #       from_secret: aws_key
+  #     AWS_ACCESS_KEY_ID:
+  #       from_secret: aws_id
 
   - name: Testing has been sucessful
     image: golang:1.16.5-alpine
