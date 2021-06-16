@@ -307,7 +307,6 @@ steps:
     depends_on:
       - Unit Networking
       - Unit Compute
-      - Unit Bucket Storage
       - Setup
     environment:
       GOOGLE_CREDENTIALS:
