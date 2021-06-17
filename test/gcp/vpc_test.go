@@ -12,7 +12,7 @@ func TestUnitVPC(t *testing.T) {
 	t.Parallel()
 	randomValidNetworkGcpName := gcp.RandomValidGcpName()
 	projectId := gcp.GetGoogleProjectIDFromEnvVar(t)
-
+	gsCreds := gcp.GetGoogleCredentialsFromEnvVar(t)
 	exampleDir := test_structure.CopyTerraformFolderToTemp(t, "../../", "examples/gcp/unit/vpc")
 	region := gcp.GetRandomRegion(t, projectId, []string{"us-west1", "us-central1", "us-east1"}, nil)
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
@@ -23,7 +23,8 @@ func TestUnitVPC(t *testing.T) {
 			"gcp_project_id":     projectId,
 		},
 		EnvVars: map[string]string{
-			"GOOGLE_PROJECT": projectId,
+			"GOOGLE_PROJECT":     projectId,
+			"GOOGLE_CREDENTIALS": gsCreds,
 		},
 	})
 	defer terraform.Destroy(t, terraformOptions)

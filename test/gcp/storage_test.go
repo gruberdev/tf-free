@@ -20,6 +20,7 @@ func TestUnitStorage(t *testing.T) {
 	t.Parallel()
 
 	projectId := gcp.GetGoogleProjectIDFromEnvVar(t)
+	gsCreds := gcp.GetGoogleCredentialsFromEnvVar(t)
 	exampleDir := test_structure.CopyTerraformFolderToTemp(t, "../../", "examples/gcp/unit/storage")
 	region := gcp.GetRandomRegion(t, projectId, []string{"us-east1"}, nil)
 
@@ -34,10 +35,11 @@ func TestUnitStorage(t *testing.T) {
 			"gcp_project_region": region,
 			"gcp_network_name":   gsNetworkName,
 			"gcp_project_id":     projectId,
-			"bucket_name":        gsBucketName,
+			"gcp_bucket_name":    gsBucketName,
 		},
 		EnvVars: map[string]string{
-			"GOOGLE_PROJECT": projectId,
+			"GOOGLE_PROJECT":                 projectId,
+			"GOOGLE_APPLICATION_CREDENTIALS": gsCreds,
 		},
 	})
 

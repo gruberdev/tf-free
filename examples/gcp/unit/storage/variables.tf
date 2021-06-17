@@ -7,3 +7,12 @@ variable "gcp_project_id" {
 variable "gcp_network_name" {
   type        = string
 }
+
+variable "gcp_bucket_name" {
+  type        = string
+}
+
+variable "gcp_bucket_permissions" {
+  type        = string
+  default = "publicread"
+}

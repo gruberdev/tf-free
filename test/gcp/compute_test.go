@@ -13,6 +13,7 @@ func TestUnitCompute(t *testing.T) {
 	t.Parallel()
 
 	projectId := gcp.GetGoogleProjectIDFromEnvVar(t)
+	gsCreds := gcp.GetGoogleCredentialsFromEnvVar(t)
 	exampleDir := test_structure.CopyTerraformFolderToTemp(t, "../../", "examples/gcp/unit/compute")
 	region := gcp.GetRandomRegion(t, projectId, []string{"us-west1", "us-central1", "us-east1"}, nil)
 	randomValidGcpName := gcp.RandomValidGcpName()
@@ -24,7 +25,8 @@ func TestUnitCompute(t *testing.T) {
 			"gcp_project_id":     projectId,
 		},
 		EnvVars: map[string]string{
-			"GOOGLE_PROJECT": projectId,
+			"GOOGLE_PROJECT":                 projectId,
+			"GOOGLE_APPLICATION_CREDENTIALS": gsCreds,
 		},
 	})
 

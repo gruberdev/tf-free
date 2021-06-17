@@ -5,8 +5,6 @@ resource "google_compute_network" "default" {
   project                 = var.google_project
 }
 
-resource "google_compute_address" "static" {
-  provider = google-beta
-  name     = var.static_ip_name
+output "network_name" {
+  value = google_compute_network.default.name
 }
-
