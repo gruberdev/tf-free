@@ -132,67 +132,67 @@ steps:
   #     AWS_ACCESS_KEY_ID:
   #       from_secret: aws_id
 
----
-kind: pipeline
-type: docker
-name: Amazon Web Services (AWS)
-depends_on:
-  - Basic testing
-  - Kickoff
-trigger:
-  exclude:
-    - pull_request
-  branch:
-    - main
-    - feature/aws_*
-  repo:
-    - gruberdev/tf-free
-steps:
-  - name: Setup AWS
-    image: golang:1.16.4-alpine
-    commands:
-      - apk update && apk add curl && sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
-      - task init-drone
-      - task aws-init
-    environment:
-      AWS_DEFAULT_REGION:
-        from_secret: aws_region
-      AWS_SECRET_ACCESS_KEY:
-        from_secret: aws_key
-      AWS_ACCESS_KEY_ID:
-        from_secret: aws_id
+# ---
+# kind: pipeline
+# type: docker
+# name: Amazon Web Services (AWS)
+# depends_on:
+#   - Basic testing
+#   - Kickoff
+# trigger:
+#   exclude:
+#     - pull_request
+#   branch:
+#     - main
+#     - feature/aws_*
+#   repo:
+#     - gruberdev/tf-free
+# steps:
+#   - name: Setup AWS
+#     image: golang:1.16.4-alpine
+#     commands:
+#       - apk update && apk add curl && sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
+#       - task init-drone
+#       - task aws-init
+#     environment:
+#       AWS_DEFAULT_REGION:
+#         from_secret: aws_region
+#       AWS_SECRET_ACCESS_KEY:
+#         from_secret: aws_key
+#       AWS_ACCESS_KEY_ID:
+#         from_secret: aws_id
 
-  - name: Unit Test EC2
-    image: golang:1.16.4-alpine
-    commands:
-      - apk update && apk add curl && sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
-      - task init-drone
-      - task unit-ec2-aws
-    depends_on:
-      - Setup AWS
-    environment:
-      AWS_DEFAULT_REGION:
-        from_secret: aws_region
-      AWS_SECRET_ACCESS_KEY:
-        from_secret: aws_key
-      AWS_ACCESS_KEY_ID:
-        from_secret: aws_id
+#   - name: Unit Test EC2
+#     image: golang:1.16.4-alpine
+#     commands:
+#       - apk update && apk add curl && sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
+#       - task init-drone
+#       - task unit-ec2-aws
+#     depends_on:
+#       - Setup AWS
+#     environment:
+#       AWS_DEFAULT_REGION:
+#         from_secret: aws_region
+#       AWS_SECRET_ACCESS_KEY:
+#         from_secret: aws_key
+#       AWS_ACCESS_KEY_ID:
+#         from_secret: aws_id
 
-  - name: Unit Test RDS
-    image: golang:1.16.4-alpine
-    commands:
-      - apk update && apk add curl && sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
-      - task init-drone
-      - task unit-rds-aws
-    depends_on:
-      - Setup AWS
-    environment:
-      AWS_DEFAULT_REGION:
-        from_secret: aws_region
-      AWS_SECRET_ACCESS_KEY:
-        from_secret: aws_key
-      AWS_ACCESS_KEY_ID:
-        from_secret: aws_id
+#   - name: Unit Test RDS
+#     image: golang:1.16.4-alpine
+#     commands:
+#       - apk update && apk add curl && sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
+#       - task init-drone
+#       - task unit-rds-aws
+#     depends_on:
+#       - Setup AWS
+#     environment:
+#       AWS_DEFAULT_REGION:
+#         from_secret: aws_region
+#       AWS_SECRET_ACCESS_KEY:
+#         from_secret: aws_key
+#       AWS_ACCESS_KEY_ID:
+#         from_secret: aws_id
 
 ---
 kind: pipeline
@@ -379,7 +379,7 @@ depends_on:
   - Basic testing
   - Kickoff
   - Google Cloud Provider (GCP)
-  - Amazon Web Services (AWS)
+  # - Amazon Web Services (AWS)
   - Documentation
 trigger:
   event:
@@ -410,7 +410,7 @@ depends_on:
   - Basic testing
   - Kickoff
   - Google Cloud Provider (GCP)
-  - Amazon Web Services (AWS)
+  # - Amazon Web Services (AWS)
   - Documentation
 trigger:
   event:
