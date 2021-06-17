@@ -8,8 +8,6 @@ trigger:
       - push
     exclude:
       - pull_request
-  repo:
-    - gruberdev/tf-free
 steps:
   - name: Notification Webhook
     image: appleboy/drone-discord
@@ -32,8 +30,6 @@ trigger:
       - push
     exclude:
       - pull_request
-  repo:
-    - gruberdev/tf-free
 steps:
   - name: Terraform Plan
     commands:
@@ -43,9 +39,6 @@ steps:
       - gcloud auth activate-service-account --key-file /home/gruber/gcp.json
       - terraform init -reconfigure -force-copy
       - terraform plan
-    when:
-      event:
-        - push
     environment:
       GOOGLE_CREDENTIALS:
         from_secret: gcp_key
@@ -57,13 +50,9 @@ steps:
         from_secret: aws_key
       AWS_ACCESS_KEY_ID:
         from_secret: aws_id
-
   - name: Docker build
     commands:
       - task docker-test
-    when:
-      event:
-        - push
     environment:
       GOOGLE_APPLICATION_CREDENTIALS:
         from_secret: gcp_key_path
@@ -207,8 +196,6 @@ trigger:
   branch:
     - main
     - feature/gcp_*
-  repo:
-    - gruberdev/tf-free
 steps:
   - name: Setup
     image: golang:1.16.4-alpine
@@ -220,12 +207,6 @@ steps:
         from_secret: gcp_key
       GOOGLE_PROJECT:
         from_secret: gcp_project_id
-      AWS_DEFAULT_REGION:
-        from_secret: aws_region
-      AWS_SECRET_ACCESS_KEY:
-        from_secret: aws_key
-      AWS_ACCESS_KEY_ID:
-        from_secret: aws_id
 
   - name: GCP Start Notification
     image: appleboy/drone-discord
@@ -251,12 +232,6 @@ steps:
         from_secret: gcp_key
       GOOGLE_PROJECT:
         from_secret: gcp_project_id
-      AWS_DEFAULT_REGION:
-        from_secret: aws_region
-      AWS_SECRET_ACCESS_KEY:
-        from_secret: aws_key
-      AWS_ACCESS_KEY_ID:
-        from_secret: aws_id
 
   - name: Unit Networking
     image: golang:1.16.5-alpine
@@ -271,12 +246,6 @@ steps:
         from_secret: gcp_key
       GOOGLE_PROJECT:
         from_secret: gcp_project_id
-      AWS_DEFAULT_REGION:
-        from_secret: aws_regions
-      AWS_SECRET_ACCESS_KEY:
-        from_secret: aws_key
-      AWS_ACCESS_KEY_ID:
-        from_secret: aws_id
 
   # - name: Unit Bucket Storage
   #   image: golang:1.16.5-alpine
@@ -293,12 +262,6 @@ steps:
   #       from_secret: gcp_key
   #     GOOGLE_PROJECT:
   #       from_secret: gcp_project_id
-  #     AWS_DEFAULT_REGION:
-  #       from_secret: aws_region
-  #     AWS_SECRET_ACCESS_KEY:
-  #       from_secret: aws_key
-  #     AWS_ACCESS_KEY_ID:
-  #       from_secret: aws_id
 
   - name: Testing has been sucessful
     image: golang:1.16.5-alpine
@@ -313,12 +276,6 @@ steps:
         from_secret: gcp_key
       GOOGLE_PROJECT:
         from_secret: gcp_project_id
-      AWS_DEFAULT_REGION:
-        from_secret: aws_region
-      AWS_SECRET_ACCESS_KEY:
-        from_secret: aws_key
-      AWS_ACCESS_KEY_ID:
-        from_secret: aws_id
 
 ---
 kind: pipeline
@@ -335,8 +292,6 @@ trigger:
       - pull_request
   branch:
     - main
-  repo:
-    - gruberdev/tf-free
 steps:
   - name: build_static
     image: node:14.4
@@ -389,8 +344,6 @@ trigger:
       - pull_request
   status:
     - success
-  repo:
-    - gruberdev/tf-free
 steps:
   - name: Notification Webhook
     image: appleboy/drone-discord
@@ -420,8 +373,6 @@ trigger:
       - pull_request
   status:
     - failure
-  repo:
-    - gruberdev/tf-free
 steps:
   - name: Notification Webhook
     image: appleboy/drone-discord
