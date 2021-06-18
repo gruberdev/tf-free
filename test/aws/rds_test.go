@@ -59,17 +59,17 @@ func TestUnitRDS(t *testing.T) {
 	// This will run `terraform init` and `terraform apply` and fail the test if there are any errors
 	terraform.InitAndApply(t, terraformOptions)
 
-	// Run `terraform output` to get the value of an output variable
-	dbInstanceID := terraform.Output(t, terraformOptions, "db_id")
+	// // Run `terraform output` to get the value of an output variable
+	// dbInstanceID := terraform.Output(t, terraformOptions, "db_id")
 
-	// Look up the endpoint address and port of the RDS instance
-	address := aws.GetAddressOfRdsInstance(t, dbInstanceID, awsRegion)
-	port := aws.GetPortOfRdsInstance(t, dbInstanceID, awsRegion)
-	// Lookup parameter values. All defined values are strings in the API call response
-	// Lookup option values. All defined values are strings in the API call response
-	// Verify that the address is not null
-	assert.NotNil(t, address)
-	// Verify that the DB instance is listening on the port mentioned
-	assert.Equal(t, expectedPort, port)
+	// // Look up the endpoint address and port of the RDS instance
+	// address := aws.GetAddressOfRdsInstance(t, dbInstanceID, awsRegion)
+	// port := aws.GetPortOfRdsInstance(t, dbInstanceID, awsRegion)
+	// // Lookup parameter values. All defined values are strings in the API call response
+	// // Lookup option values. All defined values are strings in the API call response
+	// // Verify that the address is not null
+	// assert.NotNil(t, address)
+	// // Verify that the DB instance is listening on the port mentioned
+	// assert.Equal(t, expectedPort, port)
 	// Verify that the table/schema requested for creation is actually present in the database
 }

@@ -78,6 +78,11 @@ variable "region" {
  type = string
 }
 
+variable "db_name" {
+ type = string
+ default = "newtable"
+}
+
 variable "vpc_id" {
  type = string
 }

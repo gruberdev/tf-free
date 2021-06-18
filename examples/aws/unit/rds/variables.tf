@@ -13,6 +13,12 @@ variable "engine_version" {
 variable "instance_class" {
   type = string
 }
+
+variable "rds_enable" {
+  type = bool
+  default = true
+}
+
 variable "username" {
   sensitive = true
   type      = string
