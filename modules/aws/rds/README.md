@@ -14,6 +14,7 @@
 | db\_family | The local path to the SSH Public Key | `string` | `"postgres12"` |
 | db\_instance\_type | Instance type for database | `string` | `"db.t2.micro"` |
 | db\_major\_engine | n/a | `string` | `"12"` |
+| db\_name | n/a | `string` | `"newtable"` |
 | db\_password | Region for AWS resources | `string` | `"forALEKkjkfeajme"` |
 | db\_security\_group\_name | Instance type for database | `string` | `"security-db"` |
 | db\_user | Region for AWS resources | `string` | `"defaultuser"` |
