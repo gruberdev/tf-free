@@ -284,7 +284,6 @@ depends_on:
   - Kickoff
   - Google Cloud Provider (GCP)
   - Amazon Web Services (AWS)
-  - Documentation
 trigger:
   event:
     include:
@@ -312,8 +311,7 @@ depends_on:
   - Basic testing
   - Kickoff
   - Google Cloud Provider (GCP)
-  # - Amazon Web Services (AWS)
-  - Documentation
+  - Amazon Web Services (AWS)
 trigger:
   event:
     include:
