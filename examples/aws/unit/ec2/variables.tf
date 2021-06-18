@@ -13,3 +13,7 @@ variable "subnet_region" {
 variable "ami_id" {
   type = string
 }
+variable "ec2_enable" {
+  type = bool
+  default = true
+}

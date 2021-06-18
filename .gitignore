@@ -103,6 +103,7 @@ dist
 .fusebox/
 .dynamodb/
 .tern-port
+docs/.public/*
 
 # Docker
 

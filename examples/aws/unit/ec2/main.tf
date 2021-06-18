@@ -3,14 +3,13 @@ provider "aws" {
 }
 
 module "vpc" {
- source = "./vpc"
- region = var.region
+  source = "../../../../modules/aws/vpc"
+ region = var.aws_default_region
 }
 
 module "ec2" {
   source = "../../../../modules/aws/ec2"
-  count = var.ec2_enabled ? 1 : 0
-
+  count = var.ec2_enable ? 1 : 0
   vpc_id           = module.vpc.id
   public_subnet_id = module.vpc.public_subnets[0]
   ami              = var.ami_id
@@ -28,9 +27,10 @@ EOF
 }
 
 
+
 output "public_ip" {
   description = "List of public IP addresses assigned to the instances, if applicable"
-  value       = module.ec2.public_ip
+  value       = module.ec2.*.public_ip
   sensitive   = true
 }
 

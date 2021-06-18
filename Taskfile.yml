@@ -81,10 +81,28 @@ tasks:
 
   docs:
     desc: Initialize module and build cache, and remake go.sum file on root directory.
+    deps:
+      - stop-docs
     cmds:
-      - cd docs && docker-compose down || true
       - cd docs && docker build -t tf-free:docs .
       - cd docs && docker-compose up --build -d
+
+  docs-deploy:
+    desc: Initialize module and build cache, and remake go.sum file on root directory.
+    deps:
+      - stop-docs
+    cmds:
+      - cd docs && docker build -t tf-free:docs .
+      - cd docs && docker-compose -f build.yml up --build
+      - cd docs && rm -rf .public || true
+      - cd docs && mkdir .public
+      - cp -r docs/build/* docs/.public/
+      - cp docs/vercel.json docs/.public/
+
+  stop-docs:
+    cmds:
+      - cd docs && docker-compose down || true
+      - cd docs && docker-compose -f build.yml down || true
 
   test:
     desc: Test and print out code coverage as html.
@@ -153,7 +171,6 @@ tasks:
       - aws-init
     desc: Terraform testing (AWS provider)
     cmds:
-      - cd test/aws && go mod init "github.com/gruberdev/tf-free" && go mod tidy
       - cd test/aws && go test -v -timeout 10m -run TestUnitEC2
       - cd test/aws && go test -v -timeout 10m -run TestUnitRDS
 
