@@ -1,34 +1,44 @@
 # Google Cloud Platform
 
-## Resources
-
-- **1x** Virtual Private Cloud [VPC][gcp-vpc-info]
-  - **1x** [Firewall][gcp-firewall-info] attached to the VPC
-  - **1x** [Google Compute Engine][gcp-compute-info] `f1-micro` ([1 shared vCPU - 0.2 dedicatd vCPU][gcp-shared-vcpus] - and 0.6GB of Memory) attached to the `VPC`
-- **1x** 5GB of [regional storage][gcp-regional-storage] on [Cloud Storage][gcp-cloud-storage]
-- **1x** 1GB of storage in a [Firestore NoSQL Database][gcp-firestore-storage]
-
-#### Terms & Conditions for resource usage
-
-- [Compute Engine Instances ( `f1-micro` ) do not have an external **static** IP address on the free tier][no-free-ip]
-- You're (as a Free-Tier only) limited to 3 US-based exclusive [zones/regions][gcp-regions] for provisioning your instance. (`us-east1`, `us-west1`, and `us-central1`)
-- Cloud Storage follows similar rules to the Compute Engine terms, but is also limited to 5,000 Class A operations per month and 50,000 Class B operations per monnth maximum.
-
-_Reference:_ [Table of Free-Tier limits][free-tier-limits]
-
-- You're limited to 1GB of Egress (outgoing) traffic from North America to the rest of the world.
-
-Related: [Pricing on egress rates.][pricing-egress] and [How Google calculates egress usage rates.][usage-egress-gcp]
+> :Tabs
+>
+> > :Tab title=Available resources
+> >
+> > - **1x** Virtual Private Cloud [VPC][gcp-vpc-info]
+> > - **1x** [Firewall][gcp-firewall-info] attached to the VPC
+> > - **1x** [Google Compute Engine][gcp-compute-info] `f1-micro` ([1 shared vCPU - 0.2 dedicatd vCPU][gcp-shared-vcpus] - and 0.6GB of Memory) attached to the `VPC`
+> > - **1x** 5GB of [regional storage][gcp-regional-storage] on [Cloud Storage][gcp-cloud-storage]
+> > - **1x** 1GB of storage in a [Firestore NoSQL Database][gcp-firestore-storage]
+>
+> > :Tab title=Terms & Conditions
+> >
+> > - [Compute Engine Instances ( `f1-micro` ) do not have an external **static** IP address on the free tier][no-free-ip]
+> > - You're (as a Free-Tier only) limited to 3 US-based exclusive [zones/regions][gcp-regions] for provisioning your instance. (`us-east1`, `us-west1`, and `us-central1`)
+> > - Cloud Storage follows similar rules to the Compute Engine terms, but is also limited to 5,000 Class A operations per month and 50,000 Class B operations per monnth maximum.
+> >
+> >   _Reference:_ [Table of Free-Tier limits][free-tier-limits]
+> >
+> > - You're limited to 1GB of Egress (outgoing) traffic from North America to the rest of the world.
+> >
+> >   _Related:_ [Pricing on egress rates.][pricing-egress] and [How Google calculates egress usage rates.][usage-egress-gcp]
+>
+> > :Tab title=More information and official links
+> >
+> > - [Main landing page on the Free-Tier plan][google-free-landing]
+> > - [Limits of the free-tier usage, from the official documentation][free-tier-limits]
+> > - [GCP's Free Programs Overview][google-free-docs]
+> > - [Eligibility for the Free Tier][free-tier-restrictions]
+> > - [Detailed price-list on paid products][gcp-price-list]
 
 ## Requirements
 
-### APIs used
+### APIs
 
-- [Cloud Resource Manager API][resource-api-info] | [Enable it][resource-api-enable]
-- [Identity and Access Management (IAM) API][iam-api-info] | [Enable it][iam-api-enable]
-- [Cloud Deployment Manager V2 API][cloud-api-info] | [Enable it][cloud-api-enable]
-- [Compute Engine API][compute-api-info] | [Enable it][compute-api-enable]
-- [Cloud Firestore API][firestore-api-info] | [Enable it][firestore-enable-api]
+> - [Cloud Resource Manager API][resource-api-info] | [Enable it][resource-api-enable]
+> - [Identity and Access Management (IAM) API][iam-api-info] | [Enable it][iam-api-enable]
+> - [Cloud Deployment Manager V2 API][cloud-api-info] | [Enable it][cloud-api-enable]
+> - [Compute Engine API][compute-api-info] | [Enable it][compute-api-enable]
+> - [Cloud Firestore API][firestore-api-info] | [Enable it][firestore-enable-api]
 
 ## Options
 
@@ -52,14 +62,6 @@ bucket_name = "resulting_bucket_name"
 network_name = "resulting_network_name"
 }
 ```
-
-### References
-
-- [Main landing page on the Free-Tier plan][google-free-landing]
-- [Limits of the free-tier usage, from the official documentation][free-tier-limits]
-- [GCP's Free Programs Overview][google-free-docs]
-- [Eligibility for the Free Tier][free-tier-restrictions]
-- [Detailed price-list on paid products][gcp-price-list]
 
 <!-- Repository links -->
 
@@ -102,7 +104,3 @@ network_name = "resulting_network_name"
 [compute-api-enable]: https://console.cloud.google.com/apis/library/compute.googleapis.com
 [cloud-api-info]: https://cloud.google.com/deployment-manager
 [cloud-api-enable]: https://console.cloud.google.com/apis/library/deploymentmanager.googleapis.com
-
-```
-
-```

@@ -4,8 +4,6 @@
 
 > :Collapse label="Project Configuration"
 >
-> [Requirements](/docs/setup/requirements)
->
 > [Installing tools](/docs/setup/installing)
 >
 > [Environment setup](/docs/setup/environment)
@@ -16,47 +14,15 @@
 
 > :Collapse label=Cloud Providers
 >
-> [Overview](/docs/resources/references)
+> [Overview](/docs/references)
 >
-> > :Collapse label=Google Cloud Platform
-> >
-> > [Available Resources](/docs/resources/providers/gcp#resources)
-> >
-> > [Configuration Options](/docs/resources/providers/gcp#options)
-> >
-> > [Examples](/docs/resources/providers/gcp#examples)
-> >
-> > [References](/docs/resources/providers/gcp#references)
+> [Google Cloud Platform](/docs/providers/gcloud)
 >
-> > :Collapse label=Amazon Web Services
-> >
-> > [Available Resources](/docs/resources/providers/aws#resources)
-> >
-> > [Configuration Options](/docs/resources/providers/aws#options)
-> >
-> > [Examples](/docs/resources/providers/aws#examples)
-> >
-> > [References](/docs/resources/providers/aws#references)
+> [Amazon Web Services](/docs/providers/amznaws)
 >
-> > :Collapse label=Microsoft Azure Cloud
-> >
-> > [Available Resources](/docs/resources/providers/azure#resources)
-> >
-> > [Configuration Options](/docs/resources/providers/azure#options)
-> >
-> > [Examples](/docs/resources/providers/azure#examples)
-> >
-> > [References](/docs/resources/providers/azure#references)
+> [Microsoft Azure](/docs/providers/msazure)
 >
-> > :Collapse label=Oracle Cloud
-> >
-> > [Available Resources](/docs/resources/providers/oracle#resources)
-> >
-> > [Configuration Options](/docs/resources/providers/oracle#options)
-> >
-> > [Examples](/docs/resources/providers/oraclee#examples)
-> >
-> > [References](/docs/resources/providers/oracle#references)
+> [Oracle Cloud](/docs/providers/oracle)
 
 > :Collapse label="About"
 >

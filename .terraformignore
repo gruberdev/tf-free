@@ -35,6 +35,7 @@ frontend
 **.terraform/
 **.terraform.lock.hcl
 **.json
+*.json
 
 # Sensitive
 **policy_documents/

@@ -2,17 +2,21 @@
 
 ---
 
-## Objective
+# Objective
 
-> **Creating and managing all available resources offered by major cloud providers in free-tier plans. Terraform is as the main tool used for creating, managing and providing access to these resources in a simplified and centralized manner.**
+> **Creating all available resources offered by major cloud providers within free-tier plans, using Terraform to provide, manage and access these resources in a simplified and centralized manner.**
 
-## Motivation
+### Motivation
 
-Every major cloud provider offers a free tier that allows for the creation of all kind of resources free of charge, still, learning every cloud and managing these resources could prove burdensome.
+> :Collapse label=, default=open
+>
+> Every major cloud provider offers a free tier that allows for some kind of resource free of charge, still, learning every cloud and managing these resources can prove burdensome to most.
+>
+> The goal is to automate the management of these resources using Terraform as the centralizing tool. It also aims to provide resources for learning and improve your skills as a SRE/DevOps Engineer and as a Terraform user, even if you're developer that never touched cloud infrastructure, nowadays there's great value in learning these tools.
 
-The goal of this repository is to automate the management of these resources using Terraform as the central tool. It also aims to provide resources for learning and improve your skills as a DevOps Engineer and as a Terraform user. A CLI tool is part of this project for those who want a KIS approach.
+---
 
-## Getting started
+# Getting started
 
 There are three main ways to bootstrap this project:
 
@@ -26,12 +30,20 @@ The first method is exemplified below:
 curl -sSLf https://gruber.dev.br/install | bash -s terraform-free  # --> click to copy the command
 ```
 
+> :Buttons
+>
+> > :CopyButton
+
 Or use the explicit url/preview the script content
 
 ```bash | --no-wmbar
 wget https://raw.githubusercontent.com/gruberdev/setup/main/install.sh && cat install.sh && rm install.sh # --> direct url to the bash script, click to copy
 curl -sSL https://raw.githubusercontent.com/gruberdev/setup/main/install.sh | bash -s terraform-free
 ```
+
+> :Buttons
+>
+> > :CopyButton
 
 ---
 
@@ -43,26 +55,34 @@ Now, if you want to explicitly call the core module, write a `main.tf` with this
 module "tf-free" {
    source = "github.com/gruberdev/tf-free"
 
-/*!*/   free_enable_aws    = true  // @see [enabling AWS provider documentation](http://www.cplusplus.com/doc/tutorial/functions/)
-/*!*/   enable_s3_backend  = true  // @see [using a remote S3 on AWS reference](http://www.cplusplus.com/doc/tutorial/functions/)
+/*!*/   enable_aws    = true  // @see [AWS documentation](/docs/providers/amznaws)
+/*!*/   enable_s3_backend  = true  // @see [using a remote S3 on AWS reference](/docs/setup/backend)
    aws_account_id     = "your-aws-access-id"
    aws_account_key    = "your-aws-secret-key"
    aws_default_region = "us-west1"
 
-/*!*/   free_enable_gcp   =  true // @see [enabling GCP provider documentation](http://www.cplusplus.com/doc/tutorial/functions/)
-   gcp_project_id     = "testing-project-1"
-   gcp_project_region = "us-west-1"
-   gcp_instance_name  = "gcp-machine"
+/*!*/  enable_gcp   =  true // @see [GCP's documentation](/docs/providers/gcloud)
+  gcp_project_id     = "testing-project-1"
+  gcp_project_region = "us-west-1"
+  gcp_instance_name  = "gcp-machine"
+
+/*!*/  enable_azure   =  true // @see [Azure's documentation](/docs/providers/msazure)
+
+/*!*/  enable_oracle   =  true // @see [Oracle's documentation](/docs/providers/msazure)
 }
 ```
 
+> :Buttons
+>
+> > :CopyButton
+
 <br>
 
-If you're unsure what your credentials are for each cloud provider, take a look at [Obtaining credentials]().
+If you're unsure what your credentials are for each cloud provider, take a look at [Obtaining credentials](/docs/setup/first-run).
 
 > :Buttons
 >
-> > :Button icon=true, label=double_arrow, url=https://github.com
+> > :Button icon=true, label=double_arrow, url=/docs/setup/getting-started
 
 ---
 
