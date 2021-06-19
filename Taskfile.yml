@@ -17,19 +17,33 @@ tasks:
       - docker volume create cache_terraform || true
       - docker volume create repository_results || true
 
+  docker-local:
+    desc: Create and cache your Docker container
+    cmds:
+      - docker-compose -f deployments/local.yml down || true
+      - docker-compose -f deployments/local.yml build
+      - docker-compose -f deployments/local.yml run --entrypoint /bin/bash freetf
+
+  docker-light:
+    desc: Create and cache your Docker container
+    cmds:
+      - docker-compose -f deployments/light.yml down || true
+      - docker-compose -f deployments/light.yml build
+      - docker-compose -f deployments/light.yml run --entrypoint /bin/bash freetf
+
   docker:
     desc: Create and cache your Docker container
     deps:
       - build
     cmds:
-      - docker run -it --rm --name terraformfree -e GOOGLE_PROJECT=$GOOGLE_PROJECT -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION terraformfree:latest
+      - docker run -it --rm --name freetf freetf:latest
 
   build:
     desc: Create and cache your Docker container
     cmds:
-      - docker stop terraformfree:latest || true
-      - docker rm terraformfree:latest || true
-      - docker build --cache-from terraformfree:latest --no-cache -t terraformfree:latest .
+      - docker stop freetf:latest || true
+      - docker rm freetf:latest || true
+      - docker build --cache-from freetf:latest -t freetf:0.0.1 --no-cache -t freetf:latest -t ghcr.io/gruberdev/freetf:0.0.1 -t ghcr.io/gruberdev/freetf:latest .
 
   build-all:
     desc: Build executable binary with GoReleaser.
@@ -68,6 +82,7 @@ tasks:
       - terraform-docs markdown -c .terraform-docs.yml . --output-file README.md
       - terraform-docs markdown -c .terraform-docs.yml ./modules/aws --output-file README.md --header-from "header.md"
       - terraform-docs markdown -c .terraform-docs.yml ./modules/aws/ec2 --output-file README.md
+      - terraform-docs markdown -c .terraform-docs.yml ./modules/aws/vpc --output-file README.md
       - terraform-docs markdown -c .terraform-docs.yml ./modules/aws/rds  --output-file README.md
       - terraform-docs markdown -c .terraform-docs.yml ./modules/gcp  --output-file README.md
       - terraform-docs markdown -c .terraform-docs.yml ./modules/gcp/compute --output-file README.md
@@ -78,6 +93,9 @@ tasks:
       - terraform-docs markdown -c .terraform-docs.yml ./modules/azure/db --output-file README.md
       - terraform-docs markdown -c .terraform-docs.yml ./modules/azure/vpc --output-file README.md
       - terraform-docs markdown -c .terraform-docs.yml ./modules/gcp/storage --output-file README.md
+      - terraform-docs markdown -c .terraform-docs.yml ./examples/aws/e2e --output-file README.md
+      - terraform-docs markdown -c .terraform-docs.yml ./examples/aws/unit/rds --output-file README.md
+      - terraform-docs markdown -c .terraform-docs.yml ./examples/aws/unit/ec2 --output-file README.md
 
   docs:
     desc: Initialize module and build cache, and remake go.sum file on root directory.

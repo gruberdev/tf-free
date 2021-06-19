@@ -9,7 +9,7 @@ import (
 
 func TestDockerBuild(t *testing.T) {
 	t.Parallel()
-	dockerComposeFile := "../../scripts/docker-compose.yml"
+	dockerComposeFile := "../../deployments/test.yml"
 	docker.RunDockerCompose(
 		t,
 		&docker.Options{},

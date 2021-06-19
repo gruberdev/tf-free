@@ -3,4 +3,5 @@ services:
   simple_stdout:
     build:
       context: ../
+    container_name: freetf-test
     entrypoint: /project/scripts/test.sh

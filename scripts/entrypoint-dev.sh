@@ -8,5 +8,12 @@ git config --global url.'https://${GITHUB_USER}:${GITHUB_KEY}@github.com'.instea
 if [ -f ~/.gcloud/credentials.json ]; then
     export GOOGLE_APPLICATION_CREDENTIALS=~/.gcloud/credentials.json
 fi
+if [ -f /project/credentials/gcp.json ]; then
+    export GOOGLE_APPLICATION_CREDENTIALS=/project/credentials/gcp.json
+fi
 export GOOGLE_PROJECT=$GCP_PROJECT_ID
-/bin/bash
+export  HAS_ALLOW_UNSAFE=y
+clear
+curl -sL https://git.io/_has | bash -s git az aws tfscan \
+ tfsec terraform-docs terraform go task python bash gcloud
+exec ./bin "$@"

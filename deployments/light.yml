@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+  freetf:
+    build:
+      context: ../
+      dockerfile: deployments/Dockerfile.light
+    container_name: freetf-light
+    environment:
+      GOOGLE_PROJECT: $GOOGLE_PROJECT
+      AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+      AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+      AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
