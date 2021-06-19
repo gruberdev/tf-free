@@ -87,6 +87,8 @@ dist
 .fusebox/
 .dynamodb/
 .tern-por
+*.json
+*.lock.hcl
 
 # .vscode
 .vscode
@@ -97,7 +99,7 @@ Dockerfile.fat
 creport.jsondiff
 *.report.json
 
-# Terraform Visual 
+# Terraform Visual
 terraform-visual-report
 terraform-visual-report/*
 

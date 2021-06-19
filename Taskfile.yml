@@ -43,7 +43,11 @@ tasks:
     cmds:
       - docker stop freetf:latest || true
       - docker rm freetf:latest || true
-      - docker build --cache-from freetf:latest -t freetf:0.0.1 --no-cache -t freetf:latest -t ghcr.io/gruberdev/freetf:0.0.1 -t ghcr.io/gruberdev/freetf:latest .
+      - cd deployments && docker build -t freetf:0.0.1 --no-cache -t freetf:latest -t ghcr.io/gruberdev/freetf:0.0.1 -t ghcr.io/gruberdev/freetf:latest -f Dockerfile.light ../
+
+  build-exec:
+    cmds:
+      - docker run freetf:latest /bin/bash
 
   build-all:
     desc: Build executable binary with GoReleaser.

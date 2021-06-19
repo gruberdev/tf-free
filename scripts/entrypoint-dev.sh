@@ -1,8 +1,8 @@
 #!/bin/bash
-mkdir -p ~/.ssh
-chmod 700 ~/.ssh
+mkdir -p ~/.ssh-temp
+chmod 700 ~/.ssh-temp
 echo -e "Host *\n\tStrictHostKeyChecking no\n\tIdentityFile ~/ssh_key\n\n" > ~/.ssh/config
-ssh-keygen -t rsa -b 4096 -C "${GITHUB_EMAIL}" -N '${GITHUB_USER}' -f /root/.ssh/id_rsa
+ssh-keygen -t rsa -b 4096 -C "${GITHUB_EMAIL}" -N '${GITHUB_USER}' -f /root/.ssh-temp/id_rsa
 git config --global url.'https://${GITHUB_USER}:${GITHUB_KEY}@github.com'.insteadOf 'https://github.com'
 
 if [ -f ~/.gcloud/credentials.json ]; then
