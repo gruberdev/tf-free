@@ -173,6 +173,7 @@ steps:
       - task unit-rds-aws
     depends_on:
       - Setup AWS
+      - Unit Test EC2
     environment:
       AWS_DEFAULT_REGION:
         from_secret: aws_region
