@@ -45,18 +45,6 @@ output "db_default_instance_name" {
   value       = concat(module.db_default.*.db_instance_name, [""])[0]
 }
 
-output "db_default_instance_username" {
-  description = "The master username for the database"
-  value       = concat(module.db_default.*.db_instance_username, [""])[0]
-  sensitive   = true
-}
-
-output "db_default_instance_password" {
-  description = "The database password (this password may be old, because Terraform doesn't track it after initial creation)"
-  value       = concat(module.db_default.*.db_instance_password, [""])[0]
-  sensitive   = true
-}
-
 output "db_default_instance_port" {
   description = "The database port"
   value       = concat(module.db_default.*.db_instance_port, [""])[0]

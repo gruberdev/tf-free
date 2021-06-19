@@ -4,6 +4,7 @@ go 1.16
 
 require (
 	github.com/Yash-Handa/spinner v1.1.3 // indirect
+	github.com/bitfield/script v0.18.0 // indirect
 	github.com/briandowns/spinner v1.15.0 // indirect
 	github.com/charmbracelet/bubbletea v0.14.0 // indirect
 	github.com/fatih/color v1.7.0 // indirect
@@ -11,4 +12,5 @@ require (
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/spf13/cobra v1.1.3
 	github.com/spf13/viper v1.7.1
+	github.com/theckman/yacspin v0.8.0 // indirect
 )

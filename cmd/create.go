@@ -16,16 +16,10 @@ limitations under the License.
 package cmd
 
 import (
-	"context"
-	"io/ioutil"
-	"log"
-	"os"
-	"time"
+	//	"time"
 
-	spinner "github.com/Yash-Handa/spinner"
+	"github.com/bitfield/script"
 	"github.com/fatih/color"
-	"github.com/hashicorp/terraform-exec/tfexec"
-	"github.com/hashicorp/terraform-exec/tfinstall"
 	"github.com/spf13/cobra"
 )
 
@@ -47,45 +41,8 @@ func init() {
 }
 
 func createInfra() {
-	sp, err := spinner.New(10, 150*time.Millisecond, spinner.Cyan, spinner.Normal)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	sp.SetPostText("  Loading Infrastucture...\n")
-
-	sp.Start()                  // the spinner starts
-	time.Sleep(3 * time.Second) // after 3 seconds
-
-	tmpDir, err := ioutil.TempDir("", "tfinstall")
-	if err != nil {
-		color.Red("Error creating temp dir: %s", err)
-	}
-	defer os.RemoveAll(tmpDir)
-
-	execPath, err := tfinstall.Find(context.Background(), tfinstall.LatestVersion(tmpDir, false))
-	if err != nil {
-		color.Red("Error locating terraform binary: %s", err)
-	}
-
-	workingDir := "/home/gruber/projects/tf-free"
-	tf, err := tfexec.NewTerraform(workingDir, execPath)
-	if err != nil {
-		color.Red("\nError accessing path to Terraform directory:\n %s", err)
-	}
-
-	err = tf.Init(context.Background(), tfexec.Upgrade(true))
-	if err != nil {
-		color.Red("Error running init: %s", err)
-	}
-
-	state, err := tf.Show(context.Background())
-	if err != nil {
-		color.Red("rror runnig show: %s", err)
-	}
-
-	color.Cyan(state.FormatVersion) // "0.1"
-	sp.SetDoneText("Finished loading.\n")
-	time.Sleep(3 * time.Second)
-	sp.Stop() // the spinner stops
+	color.Cyan("Creating resources")
+	script.Exec("bash -c 'cd /home/gruber/projects/tf-free && task unit-rds-aws'").Stdout()
+	// upload...
+	//time.Sleep(2 * time.Second)
 }

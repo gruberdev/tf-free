@@ -8,6 +8,7 @@ import (
 	"github.com/gruntwork-io/terratest/modules/aws"
 	"github.com/gruntwork-io/terratest/modules/random"
 	"github.com/gruntwork-io/terratest/modules/terraform"
+	"github.com/stretchr/testify/assert"
 )
 
 // An example of how to test the Terraform module in examples/terraform-aws-rds-example using Terratest.
@@ -57,7 +58,6 @@ func TestUnitRDS(t *testing.T) {
 
 	// This will run `terraform init` and `terraform apply` and fail the test if there are any errors
 	terraform.InitAndApply(t, terraformOptions)
-
 	// // Run `terraform output` to get the value of an output variable
 	// dbInstanceID := terraform.Output(t, terraformOptions, "db_id")
 
@@ -70,5 +70,11 @@ func TestUnitRDS(t *testing.T) {
 	// assert.NotNil(t, address)
 	// // Verify that the DB instance is listening on the port mentioned
 	// assert.Equal(t, expectedPort, port)
+	dbInstanceID := terraform.Output(t, terraformOptions, "db_id")
+	address := aws.GetAddressOfRdsInstance(t, dbInstanceID, awsRegion)
+	port := aws.GetPortOfRdsInstance(t, dbInstanceID, awsRegion)
+	assert.NotNil(t, address)
+	// Verify that the DB instance is listening on the port mentioned
+	assert.Equal(t, expectedPort, port)
 	// Verify that the table/schema requested for creation is actually present in the database
 }
