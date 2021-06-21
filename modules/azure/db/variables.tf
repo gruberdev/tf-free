@@ -1,24 +1,15 @@
-variable "name" {
-  type    = string
-  default = "myapp"
+variable "resource_group_name" {
+  description = "Name for the resource group holding resources for this example"
+  type        = string
 }
 
 variable "location" {
-  type    = string
-  default = "westus"
+  description = "The Azure region in which to deploy this sample"
+  type        = string
 }
 
-variable "db_name" {
-  type    = string
-  default = "mydatabase"
-}
-
-variable "sql_user" {
-  type    = string
-  default = "mradministrator"
-}
-
-variable "sql_password" {
-  type    = string
-  default = "P@ssw0rd12345!"
+variable "postfix" {
+  description = "A postfix string to centrally mitigate resource name collisions."
+  type        = string
+  default     = "resource"
 }

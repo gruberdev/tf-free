@@ -4,6 +4,7 @@
 | Name | Source | Version |
 |------|--------|---------|
 | compute | ./compute |  |
+| database | ./db |  |
 | networking | ./vpc |  |
 
 ### Inputs

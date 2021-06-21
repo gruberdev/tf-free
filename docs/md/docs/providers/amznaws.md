@@ -1,38 +1,52 @@
 # Amazon AWS
 
-## Resources
-
-- **1x** [Virtual Private Cloud (VPC)](aws-vpc-info)
-  - **1x** [Sub-network](aws-sub-info) attached to the VPC
-  - **1x** [Internet Gateway (IGW)](aws-igw-info) to provide access to the VPC
-- **1x** [Route Table](aws-route-info) integrating all `VPC`, `Subnet` and the `Internet Gateway (IGW)`
-- **1x** [EC2 Instance](aws-ec2-info) attached to the `Subnet`
-- **1x** [Relational Database (RDS)](aws-rds-info) of your choice (e.g. MySQL, PostgreSQL)
-- **1x** [S3 Storage Bucket](aws-s3-info) inside `Subnet`, configured to store the Terraform's backend state
-- **1x** [DynamoDB Database](aws-dynamodb-info), mainly used for preventing that running multiple instances of this Terraform chart corrupt each other.
-
-#### Terms & Conditions for resource usage
-
-- Some resources are **only valid for 12 months** and not forever. Please [check the list of resources](aws-sorted-list) to verify each resource maximum usage within the Free-Tier plan.
-- EC2 Machines and RDS Databases are limited to `t3.micro` and `db.t2.micro` types respectively.
-- AWS provides the free-tier resource usage for all their [global regions](aws-regions) except China (Beijing).
-#### Requirements
-
-- **An active account on AWS** | See: \_[Getting started on AWS](aws-account-create)
-- **[Valid Access keys to AWS Account](aws-keys-info)** | See: _[Generating your access keys](aws-keys-create)_
+> :Tabs
+>
+> > :Tab title=Available resources
+> >
+> > - **1x** [Virtual Private Cloud (VPC)](aws-vpc-info)
+> > - **1x** [Internet Gateway (IGW)](aws-igw-info) to provide access to the VPC
+> > - **1x** [Route Table](aws-route-info) integrating all `VPC`, `Subnet` and the `Internet Gateway (IGW)`
+> > - **1x** [EC2 Instance](aws-ec2-info) attached to the `Subnet`
+> > - **1x** [Relational Database (RDS)](aws-rds-info) of your choice (e.g. MySQL, PostgreSQL)
+> > - **1x** [S3 Storage Bucket](aws-s3-info) inside `Subnet`, configured to store the Terraform's backend state
+> > - **1x** [DynamoDB Database](aws-dynamodb-info), mainly used for preventing that running multiple instances of this Terraform chart corrupt each other.
+>
+> > :Tab title=Terms & Conditions
+> >
+> > - Some resources are **only valid for 12 months** and not forever. Please [check the list of resources](aws-sorted-list) to verify each resource maximum usage within the Free-Tier plan.
+> > - EC2 Machines and RDS Databases are limited to `t3.micro` and `db.t2.micro` types respectively.
+> > - AWS provides the free-tier resource usage for all their [global regions](aws-regions) except China (Beijing).
+>
+> > :Tab title=More information and official links
+> >
+> > - [AWS Free-Tier FAQ](aws-faq)
+> > - [AWS Free-Tier Homepage](free-aws)
+> > - [How to set alarms for your Free-Tier account](aws-alarms-free)
+> > - [Terraform AWS Official Provider Documentation](aws-tf-provider)
+> > - [How to prevent charges on your Free-Tier account](aws-prevent-charges)
+> > - [Extended terms and conditions](aws-terms)
 
 ## Options
 
 ### Examples
 
-### References
+```hcl | /examples/aws/e2e/main.tf
+provider "aws" {
+}
 
-- [AWS Free-Tier FAQ](aws-faq)
-- [AWS Free-Tier Homepage](free-aws)
-- [How to set alarms for your Free-Tier account](aws-alarms-free)
-- [Terraform AWS Official Provider Documentation](aws-tf-provider)
-- [How to prevent charges on your Free-Tier account](aws-prevent-charges)
-- [Extended terms and conditions](aws-terms)
+module "gcp_free" {
+source = "https://github.com/gruberdev/tf-free/tree/main/modules/aws"
+gcp_project_id = "your_project_id"
+project_region = "your_project_region"
+instance_name = "your_resulting_instance_name"
+permissions = "permissions_configuration"
+bucket_name = "resulting_bucket_name"
+network_name = "resulting_network_name"
+}
+```
+
+### References
 
 <!-- Repository links -->
 

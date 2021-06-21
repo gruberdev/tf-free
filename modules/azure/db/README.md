@@ -1,24 +1,21 @@
 <!-- BEGIN_TF_DOCS -->
 ### Modules
 
-| Name | Source | Version |
-|------|--------|---------|
-| database | Azure/database/azurerm |  |
+No modules.
 
 ### Inputs
 
 | Name | Description | Type | Default |
 |------|-------------|------|---------|
-| db\_name | n/a | `string` | `"mydatabase"` |
-| location | n/a | `string` | `"westus"` |
-| name | n/a | `string` | `"myapp"` |
-| sql\_password | n/a | `string` | `"P@ssw0rd12345!"` |
-| sql\_user | n/a | `string` | `"mradministrator"` |
+| location | The Azure region in which to deploy this sample | `string` | n/a |
+| postfix | A postfix string to centrally mitigate resource name collisions. | `string` | `"resource"` |
+| resource\_group\_name | Name for the resource group holding resources for this example | `string` | n/a |
 
 ### Outputs
 
 | Name | Description |
 |------|-------------|
-| connection\_url | n/a |
-| sql\_name | n/a |
+| rgname | n/a |
+| servername | n/a |
+| sku\_name | n/a |
 <!-- END_TF_DOCS -->

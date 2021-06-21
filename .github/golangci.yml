@@ -1,0 +1,230 @@
+# This file contains configuration options for GolangCI-Lint.
+# - Available linters see: https://golangci-lint.run/usage/linters/
+# - Sample of config see: https://golangci-lint.run/usage/configuration/#config-file
+
+# options for analysis running
+run:
+  # include test files or not, default is true
+  tests: true
+
+  fast: true
+
+  # list of build tags, all linters use it. Default is empty list.
+  build-tags:
+    - golangci
+
+  # which dirs to skip: issues from them won't be reported;
+  # can use regexp here: generated.*, regexp is applied on full path;
+  # default value is empty list, but default dirs are skipped independently
+  # from this option's value (see skip-dirs-use-default).
+  # "/" will be replaced by current OS file path separator to properly work
+  # on Windows.
+  skip-dirs:
+    - .devcontainer
+    - .github
+    - .vscode
+    - bin
+
+  # Allow multiple parallel golangci-lint instances running.
+  # If false (default) - golangci-lint acquires file lock on start.
+  allow-parallel-runners: true
+
+# output configuration options
+output:
+  # colored-line-number|line-number|json|tab|checkstyle|code-climate, default is "colored-line-number"
+  format: colored-line-number
+
+  # sorts results by: filepath, line and column
+  sort-results: true
+
+# enabled linters. Conf settings follows.
+linters:
+  enable:
+    - deadcode # Finds unused code
+    - dogsled
+    - dupl
+    - errcheck # Errcheck is a program for checking for unchecked errors in go programs. These unchecked errors can be critical bugs in some cases
+    - funlen
+    - gocognit
+    - gocritic
+    - gocyclo
+    - godot
+    - godox
+    - gofmt
+    - gofumpt # Stricter gofmt
+    - golint
+    - gosec # Inspects source code for security problems
+    - gosimple # Linter for Go source code that specializes in simplifying a code
+    - govet # Vet examines Go source code and reports suspicious constructs, such as Printf calls whose arguments do not align with the format string
+    - ifshort
+    - ineffassign # Detects when assignments to existing variables are not used
+    - lll
+    - maligned
+    - megacheck # gosimple, staticcheck, unused
+    - misspell # Find commonly misspelled English words in comments
+    - nakedret # Limit naked returns in functions greater than a specified function length
+    - nestif # Limit if statements nested deep
+    - nolintlint # Don't allow 'nolint' annotation w/out a description
+    - nlreturn # Requires a new line before return
+    - prealloc # Finds slice declarations that could potentially be preallocated
+    - predeclared # Find code that shadows one of Go's predeclared identifiers
+    - staticcheck # Staticcheck is a go vet on steroids, applying a ton of static analysis checks
+    - structcheck # Finds unused struct fields
+    - stylecheck
+    - typecheck # Like the front-end of a Go compiler, parses and type-checks Go code
+    - unconvert # Detect unnecessary type conversions
+    - unused # Checks Go code for unused constants, variables, functions and types
+    #- testpackage # Limit use unexported functions and methods from source code in tests
+    - thelper # Enforce to call 't.Helper()' in the test helper function
+    - varcheck # Finds unused global variables and constants
+    - whitespace # Limit unnecessary newlines at the start and end of functions, if, for, etc
+    - wsl # Enforce empty lines at the right places to make code more readable.
+
+# settings of linters
+linters-settings:
+  dogsled:
+    # checks assignments with too many blank identifiers; default is 2
+    max-blank-identifiers: 2
+  dupl:
+    # tokens count to trigger issue, 150 by default
+    threshold: 100
+  errcheck:
+    # report about not checking of errors in type assertions: `a := b.(MyStruct)`;
+    # default is false: such cases aren't reported by default.
+    check-type-assertions: true
+  funlen:
+    lines: 60
+    statements: 40
+  gocognit:
+    # minimal code complexity to report, 30 by default (but we recommend 10-20)
+    min-complexity: 10
+  gocritic:
+    # Which checks should be enabled; can't be combined with 'disabled-checks';
+    # See https://go-critic.github.io/overview#checks-overview
+    # To check which checks are enabled run `GL_DEBUG=gocritic golangci-lint run`
+    # By default list of stable checks is used.
+    enabled-checks:
+      - rangeValCopy
+      - hugeParam
+    # The settings key is the name of a supported gocritic checker.
+    # The list of supported checkers can be find in https://go-critic.github.io/overview.
+    settings:
+      hugeParam:
+        # size in bytes that makes the warning trigger (default 80)
+        sizeThreshold: 70
+  gocyclo:
+    # minimal code complexity to report, 30 by default (but we recommend 10-20)
+    min-complexity: 10
+  godot:
+    # check that each sentence starts with a capital letter
+    capital: true
+  godox:
+    # report any comments starting with keywords, this is useful for TODO or FIXME comments that
+    # might be left in the code accidentally and should be resolved before merging
+    keywords: # default keywords are TODO, BUG, and FIXME, these can be overwritten by this setting
+      - TODO
+      - BUG
+      - FIXME
+  gofmt:
+    # simplify code: gofmt with `-s` option, true by default
+    simplify: true
+  gofumpt:
+    # Choose whether or not to use the extra rules that are disabled
+    # by default
+    extra-rules: false
+  golint:
+    # minimal confidence for issues, default is 0.8
+    min-confidence: 0.95
+  govet:
+    enable-all: true
+  ifshort:
+    # Maximum length of variable declaration measured in number of lines, after which linter won't suggest using short syntax.
+    # Has higher priority than max-decl-chars.
+    max-decl-lines: 1
+    # Maximum length of variable declaration measured in number of characters, after which linter won't suggest using short syntax.
+    max-decl-chars: 30
+  lll:
+    # max line length, lines longer will be reported. Default is 120.
+    # '\t' is counted as 1 character by default, and can be changed with the tab-width option
+    line-length: 120
+    # tab width in spaces. Default to 1.
+    tab-width: 1
+  maligned:
+    # print struct with more effective memory layout or not, false by default
+    suggest-new: true
+  misspell:
+    # Correct spellings using locale preferences for US or UK.
+    # Default is to use a neutral variety of English.
+    # Setting locale to US will correct the British spelling of 'colour' to 'color'.
+    locale: US
+  nakedret:
+    # make an issue if func has more lines of code than this setting and it has naked returns; default is 30
+    max-func-lines: 25
+  nestif:
+    # minimal complexity of if statements to report, 5 by default
+    min-complexity: 4
+  nolintlint:
+    # Enable to ensure that nolint directives are all used. Default is true.
+    allow-unused: false
+    # Disable to ensure that nolint directives don't have a leading space. Default is true.
+    allow-leading-space: false
+    # Enable to require an explanation of nonzero length after each nolint directive. Default is false.
+    require-explanation: true
+    # Enable to require nolint directives to mention the specific linter being suppressed. Default is false.
+    require-specific: true
+  unused:
+    # treat code as a program (not a library) and report unused exported identifiers; default is false.
+    # XXX: if you enable this setting, unused will report a lot of false-positives in text editors:
+    # if it's called for subdir of a project it can't find funcs usages. All text editor integrations
+    # with golangci-lint call it on a directory with the changed file.
+    check-exported: false
+  testpackage:
+    # regexp pattern to skip files. ***_internal_test.go and ***_export_test.go are the exception.
+    skip-regexp: (export|internal)_test\.go
+  thelper:
+    # The following configurations enable all checks. It can be omitted because all checks are enabled by default.
+    # You can enable only required checks deleting unnecessary checks.
+    test:
+      first: true
+      name: true
+      begin: true
+    benchmark:
+      first: true
+      name: true
+      begin: true
+  whitespace:
+    multi-if: false # Enforces newlines (or comments) after every multi-line if statement
+    multi-func: false # Enforces newlines (or comments) after every multi-line function signature
+  wsl:
+    # If true append is only allowed to be cuddled if appending value is
+    # matching variables, fields or types on line above. Default is true.
+    strict-append: true
+    # Allow calls and assignments to be cuddled as long as the lines have any
+    # matching variables, fields or types. Default is true.
+    allow-assign-and-call: true
+    # Allow multiline assignments to be cuddled. Default is true.
+    allow-multiline-assign: true
+    # Allow declarations (var) to be cuddled.
+    allow-cuddle-declarations: false
+    # Allow trailing comments in ending of blocks
+    allow-trailing-comment: false
+    # Force newlines in end of case at this limit (0 = never).
+    force-case-trailing-whitespace: 0
+    # Force cuddling of err checks with err var assignment
+    force-err-cuddling: false
+    # Allow leading comments to be separated with empty liens
+    allow-separated-leading-comment: false
+  errorlint:
+    # Report non-wrapping error creation using fmt.Errorf
+    errorf: true
+  makezero:
+    # Allow only slices initialized with a length of zero. Default is false.
+    always: false
+  forbidigo:
+    # Forbid the following identifiers
+    forbid:
+      - fmt.Errorf # consider errors.Errorf in github.com/pkg/errors
+      - fmt.Print.* # too much log noise
+      - ginkgo\\.F.* # these are used just for local development
+    # Exclude godoc examples from forbidigo checks.  Default is true.
+    exclude_godoc_examples: false

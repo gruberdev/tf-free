@@ -16,3 +16,4 @@ export GOOGLE_PROJECT=$GCP_PROJECT_ID
 clear
 curl -sL https://git.io/_has | bash -s git tfscan \
  tfsec terraform-docs terraform go task
+ terraform init

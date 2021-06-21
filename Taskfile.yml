@@ -7,7 +7,7 @@ tasks:
       - build
       - docker
     cmds:
-      - "Loading container..."
+      - echo "Loading container..."
 
   docker-init:
     desc: Create and cache your Docker container
@@ -24,19 +24,12 @@ tasks:
       - docker-compose -f deployments/local.yml build
       - docker-compose -f deployments/local.yml run --entrypoint /bin/bash freetf
 
-  docker-light:
+  docker:
     desc: Create and cache your Docker container
     cmds:
       - docker-compose -f deployments/light.yml down || true
       - docker-compose -f deployments/light.yml build
       - docker-compose -f deployments/light.yml run --entrypoint /bin/bash freetf
-
-  docker:
-    desc: Create and cache your Docker container
-    deps:
-      - build
-    cmds:
-      - docker run -it --rm --name freetf freetf:latest
 
   build:
     desc: Create and cache your Docker container
@@ -46,6 +39,7 @@ tasks:
       - cd deployments && docker build -t freetf:0.0.1 --no-cache -t freetf:latest -t ghcr.io/gruberdev/freetf:0.0.1 -t ghcr.io/gruberdev/freetf:latest -f Dockerfile.light ../
 
   build-exec:
+    desc: Execute project's Docker image directly to bash terminal
     cmds:
       - docker run freetf:latest /bin/bash
 
@@ -55,7 +49,7 @@ tasks:
       - goreleaser --snapshot --skip-publish --rm-dist
 
   gcp:
-    desc: Build executable binary with GoReleaser.
+    desc: Login on Google Cloud Platform.
     cmds:
       - gcloud auth application-default login
 
@@ -80,6 +74,10 @@ tasks:
       - go mod tidy
       - cd tools && go mod tidy
 
+  cover:
+    cmds:
+      - go test -cover ./...
+
   docs-gen:
     desc: Build documentation using Terraform-docs and the task command
     cmds:
@@ -100,6 +98,14 @@ tasks:
       - terraform-docs markdown -c .terraform-docs.yml ./examples/aws/e2e --output-file README.md
       - terraform-docs markdown -c .terraform-docs.yml ./examples/aws/unit/rds --output-file README.md
       - terraform-docs markdown -c .terraform-docs.yml ./examples/aws/unit/ec2 --output-file README.md
+      - terraform-docs markdown -c .terraform-docs.yml ./examples/gcp/e2e --output-file README.md
+      - terraform-docs markdown -c .terraform-docs.yml ./examples/gcp/unit/compute --output-file README.md
+      - terraform-docs markdown -c .terraform-docs.yml ./examples/gcp/unit/storage --output-file README.md
+      - terraform-docs markdown -c .terraform-docs.yml ./examples/gcp/unit/vpc --output-file README.md
+      - terraform-docs markdown -c .terraform-docs.yml ./examples/azure/e2e --output-file README.md
+      - terraform-docs markdown -c .terraform-docs.yml ./examples/azure/unit/compute --output-file README.md
+      - terraform-docs markdown -c .terraform-docs.yml ./examples/azure/unit/db --output-file README.md
+      - terraform-docs markdown -c .terraform-docs.yml ./examples/azure/unit/storage --output-file README.md
 
   docs:
     desc: Initialize module and build cache, and remake go.sum file on root directory.

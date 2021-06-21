@@ -5,6 +5,8 @@ services:
       context: ../
       dockerfile: deployments/Dockerfile.light
     container_name: freetf-light
+    volumes:
+      - ./gcp.json:/project/credentials/gcp.json
     environment:
       GOOGLE_PROJECT: $GOOGLE_PROJECT
       AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID

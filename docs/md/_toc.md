@@ -21,8 +21,8 @@
 > [Amazon Web Services](/docs/providers/amznaws)
 >
 > [Microsoft Azure](/docs/providers/msazure)
->
-> [Oracle Cloud](/docs/providers/oracle)
+
+<!-- > [Oracle Cloud](/docs/providers/oracle) -->
 
 > :Collapse label="About"
 >

@@ -1,4 +1,8 @@
 
+provider "azurerm" {
+  features {}
+}
+
 resource "azurerm_resource_group" "default" {
   name     = var.resource_group_name
   location = var.location
@@ -11,18 +15,18 @@ module "networking" {
   source              = "./vpc"
 }
 
-/* module "database" {
+ module "database" {
   source       = "./db"
   location     = var.location
-  name         = var.database_name
-  db_name      = var.database_db_name
-  sql_username = var.database_user
+  resource_group_name = var.resource_group_name
+  //name         = var.database_name
+  //db_name      = var.database_db_name
+  //sql_username = var.database_user
   depends_on = [
     azurerm_resource_group.default,
-    networking.default
+    module.networking.vpc_name
   ]
-
-} */
+}
 
 module "compute" {
   source             = "./compute"
