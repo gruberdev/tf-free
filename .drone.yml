@@ -136,7 +136,7 @@ trigger:
     - feature/aws_*
 steps:
   - name: Setup AWS
-    image: golang:1.16.4-alpine
+    image: golang:1.16.6-alpine
     commands:
       - apk update && apk add curl && sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
       - task init-drone
@@ -150,7 +150,7 @@ steps:
         from_secret: aws_id
 
   - name: Unit Test EC2
-    image: golang:1.16.4-alpine
+    image: golang:1.16.6-alpine
     commands:
       - apk update && apk add curl && sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
       - task init-drone
@@ -166,7 +166,7 @@ steps:
         from_secret: aws_id
 
   - name: Unit Test RDS
-    image: golang:1.16.4-alpine
+    image: golang:1.16.6-alpine
     commands:
       - apk update && apk add curl && sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
       - task init-drone
@@ -197,7 +197,7 @@ trigger:
     - feature/gcp_*
 steps:
   - name: Setup
-    image: golang:1.16.4-alpine
+    image: golang:1.16.6-alpine
     commands:
       - apk update && apk add curl && sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
       - task init-drone
@@ -219,7 +219,7 @@ steps:
         Build number: {{build.number}}
 
   - name: Unit Compute
-    image: golang:1.16.5-alpine
+    image: golang:1.16.6-alpine
     commands:
       - apk update && apk add curl && sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
       - task init-drone
@@ -233,7 +233,7 @@ steps:
         from_secret: gcp_project_id
 
   - name: Unit Networking
-    image: golang:1.16.5-alpine
+    image: golang:1.16.6-alpine
     commands:
       - apk update && apk add curl && sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
       - task init-drone
@@ -263,7 +263,7 @@ steps:
   #       from_secret: gcp_project_id
 
   - name: Testing has been sucessful
-    image: golang:1.16.5-alpine
+    image: golang:1.16.6-alpine
     commands:
       - echo "Finished."
     depends_on:
