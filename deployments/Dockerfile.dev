@@ -146,7 +146,7 @@ RUN pip${PYTHON_VERSION_MAJOR} install azure-mgmt-compute==${AZ_COMPUTE_VERSION}
  && chmod +x /project/scripts/test.sh
 
 # Verifying dependencies existence within Dockerfile
-RUN curl -sL https://git.io/_has | bash -s git az aws tfscan \
+RUN curl -sL https://git.io/_has | bash -s git az tfscan \
  tfsec terraform-docs terraform go task python bash
 
 CMD ["/bin/bash", "-c"]
