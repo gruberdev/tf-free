@@ -37,8 +37,7 @@ steps:
       - mkdir -p ~/.ssh-temp
       - chmod 700 ~/.ssh-temp
       - ssh-keygen -t rsa -b 4096 -C "example@gmail.com" -N 'test' -f ~/.ssh-temp/id_rsa
-      - gcloud auth activate-service-account --key-file /home/gruber/gcp.json
-      - terraform init -reconfigure -force-copy
+      - terraform init -upgrade -reconfigure -force-copy
       - terraform plan
     environment:
       GOOGLE_CREDENTIALS:
@@ -68,7 +67,7 @@ steps:
       AWS_ACCESS_KEY_ID:
         from_secret: aws_id
 
-  - name: Complete basic
+  - name: Basic local testing
     commands:
       - echo "Finished basic setup!"
     depends_on:
