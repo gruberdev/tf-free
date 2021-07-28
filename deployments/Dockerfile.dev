@@ -92,7 +92,7 @@ RUN apk add --update --no-cache \
 SHELL ["/bin/bash", "-eo", "pipefail", "-c"]
 
 # Go-Critic
-RUN curl -sSfL "https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh" | sh -s '-- -b $(go env GOPATH)/bin' 
+RUN curl -sSfL "https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh" | sh -s '-- -b $(go env GOPATH)/bin'
 
 # Task / makefile Alternative
 RUN wget -O /tmp/task.tar.gz https://github.com/go-task/task/releases/download/v${TASK_VERSION}/task_${OS}_${ARCH}.tar.gz && \
@@ -118,25 +118,25 @@ COPY . .
 # Install awscliv2
 # See: https://github.com/aws/aws-cli/issues/3553
 # Discussion: https://github.com/aws/aws-cli/issues/4947
-RUN apk --no-cache add \
- && curl -sL https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub -o /etc/apk/keys/sgerrand.rsa.pub \
- && curl -sLO https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VER}/glibc-${GLIBC_VER}.apk \
- && curl -sLO https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VER}/glibc-bin-${GLIBC_VER}.apk \
- && apk add --no-cache \
- glibc-${GLIBC_VER}.apk \
- glibc-bin-${GLIBC_VER}.apk \
- && curl -sL https://awscli.amazonaws.com/awscli-exe-${OS}-${ARCH_86}.zip -o awscliv2.zip \
- && unzip awscliv2.zip \
- && aws/install \
- && rm -rf \
- awscliv2.zip \
- aws \
- /usr/local/aws-cli/v2/*/dist/aws_completer \
- /usr/local/aws-cli/v2/*/dist/awscli/data/ac.index \
- /usr/local/aws-cli/v2/*/dist/awscli/examples \
- && rm glibc-${GLIBC_VER}.apk \
- && rm glibc-bin-${GLIBC_VER}.apk \
- && rm -rf /var/cache/apk/*
+# RUN apk --no-cache add \
+#  && curl -sL https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub -o /etc/apk/keys/sgerrand.rsa.pub \
+#  && curl -sLO https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VER}/glibc-${GLIBC_VER}.apk \
+#  && curl -sLO https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VER}/glibc-bin-${GLIBC_VER}.apk \
+#  && apk add --no-cache \
+#  glibc-${GLIBC_VER}.apk \
+#  glibc-bin-${GLIBC_VER}.apk \
+#  && curl -sL https://awscli.amazonaws.com/awscli-exe-${OS}-${ARCH_86}.zip -o awscliv2.zip \
+#  && unzip awscliv2.zip \
+#  && aws/install \
+#  && rm -rf \
+#  awscliv2.zip \
+#  aws \
+#  /usr/local/aws-cli/v2/*/dist/aws_completer \
+#  /usr/local/aws-cli/v2/*/dist/awscli/data/ac.index \
+#  /usr/local/aws-cli/v2/*/dist/awscli/examples \
+#  && rm glibc-${GLIBC_VER}.apk \
+#  && rm glibc-bin-${GLIBC_VER}.apk \
+#  && rm -rf /var/cache/apk/*
 
 # Install Azure-cli and dependencies
 RUN pip${PYTHON_VERSION_MAJOR} install azure-mgmt-compute==${AZ_COMPUTE_VERSION} azure-mgmt-storage==${AZ_STORAGE_VERSION} \
@@ -146,7 +146,7 @@ RUN pip${PYTHON_VERSION_MAJOR} install azure-mgmt-compute==${AZ_COMPUTE_VERSION}
  && chmod +x /project/scripts/test.sh
 
 # Verifying dependencies existence within Dockerfile
-RUN curl -sL https://git.io/_has | bash -s git az aws tfscan \
+RUN curl -sL https://git.io/_has | bash -s git az tfscan \
  tfsec terraform-docs terraform go task python bash
 
 CMD ["/bin/bash", "-c"]

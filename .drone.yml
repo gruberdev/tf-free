@@ -2,6 +2,8 @@
 kind: pipeline
 type: docker
 name: Kickoff
+platform:
+  arch: amd64
 trigger:
   event:
     include:
@@ -28,7 +30,6 @@ trigger:
   event:
     include:
       - push
-    exclude:
       - pull_request
 steps:
   - name: Terraform Plan
@@ -36,8 +37,7 @@ steps:
       - mkdir -p ~/.ssh-temp
       - chmod 700 ~/.ssh-temp
       - ssh-keygen -t rsa -b 4096 -C "example@gmail.com" -N 'test' -f ~/.ssh-temp/id_rsa
-      - gcloud auth activate-service-account --key-file /home/gruber/gcp.json
-      - terraform init -reconfigure -force-copy
+      - terraform init -upgrade -reconfigure -force-copy
       - terraform plan
     environment:
       GOOGLE_CREDENTIALS:
@@ -52,7 +52,7 @@ steps:
         from_secret: aws_id
   - name: Docker build
     commands:
-      - task docker-test
+      - task docker-ci
     environment:
       GOOGLE_APPLICATION_CREDENTIALS:
         from_secret: gcp_key_path
@@ -67,7 +67,7 @@ steps:
       AWS_ACCESS_KEY_ID:
         from_secret: aws_id
 
-  - name: Complete basic
+  - name: Basic local testing
     commands:
       - echo "Finished basic setup!"
     depends_on:
@@ -125,15 +125,22 @@ steps:
 kind: pipeline
 type: docker
 name: Amazon Web Services (AWS)
+platform:
+  arch: amd64
 depends_on:
   - Basic testing
   - Kickoff
 trigger:
   exclude:
     - pull_request
+  include:
+    - push
   branch:
-    - main
-    - feature/aws_*
+    exclude:
+      - renovate/*
+    include:
+      - main
+      - feature/aws_*
 steps:
   - name: Setup AWS
     image: golang:1.16.6-alpine
@@ -186,15 +193,22 @@ steps:
 kind: pipeline
 type: docker
 name: Google Cloud Provider (GCP)
+platform:
+  arch: amd64
 depends_on:
   - Basic testing
   - Kickoff
 trigger:
   exclude:
     - pull_request
+  include:
+    - push
   branch:
-    - main
-    - feature/gcp_*
+    exclude:
+      - renovate/*
+    include:
+      - main
+      - feature/gcp_*
 steps:
   - name: Setup
     image: golang:1.16.6-alpine
@@ -280,6 +294,8 @@ steps:
 kind: pipeline
 type: docker
 name: Success Webhook Notification
+platform:
+  arch: amd64
 depends_on:
   - Basic testing
   - Kickoff
@@ -308,6 +324,8 @@ steps:
 kind: pipeline
 type: docker
 name: Failure Webhook Notification
+platform:
+  arch: amd64
 depends_on:
   - Basic testing
   - Kickoff
