@@ -2,6 +2,8 @@
 kind: pipeline
 type: docker
 name: Kickoff
+platform:
+  arch: amd64
 trigger:
   event:
     include:
@@ -28,7 +30,6 @@ trigger:
   event:
     include:
       - push
-    exclude:
       - pull_request
 steps:
   - name: Terraform Plan
@@ -125,15 +126,22 @@ steps:
 kind: pipeline
 type: docker
 name: Amazon Web Services (AWS)
+platform:
+  arch: amd64
 depends_on:
   - Basic testing
   - Kickoff
 trigger:
   exclude:
     - pull_request
+  include:
+    - push
   branch:
-    - main
-    - feature/aws_*
+    exclude:
+      - renovate/*
+    include:
+      - main
+      - feature/aws_*
 steps:
   - name: Setup AWS
     image: golang:1.16.6-alpine
@@ -186,15 +194,22 @@ steps:
 kind: pipeline
 type: docker
 name: Google Cloud Provider (GCP)
+platform:
+  arch: amd64
 depends_on:
   - Basic testing
   - Kickoff
 trigger:
   exclude:
     - pull_request
+  include:
+    - push
   branch:
-    - main
-    - feature/gcp_*
+    exclude:
+      - renovate/*
+    include:
+      - main
+      - feature/gcp_*
 steps:
   - name: Setup
     image: golang:1.16.6-alpine
@@ -280,6 +295,8 @@ steps:
 kind: pipeline
 type: docker
 name: Success Webhook Notification
+platform:
+  arch: amd64
 depends_on:
   - Basic testing
   - Kickoff
@@ -308,6 +325,8 @@ steps:
 kind: pipeline
 type: docker
 name: Failure Webhook Notification
+platform:
+  arch: amd64
 depends_on:
   - Basic testing
   - Kickoff
