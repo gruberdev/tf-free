@@ -52,7 +52,7 @@ steps:
         from_secret: aws_id
   - name: Docker build
     commands:
-      - task docker-test
+      - task docker-ci
     environment:
       GOOGLE_APPLICATION_CREDENTIALS:
         from_secret: gcp_key_path

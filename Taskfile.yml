@@ -24,6 +24,13 @@ tasks:
       - docker-compose -f deployments/local.yml build
       - docker-compose -f deployments/local.yml run --entrypoint /bin/bash freetf
 
+  docker-ci:
+    desc: Create and cache your Docker container
+    cmds:
+      - docker stop freetf:ci || true
+      - docker rm freetf:ci || true
+      - cd deployments && docker build -t freetf:ci --name freetf:ci --rm --no-cache -t freetf:latest
+
   docker-light:
     desc: Create and cache your Docker container
     cmds:
