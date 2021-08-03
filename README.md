@@ -40,8 +40,8 @@ More information at the [provider's documentation page][tf-free-gcp-resources].
 
 <details>
 
-  <summary>
-   Amazon Web Services
+  <summary> Amazon Web Services
+
   </summary>
 
 ---
@@ -65,7 +65,7 @@ More information at the [provider's documentation page][tf-free-aws-resources].
 <details>
 
   <summary>
-   Microsoft Azure (not ready yet)
+   Microsoft Azure <sub> <sup>(has limited testing)</sup></sub>
   </summary>
 
 ---
@@ -87,7 +87,7 @@ More information at the [provider's documentation page][tf-free-azure-resources]
 <details>
 
   <summary>
-   Oracle Cloud (not ready yet)
+    Oracle Cloud  <sub> <sup>(not available)</sup></sub>
   </summary>
 
 ---
@@ -106,18 +106,19 @@ More information at the [provider's documentation page][tf-free-oracle-resources
 
 ---
 
-## Getting started
+##  [❯ Getting started][getting-started]
 
 ```
-# one liner docker-install for debian-based systems
-curl -sSLf https://gruber.dev.br/install | bash -s terraform-free
+terraform apply -auto-approve
 ```
 
-Or use the explicit url _and_ preview script's content:
+If you preffer a help utility before using this tool, you must have [Task installed][taskfile-website], to run the project's [Taskfile][project-taskfile]:
 
 ```
-wget https://raw.githubusercontent.com/gruberdev/setup/main/install.sh && cat install.sh
-curl -sSL https://raw.githubusercontent.com/gruberdev/setup/main/install.sh | bash -s terraform-free
+# Installing Task (requires sudo)
+sudo sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
+# List all available commands
+task --list # or task help
 ```
 
 ▶ [CLI Tool Documentation][tf-free-docs-cli]
@@ -169,6 +170,8 @@ curl -sSL https://raw.githubusercontent.com/gruberdev/setup/main/install.sh | ba
 
 </details>
 
+---
+
 ## License
 
 The MIT license grant is not for Hashicorp's trademarks, which include the logo designs. [Hashicorp reserves all trademark and copyright rights in and to all Hashicorp trademarks][disclaimer].
@@ -178,7 +181,7 @@ Be sure to [read the terms][usage-terms] of usage to understand the responsabili
 
 <!-- Images URLs -->
 
-[drone-img]: https://img.shields.io/drone/build/gruberdev/tf-free?label=Pipeline%20Status&color=46bac0&labelColor=1F1F1F&logo=Drone&style=flat-square&server=https%3A%2F%2Fdrone.gruber.dev.br
+[drone-img]: https://img.shields.io/drone/build/gruberdev/tf-free/main?label=drone%20pipeline&logo=drone&labelColor=1F1F1F&logoColor=41dde8&style=flat-square
 [docs-img]: https://img.shields.io/badge/read%20available%20documentation-online?style=flat-square&logo=zeit&color=black
 
 <!-- Repository links -->
@@ -283,3 +286,7 @@ Be sure to [read the terms][usage-terms] of usage to understand the responsabili
 [oracle-database-info]: https://www.oracle.com/database/
 [oracle-storage-info]: https://www.oracle.com/cloud/storage/
 [tf-free-oracle-resources]: https://free.terraform.gruber.dev.br/docs/resources/providers/oracle#resources
+[tf-free-oracle-resources]: https://free.terraform.gruber.dev.br/docs/resources/providers/oracle#resources
+[project-taskfile]: https://github.com/gruberdev/tf-free/blob/main/Taskfile.yml
+[taskfile-website]: https://taskfile.dev
+[getting-started]: https://free.terraform.gruber.dev.br/docs/setup/getting-started
