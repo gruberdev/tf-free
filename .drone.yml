@@ -27,30 +27,12 @@ steps:
         from_secret: aws_key
       AWS_ACCESS_KEY_ID:
         from_secret: aws_id
-  - name: Docker build
-    image: golang
-    commands:
-      - task docker-ci
-    environment:
-      GOOGLE_APPLICATION_CREDENTIALS:
-        from_secret: gcp_key_path
-      GOOGLE_PROJECT:
-        from_secret: gcp_project_id
-      SERVICE_ACCOUNT:
-        from_secret: gcp_app_key
-      AWS_DEFAULT_REGION:
-        from_secret: aws_region
-      AWS_SECRET_ACCESS_KEY:
-        from_secret: aws_key
-      AWS_ACCESS_KEY_ID:
-        from_secret: aws_id
 
   - name: Basic local testing
     image: docker.io/grubertech/freetf:0.3
     commands:
       - echo "Finished basic setup!"
     depends_on:
-      - Docker build
       - Terraform Plan
 
 # - name: tfsec
