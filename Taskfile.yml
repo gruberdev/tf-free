@@ -52,14 +52,13 @@ tasks:
 
   build:
     desc: Create and cache your Docker container
+    dir: deployments/
     cmds:
-      - docker stop freetf:latest || true
-      - docker rm freetf:latest || true
-      - cd deployments && docker build -t freetf:0.0.1 --no-cache -t freetf:latest -t ghcr.io/gruberdev/freetf:0.0.1 -t ghcr.io/gruberdev/freetf:latest -f Dockerfile.light ../
+      - docker build -t docker.io/grubertech/freetf:v0.1 -t docker.io/grubertech/freetf:latest --no-cache -f Dockerfile.dev ../
 
-  build-exec:
+  run:
     cmds:
-      - docker run freetf:latest /bin/bash
+      - docker run -it grubertech/freetf:latest /bin/sh
 
   build-all:
     desc: Build executable binary with GoReleaser.
@@ -70,27 +69,6 @@ tasks:
     desc: Build executable binary with GoReleaser.
     cmds:
       - gcloud auth application-default login
-
-  generate:
-    desc: Initialize test fakes
-    cmds:
-      - go generate ./...
-
-  vet:
-    desc: Initialize module and build cache, and remake go.sum file.
-    cmds:
-      - go vet ./...
-
-  fmt:
-    desc: Format Go files
-    cmds:
-      - go fmt ./...
-
-  mod:
-    desc: Initialize module and build cache, and remake go.sum file on root directory.
-    cmds:
-      - go mod tidy
-      - cd tools && go mod tidy
 
   docs-gen:
     desc: Build documentation using Terraform-docs and the task command
@@ -138,12 +116,6 @@ tasks:
       - cd docs && docker-compose down || true
       - cd docs && docker-compose -f build.yml down || true
 
-  test:
-    desc: Test and print out code coverage as html.
-    cmds:
-      - go test -race -covermode=atomic -coverprofile=coverage.out ./...
-      - go tool cover -html=coverage.out -o coverage.html
-
   lint:
     desc: Linter built on Docker.
     cmds:
@@ -152,13 +124,6 @@ tasks:
     sources:
       - ./go.mod
       - "**/*.go"
-
-  go-clean:
-    desc: Clean cache on root module.
-    cmds:
-      - rm -f ./go.sum
-      - go clean -cache || true
-      - go clean -modcache || true
 
   graph:
     desc: Create beautiful Terraform Graphs
