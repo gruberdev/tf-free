@@ -9,7 +9,7 @@ trigger:
       - pull_request
 steps:
   - name: Terraform Plan
-    image: freetf:v0.1
+    image: docker.io/grubertech/freetf:v0.1
     commands:
       - mkdir -p ~/.ssh-temp
       - chmod 700 ~/.ssh-temp
@@ -46,7 +46,7 @@ steps:
         from_secret: aws_id
 
   - name: Basic local testing
-    image: golang
+    image: docker.io/grubertech/freetf:v0.1
     commands:
       - echo "Finished basic setup!"
     depends_on:
