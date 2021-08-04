@@ -1,6 +1,6 @@
 ---
 kind: pipeline
-type: exec
+type: docker
 name: Basic testing
 trigger:
   event:
@@ -9,6 +9,7 @@ trigger:
       - pull_request
 steps:
   - name: Terraform Plan
+    image: freetf:v0.1
     commands:
       - mkdir -p ~/.ssh-temp
       - chmod 700 ~/.ssh-temp
@@ -27,6 +28,7 @@ steps:
       AWS_ACCESS_KEY_ID:
         from_secret: aws_id
   - name: Docker build
+    image: golang
     commands:
       - task docker-ci
     environment:
@@ -44,59 +46,58 @@ steps:
         from_secret: aws_id
 
   - name: Basic local testing
+    image: golang
     commands:
       - echo "Finished basic setup!"
     depends_on:
       - Docker build
       - Terraform Plan
 
-  # - name: tfsec
-  #   image: tfsec/tfsec
-  #   commands:
-  #     - tfsec . -e GCP003,AWS044,GEN003
-  #   when:
-  #     status:
-  #       - success
-  #       - failure
-  #     event:
-  #       - push
-  #       - pull_request
-  #   environment:
-  #     GOOGLE_PROJECT:
-  #       from_secret: gcp_project_id
-  #     GOOGLE_KEY:
-  #       from_secret: gcp_default
-  #     AWS_DEFAULT_REGION:
-  #       from_secret: aws_region
-  #     AWS_SECRET_ACCESS_KEY:
-  #       from_secret: awswwwwwwwwwwwwwwwwwwwwww_key
-  #     AWS_ACCESS_KEY_ID:
-  #       from_secret: aws_id
-
-  # - name: terrascan
-  #   image: accurics/terrascan
-  #   commands:
-  #     - terrascan scan
-  #   when:
-  #     status:
-  #       - success
-  #       - failure
-  #     event:
-  #       - push
-  #       - pull_request
-  #       - rollback
-  #   environment:
-  #     GOOGLE_PROJECT:
-  #       from_secret: gcp_project_id
-  #     GOOGLE_KEY:
-  #       from_secret: gcp_default
-  #     AWS_DEFAULT_REGION:
-  #       from_secret: aws_region
-  #     AWS_SECRET_ACCESS_KEY:
-  #       from_secret: aws_key
-  #     AWS_ACCESS_KEY_ID:
-  #       from_secret: aws_id
-
+# - name: tfsec
+#   image: tfsec/tfsec
+#   commands:
+#     - tfsec . -e GCP003,AWS044,GEN003
+#   when:
+#     status:
+#       - success
+#       - failure
+#     event:
+#       - push
+#       - pull_request
+#   environment:
+#     GOOGLE_PROJECT:
+#       from_secret: gcp_project_id
+#     GOOGLE_KEY:
+#       from_secret: gcp_default
+#     AWS_DEFAULT_REGION:
+#       from_secret: aws_region
+#     AWS_SECRET_ACCESS_KEY:
+#       from_secret: awswwwwwwwwwwwwwwwwwwwwww_key
+#     AWS_ACCESS_KEY_ID:
+#       from_secret: aws_id
+# - name: terrascan
+#   image: accurics/terrascan
+#   commands:
+#     - terrascan scan
+#   when:
+#     status:
+#       - success
+#       - failure
+#     event:
+#       - push
+#       - pull_request
+#       - rollback
+#   environment:
+#     GOOGLE_PROJECT:
+#       from_secret: gcp_project_id
+#     GOOGLE_KEY:
+#       from_secret: gcp_default
+#     AWS_DEFAULT_REGION:
+#       from_secret: aws_region
+#     AWS_SECRET_ACCESS_KEY:
+#       from_secret: aws_key
+#     AWS_ACCESS_KEY_ID:
+#       from_secret: aws_id
 # ---
 # kind: pipeline
 # type: docker
@@ -131,7 +132,6 @@ steps:
 #         from_secret: aws_key
 #       AWS_ACCESS_KEY_ID:
 #         from_secret: aws_id
-
 #   - name: Unit Test EC2
 #     image: golang:1.16.6-alpine
 #     commands:
@@ -147,7 +147,6 @@ steps:
 #         from_secret: aws_key
 #       AWS_ACCESS_KEY_ID:
 #         from_secret: aws_id
-
 #   - name: Unit Test RDS
 #     image: golang:1.16.6-alpine
 #     commands:
@@ -164,7 +163,6 @@ steps:
 #         from_secret: aws_key
 #       AWS_ACCESS_KEY_ID:
 #         from_secret: aws_id
-
 # ---
 # kind: pipeline
 # type: docker
