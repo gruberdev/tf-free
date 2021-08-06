@@ -2,43 +2,47 @@
 
 ---
 
-# Objective
-
+# Introduction
 > **Creating all available resources offered by major cloud providers within free-tier plans, using Terraform to provide, manage and access these resources in a simplified and centralized manner.**
 
-### Motivation
+### Project's objective
 
-> :Collapse label=, default=open
->
-> Every major cloud provider offers a free tier that allows for some kind of resource free of charge, still, learning every cloud and managing these resources can prove burdensome to most.
->
-> The goal is to automate the management of these resources using Terraform as the centralizing tool. It also aims to provide resources for learning and improve your skills as a SRE/DevOps Engineer and as a Terraform user, even if you're developer that never touched cloud infrastructure, nowadays there's great value in learning these tools.
+Every major cloud provider offers a free tier that allows for some kind of resource free of charge, still, learning every cloud and managing these resources can prove burdensome to most.
+
+The goal is to automate the management of these resources using Terraform as the centralizing tool. It also aims to provide resources for learning and improve your skills as a SRE/DevOps Engineer and as a Terraform user, even if you're developer that never touched cloud infrastructure, nowadays there's great value in learning these tools.
+
+A CLI tool is part of this project for those who wish a more [KIS][kis-approach]-like approach.
 
 ---
 
-# Getting started
+# How to use these project's resources:
 
 There are three main ways to bootstrap this project:
 
-1. Using the automatic one-line setup script
-2. Using the CLI tool (recommended)
-3. Use Terraform's module directly (advanced)
+1. Using the CLI tool (recommended)
+2. Use Terraform's module directly (advanced)
 
-The first method is exemplified below:
+The second method exemplified below:
 
 ```bash | --no-wmbar
-curl -sSLf https://gruber.dev.br/install | bash -s terraform-free  # --> click to copy the command
+terraform apply -auto-approve
 ```
 
 > :Buttons
 >
 > > :CopyButton
 
-Or use the explicit url/preview the script content
+To visualize the available commands:
 
 ```bash | --no-wmbar
-wget https://raw.githubusercontent.com/gruberdev/setup/main/install.sh && cat install.sh && rm install.sh # --> direct url to the bash script, click to copy
-curl -sSL https://raw.githubusercontent.com/gruberdev/setup/main/install.sh | bash -s terraform-free
+sudo sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
+task --list # Display help message
+> * gcp:                  Build executable binary with GoReleaser.
+> * gcp-boot:             test
+> * gcp-init:             Bootstrapping Google Cloud provider testing files
+> * gcp-test:             Terraform testing (GCP provider)
+> * graph:                Create beautiful Terraform Graphs
+> * heavy-artillery:      Destroy all resources but the S3 Backend .and the DynamoDB instances on AWS.
 ```
 
 > :Buttons

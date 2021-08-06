@@ -41,3 +41,4 @@ resource "azurerm_route" "example" {
   address_prefix      = "10.1.0.0/16"
   next_hop_type       = "vnetlocal"
 }
+
