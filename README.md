@@ -109,6 +109,7 @@ More information at the [provider's documentation page][tf-free-oracle-resources
 ##  [❯ Getting started][getting-started]
 
 ```
+terraform init
 terraform apply -auto-approve
 ```
 
@@ -136,8 +137,9 @@ task --list # or task help
 | Name | Source | Version |
 |------|--------|---------|
 | aws | ./modules/aws |  |
+| azure | ./modules/azure |  |
 | google\_cloud | ./modules/gcp |  |
-| terraform\_state\_backend | cloudposse/tfstate-backend/aws | 0.33.0 |
+| terraform\_state\_backend | cloudposse/tfstate-backend/aws | 0.33.1 |
 
 ### Inputs
 
