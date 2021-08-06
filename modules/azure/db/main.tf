@@ -6,3 +6,4 @@ module "database" {
   sql_username        = var.sql_user
   sql_password        = var.sql_password
 }
+

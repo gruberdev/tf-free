@@ -11,18 +11,17 @@ module "networking" {
   source              = "./vpc"
 }
 
-/* module "database" {
-  source       = "./db"
-  location     = var.location
-  name         = var.database_name
-  db_name      = var.database_db_name
-  sql_username = var.database_user
-  depends_on = [
-    azurerm_resource_group.default,
-    networking.default
-  ]
-
-} */
+//  module "database" {
+//   source       = "./db"
+//   location     = var.location
+//   name         = var.database_name
+//   db_name      = var.database_db_name
+//   sql_username = var.database_user
+//   depends_on = [
+//     azurerm_resource_group.default,
+//     networking.default
+//   ]
+// }
 
 module "compute" {
   source             = "./compute"
