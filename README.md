@@ -137,7 +137,6 @@ task --list # or task help
 | Name | Source | Version |
 |------|--------|---------|
 | aws | ./modules/aws |  |
-| azure | ./modules/azure |  |
 | google\_cloud | ./modules/gcp |  |
 | terraform\_state\_backend | cloudposse/tfstate-backend/aws | 0.33.1 |
 

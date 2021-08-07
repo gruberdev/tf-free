@@ -7,7 +7,7 @@ ARG TFLINT_VERSION="0.28.1"
 ARG TFDOCS_VERSION="0.9.1"
 
 # CLIs Dockerized Providers
-a#FROM amazon/aws-cli:${AWS_VERSION} as build-aws
+FROM amazon/aws-cli:${AWS_VERSION} as build-aws
 FROM hashicorp/terraform:${TF_CLI_VERSION} as build-tf-cli
 FROM tfsec/tfsec-alpine:v${TFSEC_VERSION} as build-tfsec
 FROM wata727/tflint:${TFLINT_VERSION} as build-tflint
