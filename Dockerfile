@@ -76,17 +76,22 @@ ENV \
 # Install Python and GCC dependencies
 # hadolint ignore=DL3018
 RUN apk add --update --no-cache \
- bash=${BASH_VERSION} gcc=${GCC_VERSION} g++ git=${GIT_VERSION} curl \
- zlib libffi-dev binutils \
- musl-dev python${PYTHON_VERSION_MAJOR} openssl \
- sudo jq=${JQ_VERSION} py${PYTHON_VERSION_MAJOR}-pip ncurses=${NCURSES_VERSION} \
+ bash gcc g++ git curl cargo rust \
+ zlib libffi-dev binutils openssl-dev \
+ python${PYTHON_VERSION_MAJOR} openssl \
+ sudo jq=${JQ_VERSION} py${PYTHON_VERSION_MAJOR}-pip ncurses \
  openssh-client rsync \
  ca-certificates musl-dev \
  openssl-dev make python${PYTHON_VERSION_MAJOR}-dev \
  && ln -sf python${PYTHON_VERSION_MAJOR} /usr/bin/python \
  && rm -rf /usr/local/bin/python \
  && ln -s /usr/bin/python${PYTHON_VERSION_MINOR} /usr/local/bin/python \
- && python${PYTHON_VERSION_MAJOR} -m ensurepip
+ && python${PYTHON_VERSION_MAJOR} -m ensurepip && \
+ pip install --upgrade pip pipenv && \
+ pip --no-cache-dir install -U pip && \
+ apk del --purge python3-dev gcc \
+     musl-dev make libffi-dev \
+     openssl-dev
 
 # Configuring bash instead of sh
 SHELL ["/bin/bash", "-eo", "pipefail", "-c"]
