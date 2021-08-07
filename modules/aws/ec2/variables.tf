@@ -56,3 +56,8 @@ variable "seed_data" {
   default     = ""
   type        = string
 }
+variable "imds-enable" {
+  description = "Enforces the use of an IMDS HTTP Session Auth Tokens. [Related security issues.](https://aws.amazon.com/blogs/security/defense-in-depth-open-firewalls-reverse-proxies-ssrf-vulnerabilities-ec2-instance-metadata-service/)"
+	default     = "required"
+  type        = string
+}

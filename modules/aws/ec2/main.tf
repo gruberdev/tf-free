@@ -46,7 +46,9 @@ resource "aws_instance" "ec2" {
   vpc_security_group_ids      = [aws_security_group.security_group.id]
   associate_public_ip_address = true
   user_data                   = var.seed_data
-
+  metadata_options {
+    http_tokens = var.imds-enable
+  }
   tags = {
     Name = var.name
   }
