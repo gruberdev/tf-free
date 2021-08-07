@@ -14,9 +14,21 @@ steps:
       - mkdir -p ~/.ssh-temp
       - chmod 700 ~/.ssh-temp
       - ssh-keygen -t rsa -b 4096 -C "example@gmail.com" -N 'test' -f ~/.ssh-temp/id_rsa
+      - touch key.json && echo $$GOOGLE_CREDENTIALS >> key.json
+      - export GOOGLE_APPLICATION_CREDENTIAL=key.json
       - terraform init -upgrade -reconfigure -force-copy
       - terraform plan
     environment:
+      ARM_CLIENT_ID:
+        from_secret: arm_id
+      ARM_CLIENT_CERTIFICATE_PATH:
+        from secret: azure_path
+      ARM_CLIENT_CERTIFICATE_PASSWORD:
+        from_secret: cte_password
+      ARM_SUBSCRIPTION_ID:
+        from_secret: azure_sub_id
+      ARM_TENANT_ID:
+        from_secret: azure_tenant_id
       GOOGLE_CREDENTIALS:
         from_secret: gcp_key
       GOOGLE_PROJECT:
