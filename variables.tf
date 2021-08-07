@@ -63,7 +63,7 @@ variable "prevents_destroy" {
 variable "backend_stage" {
   type        = string
   default     = "test"
-  description = "Stages possible for Backend. Set for a random string." 
+  description = "Stages possible for Backend. Set for a random string."
 }
 
 variable "ec2_aws" {
