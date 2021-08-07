@@ -11,6 +11,8 @@ steps:
   - name: Terraform Plan
     image: docker.io/grubertech/freetf:0.3
     commands:
+      - apk update && apk add curl && sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
+      - task init-drone
       - mkdir -p ~/.ssh-temp
       - chmod 700 ~/.ssh-temp
       - ssh-keygen -t rsa -b 4096 -C "example@gmail.com" -N 'test' -f ~/.ssh-temp/id_rsa
@@ -66,7 +68,7 @@ steps:
 #     AWS_DEFAULT_REGION:
 #       from_secret: aws_region
 #     AWS_SECRET_ACCESS_KEY:
-#       from_secret: awswwwwwwwwwwwwwwwwwwwwww_key
+#       from_secret: aws_key
 #     AWS_ACCESS_KEY_ID:
 #       from_secret: aws_id
 # - name: terrascan
