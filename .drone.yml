@@ -11,12 +11,26 @@ steps:
   - name: Terraform Plan
     image: docker.io/grubertech/freetf:0.3
     commands:
+      - apk update && apk add curl && sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
+      - task init-drone
       - mkdir -p ~/.ssh-temp
       - chmod 700 ~/.ssh-temp
       - ssh-keygen -t rsa -b 4096 -C "example@gmail.com" -N 'test' -f ~/.ssh-temp/id_rsa
+      - touch key.json && echo $$GOOGLE_CREDENTIALS >> key.json
+      - export GOOGLE_APPLICATION_CREDENTIAL=key.json
       - terraform init -upgrade -reconfigure -force-copy
       - terraform plan
     environment:
+      ARM_CLIENT_ID:
+        from_secret: arm_id
+      ARM_CLIENT_CERTIFICATE_PATH:
+        from secret: azure_path
+      ARM_CLIENT_CERTIFICATE_PASSWORD:
+        from_secret: cte_password
+      ARM_SUBSCRIPTION_ID:
+        from_secret: azure_sub_id
+      ARM_TENANT_ID:
+        from_secret: azure_tenant_id
       GOOGLE_CREDENTIALS:
         from_secret: gcp_key
       GOOGLE_PROJECT:
@@ -54,7 +68,7 @@ steps:
 #     AWS_DEFAULT_REGION:
 #       from_secret: aws_region
 #     AWS_SECRET_ACCESS_KEY:
-#       from_secret: awswwwwwwwwwwwwwwwwwwwwww_key
+#       from_secret: aws_key
 #     AWS_ACCESS_KEY_ID:
 #       from_secret: aws_id
 # - name: terrascan

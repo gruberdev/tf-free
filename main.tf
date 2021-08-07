@@ -65,6 +65,6 @@ module "aws" {
   rds_enable = var.rds_aws
 }
 
-module "azure" {
-  source = "./modules/azure"
-}
+// module "azure" {
+//   source = "./modules/azure"
+// }

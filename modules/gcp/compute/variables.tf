@@ -10,11 +10,11 @@ variable "name" {
 
 variable "type" {
   type        = string
-  default     = "f1-micro"
+  default     = "e2-micro"
   description = "GCP Instance Machine type. [Oficial GCP Documentation](https://cloud.google.com/compute/docs/machine-types) - [Terraform provider Documentation](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance#machine_type)"
   validation {
-    condition     = var.type == "f1-micro"
-    error_message = "Error: Only f1-micro instances are elligible for the free Tier on GCP."
+    condition     = var.type == "e2-micro"
+    error_message = "Error: Only `e2-micro` instances are elligible for the free Tier on GCP. `f1-micro` were deprecated as of August 2021."
   }
 }
 
