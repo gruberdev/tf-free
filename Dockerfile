@@ -7,8 +7,7 @@ ARG TFLINT_VERSION="0.28.1"
 ARG TFDOCS_VERSION="0.9.1"
 
 # CLIs Dockerized Providers
-#FROM amazon/aws-cli:${AWS_VERSION} as build-aws
-FROM mcr.microsoft.com/azure-cli:${AZURE_VERSION} as build-azure
+a#FROM amazon/aws-cli:${AWS_VERSION} as build-aws
 FROM hashicorp/terraform:${TF_CLI_VERSION} as build-tf-cli
 FROM tfsec/tfsec-alpine:v${TFSEC_VERSION} as build-tfsec
 FROM wata727/tflint:${TFLINT_VERSION} as build-tflint
@@ -26,7 +25,6 @@ LABEL org.opencontainers.image.source = "https://github.com/gruberdev/tf-free"
 
 #COPY --from=build-aws /usr/local/aws-cli/ /usr/local/aws-cli/
 #COPY --from=build-aws /usr/local/bin/ /usr/local/bin/
-COPY --from=build-azure /usr/local/bin/az /usr/local/bin/az
 COPY --from=build-tf-cli /bin/terraform /usr/local/bin/terraform
 COPY --from=build-tfsec /usr/bin/tfsec /usr/local/bin/tfsec
 COPY --from=build-tflint /usr/local/bin/tflint /usr/local/bin/tflint
@@ -40,11 +38,6 @@ ENV PYTHON_VERSION_MINOR=3.8
 ENV PYTHON_VERSION_MAJOR=3
 ENV AZURE_VERSION=2.18.0
 ENV AWS_CLI_VERSION=2.2.13
-ENV AZ_COMPUTE_VERSION=21.0.0
-ENV AZ_STORAGE_VERSION=18.0.0
-ENV AZ_RESOURCE_VERSION=18.0.0
-ENV AZ_KEYVAULT_VERSION=4.2.0
-ENV AZ_BLOB_VERSION=12.8.1
 
 # Alpine Packages versioning lock
 ENV GCC_VERSION=10.2.1_pre1-r3
@@ -142,13 +135,6 @@ COPY . .
 #  && rm glibc-${GLIBC_VER}.apk \
 #  && rm glibc-bin-${GLIBC_VER}.apk \
 #  && rm -rf /var/cache/apk/*
-
-# Install Azure-cli and dependencies
-RUN pip${PYTHON_VERSION_MAJOR} install azure-mgmt-compute==${AZ_COMPUTE_VERSION} azure-mgmt-storage==${AZ_STORAGE_VERSION} \
- azure-mgmt-resource==${AZ_RESOURCE_VERSION} azure-keyvault-secrets==${AZ_KEYVAULT_VERSION} \
- azure-storage-blob==${AZ_BLOB_VERSION} && \
- chmod +x /project/scripts/entrypoint-dev.sh && /bin/bash -s /project/scripts/entrypoint-dev.sh \
- && chmod +x /project/scripts/test.sh
 
 # Verifying dependencies existence within Dockerfile
 RUN curl -sL https://git.io/_has | bash -s git az tfscan \
