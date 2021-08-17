@@ -3,19 +3,19 @@ terraform {
   required_providers {
     google = {
       source  = "hashicorp/google"
-      version = "3.79.0"
+      version = "3.80.0"
     }
     google-beta = {
       source  = "hashicorp/google-beta"
-      version = "3.79.0"
+      version = "3.80.0"
     }
     aws = {
       source  = "hashicorp/aws"
-      version = "3.53.0"
+      version = "3.54.0"
     }
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "2.71.0"
+      version = "2.72.0"
     }
   }
 }
