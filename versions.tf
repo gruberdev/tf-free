@@ -7,7 +7,7 @@ terraform {
     }
     google-beta = {
       source  = "hashicorp/google-beta"
-      version = "3.86.0"
+      version = "3.87.0"
     }
     aws = {
       source  = "hashicorp/aws"
