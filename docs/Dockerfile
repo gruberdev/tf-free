@@ -1,7 +1,7 @@
 #
 # Start from Node
 #
-FROM node:14.4
+FROM node:17.1
 
 #
 # Install CODEDOC CLI (https://codedoc.cc/docs/cli)
