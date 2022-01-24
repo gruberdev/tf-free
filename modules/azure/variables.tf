@@ -47,3 +47,8 @@ variable "linux_name" {
   type    = string
   default = "linux-pc"
 }
+
+variable "storage_account_name" {
+  type    = string
+  default = "tf-free-sa"
+}

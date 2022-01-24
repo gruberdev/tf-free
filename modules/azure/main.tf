@@ -5,9 +5,8 @@ resource "azurerm_resource_group" "default" {
 }
 
 module "networking" {
-  depends_on          = [azurerm_resource_group.default]
-  resource_group_name = var.resource_group_name
-  location = var.location
+  resource_group_name = azurerm_resource_group.default.name
+  location            = var.location
   source              = "./vpc"
 }
 
@@ -24,12 +23,18 @@ module "networking" {
 // }
 
 module "compute" {
-  source             = "./compute"
-  resource_group_name = var.resource_group_name
-  windows_hostname   = var.windows_name
-  linux_hostname     = var.linux_name
-  windows_dns_server = var.wdns_server
-  linux_dns_server   = var.ldns_server
-  subnet_id          = module.networking.vpc_id
-  depends_on = [azurerm_resource_group.default]
+  source              = "./compute"
+  resource_group_name = azurerm_resource_group.default.name
+  windows_hostname    = var.windows_name
+  linux_hostname      = var.linux_name
+  windows_dns_server  = var.wdns_server
+  linux_dns_server    = var.ldns_server
+  subnet_id           = module.networking.vpc_id
+}
+
+module "storage" {
+  source               = "./storage"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.default.name
+  storage_account_name = var.storage_account_name
 }
