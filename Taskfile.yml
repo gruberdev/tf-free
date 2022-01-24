@@ -1,77 +1,66 @@
 version: "3"
 
 tasks:
-  docker-one-liner:
-    deps:
-      - docker-init
-      - build
-      - docker
+  default:
     cmds:
-      - "Loading container..."
+      - task: help
 
   docker-init:
     desc: Create and cache your Docker container
+    ignore_error: true
+    silent: true
     cmds:
-      - docker volume rm cache_terraform || true
-      - docker volume rm repository_results || true
-      - docker volume create cache_terraform || true
-      - docker volume create repository_results || true
+      - docker volume rm cache_terraform
+      - docker volume rm repository_results
+      - docker volume create cache_terraform
+      - docker volume create repository_results
+
 
   docker-local:
     desc: Create and cache your Docker container
+    ignore_error: true
+    silent: true
     cmds:
-      - docker-compose -f deployments/local.yml down || true
+      - docker-compose -f deployments/local.yml down
       - docker-compose -f deployments/local.yml build
       - docker-compose -f deployments/local.yml run --entrypoint /bin/bash freetf
 
   docker-ci:
-    desc: Create and cache your Docker container
+    desc: Execute project's test workflow made specifically for CI/CD integrations
+    ignore_error: true
+    silent: true
     cmds:
-      - docker-compose -f deployments/local.yml down || true
-      - docker-compose -f deployments/light.yml down || true
-      - docker-compose -f deployments/local.yml build
-      - docker-compose -f deployments/light.yml build
-      - docker-compose -f deployments/local.yml run --entrypoint /bin/bash freetf
-      - docker-compose -f deployments/local.yml stop freetf
-      - docker-compose -f deployments/light.yml run --entrypoint /bin/bash freetf
-      - docker-compose -f deployments/light.yml stop freetf
-
-  docker-light:
-    desc: Create and cache your Docker container
-    cmds:
-      - docker-compose -f deployments/light.yml down || true
-      - docker-compose -f deployments/light.yml build
-      - docker-compose -f deployments/light.yml run --entrypoint /bin/bash freetf
+      - docker-compose down
+      - docker-compose up --build -d
 
   docker:
-    desc: Create and cache your Docker container
+    desc: Starts the project's container.
+    ignore_error: true
+    silent: true
     deps:
       - build
     cmds:
       - docker run -it --rm --name freetf freetf:latest
 
+  help:
+    desc: Prints all the commands short description (this message).
+    cmds:
+      - task --list
+
   build:
     desc: Create and cache your Docker container
-    dir: deployments/
     cmds:
-      - docker build -t docker.io/grubertech/freetf:v0.1 -t docker.io/grubertech/freetf:latest --no-cache -f Dockerfile.dev ../
-
-  run:
-    cmds:
-      - docker run -it grubertech/freetf:latest /bin/sh
-
-  build-all:
-    desc: Build executable binary with GoReleaser.
-    cmds:
-      - goreleaser --snapshot --skip-publish --rm-dist
+      - env -i docker build -t docker.io/grubertech/freetf:v0.1 -t docker.io/grubertech/freetf:latest .
 
   gcp:
-    desc: Build executable binary with GoReleaser.
+    desc: Login on Google Cloud Platform using a service account
     cmds:
       - gcloud auth application-default login
 
   docs-gen:
     desc: Build documentation using Terraform-docs and the task command
+    ignore_error: true
+    silent: true
     cmds:
       - terraform-docs markdown -c .terraform-docs.yml . --output-file README.md
       - terraform-docs markdown -c .terraform-docs.yml ./modules/aws --output-file README.md --header-from "header.md"
@@ -92,38 +81,35 @@ tasks:
       - terraform-docs markdown -c .terraform-docs.yml ./examples/aws/unit/ec2 --output-file README.md
 
   docs:
-    desc: Initialize module and build cache, and remake go.sum file on root directory.
+    desc: Initializes local setup for documentation development.
+    dir: ./docs
     deps:
       - stop-docs
     cmds:
-      - cd docs && docker build -t tf-free:docs .
-      - cd docs && docker-compose up --build -d
+      - docker build -t tf-free:docs .
+      - docker-compose up --build -d
 
   docs-deploy:
-    desc: Initialize module and build cache, and remake go.sum file on root directory.
+    desc: Deploys documentation files in a different respository.
+    ignore_error: true
+    silent: true
     deps:
       - stop-docs
+    dir: ./docs
     cmds:
-      - cd docs && docker build -t tf-free:docs .
-      - cd docs && docker-compose -f build.yml up --build
-      - cd docs && rm -rf .public || true
-      - cd docs && mkdir .public
-      - cp -r docs/build/* docs/.public/
-      - cp docs/vercel.json docs/.public/
+      - docker build -t tf-free:docs .
+      - docker-compose -f build.yml up --build
+      - rm -rf .public
+      - mkdir .public
+      - cp -r build/* .public/
+      - cp docs/vercel.json .public/
 
   stop-docs:
+    dir: ./docs
+    ignore_error: true
+    silent: true
     cmds:
-      - cd docs && docker-compose down || true
-      - cd docs && docker-compose -f build.yml down || true
-
-  lint:
-    desc: Linter built on Docker.
-    cmds:
-      - go mod verify
-      - docker run --rm -v $(pwd):/app -w /app golangci/golangci-lint:v1.40.1 golangci-lint run --enable gosec --timeout 3m0s ./...
-    sources:
-      - ./go.mod
-      - "**/*.go"
+      - docker-compose -f build.yml down
 
   graph:
     desc: Create beautiful Terraform Graphs
@@ -131,21 +117,16 @@ tasks:
       - go get github.com/pcasteran/terraform-graph-beautifier
       - terraform graph | terraform-graph-beautifier --exclude="module.root.provider" --output-type=cyto-html > graph.html
 
-  gcp-boot:
-    desc: test
-    cmds:
-      - cd test/gcp && rm go.mod || true
-      - cd test/gcp && rm go.sum || true
-      - cd test/gcp && go mod init "github.com/gruberdev/tf-free" || true
-      - cd test/gcp && go mod tidy || true
-
   gcp-init:
     desc: Bootstrapping Google Cloud provider testing files
+    ignore_error: true
+    silent: true
+    dir: ./test/gcp
     cmds:
-      - cd test/gcp && rm go.mod || true
-      - cd test/gcp && rm go.sum || true
-      - cd test/gcp && go mod init "github.com/gruberdev/tf-free" || true
-      - cd test/gcp && go mod tidy || true
+      - rm go.mod
+      - rm go.sum
+      - go mod init "github.com/gruberdev/tf-free"
+      - go mod tidy
 
   gcp-test:
     desc: Terraform testing (GCP provider)
@@ -160,21 +141,24 @@ tasks:
 
   aws-init:
     desc: Bootstrapping AWS provider testing files
+    dir: ./test/aws
     cmds:
-      - cd test/aws && rm go.mod || true
-      - cd test/aws && rm go.sum || true
-      - cd test/aws && go mod init "github.com/gruberdev/tf-free" && go mod tidy
+      - rm go.mod
+      - rm go.sum
+      - go mod init "github.com/gruberdev/tf-free" && go mod tidy
+    ignore_error: true
 
   aws-test:
     deps:
       - aws-init
-    desc: Terraform testing (AWS provider)
+    desc: Integration testing - Terraform module AWS provider
+    dir: ./test/aws
     cmds:
-      - cd test/aws && go test -v -timeout 10m -run TestUnitEC2
-      - cd test/aws && go test -v -timeout 10m -run TestUnitRDS
+      - go test -v -timeout 10m -run TestUnitEC2
+      - go test -v -timeout 10m -run TestUnitRDS
 
   full-test-local:
-    desc: Terraform testing all providers.
+    desc: Test all configured providers in parallel.
     deps:
       - gcp-test
       - aws-test
@@ -206,20 +190,24 @@ tasks:
       - terraform init -force-copy
 
   init-docker:
+    ignore_error: true
+    silent: true
+    dir: ./test/docker
     cmds:
-      - cd test/docker && rm go.mod || true
-      - cd test/docker && rm go.sum || true
-      - cd test/docker && go mod init "github.com/gruberdev/tf-free" && go mod tidy
+      - rm go.mod
+      - rm go.sum
+      - go mod init "github.com/gruberdev/tf-free" && go mod tidy
 
   docker-test:
-    desc: Terraform standard initialization
+    desc: Unit testing Docker build.
+    dir: ./test/docker
     deps:
       - init-docker
     cmds:
-      - cd test/docker && go test -v -timeout 45m -run TestDockerBuild
+      - go test -v -timeout 45m -run TestDockerBuild
 
   lastdestroy:
-    desc: Terraform standard initialization
+    desc: Allows the backend to be destroyed, used when stopping all resources in a project.
     cmds:
       - terraform apply -var backend_destroy=true -var prevents_destroy=false -target module.terraform_state_backend -auto-approve
       - terraform init -force-copy
@@ -227,12 +215,12 @@ tasks:
       - terraform destroy -auto-approve
 
   dbdestroy:
-    desc: Terraform standard initialization
+    desc: Only Terraform destroys the AWS RDS database.
     cmds:
       - terraform destroy -target module.aws.module.rds.aws_db_instance.rds -auto-approve
 
   apply-aws:
-    desc: Terraform standard initialization
+    desc: Terraform apply command for locala AWS environments
     cmds:
       - cd modules/aws && terraform apply -auto-approve
 
@@ -252,26 +240,28 @@ tasks:
       - docker run --rm -i hadolint/hadolint < Dockerfile || true
 
   backend-enable:
-    desc: How to transfer the backend to S3 (Remote)
+    desc: Transfers the backend statefile information to a S3 instance associated with a NoSQL DB
     cmds:
       - terraform init -force-copy
 
   backend-disable:
-    desc: How to destroy the backend stored in S3
+    desc: Destroys the backend S3 provider, using the required flags  alredy.
     cmds:
       - terraform apply -target module.terraform_state_backend -auto-approve
       - terraform init -force-copy
 
   destroy-aws:
-    desc: Terraform standard initialization
+    desc: Destroy all resources only related to AWS
+    dir: ./modules/aws
     cmds:
-      - cd modules/aws && terraform destroy -auto-approve
+      - terraform destroy -auto-approve
 
   restart-aws:
-    desc: Terraform standard initialization
+    desc: Recreates from scratch resources on AWS
+    dir: ./modules/aws
     cmds:
-      - cd modules/aws && terraform destroy -auto-approve
-      - cd modules/aws && terraform apply -auto-approve
+      - task: destroy-aws
+      - terraform apply -auto-approve
 
   heavy-artillery:
     desc: Destroy all resources but the S3 Backend and the DynamoDB instances on AWS.
@@ -280,35 +270,37 @@ tasks:
       - terraform destroy -target module.aws -auto-approve
 
   tf-clean:
-    desc: Terraform standard initialization
+    desc: Deletes all your local configuration files on Terraform's folder. WARNING THIS DELETES THE STATEILE. AVOID USING IT.
+    ignore_error: true
+    silent: true
     cmds:
-      - rm -rf ./.terraform || true
-      - rm -rf ./.blast || true
-      - rm terraform.tfstate || true
-      - rm terraform.tfstate.backup || true
-      - rm ./.terraform.lock.hcl || true
-      - rm backend.tf || true
-      - rm errored.tfstate || true
-      - rm graph.html || true
-      - rm index.html || true
-      - rm plan.json || true
-      - rm plan.out || true
-      - rm gcp.json || true
-      - cd modules && cd gcp && rm -rf ./.terraform && rm ./.terraform.lock.hcl || true
-      - cd modules && cd gcp && cd vpc && rm -rf ./.terraform && rm ./.terraform.lock.hcl || true
-      - cd modules && cd gcp && cd firewall && rm -rf ./.terraform && rm ./.terraform.lock.hcl || true
-      - cd modules && cd gcp && cd compute && rm -rf ./.terraform && rm ./.terraform.lock.hcl || true
-      - cd modules && cd aws && rm -rf ./.terraform && rm ./.terraform.lock.hcl || true
-      - cd modules && cd aws && cd ec2 && rm -rf ./.terraform && rm ./.terraform.lock.hcl || true
-      - cd modules && cd aws && cd rds && rm -rf ./.terraform && rm ./.terraform.lock.hcl || true
-      - rm examples/aws/unit/ec2/.terraform.lock.hcl || true
-      - rm -rf examples/aws/unit/ec2/.terraform || true
-      - rm examples/aws/unit/ec2/terraform.tfstate || true
-      - rm examples/aws/unit/ec2/terraform.tfstate.backup || true
-      - rm examples/aws/unit/rds/.terraform.lock.hcl || true
-      - rm -rf examples/aws/unit/rds/.terraform || true
-      - rm examples/aws/unit/rds/terraform.tfstate || true
-      - rm examples/aws/unit/rds/terraform.tfstate.backup || true
+      - rm -rf ./.terraform
+      - rm -rf ./.blast
+      - rm terraform.tfstate
+      - rm terraform.tfstate.backup
+      - rm ./.terraform.lock.hcl
+      - rm backend.tf
+      - rm errored.tfstate
+      - rm graph.html
+      - rm index.html
+      - rm plan.json
+      - rm plan.out
+      - rm gcp.json
+      - cd modules && cd gcp && rm -rf ./.terraform && rm ./.terraform.lock.hcl
+      - cd modules && cd gcp && cd vpc && rm -rf ./.terraform && rm ./.terraform.lock.hcl
+      - cd modules && cd gcp && cd firewall && rm -rf ./.terraform && rm ./.terraform.lock.hcl
+      - cd modules && cd gcp && cd compute && rm -rf ./.terraform && rm ./.terraform.lock.hcl
+      - cd modules && cd aws && rm -rf ./.terraform && rm ./.terraform.lock.hcl
+      - cd modules && cd aws && cd ec2 && rm -rf ./.terraform && rm ./.terraform.lock.hcl
+      - cd modules && cd aws && cd rds && rm -rf ./.terraform && rm ./.terraform.lock.hcl
+      - rm examples/aws/unit/ec2/.terraform.lock.hcl
+      - rm -rf examples/aws/unit/ec2/.terraform
+      - rm examples/aws/unit/ec2/terraform.tfstate
+      - rm examples/aws/unit/ec2/terraform.tfstate.backup
+      - rm examples/aws/unit/rds/.terraform.lock.hcl
+      - rm -rf examples/aws/unit/rds/.terraform
+      - rm examples/aws/unit/rds/terraform.tfstate
+      - rm examples/aws/unit/rds/terraform.tfstate.backup
 
   init-drone:
     desc: Terraform standard initialization
@@ -317,34 +309,39 @@ tasks:
       - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
 
   unit-compute-gcp:
+    dir: ./test/gcp
     deps:
       - gcp-init
     cmds:
-      - cd test/gcp && go test -v -timeout 5m -run TestUnitCompute
+      - go test -v -timeout 5m -run TestUnitCompute
 
   unit-storage-gcp:
+    dir: ./test/gcp
     deps:
       - gcp-init
     cmds:
-      - cd test/gcp && go test -v -timeout 5m -run TestUnitStorage
+      - go test -v -timeout 5m -run TestUnitStorage
 
   unit-network-gcp:
+    dir: ./test/gcp
     deps:
       - gcp-init
     cmds:
-      - cd test/gcp && go test -v -timeout 5m -run TestUnitVPC
+      - go test -v -timeout 5m -run TestUnitVPC
 
   unit-ec2-aws:
+    dir: ./test/aws
     deps:
       - aws-init
     cmds:
-      - cd test/aws && go test -v -timeout 15m -run TestUnitEC2
+      - go test -v -timeout 15m -run TestUnitEC2
 
   unit-rds-aws:
+    dir: ./test/aws
     deps:
       - aws-init
     cmds:
-      - cd test/aws && go test -v -timeout 30m -run TestUnitRDS
+      - go test -v -timeout 30m -run TestUnitRDS
 
   blast-radius:
     cmds:

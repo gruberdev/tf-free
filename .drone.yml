@@ -9,7 +9,7 @@ trigger:
       - pull_request
 steps:
   - name: Terraform Plan
-    image: docker.io/grubertech/freetf:0.3
+    image: docker.io/grubertech/freetf:v0.1
     commands:
       - apk update && apk add curl && sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
       - task init-drone

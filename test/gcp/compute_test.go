@@ -36,5 +36,5 @@ func TestUnitCompute(t *testing.T) {
 	resultingInstanceName := terraform.OutputRequired(t, terraformOptions, "resulting_name")
 	resultingInstanceType := terraform.OutputRequired(t, terraformOptions, "resulting_type")
 	assert.Equal(t, randomValidGcpName, resultingInstanceName)
-	assert.Equal(t, "f1-micro", resultingInstanceType)
+	assert.Equal(t, "e2-micro", resultingInstanceType)
 }

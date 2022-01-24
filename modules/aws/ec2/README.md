@@ -8,6 +8,7 @@ No modules.
 | Name | Description | Type | Default |
 |------|-------------|------|---------|
 | ami | The Amazon Machine Image | `string` | `"ami-04b9e92b5572fa0d1"` |
+| imds-enable | Enforces the use of an IMDS HTTP Session Auth Tokens. [Related security issues.](https://aws.amazon.com/blogs/security/defense-in-depth-open-firewalls-reverse-proxies-ssrf-vulnerabilities-ec2-instance-metadata-service/) | `string` | `"required"` |
 | instance\_type | The EC2 Instance type | `string` | `"t2.micro"` |
 | name | The Name of the EC2 | `string` | `"Free Tier EC2"` |
 | public\_subnet\_id | The ID of the Public Subnet | `string` | n/a |
