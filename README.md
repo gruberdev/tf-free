@@ -12,8 +12,6 @@ Every major cloud provider offers a free tier that allows for some kind of resou
 
 The goal is to automate the management of these resources using Terraform as the centralizing tool. It also aims to provide resources for learning and improve your skills as a SRE/DevOps Engineer and as a Terraform user, even if you're developer that never touched cloud infrastructure, nowadays there's great value in learning these tools.
 
-A CLI tool is part of this project for those who wish a more [KIS][kis-approach]-like approach.
-
 ## List of free-tier resources
 
 <details>
@@ -112,17 +110,6 @@ More information at the [provider's documentation page][tf-free-oracle-resources
 terraform init
 terraform apply -auto-approve
 ```
-
-If you preffer a help utility before using this tool, you must have [Task installed][taskfile-website], to run the project's [Taskfile][project-taskfile]:
-
-```
-# Installing Task (requires sudo)
-sudo sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
-# List all available commands
-task --list # or task help
-```
-
-▶ [CLI Tool Documentation][tf-free-docs-cli]
 
 <details>
   <summary>
