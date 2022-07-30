@@ -3,8 +3,8 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| compute | ./compute |  |
-| networking | ./vpc |  |
+| compute | ./compute | n/a |
+| networking | ./vpc | n/a |
 
 ### Inputs
 

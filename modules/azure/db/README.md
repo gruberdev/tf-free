@@ -3,7 +3,7 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| database | Azure/database/azurerm |  |
+| database | Azure/database/azurerm | n/a |
 
 ### Inputs
 

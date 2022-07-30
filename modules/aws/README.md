@@ -3,9 +3,9 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| ec2 | ./ec2 |  |
-| rds | ./rds |  |
-| vpc | ./vpc |  |
+| ec2 | ./ec2 | n/a |
+| rds | ./rds | n/a |
+| vpc | ./vpc | n/a |
 
 ### Inputs
 

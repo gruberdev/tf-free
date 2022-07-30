@@ -3,8 +3,8 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| rds | ../../../../modules/aws/rds |  |
-| vpc | ../../../../modules/aws/vpc |  |
+| rds | ../../../../modules/aws/rds | n/a |
+| vpc | ../../../../modules/aws/vpc | n/a |
 
 ### Inputs
 

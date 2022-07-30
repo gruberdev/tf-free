@@ -70,7 +70,10 @@ tasks:
     cmds:
       - goreleaser --snapshot --skip-publish --rm-dist
 
-  docs-gen:
+  docs:gen:
+    preconditions:
+      - sh: 'which terraform-docs'
+        msg: 'terraform-docs {{.PATH_ERROR}}'
     desc: Build documentation using Terraform-docs and the task command
     cmds:
       - terraform-docs markdown -c .terraform-docs.yml . --output-file README.md

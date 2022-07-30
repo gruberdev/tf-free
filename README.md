@@ -123,10 +123,9 @@ terraform apply -auto-approve
 
 | Name | Source | Version |
 |------|--------|---------|
-| aws | ./modules/aws |  |
-| azure | ./modules/azure |  |
-| google\_cloud | ./modules/gcp |  |
-| terraform\_state\_backend | cloudposse/tfstate-backend/aws | 0.33.1 |
+| aws | ./modules/aws | n/a |
+| google\_cloud | ./modules/gcp | n/a |
+| terraform\_state\_backend | cloudposse/tfstate-backend/aws | 0.38.1 |
 
 ### Inputs
 

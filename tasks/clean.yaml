@@ -26,11 +26,9 @@ tasks:
     silent: true
 
   gcp:
-    env:
-      AWS_DEFAULT_REGION: "us-east-1"
     preconditions:
       - sh: 'which gcloud'
         msg: 'kustomize {{.PATH_ERROR}}'
     cmds:
-      - awsweeper config/gcp-filter.yaml
+      - docker run --rm --name cloudblaster -w /config -v ./config:/config docker.io/grubertech/cloudblaster:0.1
     silent: true
