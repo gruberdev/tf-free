@@ -1,0 +1,27 @@
+compute.googleapis.com/Firewall:
+  regex: ^default-.*
+  listThese: false
+compute.googleapis.com/Subnetwork:
+  regex: ^default.*
+  listThese: false
+appengine.googleapis.com/Version:
+appengine.googleapis.com/Service:
+cloudfunctions.googleapis.com/CloudFunction:
+compute.googleapis.com/Address:
+compute.googleapis.com/Disk:
+compute.googleapis.com/BackendBucket:
+compute.googleapis.com/BackendService:
+compute.googleapis.com/ForwardingRule:
+compute.googleapis.com/GlobalForwardingRule:
+compute.googleapis.com/HealthCheck:
+compute.googleapis.com/Instance:
+compute.googleapis.com/TargetHttpProxy:
+compute.googleapis.com/TargetHttpsProxy:
+compute.googleapis.com/UrlMap:
+container.googleapis.com/Cluster:
+pubsub.googleapis.com/Subscription:
+pubsub.googleapis.com/Topic:
+storage.googleapis.com/Bucket:
+logging.googleapis.com/LogMetric:
+run.googleapis.com/Service:
+sqladmin.googleapis.com/Instance:

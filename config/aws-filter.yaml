@@ -1,0 +1,12 @@
+aws_security_group:
+aws_iam_role:
+aws_instance:
+aws_ec2_transit_gateway_peering_attachment:
+aws_ec2_transit_gateway_route_table:
+aws_vpc:
+aws_subnet:
+aws_route_table:
+aws_vpc_peering_connection:
+aws_db_instance:
+aws_rds_cluster:
+aws_s3_bucket:

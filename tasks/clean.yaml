@@ -1,0 +1,37 @@
+version: '3'
+vars:
+  CYAN: tput setaf 6
+  RED: tput setaf 1
+  YELLOW: tput setaf 3
+  GREEN: tput setaf 2
+  BLUE: tput setaf 1
+  PURPLE: tput setaf 5
+  BG_B: tput setab 0
+  BOLD: tput bold
+  RESET: tput sgr0
+  CLEAR: tput reset
+  INT_REGISTRY: registry.localhost
+  PATH_ERROR: is not installed or correctly configured in PATH.
+
+silent: true
+
+tasks:
+  aws:
+    env:
+      AWS_DEFAULT_REGION: "us-east-1"
+    preconditions:
+      - sh: 'which awsweeper'
+        msg: 'kustomize {{.PATH_ERROR}}'
+    cmds:
+      - awsweeper config/aws-filter.yaml
+    silent: true
+
+  gcp:
+    env:
+      AWS_DEFAULT_REGION: "us-east-1"
+    preconditions:
+      - sh: 'which gcloud'
+        msg: 'kustomize {{.PATH_ERROR}}'
+    cmds:
+      - awsweeper config/gcp-filter.yaml
+    silent: true

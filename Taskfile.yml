@@ -1,5 +1,10 @@
 version: "3"
 
+includes:
+  clean: ./tasks/clean.yaml
+  aws: ./tasks/aws.yaml
+  gcp: ./tasks/gcp.yaml
+
 tasks:
   docker-one-liner:
     deps:
@@ -65,11 +70,6 @@ tasks:
     cmds:
       - goreleaser --snapshot --skip-publish --rm-dist
 
-  gcp:
-    desc: Build executable binary with GoReleaser.
-    cmds:
-      - gcloud auth application-default login
-
   docs-gen:
     desc: Build documentation using Terraform-docs and the task command
     cmds:
@@ -131,48 +131,6 @@ tasks:
       - go get github.com/pcasteran/terraform-graph-beautifier
       - terraform graph | terraform-graph-beautifier --exclude="module.root.provider" --output-type=cyto-html > graph.html
 
-  gcp-boot:
-    desc: test
-    cmds:
-      - cd test/gcp && rm go.mod || true
-      - cd test/gcp && rm go.sum || true
-      - cd test/gcp && go mod init "github.com/gruberdev/tf-free" || true
-      - cd test/gcp && go mod tidy || true
-
-  gcp-init:
-    desc: Bootstrapping Google Cloud provider testing files
-    cmds:
-      - cd test/gcp && rm go.mod || true
-      - cd test/gcp && rm go.sum || true
-      - cd test/gcp && go mod init "github.com/gruberdev/tf-free" || true
-      - cd test/gcp && go mod tidy || true
-
-  gcp-test:
-    desc: Terraform testing (GCP provider)
-    deps:
-      - gcp-boot
-      - gcp-init
-      - unit-network-gcp
-      - unit-compute-gcp
-      - unit-storage-gcp
-    cmds:
-      - cd test/gcp && go test -v -timeout 10m -run TestIntegrationGCP
-
-  aws-init:
-    desc: Bootstrapping AWS provider testing files
-    cmds:
-      - cd test/aws && rm go.mod || true
-      - cd test/aws && rm go.sum || true
-      - cd test/aws && go mod init "github.com/gruberdev/tf-free" && go mod tidy
-
-  aws-test:
-    deps:
-      - aws-init
-    desc: Terraform testing (AWS provider)
-    cmds:
-      - cd test/aws && go test -v -timeout 10m -run TestUnitEC2
-      - cd test/aws && go test -v -timeout 10m -run TestUnitRDS
-
   full-test-local:
     desc: Terraform testing all providers.
     deps:
@@ -226,25 +184,6 @@ tasks:
       - terraform destroy -target  module.aws.module.rds.aws_db_instance.rds -auto-approve
       - terraform destroy -auto-approve
 
-  dbdestroy:
-    desc: Terraform standard initialization
-    cmds:
-      - terraform destroy -target module.aws.module.rds.aws_db_instance.rds -auto-approve
-
-  apply-aws:
-    desc: Terraform standard initialization
-    cmds:
-      - cd modules/aws && terraform apply -auto-approve
-
-  apply-gcp:
-    desc: Terraform standard initialization
-    cmds:
-      - cd modules/gcp && terraform apply -auto-approve
-
-  destroy-gcp:
-    desc: Terraform standard initialization
-    cmds:
-      - cd modules/gcp && terraform destroy -auto-approve
 
   dockerlint:
     desc: Terraform standard initialization
@@ -315,36 +254,6 @@ tasks:
     cmds:
       - apk add build-base git curl
       - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
-
-  unit-compute-gcp:
-    deps:
-      - gcp-init
-    cmds:
-      - cd test/gcp && go test -v -timeout 5m -run TestUnitCompute
-
-  unit-storage-gcp:
-    deps:
-      - gcp-init
-    cmds:
-      - cd test/gcp && go test -v -timeout 5m -run TestUnitStorage
-
-  unit-network-gcp:
-    deps:
-      - gcp-init
-    cmds:
-      - cd test/gcp && go test -v -timeout 5m -run TestUnitVPC
-
-  unit-ec2-aws:
-    deps:
-      - aws-init
-    cmds:
-      - cd test/aws && go test -v -timeout 15m -run TestUnitEC2
-
-  unit-rds-aws:
-    deps:
-      - aws-init
-    cmds:
-      - cd test/aws && go test -v -timeout 30m -run TestUnitRDS
 
   blast-radius:
     cmds:

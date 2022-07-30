@@ -1,0 +1,54 @@
+version: '3'
+vars:
+  CYAN: tput setaf 6
+  RED: tput setaf 1
+  YELLOW: tput setaf 3
+  GREEN: tput setaf 2
+  BLUE: tput setaf 1
+  PURPLE: tput setaf 5
+  BG_B: tput setab 0
+  BOLD: tput bold
+  RESET: tput sgr0
+  CLEAR: tput reset
+  INT_REGISTRY: registry.localhost
+  PATH_ERROR: is not installed or correctly configured in PATH.
+
+silent: true
+
+tasks:
+  init:
+    desc: Bootstrapping AWS provider testing files
+    cmds:
+      - cd test/aws && rm go.mod || true
+      - cd test/aws && rm go.sum || true
+      - cd test/aws && go mod init "github.com/gruberdev/tf-free" && go mod tidy
+
+  test:
+    deps:
+      - init
+    desc: Terraform testing (AWS provider)
+    cmds:
+      - cd test/aws && go test -v -timeout 10m -run TestUnitEC2
+      - cd test/aws && go test -v -timeout 10m -run TestUnitRDS
+
+  test:unit:ec2:
+    deps:
+      - aws-init
+    cmds:
+      - cd test/aws && go test -v -timeout 15m -run TestUnitEC2
+
+  test:unit:rds:
+    deps:
+      - aws-init
+    cmds:
+      - cd test/aws && go test -v -timeout 30m -run TestUnitRDS
+
+  apply:
+    desc: Terraform standard initialization
+    cmds:
+      - cd modules/aws && terraform apply -auto-approve
+
+  destroy:db:
+    desc: Terraform standard initialization
+    cmds:
+      - terraform destroy -target module.aws.module.rds.aws_db_instance.rds -auto-approve
