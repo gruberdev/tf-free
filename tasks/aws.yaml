@@ -10,7 +10,6 @@ vars:
   BOLD: tput bold
   RESET: tput sgr0
   CLEAR: tput reset
-  INT_REGISTRY: registry.localhost
   PATH_ERROR: is not installed or correctly configured in PATH.
 
 silent: true
