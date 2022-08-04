@@ -7,6 +7,15 @@ trigger:
     include:
       - push
       - pull_request
+
+node:
+  server: home
+  arm: no
+  docker: yes
+platform:
+  os: linux
+  arch: amd64
+
 steps:
   - name: Terraform Plan
     image: docker.io/grubertech/freetf:0.3
