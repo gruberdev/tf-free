@@ -1,9 +1,9 @@
 
 resource "random_string" "namespace" {
-  length  = 2
-  special = false
-  number  = false
-  upper   = false
+  length    = 2
+  special   = false
+  numberic  = false
+  upper     = false
 }
 
 resource "random_string" "s3_name" {
