@@ -7,6 +7,15 @@ trigger:
     include:
       - push
       - pull_request
+
+node:
+  server: home
+  arm: no
+  docker: yes
+platform:
+  os: linux
+  arch: amd64
+
 steps:
   - name: Terraform Plan
     image: docker.io/grubertech/freetf:0.3
@@ -16,7 +25,7 @@ steps:
       - mkdir -p ~/.ssh-temp
       - chmod 700 ~/.ssh-temp
       - ssh-keygen -t rsa -b 4096 -C "example@gmail.com" -N 'test' -f ~/.ssh-temp/id_rsa
-      - touch key.json && echo $$GOOGLE_CREDENTIALS >> key.json
+      - echo $$GOOGLE_CREDENTIALS | base64 -d > key.json
       - export GOOGLE_APPLICATION_CREDENTIAL=key.json
       - terraform init -upgrade -reconfigure -force-copy
       - terraform plan
@@ -34,13 +43,13 @@ steps:
       GOOGLE_CREDENTIALS:
         from_secret: gcp_json
       GOOGLE_PROJECT:
-        from_secret: gcp_project_id
+        from_secret: google_cloud_projectid
       AWS_DEFAULT_REGION:
-        from_secret: aws_region
+        from_secret: aws_default_region
       AWS_SECRET_ACCESS_KEY:
-        from_secret: aws_key
+        from_secret: aws_account_secret
       AWS_ACCESS_KEY_ID:
-        from_secret: aws_id
+        from_secret: aws_account_id
 
   - name: Basic local testing
     image: docker.io/grubertech/freetf:0.3
