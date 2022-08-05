@@ -32,7 +32,7 @@ steps:
       ARM_TENANT_ID:
         from_secret: azure_tenant_id
       GOOGLE_CREDENTIALS:
-        from_secret: gcp_key
+        from_secret: gcp_json
       GOOGLE_PROJECT:
         from_secret: gcp_project_id
       AWS_DEFAULT_REGION:
