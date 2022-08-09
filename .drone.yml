@@ -23,15 +23,15 @@ steps:
     settings:
       dockerfile: deployments/Dockerfile.light
       pull_images: true
-      repo: ghcr.io/grubertech/freetf
-      cache_from: ghcr.io/grubertech/freetf
+      repo: ghcr.io/gruberdev/freetf
+      cache_from: ghcr.io/gruberdev/freetf
       registry: ghcr.io
-      username: grubertech
+      username: gruberdev
       password:
         from_secret: gh_token
 
   - name: Terraform Plan
-    image: ghcr.io/grubertech/freetf:latest
+    image: ghcr.io/gruberdev/freetf:latest
     commands:
       - task init-drone
       - mkdir -p ~/.ssh-temp
@@ -66,7 +66,7 @@ steps:
       - Build Image
 
   - name: Basic local testing
-    image: ghcr.io/grubertech/freetf:latest
+    image: ghcr.io/gruberdev/freetf:latest
     commands:
       - echo "Finished basic setup!"
     depends_on:
