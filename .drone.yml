@@ -21,7 +21,7 @@ steps:
   - name: Build Image
     image: plugins/docker
     settings:
-      dockerfile: deployments/Dockerfile.light
+      dockerfile: Dockerfile
       pull_images: true
       repo: ghcr.io/gruberdev/freetf
       cache_from: ghcr.io/gruberdev/freetf
@@ -33,7 +33,7 @@ steps:
   - name: Terraform Plan
     image: ghcr.io/gruberdev/freetf:latest
     commands:
-      - task init-drone
+      - task drone:init
       - mkdir -p ~/.ssh-temp
       - chmod 700 ~/.ssh-temp
       - ssh-keygen -t rsa -b 4096 -C "example@gmail.com" -N 'test' -f ~/.ssh-temp/id_rsa
