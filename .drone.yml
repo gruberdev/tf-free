@@ -6,6 +6,7 @@ trigger:
   event:
     include:
       - push
+    exclude:
       - pull_request
 
 node:
