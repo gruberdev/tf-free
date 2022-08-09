@@ -3,10 +3,10 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| gcp\_firewall | ./firewall |  |
-| gcp\_instance | ./compute |  |
-| gcp\_storage | ./storage |  |
-| gcp\_vpc | ./vpc |  |
+| gcp\_firewall | ./firewall | n/a |
+| gcp\_instance | ./compute | n/a |
+| gcp\_storage | ./storage | n/a |
+| gcp\_vpc | ./vpc | n/a |
 
 ### Inputs
 

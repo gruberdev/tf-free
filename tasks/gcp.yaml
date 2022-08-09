@@ -1,0 +1,68 @@
+version: '3'
+vars:
+  CYAN: tput setaf 6
+  RED: tput setaf 1
+  YELLOW: tput setaf 3
+  GREEN: tput setaf 2
+  BLUE: tput setaf 1
+  PURPLE: tput setaf 5
+  BG_B: tput setab 0
+  BOLD: tput bold
+  RESET: tput sgr0
+  CLEAR: tput reset
+  PATH_ERROR: is not installed or correctly configured in PATH.
+
+silent: true
+
+tasks:
+  init:test:
+    desc: test
+    cmds:
+      - cd test/gcp && rm go.mod || true
+      - cd test/gcp && rm go.sum || true
+      - cd test/gcp && go mod init "github.com/gruberdev/tf-free" || true
+      - cd test/gcp && go mod tidy || true
+
+  test:
+    desc: Terraform testing (GCP provider)
+    deps:
+      - task: init:test
+      - task: init
+      - task: test:unit:network
+      - task: test:unit:compute
+      - task: test:unit:storage
+    cmds:
+      - cd test/gcp && go test -v -timeout 10m -run TestIntegrationGCP
+
+  test:unit:compute:
+    deps:
+      - init
+    cmds:
+      - cd test/gcp && go test -v -timeout 5m -run TestUnitCompute
+
+  test:unit:storage:
+    deps:
+      - init
+    cmds:
+      - cd test/gcp && go test -v -timeout 5m -run TestUnitStorage
+
+  test:unit:network:
+    deps:
+      - init
+    cmds:
+      - cd test/gcp && go test -v -timeout 5m -run TestUnitVPC
+
+  apply:
+    desc: Terraform standard initialization
+    cmds:
+      - cd modules/gcp && terraform apply -auto-approve
+
+  destroy:
+    desc: Terraform standard initialization
+    cmds:
+      - cd modules/gcp && terraform destroy -auto-approve
+
+  init:
+    desc: Login into Google Cloud Platform
+    cmds:
+      - gcloud auth application-default login

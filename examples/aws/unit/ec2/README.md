@@ -3,8 +3,8 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| ec2 | ../../../../modules/aws/ec2 |  |
-| vpc | ../../../../modules/aws/vpc |  |
+| ec2 | ../../../../modules/aws/ec2 | n/a |
+| vpc | ../../../../modules/aws/vpc | n/a |
 
 ### Inputs
 
