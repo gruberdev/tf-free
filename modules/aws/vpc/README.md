@@ -3,7 +3,7 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| vpc | terraform-aws-modules/vpc/aws |  |
+| vpc | terraform-aws-modules/vpc/aws | n/a |
 
 ### Inputs
 

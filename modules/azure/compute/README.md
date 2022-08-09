@@ -3,8 +3,8 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| linuxservers | Azure/compute/azurerm |  |
-| windowsservers | Azure/compute/azurerm |  |
+| linuxservers | Azure/compute/azurerm | n/a |
+| windowsservers | Azure/compute/azurerm | n/a |
 
 ### Inputs
 

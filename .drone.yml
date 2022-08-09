@@ -6,7 +6,17 @@ trigger:
   event:
     include:
       - push
+    exclude:
       - pull_request
+
+node:
+  server: home
+  arm: no
+  docker: yes
+platform:
+  os: linux
+  arch: amd64
+
 steps:
   - name: Terraform Plan
     image: docker.io/grubertech/freetf:0.3
@@ -32,15 +42,15 @@ steps:
       ARM_TENANT_ID:
         from_secret: azure_tenant_id
       GOOGLE_CREDENTIALS:
-        from_secret: gcp_key
+        from_secret: gcp_json
       GOOGLE_PROJECT:
-        from_secret: gcp_project_id
+        from_secret: google_cloud_projectid
       AWS_DEFAULT_REGION:
-        from_secret: aws_region
+        from_secret: aws_default_region
       AWS_SECRET_ACCESS_KEY:
-        from_secret: aws_key
+        from_secret: aws_account_secret
       AWS_ACCESS_KEY_ID:
-        from_secret: aws_id
+        from_secret: aws_account_id
 
   - name: Basic local testing
     image: docker.io/grubertech/freetf:0.3

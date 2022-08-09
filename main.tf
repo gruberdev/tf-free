@@ -22,7 +22,7 @@ resource "random_string" "bucket_name" {
 
 module "terraform_state_backend" {
   source = "cloudposse/tfstate-backend/aws"
-  version                            = "0.33.1"
+  version                            = "0.38.1"
   namespace                          = random_string.namespace.result
   stage                              = var.backend_stage
   name                               = random_string.s3_name.result

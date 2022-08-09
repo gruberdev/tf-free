@@ -3,8 +3,8 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| db\_default | terraform-aws-modules/rds/aws |  |
-| security\_group | terraform-aws-modules/security-group/aws |  |
+| db\_default | terraform-aws-modules/rds/aws | n/a |
+| security\_group | terraform-aws-modules/security-group/aws | n/a |
 
 ### Inputs
 
