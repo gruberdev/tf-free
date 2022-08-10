@@ -55,7 +55,7 @@ SHELL ["/bin/bash", "-eo", "pipefail", "-c"]
 RUN curl -sSfL "https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh" | sh -s '-- -b $(go env GOPATH)/bin' 
 
 # Task / makefile Alternative
-RUN wget -O /tmp/task.tar.gz https://github.com/go-task/task/releases/download/v${TASK_VERSION}/task_${OS}_${ARCH}.tar.gz && \
+RUN wget -q -O /tmp/task.tar.gz https://github.com/go-task/task/releases/download/v${TASK_VERSION}/task_${OS}_${ARCH}.tar.gz && \
  tar -C /usr/bin/ -xvf /tmp/task.tar.gz && \
  rm -rf /tmp/gotty.tar.gzln
 

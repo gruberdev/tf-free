@@ -32,11 +32,11 @@ tasks:
   build:
     desc: Create and cache your Docker container
     cmds:
-      - docker build -t docker.io/grubertech/freetf:v0.0.4 -t docker.io/grubertech/freetf:latest --no-cache .
+      - docker build -t ghcr.io/gruberdev/freetf:latest  -t docker.io/grubertech/freetf:latest --no-cache .
 
   run:
     cmds:
-      - docker run -v $(pwd):/project -it docker.io/grubertech/freetf:v0.0.4 /bin/sh
+      - docker run -v $(pwd):/project -it ghcr.io/gruberdev/freetf:latest  /bin/sh
 
   build:all:
     desc: Build executable binary with GoReleaser.
