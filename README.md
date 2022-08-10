@@ -106,14 +106,22 @@ More information at the [provider's documentation page][tf-free-oracle-resources
 
 ##  [❯ Getting started][getting-started]
 
-```
+```bash
 terraform init
-terraform apply -auto-approve
+terraform apply
+```
+
+If you rather use a containerized environment:
+
+```bash
+git clone https://github.com/gruberdev/tf-free.git && \
+cd tf-free && \
+docker run -v $(pwd):/project -it ghcr.io/gruberdev/freetf:latest 
 ```
 
 <details>
   <summary>
-   Module documentation
+   Terraform Module documentation (Click to expand)
   </summary>
 
 ---
@@ -169,7 +177,7 @@ Be sure to [read the terms][usage-terms] of usage to understand the responsabili
 
 <!-- Images URLs -->
 
-[drone-img]: https://img.shields.io/drone/build/gruberdev/tf-free/main?label=drone%20pipeline&logo=drone&labelColor=1F1F1F&logoColor=41dde8&style=flat-square
+[drone-img]: https://img.shields.io/drone/build/gruberdev/tf-free?server=https%3A%2F%2Fdrone.gruber.dev.br&logo=drone&labelColor=1F1F1F&logoColor=41dde8&style=flat-square&label=Drone%20CI
 [docs-img]: https://img.shields.io/badge/read%20available%20documentation-online?style=flat-square&logo=zeit&color=black
 
 <!-- Repository links -->
