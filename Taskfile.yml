@@ -36,7 +36,7 @@ tasks:
 
   run:
     cmds:
-      - docker run -it docker.io/grubertech/freetf:v0.0.4 /bin/sh
+      - docker run -v $(pwd):/project -it docker.io/grubertech/freetf:v0.0.4 /bin/sh
 
   build:all:
     desc: Build executable binary with GoReleaser.
