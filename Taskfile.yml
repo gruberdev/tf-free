@@ -6,7 +6,7 @@ includes:
   gcp: ./tasks/gcp.yaml
 
 tasks:
-  docker-one-liner:
+  docker:oneliner:
     deps:
       - docker-init
       - build
@@ -14,39 +14,13 @@ tasks:
     cmds:
       - "Loading container..."
 
-  docker-init:
+  docker:init:
     desc: Create and cache your Docker container
     cmds:
       - docker volume rm cache_terraform || true
       - docker volume rm repository_results || true
       - docker volume create cache_terraform || true
       - docker volume create repository_results || true
-
-  docker-local:
-    desc: Create and cache your Docker container
-    cmds:
-      - docker-compose -f deployments/local.yml down || true
-      - docker-compose -f deployments/local.yml build
-      - docker-compose -f deployments/local.yml run --entrypoint /bin/bash freetf
-
-  docker-ci:
-    desc: Create and cache your Docker container
-    cmds:
-      - docker-compose -f deployments/local.yml down || true
-      - docker-compose -f deployments/light.yml down || true
-      - docker-compose -f deployments/local.yml build
-      - docker-compose -f deployments/light.yml build
-      - docker-compose -f deployments/local.yml run --entrypoint /bin/bash freetf
-      - docker-compose -f deployments/local.yml stop freetf
-      - docker-compose -f deployments/light.yml run --entrypoint /bin/bash freetf
-      - docker-compose -f deployments/light.yml stop freetf
-
-  docker-light:
-    desc: Create and cache your Docker container
-    cmds:
-      - docker-compose -f deployments/light.yml down || true
-      - docker-compose -f deployments/light.yml build
-      - docker-compose -f deployments/light.yml run --entrypoint /bin/bash freetf
 
   docker:
     desc: Create and cache your Docker container
@@ -57,15 +31,14 @@ tasks:
 
   build:
     desc: Create and cache your Docker container
-    dir: deployments/
     cmds:
-      - docker build -t docker.io/grubertech/freetf:v0.1 -t docker.io/grubertech/freetf:latest --no-cache -f Dockerfile.dev ../
+      - docker build -t ghcr.io/gruberdev/freetf:latest  -t docker.io/grubertech/freetf:latest --no-cache .
 
   run:
     cmds:
-      - docker run -it grubertech/freetf:latest /bin/sh
+      - docker run -v $(pwd):/project -it ghcr.io/gruberdev/freetf:latest  /bin/sh
 
-  build-all:
+  build:all:
     desc: Build executable binary with GoReleaser.
     cmds:
       - goreleaser --snapshot --skip-publish --rm-dist
@@ -134,7 +107,7 @@ tasks:
       - go get github.com/pcasteran/terraform-graph-beautifier
       - terraform graph | terraform-graph-beautifier --exclude="module.root.provider" --output-type=cyto-html > graph.html
 
-  full-test-local:
+  full:test:local:
     desc: Terraform testing all providers.
     deps:
       - gcp-test
@@ -143,13 +116,13 @@ tasks:
     cmds:
       - echo "Finished testing."
 
-  apply-local:
+  apply:local:
     desc: Terraform standard local apply command
     cmds:
       - terraform init
       - terraform apply -auto-approve
 
-  destroy-local:
+  destroy:local:
     desc: Terraform standard local destroy command
     cmds:
       - terraform destroy -auto-approve
@@ -159,20 +132,20 @@ tasks:
     cmds:
       - terraform init -upgrade
 
-  initialapply:
+  init:apply:
     desc: Terraform standard initial apply command (w/ Backend)
     cmds:
       - terraform init -reconfigure
       - terraform apply -auto-approve
       - terraform init -force-copy
 
-  init-docker:
+  init:docker:
     cmds:
       - cd test/docker && rm go.mod || true
       - cd test/docker && rm go.sum || true
       - cd test/docker && go mod init "github.com/gruberdev/tf-free" && go mod tidy
 
-  docker-test:
+  docker:test:
     desc: Terraform standard initialization
     deps:
       - init-docker
@@ -187,24 +160,23 @@ tasks:
       - terraform destroy -target  module.aws.module.rds.aws_db_instance.rds -auto-approve
       - terraform destroy -auto-approve
 
-
-  dockerlint:
+  docker:lint:
     desc: Terraform standard initialization
     cmds:
       - docker run --rm -i hadolint/hadolint < Dockerfile || true
 
-  backend-enable:
+  backend:enable:
     desc: How to transfer the backend to S3 (Remote)
     cmds:
       - terraform init -force-copy
 
-  backend-disable:
+  backend:disable:
     desc: How to destroy the backend stored in S3
     cmds:
       - terraform apply -target module.terraform_state_backend -auto-approve
       - terraform init -force-copy
 
-  destroy-aws:
+  destroy:aws:
     desc: Terraform standard initialization
     cmds:
       - cd modules/aws && terraform destroy -auto-approve
@@ -215,13 +187,13 @@ tasks:
       - cd modules/aws && terraform destroy -auto-approve
       - cd modules/aws && terraform apply -auto-approve
 
-  heavy-artillery:
+  heavy:artillery:
     desc: Destroy all resources but the S3 Backend and the DynamoDB instances on AWS.
     cmds:
       - terraform destroy -target module.google_cloud -auto-approve
       - terraform destroy -target module.aws -auto-approve
 
-  tf-clean:
+  tf:clean:
     desc: Terraform standard initialization
     cmds:
       - rm -rf ./.terraform || true
@@ -252,12 +224,12 @@ tasks:
       - rm examples/aws/unit/rds/terraform.tfstate || true
       - rm examples/aws/unit/rds/terraform.tfstate.backup || true
 
-  init-drone:
+  drone:init:
     desc: Terraform standard initialization
     cmds:
       - apk add build-base git curl
       - apk add --no-cache terraform --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
 
-  blast-radius:
+  blastradius:
     cmds:
       - docker run --rm -it -p 5013:5000 -v $(pwd):/data:ro -v $(pwd)/blast:/tmp/results --security-opt apparmor:unconfined --cap-add=SYS_ADMIN blastradius:local
