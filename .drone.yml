@@ -18,11 +18,21 @@ platform:
   arch: amd64
 
 steps:
+  - name: Build Image
+    image: plugins/docker
+    settings:
+      dockerfile: Dockerfile
+      pull_images: true
+      repo: ghcr.io/gruberdev/freetf
+      cache_from: ghcr.io/gruberdev/freetf
+      registry: ghcr.io
+      username: gruberdev
+      password:
+        from_secret: gh_token
+
   - name: Terraform Plan
-    image: docker.io/grubertech/freetf:0.3
+    image: ghcr.io/gruberdev/freetf:latest
     commands:
-      - apk update && apk add curl && sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
-      - task init-drone
       - mkdir -p ~/.ssh-temp
       - chmod 700 ~/.ssh-temp
       - ssh-keygen -t rsa -b 4096 -C "example@gmail.com" -N 'test' -f ~/.ssh-temp/id_rsa
@@ -51,13 +61,16 @@ steps:
         from_secret: aws_account_secret
       AWS_ACCESS_KEY_ID:
         from_secret: aws_account_id
+    depends_on:
+      - Build Image
 
-  - name: Basic local testing
-    image: docker.io/grubertech/freetf:0.3
+  - name: Finished testing
+    image: ghcr.io/gruberdev/freetf:latest
     commands:
       - echo "Finished basic setup!"
     depends_on:
       - Terraform Plan
+      - Build Image
 
 # - name: tfsec
 #   image: tfsec/tfsec
