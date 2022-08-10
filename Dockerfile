@@ -17,7 +17,7 @@ FROM accurics/terrascan:latest as build-tfscan
 FROM golang:$GO_VERSION-alpine
 
 # Image Labels for Metadata Configuration
-LABEL org.opencontainers.image.source = "https://github.com/gruberdev/tf-free"
+LABEL org.opencontainers.image.source = "https://github.com/gruberdev/tf-free.git"
 
 COPY --from=build-tf-cli /bin/terraform /usr/local/bin/terraform
 COPY --from=build-tfsec /usr/bin/tfsec /usr/local/bin/tfsec
@@ -72,5 +72,3 @@ RUN curl -sL https://git.io/_has | bash -s git tfscan \
 
 CMD ["/bin/bash"]
 ENTRYPOINT ["/project/scripts/entrypoint.sh"]
-
-
