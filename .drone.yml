@@ -30,7 +30,7 @@ steps:
       password:
         from_secret: gh_token
 
-  - name: Plan
+  - name: Terraform Plan
     image: ghcr.io/gruberdev/freetf:latest
     commands:
       - mkdir -p ~/.ssh-temp
@@ -64,47 +64,12 @@ steps:
     depends_on:
       - Build Image
 
-  - name: Validate
-    image: ghcr.io/gruberdev/freetf:latest
-    commands:
-      - mkdir -p ~/.ssh-temp
-      - chmod 700 ~/.ssh-temp
-      - ssh-keygen -t rsa -b 4096 -C "example@gmail.com" -N 'test' -f ~/.ssh-temp/id_rsa
-      - touch key.json && echo $$GOOGLE_CREDENTIALS >> key.json
-      - export GOOGLE_APPLICATION_CREDENTIAL=key.json
-      - terraform init -upgrade -reconfigure -force-copy
-      - terraform validate
-    environment:
-      ARM_CLIENT_ID:
-        from_secret: arm_id
-      ARM_CLIENT_CERTIFICATE_PATH:
-        from secret: azure_path
-      ARM_CLIENT_CERTIFICATE_PASSWORD:
-        from_secret: cte_password
-      ARM_SUBSCRIPTION_ID:
-        from_secret: azure_sub_id
-      ARM_TENANT_ID:
-        from_secret: azure_tenant_id
-      GOOGLE_CREDENTIALS:
-        from_secret: gcp_json
-      GOOGLE_PROJECT:
-        from_secret: google_cloud_projectid
-      AWS_DEFAULT_REGION:
-        from_secret: aws_default_region
-      AWS_SECRET_ACCESS_KEY:
-        from_secret: aws_account_secret
-      AWS_ACCESS_KEY_ID:
-        from_secret: aws_account_id
-    depends_on:
-      - Build Image
-
   - name: Finished testing
     image: ghcr.io/gruberdev/freetf:latest
     commands:
       - echo "Finished basic setup!"
     depends_on:
-      - Validate
-      - Plan
+      - Terraform Plan
       - Build Image
 
 # - name: tfsec
