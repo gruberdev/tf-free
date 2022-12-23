@@ -1,0 +1,88 @@
+[![Logo Animation](https://readme-typing-svg.herokuapp.com?font=Major+Mono+Display&color=00E7F7&size=40&vCenter=true&width=800&height=130&lines=tf-free;cloud+for+free.)](https://free.terraform.gruber.dev.br)
+
+> **Creating all available resources offered by major cloud providers within free-tier plans, using Terraform to provide, manage and access these resources in a simplified and centralized manner.**
+
+Every major cloud provider offers a free tier that allows for some kind of resource free of charge, still, learning every cloud and managing these resources can prove burdensome to most.
+
+The goal is to automate the management of these resources using Terraform as the centralizing tool. It also aims to provide resources for learning and improve your skills as a SRE/DevOps Engineer and as a Terraform user, even if you're developer that never touched cloud infrastructure, nowadays there's great value in learning these tools.
+
+```bash copy
+terraform apply -auto-approve
+```
+
+To visualize the available commands:
+
+```bash
+sudo sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
+task --list # Display help message
+```
+---
+
+Now, if you want to explicitly call the core module, write a `main.tf` with this content:
+
+```hcl copy {6,12,17,19} filename="main.tf"
+// Create a main.tf file anywhere with Terraform installed and copy-paste this code
+
+module "tf-free" {
+   source = "github.com/gruberdev/tf-free"
+
+   enable_aws          = true  
+   enable_s3_backend  = true 
+   aws_account_id     = "your-aws-access-id"
+   aws_account_key    = "your-aws-secret-key"
+   aws_default_region = "us-west1"
+
+  enable_gcp   =  true
+  gcp_project_id     = "testing-project-1"
+  gcp_project_region = "us-west-1"
+  gcp_instance_name  = "gcp-machine"
+
+  enable_azure   =  true
+
+  enable_oracle   =  true
+}
+```
+
+<br></br>
+
+If you're unsure what your credentials are for each cloud provider, take a look at [Obtaining credentials](/docs/setup/first-run).
+
+---
+
+[docs-img]: https://img.shields.io/badge/read%20documentation-online?style=flat-square&logo=zeit&color=black
+[brand]: https://www.hashicorp.com/brand
+[disclaimer]: https://www.hashicorp.com/trademark-policy
+[guidelines]: https://www.hashicorp.com/community-guidelines
+[free-aws]: https://aws.amazon.com/free/?all-free-tier
+[free-gcp]: https://cloud.google.com/free
+[free-docs-gcp]: https://cloud.google.com/free/docs/gcp-free-tier
+[free-azure]: https://azure.microsoft.com/en-us/free/
+[azure-faq]: https://azure.microsoft.com/en-us/free/free-account-faq/
+[azure-full-terms]: https://azure.microsoft.com/en-us/offers/ms-azr-0044p/
+[aws-faq]: https://aws.amazon.com/free/free-tier-faqs/
+[go-color-url]: https://github.com/fatih/color
+[go-releaser-url]: https://github.com/goreleaser/goreleaser
+[go-cobra-url]: https://github.com/spf13/cobra
+[shell-has-url]: https://github.com/kdabir/has
+[go-prompt-url]: https://github.com/c-bata/go-prompt
+[go-task-url]: https://github.com/go-task/task
+[go-tfexec-url]: https://github.com/hashicorp/terraform-exec
+[docs-repo-url]: https://github.com/CONNECT-platform/codedoc
+[aws-key-info]: https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys
+[aws-key-create]: https://aws.amazon.com/premiumsupport/knowledge-center/create-access-key/
+[aws-account-create]: https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/
+[aws-vpc-info]: https://aws.amazon.com/vpc/?vpc-blogs.sort-by=item.additionalFields.createdDate&vpc-blogs.sort-order=desc
+[aws-igw-info]: https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html
+[aws-ec2-info]: https://aws.amazon.com/ec2/
+[aws-s3-info]: https://aws.amazon.com/s3/
+[aws-rds-info]: https://aws.amazon.com/rds/
+[aws-route-info]: https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html
+[aws-sub-info]: https://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html
+[aws-tf-provider]: https://registry.terraform.io/providers/hashicorp/aws/latest/
+[aws-regions]: https://aws.amazon.com/about-aws/global-infrastructure/
+[aws-terms]: https://aws.amazon.com/free/terms/
+[aws-prevent-charges]: https://aws.amazon.com/premiumsupport/knowledge-center/free-tier-charges/
+[aws-alarms-free]: https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/tracking-free-tier-usage.html#free-budget
+[aws-sorted-list]: https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc&awsf.Free%20Tier%20Types=tier%23always-free%7Ctier%2312monthsfree&awsf.Free%20Tier%20Categories=*all
+[aws-dynamodb-info]: https://aws.amazon.com/dynamodb/
+[remote-tfstate-url]: https://github.com/cloudposse/terraform-aws-tfstate-backend

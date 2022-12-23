@@ -17,18 +17,16 @@ The goal is to automate the management of these resources using Terraform as the
 <details>
 
   <summary>
-   Google Cloud Platform
+   Google Cloud Platform <b>(GCP)</b>
   </summary>
 
----
+### GCP Available Resources
 
-## GCP Available Resources
-
-- **1x** [Virtual Private Cloud (VPC)][gcp-vpc-info]
-  - **1x** [Firewall][gcp-firewall-info] attached to the VPC
-  - **1x** [Google Compute Engine][gcp-compute-info] `f1-micro` [(1 shared vCPU - 0.2 dedicatd vCPU][gcp-shared-vcpus] - and 0.6GB of Memory) attached to the `VPC`
+- **1x** [Virtual Private Cloud (VPC)][gcp-vpc-info]           - **1x** [Firewall][gcp-firewall-info] attached to the VPC
+- **1x** [Google Compute Engine][gcp-compute-info] `f1-micro` [(1 shared vCPU - 0.2 dedicatd vCPU][gcp-shared-vcpus] - and 0.6GB of Memory) attached to the `VPC`
 - **1x** 5GB of [regional storage][gcp-regional-storage] on [Cloud Storage][gcp-cloud-storage]
 - **1x** 1GB of storage in a [Firestore NoSQL Database][gcp-firestore-storage]
+- 1GB of [Egress Network usage per month][usage-egress-gcp]
 
 More information at the [provider's documentation page][tf-free-gcp-resources].
 
@@ -38,11 +36,9 @@ More information at the [provider's documentation page][tf-free-gcp-resources].
 
 <details>
 
-  <summary> Amazon Web Services
+  <summary> Amazon Web Services <b>(AWS)</b>
 
   </summary>
-
----
 
 ### AWS Available Resources
 
@@ -63,10 +59,29 @@ More information at the [provider's documentation page][tf-free-aws-resources].
 <details>
 
   <summary>
-   Microsoft Azure <sub> <sup>(has limited testing)</sup></sub>
+    Oracle Cloud (OCI)
   </summary>
 
+### Oracle Available Resources
+
+- **2x** [AMD based VM, 1/8 shared CPU and 1GB RAM][oracle-compute-info]
+- **4x** [ARM Ampere A1 VM with 6GB RAM][oracle-compute-info]
+- **2x** [Oracle NoSQL Database with 20GB][oracle-database-info]
+- **2x** [100GB Block Volume Storage][oracle-storage-info]
+- **1x** [10GB Object Standard Storage][oracle-storage-info]
+- **1x** [10GB Infrequent Access Storage][oracle-storage-info]
+- [10TB Network Egress Per Month][oracle-storage-info]
+
+More information at the [provider's documentation page][tf-free-oracle-resources].
+
 ---
+
+</details>
+<details>
+
+  <summary>
+   Microsoft Azure
+  </summary>
 
 ### Available Resources
 
@@ -77,30 +92,10 @@ More information at the [provider's documentation page][tf-free-aws-resources].
 
 More information at the [provider's documentation page][tf-free-azure-resources].
 
----
-
-## </details>
+## 
 
 </details>
-<details>
 
-  <summary>
-    Oracle Cloud  <sub> <sup>(not available)</sup></sub>
-  </summary>
-
----
-
-### Available Resources
-
-- **2x** [AMD based VM, 1/8 shared CPU and 1GB RAM][oracle-compute-info]
-- **2x** [Oracle NoSQL Database with 20GB][oracle-database-info]
-- **1x** [10GB Object Storage Capacity][oracle-storage-info]
-
-More information at the [provider's documentation page][tf-free-oracle-resources].
-
----
-
-</details>
 
 ---
 
