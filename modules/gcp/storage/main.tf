@@ -2,6 +2,9 @@ data "google_project" "current" {
   project_id = var.project_id
 }
 
+resource "random_uuid" "bucket" {
+}
+
 locals {
   default_role_entities = [
     "OWNER:project-owners-${data.google_project.current.number}",
@@ -13,7 +16,7 @@ locals {
 
 resource "google_storage_bucket" "default" {
   project       = var.project_id
-  name          = var.name
+  name          = "${var.name}-${random_uuid.bucket.result}"
   location      = "US"
   storage_class = var.storage_class
   force_destroy = var.enable_destroy
