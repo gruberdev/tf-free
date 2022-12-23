@@ -54,10 +54,8 @@ docs/dist/*
 docs/*.html
 */*.html
 *.html
-*.json
 logs
 *.log
-*.js
 *.meta.json
 *.css
 npm-debug.log*

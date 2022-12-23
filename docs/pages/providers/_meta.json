@@ -1,0 +1,6 @@
+{
+ "aws": "Amazon Web Services",
+ "gcp": "Google Cloud",
+ "azure": "Microsoft Azure",
+ "oracle": "Oracle Cloud"
+}
