@@ -15,7 +15,7 @@ const config: DocsThemeConfig = {
   },
   footer: {
     text: <span>
-      {new Date().getFullYear()} <a href="https://free.terraform.gr.wtf" target="_blank">Terraform Free</a>.
+      <a href="https://discord.gg/7dXyRzSkhr" target="_blank">Feel free to join our Discord if you have any questions</a>.
     </span>,
   },
   chat: {
