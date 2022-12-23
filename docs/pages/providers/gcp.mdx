@@ -4,7 +4,9 @@ import { Callout } from 'nextra-theme-docs'
 # Google Cloud Platform
 
 <Callout type="warning" emoji="⚠️">
-  This API will be deprecated soon.
+  Google Cloud has the highest egress costs between all major cloud providers. 
+
+  Given the free egress quota per month is limited to only 1GB, [please set up billing alarms][billing-alarms] to ensure you won't receive a scary bill at the of the month.
 </Callout>
 
 Google Cloud is a cloud computing platform that provides a range of services for building, deploying, and managing applications and infrastructure. It is designed to be flexible, scalable, and secure, and offers a range of tools and services for building and running applications, storing and analyzing data, and managing infrastructure.
@@ -31,6 +33,11 @@ GCP is known for its strong focus on data analytics and machine learning, and ha
   _Related:_ [Pricing on egress rates.][pricing-egress] and [How Google calculates egress usage rates.][usage-egress-gcp]
   </Tab>
   <Tab>
+  <Callout type="info" emoji="ℹ️">
+  You could use Terraform to also allow APIs to be enabled as part of the Terraform resources, however this might create issues if it isn't a new account on your project. 
+  
+  The recommended route is to enable the following APIs manually through the links below:
+  </Callout>
    - [Cloud Resource Manager API][resource-api-info] &nbsp; | &nbsp; [Enable it][resource-api-enable]
    - [Identity and Access Management (IAM) API][iam-api-info] &nbsp; | &nbsp; [Enable it][iam-api-enable]
    - [Cloud Deployment Manager V2 API][cloud-api-info] &nbsp; | &nbsp; [Enable it][cloud-api-enable]
@@ -99,6 +106,7 @@ module "gcp_free" {
 [gcp-regional-storage]: https://cloud.google.com/storage/docs/storage-classes#legacy
 [gcp-firestore-storage]: https://cloud.google.com/firestore/docs
 [gcp-regions]: https://cloud.google.com/compute/docs/regions-zones
+[billing-alarms]: https://cloud.google.com/billing/docs/how-to/budgets
 [firestore-api-info]: https://cloud.google.com/firestore/docs/reference/rest
 [firestore-enable-api]: https://console.cloud.google.com/apis/library/file.googleapis.com
 [resource-api-info]: https://cloud.google.com/resource-manager

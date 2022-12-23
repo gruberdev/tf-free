@@ -3,7 +3,11 @@ import { Callout } from 'nextra-theme-docs'
 
 # Amazon AWS
 
-<Tabs items={['Free Resource list', 'Limits and Usage Policies', 'Requirements', 'More Information']}>
+AWS is the largest and most mature cloud provider, with a wide range of services and a large ecosystem of partners and integrations. 
+
+It is particularly strong in areas such as compute, storage, and data analytics. AWS also has a strong focus on security and compliance, and offers a range of tools and services for monitoring and managing resources.
+
+<Tabs items={['Free Resource list', 'Limits and Usage Policies', 'Requirements', 'More Information', 'Cleaning Up']}>
   <Tab>
     - **1x** [Virtual Private Cloud (VPC)](aws-vpc-info)
       - **1x** [Sub-network](aws-sub-info) attached to the VPC
@@ -30,6 +34,15 @@ import { Callout } from 'nextra-theme-docs'
     - [Terraform AWS Official Provider Documentation](aws-tf-provider)
     - [How to prevent charges on your Free-Tier account](aws-prevent-charges)
     - [Extended terms and conditions](aws-terms)
+  </Tab>
+  <Tab>
+    <Callout type="error" emoji="️🚫">
+      **CAUTION**: The steps below will delete every resource, machine and configuration in your AWS account. 
+
+      Only follow up through these instructions if you are aware of what this might cause and it is your intent to destroy all resources, effectively cleaning up your account.
+      
+      This should only be done when if you have already run `terraform destroy` successfully and it wasn't able to delete everything. At some extreme cases it might be an alternative to reset corrupt states of your Terraform configuration, however this is not recommended.
+    </Callout>
   </Tab>
 </Tabs>
 
