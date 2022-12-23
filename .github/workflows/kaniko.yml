@@ -1,3 +1,10 @@
+name: Build and push container images using Kaniko
+on:
+  push:
+    branches: ["main", "new-docs"]
+  pull_request:
+    branches: ["main"]
+
 jobs:
   build:
     steps:
