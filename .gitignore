@@ -128,3 +128,4 @@ blast
 
 # Tasks
 *.tasks
+.task/*
