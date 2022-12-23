@@ -1,4 +1,4 @@
-[![Logo Animation](https://readme-typing-svg.herokuapp.com?font=Major+Mono+Display&color=00E7F7&size=40&vCenter=true&width=800&height=200&lines=tf-free;cloud+for+free.)](https://free.terraform.gruber.dev.br)
+[![Logo Animation](https://readme-typing-svg.herokuapp.com?font=Major+Mono+Display&color=00E7F7&size=40&vCenter=true&width=800&height=200&lines=tf-free;cloud+for+free.)](https://free.terraform.gr.wtf)
 
 <a href='https://free.terraform.gr.wtf' target='_blank'>![docs-img]</a>
 
@@ -133,15 +133,15 @@ docker run -v $(pwd):/project -it ghcr.io/gruberdev/freetf:latest
 
 | Name | Description | Type | Default |
 |------|-------------|------|---------|
-| aws\_default\_region | Your default region for AWS resources creation. [Available regions for Google Compute on Free Tier.](https://free.terraform.gruber.dev.br/docs/resources/providers/aws#options) | `string` | `"us-east-1"` |
-| backend\_destroy | Allows destroying all resourcesinside the configured S3 Remote Backend. See more at [tf-free's Backend Documentation](https://free.terraform.gruber.dev.br/docs/setup/backend) | `string` | `"false"` |
+| aws\_default\_region | Your default region for AWS resources creation. [Available regions for Google Compute on Free Tier.](https://free.terraform.gr.wtf/docs/resources/providers/aws#options) | `string` | `"us-east-1"` |
+| backend\_destroy | Allows destroying all resourcesinside the configured S3 Remote Backend. See more at [tf-free's Backend Documentation](https://free.terraform.gr.wtf/docs/setup/backend) | `string` | `"false"` |
 | backend\_stage | Stages possible for Backend. Set for a random string. | `string` | `"test"` |
 | ec2\_aws | Allow for the creation of EC2 instances on AWS. | `bool` | `true` |
 | gcp\_instance\_name | Your VM instance name. [Naming resources convention](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"gcp-machine"` |
 | gcp\_project\_id | Your static IP network nameP. [Naming resources convention](https://cloud.google.com/compute/docs/naming-resources#resource-name-format) | `string` | `"test"` |
 | gcp\_project\_region | Zone location of your instance, [see the list of available regions](https://cloud.google.com/compute/docs/regions-zones#available) - [Terraform provider documentation](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance#zone) | `string` | `"us-west1"` |
 | gcp\_storage\_permissions | See all available values for the parameter at [Predefined ACL's on GCS Permissions](https://cloud.google.com/storage/docs/access-control/lists#predefined-acl) | `string` | `"publicread"` |
-| prevents\_destroy | Prevents destroying the previously provisioned S3 Remote Backend. See more at [tf-free's Backend Documentation](https://free.terraform.gruber.dev.br/docs/setup/backend) | `bool` | `true` |
+| prevents\_destroy | Prevents destroying the previously provisioned S3 Remote Backend. See more at [tf-free's Backend Documentation](https://free.terraform.gr.wtf/docs/setup/backend) | `bool` | `true` |
 | rds\_aws | Allow for the creation of a PostgreSQL database on AWS | `bool` | `true` |
 
 ### Outputs
@@ -162,14 +162,14 @@ docker run -v $(pwd):/project -it ghcr.io/gruberdev/freetf:latest
 
 ---
 
-## License
+## Disclaimer
 
 The MIT license grant is not for Hashicorp's trademarks, which include the logo designs. [Hashicorp reserves all trademark and copyright rights in and to all Hashicorp trademarks][disclaimer].
 
 This repository **is not** associated with any of the cloud providers or Hashicorp. Terraform®, Vault®, Hashicorp's logos and names are Hasicorp's registered Trademarks. When using Hashicorp's logos, be sure to follow their [community][guidelines] and [brand usage][brand] guidelines.
 Be sure to [read the terms][usage-terms] of usage to understand the responsabilities involved.
 
-For more information, **please [our disclaimer][disclaimer-uri]**.
+For more information, **please [read our documentation page about trademark, licensing and terms of usage][disclaimer-uri]**.
 
 
 [docs-img]: https://img.shields.io/badge/read%20available%20documentation-online?style=flat-square&logo=zeit&color=black
@@ -186,7 +186,7 @@ For more information, **please [our disclaimer][disclaimer-uri]**.
 [free-docs-gcp]: https://cloud.google.com/free/docs/gcp-free-tier
 [free-azure]: https://azure.microsoft.com/en-us/free/
 [azure-faq]: https://azure.microsoft.com/en-us/free/free-account-faq/
-[usage-terms]: https://free.terraform.gruber.dev.br/docs/resources/providers/gcp#resources
+[usage-terms]: https://free.terraform.gr.wtf/providers/gcp#resources
 [azure-full-terms]: https://azure.microsoft.com/en-us/offers/ms-azr-0044p/
 [aws-faq]: https://aws.amazon.com/free/free-tier-faqs/
 [docs-repo-url]: https://github.com/CONNECT-platform/codedoc
@@ -207,10 +207,8 @@ For more information, **please [our disclaimer][disclaimer-uri]**.
 [aws-sorted-list]: https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc&awsf.Free%20Tier%20Types=tier%23always-free%7Ctier%2312monthsfree&awsf.Free%20Tier%20Categories=*all
 [aws-dynamodb-info]: https://aws.amazon.com/dynamodb/
 [remote-tfstate-url]: https://github.com/cloudposse/terraform-aws-tfstate-backend
-[tf-free-docs-cli]: https://free.terraform.gruber.dev.br/docs/setup/installing#cli
-[tf-free-gcp-resources]: https://free.terraform.gruber.dev.br/docs/resources/providers/gcp#resources
-[tf-free-aws-resources]: https://free.terraform.gruber.dev.br/docs/resources/providers/aws#resources
-[tf-free-azure-resources]: https://free.terraform.gruber.dev.br/docs/resources/providers/azure#resources
+[tf-free-gcp-resources]: https://free.terraform.gr.wtf/providers/aws#resources
+[tf-free-azure-resources]: https://free.terraform.gr.wtf/providers/azure#resources
 [guidelines]: https://www.hashicorp.com/community-guidelines
 [free-gcp]: https://cloud.google.com/free
 [free-docs-gcp]: https://cloud.google.com/free/docs/gcp-free-tier
@@ -218,7 +216,7 @@ For more information, **please [our disclaimer][disclaimer-uri]**.
 [free-tier-restrictions]: https://cloud.google.com/free/docs/gcp-free-tier/#free-tier
 [google-free-docs]: https://cloud.google.com/free/docs/gcp-free-tier/
 [google-free-landing]: https://cloud.google.com/free
-[unique-gcp-docs]: https://cloud.google.com/free/docs/what-makes-google-cloud-platform-different
+[unique-gcp-docspolicy]: https://cloud.google.com/free/docs/what-makes-google-cloud-platform-different
 [why-google]: https://cloud.google.com/why-google-cloud
 [gcp-price-list]: https://cloud.google.com/pricing/list
 [gcp-comparison-docs]: https://cloud.google.com/free/docs/aws-azure-gcp-service-comparison
@@ -276,8 +274,8 @@ For more information, **please [our disclaimer][disclaimer-uri]**.
 [oracle-compute-info]: https://www.oracle.com/cloud/compute/
 [oracle-database-info]: https://www.oracle.com/database/
 [oracle-storage-info]: https://www.oracle.com/cloud/storage/
-[tf-free-oracle-resources]: https://free.terraform.gruber.dev.br/docs/resources/providers/oracle#resources
-[tf-free-oracle-resources]: https://free.terraform.gruber.dev.br/docs/resources/providers/oracle#resources
+[tf-free-oracle-resources]: https://free.terraform.gr.wtf/providers/oracle#resources
+[tf-free-oracle-resources]: https://free.terraform.gr.wtf/providers/oracle#resources
 [project-taskfile]: https://github.com/gruberdev/tf-free/blob/main/Taskfile.yml
 [taskfile-website]: https://taskfile.dev
-[getting-started]: https://free.terraform.gruber.dev.br/docs/setup/getting-started
+[getting-started]: https://free.terraform.gr.wtf/getting-started
