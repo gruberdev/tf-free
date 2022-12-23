@@ -44,28 +44,6 @@ variable "aws_default_region" {
   description = "Your default region for AWS resources creation. [Available regions for Google Compute on Free Tier.](https://free.terraform.gruber.dev.br/docs/resources/providers/aws#options)"
 }
 
-variable "backend_destroy" {
-  type        = string
-  default     = "false"
-  description = "Allows destroying all resourcesinside the configured S3 Remote Backend. See more at [tf-free's Backend Documentation](https://free.terraform.gruber.dev.br/docs/setup/backend)"
-  validation {
-    condition     = can(index(["false", "true"], var.backend_destroy))
-    error_message = "Error: Only 'true' or 'false' input as a string are acceptable values to this variable."
-  }
-}
-
-variable "prevents_destroy" {
-  type        = bool
-  default     = true
-  description = "Prevents destroying the previously provisioned S3 Remote Backend. See more at [tf-free's Backend Documentation](https://free.terraform.gruber.dev.br/docs/setup/backend)"
-}
-
-variable "backend_stage" {
-  type        = string
-  default     = "test"
-  description = "Stages possible for Backend. Set for a random string." 
-}
-
 variable "ec2_aws" {
   description = "Allow for the creation of EC2 instances on AWS."
   type        = bool
