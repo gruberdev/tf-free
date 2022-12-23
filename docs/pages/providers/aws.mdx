@@ -19,9 +19,11 @@ It is particularly strong in areas such as compute, storage, and data analytics.
     - **1x** [DynamoDB Database](aws-dynamodb-info), mainly used for preventing that running multiple instances of this Terraform chart corrupt each other.
   </Tab>
   <Tab>
+    - Requires a valid credit card associated with your account, even if you don't pay for using any of the resources available.
     - Some resources are **only valid for 12 months** and not forever. Please [check the list of resources](aws-sorted-list) to verify each resource maximum usage within the Free-Tier plan.
     - EC2 Machines and RDS Databases are limited to `t3.micro` and `db.t2.micro` types respectively.
     - AWS provides the free-tier resource usage for all their [global regions](aws-regions) except China (Beijing).
+    - S3 Bucket size limits for the free tier are not enforced. This means manual tracking is required to avoid paying fees.
   </Tab>
   <Tab>
     - **An active account on AWS** | See: \_[Getting started on AWS](aws-account-create)
@@ -43,6 +45,19 @@ It is particularly strong in areas such as compute, storage, and data analytics.
       
       This should only be done when if you have already run `terraform destroy` successfully and it wasn't able to delete everything. At some extreme cases it might be an alternative to reset corrupt states of your Terraform configuration, however this is not recommended.
     </Callout>
+
+    You will need to install a tool called [awsweeper][awsweeper-uri]. To install the latest version, go to their [releases page][awsweeper-releases] and download the binary, or run this command:
+    ```bash filename="Any compatible POSIX terminal with curl installed"
+    curl -sSfL https://raw.githubusercontent.com/jckuester/awsweeper/master/install.sh | sh -s
+    ```
+    You will also need `task` to installed, run the following command while inside the project's root directory:
+    
+    ```bash
+    task clean:aws
+    
+    # Or if you rather run the command manually
+    awsweeper config/aws-filter.yaml
+    ``` 
   </Tab>
 </Tabs>
 
@@ -84,3 +99,5 @@ It is particularly strong in areas such as compute, storage, and data analytics.
 [aws-sorted-list]: https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc&awsf.Free%20Tier%20Types=tier%23always-free%7Ctier%2312monthsfree&awsf.Free%20Tier%20Categories=*all
 [aws-dynamodb-info]: https://aws.amazon.com/dynamodb/
 [remote-tfstate-url]: https://github.com/cloudposse/terraform-aws-tfstate-backend
+[awsweeper-uri]: https://github.com/jckuester/awsweeper
+[awsweeper-releases]: https://github.com/jckuester/awsweeper/releases

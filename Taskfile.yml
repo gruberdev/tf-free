@@ -158,7 +158,7 @@ tasks:
     cmds:
       - terraform apply -var backend_destroy=true -var prevents_destroy=false -target module.terraform_state_backend -auto-approve
       - terraform init -force-copy
-      - terraform destroy -target  module.aws.module.rds.aws_db_instance.rds -auto-approve
+      - terraform destroy -target module.aws.module.rds.aws_db_instance.rds -auto-approve
       - terraform destroy -auto-approve
 
   docker:lint:

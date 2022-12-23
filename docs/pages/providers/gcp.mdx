@@ -13,7 +13,7 @@ Google Cloud is a cloud computing platform that provides a range of services for
 
 GCP is known for its strong focus on data analytics and machine learning, and has a range of tools and services for working with large data sets and developing ML models. It also has a strong focus on security and compliance, and offers a range of tools for managing and monitoring resources.
 
-<Tabs items={['Free Resource list', 'Limits and Usage Policies', 'Required APIs', 'More Information']}>
+<Tabs items={['Free Resource list', 'Limits and Usage Policies', 'Required APIs', 'More Information', 'Cleaning Up']}>
   <Tab>
    - **1x** Virtual Private Cloud [VPC][gcp-vpc-info]
    - **1x** [Firewall][gcp-firewall-info] attached to the VPC
@@ -22,9 +22,11 @@ GCP is known for its strong focus on data analytics and machine learning, and ha
    - **1x** 1GB of storage in a [Firestore NoSQL Database][gcp-firestore-storage]
   </Tab>
   <Tab>
+   - Requires a valid credit card associated with your account, even if you don't pay for using any of the resources available.
    - [Compute Engine Instances ( `f1-micro` ) do not have an external **static** IP address on the free tier][no-free-ip]
    - You're (as a Free-Tier only) limited to 3 US-based exclusive [zones/regions][gcp-regions] for provisioning your instance. (`us-east1`, `us-west1`, and `us-central1`)
    - Cloud Storage follows similar rules to the Compute Engine terms, but is also limited to 5,000 Class A operations per month and 50,000 Class B operations per monnth maximum.
+   - Storage size limits are not enforced on Storage Buckets, you will have to manually keep a track of how much you have used in order to avoid paying fees.
 
   _Reference:_ [Table of Free-Tier limits][free-tier-limits]
 
@@ -50,6 +52,27 @@ GCP is known for its strong focus on data analytics and machine learning, and ha
     - [GCP's Free Programs Overview][google-free-docs]
     - [Eligibility for the Free Tier][free-tier-restrictions]
     - [Detailed price-list on paid products][gcp-price-list]
+  </Tab>
+  <Tab>
+    <Callout type="error" emoji="️🚫">
+      **CAUTION**: The steps below will delete every resource, machine and configuration in your GCP project. 
+
+      Only follow up through these instructions if you are aware of what this might cause and it is your intent to destroy all resources, effectively cleaning up your account.
+      
+      This should only be done when if you have already run `terraform destroy` successfully and it wasn't able to delete everything. At some extreme cases it might be an alternative to reset corrupt states of your Terraform configuration, however this is not recommended.
+    </Callout>
+    You will need a tool called [Cloudblaster][gcp-clean-uri], a local environment properly initialized with your Google account using [gcloud's SDK cli tool][gcloud-sdk-cli]
+    and a working container runtime (such as Rancher Desktop, nerdctl or Docker).
+
+    After initializing your user on `gcloud` with:
+    ```bash
+    gcloud auth login
+    ``` 
+    Run `Cloudblaster`, run the following command replacing `Docker` with your tool of choice equivalent:
+    
+    ```bash
+    docker run --rm --name cloudblaster -w /config -v ./config:/config docker.io/grubertech/cloudblaster:0.1
+    ``` 
   </Tab>
 </Tabs>
 
@@ -79,6 +102,8 @@ module "gcp_free" {
 
 [guidelines]: https://www.hashicorp.com/community-guidelines
 [free-gcp]: https://cloud.google.com/free
+[gcloud-sdk-cli]: https://cloud.google.com/sdk/gcloud
+[gcp-clean-uri]: https://github.com/doitintl/CloudBlaster
 [free-docs-gcp]: https://cloud.google.com/free/docs/gcp-free-tier
 [free-tier-limits]: https://cloud.google.com/free/docs/gcp-free-tier/#free-tier-usage-limits
 [free-tier-restrictions]: https://cloud.google.com/free/docs/gcp-free-tier/#free-tier
