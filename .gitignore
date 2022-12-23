@@ -105,7 +105,9 @@ dist
 .tern-port
 docs/.public/*
 
-# Docker
+# Docs
+.next
+node_modules
 
 # .vscode
 .vscode
@@ -123,3 +125,6 @@ terraform-visual-report/*
 # Blast Radius
 blast/*
 blast
+
+# Tasks
+*.tasks
