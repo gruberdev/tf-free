@@ -4,10 +4,10 @@
 
 ## Objective
 
-> **Creating and managing all available resources offered by major cloud providers exclusively in free-tier plans. Using Terraform to create and manage all the resources in a simplified and centralized manner.**
+> **Creating and managing all available resources offered by major cloud providers exclusively in free-tier plans. Using Terraform to create and manage all these resources in a simplified and centralized manner.**
 
 ## Motivation
-
+[label](untitled:Untitled-1)
 Major cloud providers offer free tiers for specific resources within their product catalogs, as a tactic to attract new users to their platforms. However, these services are normally not well documented nor their information is aggregated to allow the user to focus on deploying only the free resources - the financial interest is to learn the whole platform as you deploy these free resources.
 
 This project aims to bridge the gap between theory and practical solutions for anyone that wants to learn these platforms with practical examples, or just wants these free resources without the hassle of learning everything else.
