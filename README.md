@@ -15,7 +15,6 @@ The goal is to automate the management of these resources using Terraform as the
 ## List of free-tier resources
 
 <details>
-
   <summary>
    Google Cloud Platform <b>(GCP)</b>
   </summary>
