@@ -106,8 +106,9 @@ dist
 docs/.public/*
 
 # Docs
-.next
-node_modules
+docs/.next
+docs/node_modules
+docs/pnpm-lock.yaml
 
 # .vscode
 .vscode
