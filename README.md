@@ -1,6 +1,6 @@
 [![Logo Animation](https://readme-typing-svg.herokuapp.com?font=Major+Mono+Display&color=00E7F7&size=40&vCenter=true&width=800&height=200&lines=tf-free;cloud+for+free.)](https://free.terraform.gruber.dev.br)
 
-<a href='https://free.terraform.gruber.dev.br' target='_blank'>![docs-img]</a> <a href='https://drone.gruber.dev.br' target='_blank'>![drone-img]</a>
+<a href='https://free.terraform.gr.wtf' target='_blank'>![docs-img]</a>
 
 ## Objective
 
@@ -8,9 +8,9 @@
 
 ## Motivation
 
-Every major cloud provider offers a free tier that allows for some kind of resource free of charge, still, learning every cloud and managing these resources can prove burdensome to most.
+Major cloud providers offer free tiers for specific resources within their product catalogs, as a tactic to attract new users to their platforms. However, these services are normally not well documented nor their information is aggregated to allow the user to focus on deploying only the free resources - the financial interest is to learn the whole platform as you deploy these free resources.
 
-The goal is to automate the management of these resources using Terraform as the centralizing tool. It also aims to provide resources for learning and improve your skills as a SRE/DevOps Engineer and as a Terraform user, even if you're developer that never touched cloud infrastructure, nowadays there's great value in learning these tools.
+This project aims to bridge the gap between theory and practical solutions for anyone that wants to learn these platforms with practical examples, or just wants these free resources without the hassle of learning everything else.
 
 ## List of free-tier resources
 
@@ -169,9 +169,9 @@ The MIT license grant is not for Hashicorp's trademarks, which include the logo 
 This repository **is not** associated with any of the cloud providers or Hashicorp. Terraform®, Vault®, Hashicorp's logos and names are Hasicorp's registered Trademarks. When using Hashicorp's logos, be sure to follow their [community][guidelines] and [brand usage][brand] guidelines.
 Be sure to [read the terms][usage-terms] of usage to understand the responsabilities involved.
 
-<!-- Images URLs -->
+For more information, **please [our disclaimer][disclaimer-uri]**.
 
-[drone-img]: https://img.shields.io/drone/build/gruberdev/tf-free?server=https%3A%2F%2Fdrone.gruber.dev.br&logo=drone&labelColor=1F1F1F&logoColor=41dde8&style=flat-square&label=Drone%20CI
+
 [docs-img]: https://img.shields.io/badge/read%20available%20documentation-online?style=flat-square&logo=zeit&color=black
 
 <!-- Repository links -->
@@ -180,6 +180,7 @@ Be sure to [read the terms][usage-terms] of usage to understand the responsabili
 [disclaimer]: https://www.hashicorp.com/trademark-policy
 [guidelines]: https://www.hashicorp.com/community-guidelines
 [free-aws]: https://aws.amazon.com/free/?all-free-tier
+[disclaimer-uri]: https://free.terraform.gr.wtf/disclaimer
 [free-gcp]: https://cloud.google.com/free
 [kis-approach]: https://en.wikipedia.org/wiki/KISS_principle
 [free-docs-gcp]: https://cloud.google.com/free/docs/gcp-free-tier

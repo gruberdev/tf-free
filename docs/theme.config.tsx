@@ -19,7 +19,7 @@ const config: DocsThemeConfig = {
     </span>,
   },
   chat: {
-    link: 'https://discord.com',
+    link: 'https://discord.gg/7dXyRzSkhr',
   },
   docsRepositoryBase: 'https://github.com/gruberdev/tf-free/tree/main/docs',
   useNextSeoProps() {
