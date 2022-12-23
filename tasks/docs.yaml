@@ -1,0 +1,41 @@
+version: '3'
+vars:
+  PATH_ERROR: is not installed or correctly configured in PATH.
+
+silent: true
+
+tasks:
+  install:
+    preconditions:
+      - sh: 'which pnpm'
+        msg: 'pnpm {{.PATH_ERROR}}'
+    dir: docs
+    sources:
+      - package.json
+    generates:
+      - pnpm-lock.yaml
+      - node_modules/*
+    cmds:
+      - pnpm i
+    silent: true
+
+  build:
+    preconditions:
+      - sh: 'which pnpm'
+        msg: 'pnpm {{.PATH_ERROR}}'
+    dir: docs
+    cmds:
+      - pnpm build
+    sources:
+      - ./*.tsx
+      - ./*.mdx
+    generates:
+      - ./.next/*
+
+  dev:
+    preconditions:
+      - sh: 'which pnpm'
+        msg: 'pnpm {{.PATH_ERROR}}'
+    dir: docs
+    cmds:
+      - pnpm dev

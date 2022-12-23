@@ -4,6 +4,7 @@ includes:
   clean: ./tasks/clean.yaml
   aws: ./tasks/aws.yaml
   gcp: ./tasks/gcp.yaml
+  docs: ./tasks/docs.yaml
 
 tasks:
   docker:oneliner:
