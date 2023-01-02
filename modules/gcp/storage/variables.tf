@@ -5,7 +5,7 @@ variable "project_id" {
 }
 variable "name" {
   type        = string
-  default     = "regionaltftest"
+  default     = "free"
   description = "Public name of your storage bucket on GCP. [Naming guidelines for Storage Buckets | GCP Docs](https://cloud.google.com/storage/docs/naming-buckets)"
 }
 

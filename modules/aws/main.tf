@@ -26,3 +26,4 @@ module "rds" {
   vpc_cidr_block = module.vpc.cidr_block
   vpc_subnet_ids = ["${module.vpc.database_subnets[0]}", "${module.vpc.database_subnets[1]}"]
 }
+

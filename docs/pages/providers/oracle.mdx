@@ -1,0 +1,25 @@
+import { Tab, Tabs } from 'nextra-theme-docs'
+import { Callout } from 'nextra-theme-docs'
+
+# Oracle Cloud
+
+## Resources
+
+<Tabs items={['Free Resource list', 'Limits and Usage Policies', 'Requirements', 'More Information']}>
+  <Tab>
+    - **2x** [AMD based VM, 1/8 shared CPU and 1GB RAM][oracle-compute-info]
+    - **4x** [ARM Ampere A1 VM with 6GB RAM][oracle-compute-info]
+    - **2x** [Oracle NoSQL Database with 20GB][oracle-database-info]
+    - **2x** [100GB Block Volume Storage][oracle-storage-info]
+    - **1x** [10GB Object Standard Storage][oracle-storage-info]
+    - **1x** [10GB Infrequent Access Storage][oracle-storage-info]
+    - [10TB Network Egress Per Month][oracle-storage-info]
+  </Tab>
+</Tabs>
+
+## Config example
+
+[oracle-compute-info]: https://www.oracle.com/cloud/compute/
+[oracle-database-info]: https://www.oracle.com/database/
+[oracle-storage-info]: https://www.oracle.com/cloud/storage/
+[tf-free-oracle-resources]: https://free.terraform.gr.wtf/providers/oracle#resources

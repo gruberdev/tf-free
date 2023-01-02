@@ -54,10 +54,8 @@ docs/dist/*
 docs/*.html
 */*.html
 *.html
-*.json
 logs
 *.log
-*.js
 *.meta.json
 *.css
 npm-debug.log*
@@ -105,7 +103,9 @@ dist
 .tern-port
 docs/.public/*
 
-# Docker
+# Docs
+docs/.next
+docs/node_modules
 
 # .vscode
 .vscode
@@ -123,3 +123,7 @@ terraform-visual-report/*
 # Blast Radius
 blast/*
 blast
+
+# Tasks
+*.tasks
+.task/*

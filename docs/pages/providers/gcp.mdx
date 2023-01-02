@@ -1,0 +1,144 @@
+import { Tab, Tabs } from 'nextra-theme-docs'
+import { Callout } from 'nextra-theme-docs'
+
+# Google Cloud Platform
+
+<Callout type="warning" emoji="⚠️">
+  Google Cloud has the highest egress costs between all major cloud providers. 
+
+  Given the free egress quota per month is limited to only 1GB, [please set up billing alarms][billing-alarms] to ensure you won't receive a scary bill at the of the month.
+</Callout>
+
+Google Cloud is a cloud computing platform that provides a range of services for building, deploying, and managing applications and infrastructure. It is designed to be flexible, scalable, and secure, and offers a range of tools and services for building and running applications, storing and analyzing data, and managing infrastructure.
+
+GCP is known for its strong focus on data analytics and machine learning, and has a range of tools and services for working with large data sets and developing ML models. It also has a strong focus on security and compliance, and offers a range of tools for managing and monitoring resources.
+
+<Tabs items={['Free Resource list', 'Limits and Usage Policies', 'Required APIs', 'More Information', 'Cleaning Up']}>
+  <Tab>
+   - **1x** Virtual Private Cloud [VPC][gcp-vpc-info]
+   - **1x** [Firewall][gcp-firewall-info] attached to the VPC
+   - **1x** [Google Compute Engine][gcp-compute-info] `f1-micro` ([1 shared vCPU - 0.2 dedicatd vCPU][gcp-shared-vcpus] - and 0.6GB of Memory) attached to the `VPC`
+   - **1x** 5GB of [regional storage][gcp-regional-storage] on [Cloud Storage][gcp-cloud-storage]
+   - **1x** 1GB of storage in a [Firestore NoSQL Database][gcp-firestore-storage]
+  </Tab>
+  <Tab>
+   - Requires a valid credit card associated with your account, even if you don't pay for using any of the resources available.
+   - [Compute Engine Instances ( `f1-micro` ) do not have an external **static** IP address on the free tier][no-free-ip]
+   - You're (as a Free-Tier only) limited to 3 US-based exclusive [zones/regions][gcp-regions] for provisioning your instance. (`us-east1`, `us-west1`, and `us-central1`)
+   - Cloud Storage follows similar rules to the Compute Engine terms, but is also limited to 5,000 Class A operations per month and 50,000 Class B operations per monnth maximum.
+   - Storage size limits are not enforced on Storage Buckets, you will have to manually keep a track of how much you have used in order to avoid paying fees.
+
+  _Reference:_ [Table of Free-Tier limits][free-tier-limits]
+
+    - You're limited to 1GB of Egress (outgoing) traffic from North America to the rest of the world.
+
+  _Related:_ [Pricing on egress rates.][pricing-egress] and [How Google calculates egress usage rates.][usage-egress-gcp]
+  </Tab>
+  <Tab>
+  <Callout type="info" emoji="ℹ️">
+  You could use Terraform to also allow APIs to be enabled as part of the Terraform resources, however this might create issues if it isn't a new account on your project. 
+  
+  The recommended route is to enable the following APIs manually through the links below:
+  </Callout>
+   - [Cloud Resource Manager API][resource-api-info] &nbsp; | &nbsp; [Enable it][resource-api-enable]
+   - [Identity and Access Management (IAM) API][iam-api-info] &nbsp; | &nbsp; [Enable it][iam-api-enable]
+   - [Cloud Deployment Manager V2 API][cloud-api-info] &nbsp; | &nbsp; [Enable it][cloud-api-enable]
+   - [Compute Engine API][compute-api-info] &nbsp; | &nbsp; [Enable it][compute-api-enable]
+   - [Cloud Firestore API][firestore-api-info] &nbsp; | &nbsp; [Enable it][firestore-enable-api]
+  </Tab>
+  <Tab>
+    - [Main landing page on the Free-Tier plan][google-free-landing]
+    - [Limits of the free-tier usage, from the official documentation][free-tier-limits]
+    - [GCP's Free Programs Overview][google-free-docs]
+    - [Eligibility for the Free Tier][free-tier-restrictions]
+    - [Detailed price-list on paid products][gcp-price-list]
+  </Tab>
+  <Tab>
+    <Callout type="error" emoji="️🚫">
+      **CAUTION**: The steps below will delete every resource, machine and configuration in your GCP project. 
+
+      Only follow up through these instructions if you are aware of what this might cause and it is your intent to destroy all resources, effectively cleaning up your account.
+      
+      This should only be done when if you have already run `terraform destroy` successfully and it wasn't able to delete everything. At some extreme cases it might be an alternative to reset corrupt states of your Terraform configuration, however this is not recommended.
+    </Callout>
+    You will need a tool called [Cloudblaster][gcp-clean-uri], a local environment properly initialized with your Google account using [gcloud's SDK cli tool][gcloud-sdk-cli]
+    and a working container runtime (such as Rancher Desktop, nerdctl or Docker).
+
+    After initializing your user on `gcloud` with:
+    ```bash
+    gcloud auth login
+    ``` 
+    Run `Cloudblaster`, run the following command replacing `Docker` with your tool of choice equivalent:
+    
+    ```bash
+    docker run --rm --name cloudblaster -w /config -v ./config:/config docker.io/grubertech/cloudblaster:0.1
+    ``` 
+  </Tab>
+</Tabs>
+
+---
+
+### Config Example
+
+```hcl filename="/examples/gcp/e2e/main.tf" copy
+provider "google" {
+  region = "your_project_region"
+}
+
+provider "google-beta" {
+  region = "your_project_region"
+}
+
+module "gcp_free" {
+  source = "https://github.com/gruberdev/tf-free/tree/main/modules/gcp"
+  gcp_project_id = "your_project_id"
+  project_region = "your_project_region"
+  instance_name = "your_resulting_instance_name"
+  permissions = "permissions_configuration"
+  bucket_name = "resulting_bucket_name"
+  network_name = "resulting_network_name"
+}
+```
+
+[guidelines]: https://www.hashicorp.com/community-guidelines
+[free-gcp]: https://cloud.google.com/free
+[gcloud-sdk-cli]: https://cloud.google.com/sdk/gcloud
+[gcp-clean-uri]: https://github.com/doitintl/CloudBlaster
+[free-docs-gcp]: https://cloud.google.com/free/docs/gcp-free-tier
+[free-tier-limits]: https://cloud.google.com/free/docs/gcp-free-tier/#free-tier-usage-limits
+[free-tier-restrictions]: https://cloud.google.com/free/docs/gcp-free-tier/#free-tier
+[google-free-docs]: https://cloud.google.com/free/docs/gcp-free-tier/
+[google-free-landing]: https://cloud.google.com/free
+[unique-gcp-docs]: https://cloud.google.com/free/docs/what-makes-google-cloud-platform-different
+[why-google]: https://cloud.google.com/why-google-cloud
+[gcp-price-list]: https://cloud.google.com/pricing/list
+[gcp-comparison-docs]: https://cloud.google.com/free/docs/aws-azure-gcp-service-comparison
+[pricing-egress]: https://cloud.google.com/vpc/network-pricing#internet_egress
+[usage-egress-gcp]: https://cloud.google.com/vpc/network-pricing#vpc-pricing
+[gcp-compute-info]: https://cloud.google.com/compute/docs
+[gcp-shared-vcpus]: https://cloud.google.com/compute/vm-instance-pricing#cpu-bursting
+[gcp-cloud-storage]: https://cloud.google.com/storage
+[gcp-vpc-info]: https://cloud.google.com/storage
+[gcp-firewall-info]: https://cloud.google.com/storage
+[gcp-firestore-storage]: https://cloud.google.com/firestore/docs
+[pricing-gcp-calculator]: https://cloud.google.com/products/calculator
+[no-free-ip]: https://cloud.google.com/free/docs/gcp-free-tier#always-free-usage-limits
+[pricing-egress]: https://cloud.google.com/vpc/network-pricing#internet_egress
+[usage-egress-gcp]: https://cloud.google.com/vpc/network-pricing#vpc-pricing
+[gcp-compute-info]: https://cloud.google.com/compute/docs
+[gcp-shared-vcpus]: https://cloud.google.com/compute/vm-instance-pricing#cpu-bursting
+[gcp-cloud-storage]: https://cloud.google.com/storage
+[gcp-regional-storage]: https://cloud.google.com/storage/docs/storage-classes#legacy
+[gcp-firestore-storage]: https://cloud.google.com/firestore/docs
+[gcp-regions]: https://cloud.google.com/compute/docs/regions-zones
+[billing-alarms]: https://cloud.google.com/billing/docs/how-to/budgets
+[firestore-api-info]: https://cloud.google.com/firestore/docs/reference/rest
+[firestore-enable-api]: https://console.cloud.google.com/apis/library/file.googleapis.com
+[resource-api-info]: https://cloud.google.com/resource-manager
+[resource-api-enable]: https://console.cloud.google.com/apis/library/cloudresourcemanager.googleapis.com
+[iam-api-info]: https://cloud.google.com/iam
+[iam-api-enable]: https://console.cloud.google.com/apis/library/iam.googleapis.com
+[compute-api-info]: https://cloud.google.com/compute
+[compute-api-enable]: https://console.cloud.google.com/apis/library/compute.googleapis.com
+[cloud-api-info]: https://cloud.google.com/deployment-manager
+[cloud-api-enable]: https://console.cloud.google.com/apis/library/deploymentmanager.googleapis.com

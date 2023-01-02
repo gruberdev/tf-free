@@ -1,0 +1,34 @@
+{
+  "name": "tf-free-docs",
+  "version": "0.0.1",
+  "description": "A nextra based documentaiton for tf-free",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gruberdev/tf-free.git"
+  },
+  "author": "R. Gruber <contact@gruber.dev.br>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gruberdev/tf-free/issues"
+    
+  },
+  "homepage": "https://github.com/gruberdev/tf-free#readme",
+  "dependencies": {
+    "next": "^13.0.6",
+    "nextra": "2.0.1",
+    "nextra-theme-docs": "2.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@vercel/analytics": "0.1.6"
+  },
+  "devDependencies": {
+    "@types/node": "18.11.10",
+    "@types/react": "18.0.26",
+    "typescript": "^4.9.3"
+  }
+}

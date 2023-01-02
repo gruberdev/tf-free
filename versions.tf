@@ -1,21 +1,25 @@
 terraform {
-  required_version = ">= 0.13"
+  required_version = ">= 1.00
   required_providers {
     google = {
       source  = "hashicorp/google"
-      version = "4.31.0"
+      version = "4.47.0"
     }
     google-beta = {
       source  = "hashicorp/google-beta"
-      version = "4.31.0"
+      version = "4.47.0"
     }
     aws = {
       source  = "hashicorp/aws"
-      version = "4.25.0"
+      version = "4.48.0"
     }
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "3.17.0"
+      version = "3.37.0"
+    }
+    random = {
+      source = "hashicorp/random"
+      version = "3.4.3"
     }
   }
 }

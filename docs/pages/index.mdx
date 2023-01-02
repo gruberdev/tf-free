@@ -1,102 +1,56 @@
 [![Logo Animation](https://readme-typing-svg.herokuapp.com?font=Major+Mono+Display&color=00E7F7&size=40&vCenter=true&width=800&height=130&lines=tf-free;cloud+for+free.)](https://free.terraform.gruber.dev.br)
 
----
+Major cloud providers offer free tiers for specific resources within their product catalogs, as a tactic to attract new users to their platforms. However, these services are normally not well documented nor their information is aggregated to allow the user to focus on deploying only the free resources - the financial interest is to learn the whole platform as you deploy these free resources.
 
-# Introduction
-> **Creating all available resources offered by major cloud providers within free-tier plans, using Terraform to provide, manage and access these resources in a simplified and centralized manner.**
+This project aims to bridge the gap between theory and practical solutions for anyone that wants to learn these platforms with practical examples, or just wants these free resources without the hassle of learning everything else.
 
-### Project's objective
-
-Every major cloud provider offers a free tier that allows for some kind of resource free of charge, still, learning every cloud and managing these resources can prove burdensome to most.
-
-The goal is to automate the management of these resources using Terraform as the centralizing tool. It also aims to provide resources for learning and improve your skills as a SRE/DevOps Engineer and as a Terraform user, even if you're developer that never touched cloud infrastructure, nowadays there's great value in learning these tools.
-
-A CLI tool is part of this project for those who wish a more [KIS][kis-approach]-like approach.
-
----
-
-# How to use these project's resources:
-
-There are three main ways to bootstrap this project:
-
-1. Using the CLI tool (recommended)
-2. Use Terraform's module directly (advanced)
-
-The second method exemplified below:
-
-```bash | --no-wmbar
-terraform apply -auto-approve
+```bash copy
+terraform init \
+&& terraform apply -auto-approve
 ```
 
-> :Buttons
->
-> > :CopyButton
+To visualize the repository available commands:
 
-To visualize the available commands:
-
-```bash | --no-wmbar
+```bash
+# Installs go-task
 sudo sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
-task --list # Display help message
-> * gcp:                  Build executable binary with GoReleaser.
-> * gcp-boot:             test
-> * gcp-init:             Bootstrapping Google Cloud provider testing files
-> * gcp-test:             Terraform testing (GCP provider)
-> * graph:                Create beautiful Terraform Graphs
-> * heavy-artillery:      Destroy all resources but the S3 Backend .and the DynamoDB instances on AWS.
+
+ # Display help message
+task --list
 ```
-
-> :Buttons
->
-> > :CopyButton
-
 ---
 
-Now, if you want to explicitly call the core module, write a `main.tf` with this content:
+Now if you want to explicitly call the core module, write a `main.tf` with this content:
 
-```hcl | /example/main.tf
+```hcl copy {6,12,17,19} filename="main.tf"
 // Create a main.tf file anywhere with Terraform installed and copy-paste this code
 
 module "tf-free" {
    source = "github.com/gruberdev/tf-free"
 
-/*!*/   enable_aws    = true  // @see [AWS documentation](/docs/providers/amznaws)
-/*!*/   enable_s3_backend  = true  // @see [using a remote S3 on AWS reference](/docs/setup/backend)
+   enable_aws         = true  
    aws_account_id     = "your-aws-access-id"
    aws_account_key    = "your-aws-secret-key"
    aws_default_region = "us-west1"
 
-/*!*/  enable_gcp   =  true // @see [GCP's documentation](/docs/providers/gcloud)
+  enable_gcp         =  true
   gcp_project_id     = "testing-project-1"
   gcp_project_region = "us-west-1"
   gcp_instance_name  = "gcp-machine"
 
-/*!*/  enable_azure   =  true // @see [Azure's documentation](/docs/providers/msazure)
+  enable_azure   =  true
 
-/*!*/  enable_oracle   =  true // @see [Oracle's documentation](/docs/providers/msazure)
+  enable_oracle   =  true
 }
 ```
 
-> :Buttons
->
-> > :CopyButton
-
-<br>
+<br></br>
 
 If you're unsure what your credentials are for each cloud provider, take a look at [Obtaining credentials](/docs/setup/first-run).
 
-> :Buttons
->
-> > :Button icon=true, label=double_arrow, url=/docs/setup/getting-started
-
 ---
 
-<!-- Images URLs -->
-
-[drone-img]: https://img.shields.io/drone/build/gruberdev/tf-free?label=Pipeline%20Status&color=46bac0&labelColor=1F1F1F&logo=Drone&style=for-the-badge&server=https%3A%2F%2Fdrone.gruber.dev.br
 [docs-img]: https://img.shields.io/badge/read%20documentation-online?style=flat-square&logo=zeit&color=black
-
-<!-- Repository links -->
-
 [brand]: https://www.hashicorp.com/brand
 [disclaimer]: https://www.hashicorp.com/trademark-policy
 [guidelines]: https://www.hashicorp.com/community-guidelines

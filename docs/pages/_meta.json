@@ -1,0 +1,43 @@
+{
+  "index": {
+    "title": "Getting Started",
+    "type": "page",
+    "theme": {
+      "typesetting": "article"
+    }
+  },
+  "providers": {
+    "title": "Providers",
+    "type": "menu",
+    "items": {
+      "aws": {
+        "title": "AWS",
+        "href": "/providers/aws"
+      },
+      "gcp": {
+        "title": "GCP",
+        "href": "/providers/gcp"
+      },
+      "azure": {
+        "title": "Azure",
+        "href": "/providers/azure"
+      },
+      "oracle": {
+        "title": "Oracle",
+        "href": "/oracle"
+      }
+    }
+  },
+  "disclaimer": {
+    "title": "Disclaimer",
+    "type": "page",
+    "href": "/disclaimer"
+  },
+  "issues": {
+    "title": "Issues",
+    "type": "page",
+    "href": "https://github.com/gruberdev/tf-free/issues",
+    "newWindow": true
+  }
+}
+
